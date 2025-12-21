@@ -51,10 +51,10 @@ const services = [
 ];
 ---
 
-<section id="services" class="relative py-32 bg-background overflow-hidden">
+<section id="services" class="relative py-32 bg-[#f8f9fa] overflow-hidden">
   <!-- Subtle Grain Texture -->
   <div
-    class="absolute inset-0 pointer-events-none opacity-[0.03] z-50 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"
+    class="absolute inset-0 pointer-events-none opacity-[0.05] z-50 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"
   >
   </div>
 
@@ -68,14 +68,14 @@ const services = [
           >What we do</span
         >
         <h2
-          class="text-6xl md:text-8xl font-black tracking-tight text-foreground leading-[0.85]"
+          class="text-6xl md:text-8xl font-black tracking-tight text-[#0c1b33] leading-[0.85]"
         >
-          OUR <br /><span class="text-foreground/10">SERVICES</span>
+          OUR <br /><span class="text-[#0c1b33]/10">SERVICES</span>
         </h2>
       </div>
       <div class="max-w-sm pb-2">
         <p
-          class="text-lg font-medium text-muted-foreground leading-relaxed italic border-l-2 border-primary pl-6"
+          class="text-lg font-medium text-[#0c1b33]/60 leading-relaxed italic border-l-2 border-primary pl-6"
         >
           We combine strategy with creativity to deliver exceptional digital
           experiences that drive growth and brand loyalty.
@@ -89,11 +89,11 @@ const services = [
       {
         services.map((service) => (
           <div class="group flex flex-col relative">
-            <div class="flex items-baseline justify-between mb-10 border-b border-foreground/5 pb-8 relative">
-              <h3 class="text-4xl font-extrabold text-foreground tracking-tight transition-transform duration-500 group-hover:translate-x-2">
+            <div class="flex items-baseline justify-between mb-10 border-b border-[#0c1b33]/5 pb-8 relative">
+              <h3 class="text-4xl font-extrabold text-[#0c1b33] tracking-tight transition-transform duration-500 group-hover:translate-x-2">
                 {service.title}
               </h3>
-              <span class="text-sm font-black text-muted-foreground/20 group-hover:text-primary transition-colors duration-500">
+              <span class="text-sm font-black text-[#0c1b33]/10 group-hover:text-primary transition-colors duration-500">
                 ({service.id})
               </span>
               <div class="absolute bottom-0 left-0 h-[2px] w-0 bg-primary transition-all duration-700 ease-out group-hover:w-full" />
@@ -101,15 +101,15 @@ const services = [
 
             <ul class="space-y-5 mb-12 flex-grow">
               {service.items.map((item) => (
-                <li class="text-xl font-medium text-muted-foreground group-hover:text-foreground transition-all duration-300 flex items-center gap-4">
-                  <span class="w-1.5 h-1.5 rounded-full bg-muted-foreground/20 group-hover:bg-primary group-hover:scale-125 transition-all duration-300" />
+                <li class="text-xl font-medium text-[#0c1b33]/50 group-hover:text-[#0c1b33] transition-all duration-300 flex items-center gap-4">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#0c1b33]/10 group-hover:bg-primary group-hover:scale-125 transition-all duration-300" />
                   {item}
                 </li>
               ))}
             </ul>
 
             {service.image && (
-              <div class="mt-4 overflow-hidden rounded-[2.5rem] bg-muted/30 aspect-[4/5] relative group/img cursor-pointer shadow-2xl shadow-black/5 transition-transform duration-500 hover:-translate-y-2">
+              <div class="mt-4 overflow-hidden rounded-[2.5rem] bg-[#0c1b33]/5 aspect-[4/5] relative group/img cursor-pointer shadow-2xl shadow-black/5 transition-transform duration-500 hover:-translate-y-2">
                 <img
                   src={service.image}
                   alt={service.title}
