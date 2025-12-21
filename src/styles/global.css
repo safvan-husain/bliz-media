@@ -29,11 +29,21 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 
   --color-background: #ffffff;
-  --color-foreground: #09090b;
+  --color-foreground: #0c1b33;
+  --color-primary: #ff3d3d;
+  --color-secondary: #0c1b33;
+  --color-accent: #25d366;
   --color-muted: #f4f4f5;
   --color-muted-foreground: #71717a;
   
   --max-width-container: 1280px;
+
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
 }
 
 @layer base {

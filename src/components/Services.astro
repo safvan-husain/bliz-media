@@ -51,20 +51,32 @@ const services = [
 ];
 ---
 
-<section id="services" class="py-24 bg-background overflow-hidden">
-  <div class="max-w-[var(--max-width-container)] mx-auto px-6">
+<section id="services" class="relative py-32 bg-background overflow-hidden">
+  <!-- Subtle Grain Texture -->
+  <div
+    class="absolute inset-0 pointer-events-none opacity-[0.03] z-50 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"
+  >
+  </div>
+
+  <div class="max-w-[var(--max-width-container)] mx-auto px-6 relative z-10">
     <div
-      class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8"
+      class="flex flex-col md:flex-row justify-between items-end mb-28 gap-8"
     >
       <div class="max-w-2xl">
+        <span
+          class="text-primary font-bold tracking-[0.2em] text-sm uppercase mb-4 block"
+          >What we do</span
+        >
         <h2
           class="text-6xl md:text-8xl font-black tracking-tight text-foreground leading-[0.85]"
         >
-          OUR <br /><span class="text-muted-foreground/30">SERVICES</span>
+          OUR <br /><span class="text-foreground/10">SERVICES</span>
         </h2>
       </div>
       <div class="max-w-sm pb-2">
-        <p class="text-lg font-medium text-muted-foreground leading-relaxed">
+        <p
+          class="text-lg font-medium text-muted-foreground leading-relaxed italic border-l-2 border-primary pl-6"
+        >
           We combine strategy with creativity to deliver exceptional digital
           experiences that drive growth and brand loyalty.
         </p>
@@ -78,32 +90,47 @@ const services = [
         services.map((service) => (
           <div class="group flex flex-col relative">
             <div class="flex items-baseline justify-between mb-10 border-b border-foreground/5 pb-8 relative">
-              <h3 class="text-4xl font-extrabold text-foreground tracking-tight">
+              <h3 class="text-4xl font-extrabold text-foreground tracking-tight transition-transform duration-500 group-hover:translate-x-2">
                 {service.title}
               </h3>
-              <span class="text-sm font-black text-muted-foreground/20 group-hover:text-foreground transition-colors duration-500">
+              <span class="text-sm font-black text-muted-foreground/20 group-hover:text-primary transition-colors duration-500">
                 ({service.id})
               </span>
-              <div class="absolute bottom-0 left-0 h-[1px] w-0 bg-foreground transition-all duration-700 ease-out group-hover:w-full" />
+              <div class="absolute bottom-0 left-0 h-[2px] w-0 bg-primary transition-all duration-700 ease-out group-hover:w-full" />
             </div>
 
             <ul class="space-y-5 mb-12 flex-grow">
               {service.items.map((item) => (
-                <li class="text-xl font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-300 flex items-center gap-4">
-                  <span class="w-1.5 h-1.5 rounded-full bg-muted-foreground/20 group-hover:bg-foreground transition-all duration-300" />
+                <li class="text-xl font-medium text-muted-foreground group-hover:text-foreground transition-all duration-300 flex items-center gap-4">
+                  <span class="w-1.5 h-1.5 rounded-full bg-muted-foreground/20 group-hover:bg-primary group-hover:scale-125 transition-all duration-300" />
                   {item}
                 </li>
               ))}
             </ul>
 
             {service.image && (
-              <div class="mt-4 overflow-hidden rounded-[2.5rem] bg-muted/30 aspect-[4/5] relative group/img cursor-pointer">
+              <div class="mt-4 overflow-hidden rounded-[2.5rem] bg-muted/30 aspect-[4/5] relative group/img cursor-pointer shadow-2xl shadow-black/5 transition-transform duration-500 hover:-translate-y-2">
                 <img
                   src={service.image}
                   alt={service.title}
-                  class="w-full h-full object-cover transform group-hover/img:scale-105 transition-transform duration-1000 ease-out"
+                  class="w-full h-full object-cover transform group-hover/img:scale-110 transition-transform duration-1000 ease-out"
                 />
-                <div class="absolute inset-0 bg-foreground/0 group-hover/img:bg-foreground/5 transition-colors duration-500" />
+                <div class="absolute inset-0 bg-primary/0 group-hover/img:bg-primary/10 transition-colors duration-500" />
+                <div class="absolute bottom-6 right-6 h-12 w-12 rounded-full bg-white flex items-center justify-center opacity-0 translate-y-4 group-hover/img:opacity-100 group-hover/img:translate-y-0 transition-all duration-500">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14m-7-7 7 7-7 7" />
+                  </svg>
+                </div>
               </div>
             )}
           </div>
