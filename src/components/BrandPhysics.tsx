@@ -11,16 +11,69 @@ interface BrandPhysicsProps {
 }
 
 export default function BrandPhysics({ brands }: BrandPhysicsProps) {
+    const containerRef = useRef<HTMLDivElement>(null);
     const sceneRef = useRef<HTMLDivElement>(null);
+    const brandsRef = useRef(brands);
     const engineRef = useRef<Matter.Engine | null>(null);
     const renderRef = useRef<Matter.Render | null>(null);
     const runnerRef = useRef<Matter.Runner | null>(null);
+    const cleanupRef = useRef<(() => void) | null>(null);
+    const hasStartedRef = useRef(false);
+    const isInViewRef = useRef(false);
+    const isRunningRef = useRef(false);
+    const pendingRestartRef = useRef(false);
 
-    useEffect(() => {
+    brandsRef.current = brands;
+
+    const pause = () => {
+        const runner = runnerRef.current;
+        const render = renderRef.current;
+        if (runner) Matter.Runner.stop(runner);
+        if (render) Matter.Render.stop(render);
+        isRunningRef.current = false;
+    };
+
+    const resume = () => {
+        const runner = runnerRef.current;
+        const render = renderRef.current;
+        const engine = engineRef.current;
+        if (!runner || !render || !engine) return;
+        Matter.Runner.run(runner, engine);
+        Matter.Render.run(render);
+        isRunningRef.current = true;
+    };
+
+    const cleanup = () => {
+        const doCleanup = cleanupRef.current;
+        cleanupRef.current = null;
+        if (doCleanup) {
+            doCleanup();
+        } else {
+            const render = renderRef.current;
+            const runner = runnerRef.current;
+            const engine = engineRef.current;
+
+            if (render) Matter.Render.stop(render);
+            if (runner) Matter.Runner.stop(runner);
+            if (engine) Matter.Engine.clear(engine);
+
+            if (render?.canvas) render.canvas.remove();
+            if (render) render.textures = {};
+        }
+
+        renderRef.current = null;
+        runnerRef.current = null;
+        engineRef.current = null;
+        isRunningRef.current = false;
+    };
+
+    const startOrRestart = () => {
         if (!sceneRef.current) return;
 
+        cleanup();
+
         // --- Matter.js Setup ---
-        const { Engine, Render, Runner, World, Bodies, Mouse, MouseConstraint, Composite } = Matter;
+        const { Engine, Render, Runner, Bodies, Mouse, MouseConstraint, Composite } = Matter;
 
         const engine = Engine.create();
         engineRef.current = engine;
@@ -53,7 +106,7 @@ export default function BrandPhysics({ brands }: BrandPhysicsProps) {
         Composite.add(world, [ground, ceiling, leftWall, rightWall]);
 
         // Create brand bodies
-        const bodies = brands.map((brand, index) => {
+        const bodies = brandsRef.current.map((brand) => {
             const x = Math.random() * (width - 100) + 50;
             const y = Math.random() * (height - 100) + 50;
 
@@ -98,36 +151,37 @@ export default function BrandPhysics({ brands }: BrandPhysicsProps) {
         mouse.element.removeEventListener("DOMMouseScroll", (mouse as any).mousewheel);
 
         // Custom render loop for text
-        (function run() {
-            Render.lookAt(render, {
-                min: { x: 0, y: 0 },
-                max: { x: width, y: height }
+        Render.lookAt(render, {
+            min: { x: 0, y: 0 },
+            max: { x: width, y: height },
+        });
+
+        const afterRender = () => {
+            const context = render.context;
+            context.font = "600 16px Inter, sans-serif";
+            context.textAlign = "center";
+            context.textBaseline = "middle";
+            context.fillStyle = "#09090b";
+
+            bodies.forEach((body) => {
+                const { x, y } = body.position;
+                const angle = body.angle;
+
+                context.save();
+                context.translate(x, y);
+                context.rotate(angle);
+                context.fillText((body as any).brandName, 0, 0);
+                context.restore();
             });
+        };
 
-            Matter.Events.on(render, "afterRender", () => {
-                const context = render.context;
-                context.font = "600 16px Inter, sans-serif";
-                context.textAlign = "center";
-                context.textBaseline = "middle";
-                context.fillStyle = "#09090b";
-
-                bodies.forEach((body) => {
-                    const { x, y } = body.position;
-                    const angle = body.angle;
-
-                    context.save();
-                    context.translate(x, y);
-                    context.rotate(angle);
-                    context.fillText((body as any).brandName, 0, 0);
-                    context.restore();
-                });
-            });
-        })();
+        Matter.Events.on(render, "afterRender", afterRender);
 
         const runner = Runner.create();
         Runner.run(runner, engine);
         Render.run(render);
         runnerRef.current = runner;
+        isRunningRef.current = true;
 
         // Resize handler
         const handleResize = () => {
@@ -148,18 +202,79 @@ export default function BrandPhysics({ brands }: BrandPhysicsProps) {
 
         window.addEventListener("resize", handleResize);
 
-        return () => {
+        cleanupRef.current = () => {
             window.removeEventListener("resize", handleResize);
-            Render.stop(render);
-            Runner.stop(runner);
-            Engine.clear(engine);
+            Matter.Events.off(render, "afterRender", afterRender);
+            Matter.Render.stop(render);
+            Matter.Runner.stop(runner);
+            Matter.Engine.clear(engine);
             render.canvas.remove();
             render.textures = {};
         };
+    };
+
+    useEffect(() => {
+        const el = containerRef.current;
+        if (!el) return;
+
+        if (typeof IntersectionObserver === "undefined") {
+            hasStartedRef.current = true;
+            startOrRestart();
+            return () => cleanup();
+        }
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                const isInView = entry.isIntersecting;
+                isInViewRef.current = isInView;
+
+                if (isInView) {
+                    if (!hasStartedRef.current) {
+                        hasStartedRef.current = true;
+                        startOrRestart();
+                        return;
+                    }
+
+                    if (pendingRestartRef.current) {
+                        pendingRestartRef.current = false;
+                        startOrRestart();
+                        return;
+                    }
+
+                    if (!isRunningRef.current) resume();
+                    return;
+                }
+
+                if (hasStartedRef.current && isRunningRef.current) pause();
+            },
+            { threshold: 0.1 }
+        );
+
+        observer.observe(el);
+
+        return () => {
+            observer.disconnect();
+            cleanup();
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    useEffect(() => {
+        if (!hasStartedRef.current) return;
+        if (!isInViewRef.current) {
+            pendingRestartRef.current = true;
+            return;
+        }
+
+        startOrRestart();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [brands]);
 
     return (
-        <div className="relative w-full h-[400px] cursor-grab active:cursor-grabbing overflow-hidden rounded-xl border border-muted bg-muted/30 p-2 m-2">
+        <div
+            ref={containerRef}
+            className="relative w-full h-[400px] cursor-grab active:cursor-grabbing overflow-hidden rounded-xl border border-muted bg-muted/30 p-2 m-2"
+        >
             <div ref={sceneRef} className="w-full h-full" />
         </div>
     );
