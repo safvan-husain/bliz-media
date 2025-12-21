@@ -3,10 +3,10 @@ interface TeamMember {
     name: string;
     role: string;
     imagePath: string;
-    description: string;
+    description?: string;
 }
 
-const teamMembers: TeamMember[] = [
+const founders: TeamMember[] = [
     {
         name: "Alex Rivera",
         role: "Founder & CEO",
@@ -17,12 +17,15 @@ const teamMembers: TeamMember[] = [
     },
     {
         name: "Sarah Chen",
-        role: "Creative Director",
+        role: "Co-Founder & Creative Director",
         imagePath:
             "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop",
         description:
             "Award-winning designer focused on creating immersive brand experiences. Sarah's philosophy centers on the intersection of human psychology and visual storytelling.",
     },
+];
+
+const leaders: TeamMember[] = [
     {
         name: "Marcus Thorne",
         role: "Head of Development",
@@ -39,29 +42,113 @@ const teamMembers: TeamMember[] = [
         description:
             "Data-driven marketer specializing in growth hacking and cross-channel digital campaigns. Elena turns complex data into actionable success.",
     },
+    {
+        name: "Jordan Patel",
+        role: "Head of Strategy",
+        imagePath:
+            "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1000&auto=format&fit=crop",
+        description:
+            "Connects business goals to clear roadmaps, aligning brand, product, and performance to drive measurable growth.",
+    },
+    {
+        name: "Priya Nair",
+        role: "Operations Lead",
+        imagePath:
+            "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=1000&auto=format&fit=crop",
+        description:
+            "Keeps teams moving with crisp processes, client communication, and delivery standards that scale across projects.",
+    },
+    {
+        name: "Noah Kim",
+        role: "Head of Product",
+        imagePath:
+            "https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=1000&auto=format&fit=crop",
+        description:
+            "Turns insights into experiences—guiding discovery, UX direction, and iteration to ship products users love.",
+    },
+];
+
+const team: TeamMember[] = [
+    {
+        name: "Maya Singh",
+        role: "UI Designer",
+        imagePath:
+            "https://images.unsplash.com/photo-1524503033411-f7a2a9b41d86?q=80&w=800&auto=format&fit=crop",
+    },
+    {
+        name: "Ethan Brooks",
+        role: "Frontend Developer",
+        imagePath:
+            "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop",
+    },
+    {
+        name: "Ava Martinez",
+        role: "Backend Developer",
+        imagePath:
+            "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop",
+    },
+    {
+        name: "Liam Foster",
+        role: "SEO Specialist",
+        imagePath:
+            "https://images.unsplash.com/photo-1502767089025-6572583495b4?q=80&w=800&auto=format&fit=crop",
+    },
+    {
+        name: "Chloe Bennett",
+        role: "Copywriter",
+        imagePath:
+            "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=800&auto=format&fit=crop",
+    },
+    {
+        name: "Owen Price",
+        role: "Project Manager",
+        imagePath:
+            "https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?q=80&w=800&auto=format&fit=crop",
+    },
+    {
+        name: "Sophia Wallace",
+        role: "Motion Designer",
+        imagePath:
+            "https://images.unsplash.com/photo-1524502397800-2eeaad7c3fe5?q=80&w=800&auto=format&fit=crop",
+    },
+    {
+        name: "Jackson Lee",
+        role: "Social Media Manager",
+        imagePath:
+            "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=80&w=800&auto=format&fit=crop",
+    },
 ];
 ---
 
 <section
     id="team"
-    class="relative overflow-hidden bg-gray-50 px-6 py-36"
+    class="relative overflow-hidden bg-muted px-6 py-36"
 >
-    <div class="relative z-10 mx-auto flex max-w-6xl flex-col gap-16">
-        <div class="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+    <div
+        class="relative z-10 mx-auto flex max-w-[var(--max-width-container)] flex-col gap-20"
+    >
+        <div
+            class="flex flex-col gap-8 md:flex-row md:items-end md:justify-between"
+        >
             <div>
                 <span
-                    class="mb-4 block text-xs font-extrabold uppercase tracking-[0.2em] text-blue-500"
+                    class="mb-4 block text-xs font-extrabold uppercase tracking-[0.2em] text-muted-foreground"
                 >
                     Our Talent
                 </span>
                 <h2
-                    class="text-5xl font-black leading-none text-gray-900 md:text-7xl"
+                    class="text-5xl font-black leading-none text-foreground md:text-7xl"
                 >
-                    Meet the Visionaries
+                    The People
+                </h2>
+                <h2
+                    class="text-5xl font-black leading-none text-foreground md:text-7xl"
+                >
+                    Behind Bliz Media
                 </h2>
             </div>
             <div class="md:max-w-sm">
-                <p class="text-lg font-medium leading-relaxed text-gray-600">
+                <p class="text-lg font-medium leading-relaxed text-muted-foreground">
                     A collective of creative minds and strategic thinkers
                     dedicated to elevating your brand through innovation and
                     excellence.
@@ -69,70 +156,149 @@ const teamMembers: TeamMember[] = [
             </div>
         </div>
 
-        <div class="flex flex-col gap-6">
-            {
-                teamMembers.map((member, index) => (
-                    <div
-                        class="group flex flex-col overflow-hidden rounded-[40px] border border-black/5 bg-white hover:shadow-[0_10px_30px_-10px_rgba(0,0,0,0.05)] transition duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] hover:-translate-y-1 hover:scale-[1.01] hover:border-blue-500/10 md:h-[380px] md:flex-row md:items-stretch md:even:flex-row-reverse"
-                    >
-                        <div
-                            class="relative h-80 w-full overflow-hidden md:h-full md:w-[400px] md:flex-none"
-                        >
-                            <img
-                                src={member.imagePath}
-                                alt={member.name}
-                                class="h-full w-full object-cover transition duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] grayscale group-hover:scale-105 group-hover:grayscale-0"
-                            />
-                            <div
-                                class="absolute left-6 top-6 flex h-10 w-10 items-center justify-center rounded-xl bg-black/30 text-sm font-black text-white backdrop-blur"
-                            >
-                                0{index + 1}
-                            </div>
-                        </div>
-                        <div
-                            class="flex flex-1 flex-col justify-center gap-5 px-6 py-10 md:px-12"
-                        >
-                            <div
-                                class="text-xs font-extrabold uppercase tracking-[0.15em] text-blue-500"
-                            >
-                                {member.role}
-                            </div>
-                            <h3
-                                class="text-3xl font-extrabold tracking-tight text-gray-900 md:text-[2.5rem]"
-                            >
-                                {member.name}
-                            </h3>
-                            <p
-                                class="max-w-2xl text-lg leading-relaxed text-gray-600"
-                            >
-                                {member.description}
-                            </p>
-                            <div class="mt-auto">
-                                <a
-                                    href="#"
-                                    class="group/link inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.05em] text-gray-900 transition hover:gap-4 hover:text-blue-500"
-                                >
-                                    <span>View Full Profile</span>
-                                    <svg
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2.5"
-                                        class="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1"
-                                    >
-                                        <path d="M5 12H19M19 12L12 5M19 12L12 19" />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
+        <div class="flex flex-col gap-16">
+            <div class="flex flex-col gap-8">
+                <div class="flex items-end justify-between gap-6">
+                    <div>
+                        <h3 class="text-3xl font-extrabold tracking-tight text-foreground md:text-4xl">
+                            Meet the Visionaries
+                        </h3>
+                        <p class="mt-3 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+                            Founders guiding the mission, culture, and craft.
+                        </p>
                     </div>
-                ))
-            }
+                </div>
+
+                <div class="flex flex-col gap-6">
+                    {
+                        founders.map((member, index) => (
+                            <div class="group flex flex-col overflow-hidden rounded-[40px] border border-foreground/10 bg-background transition duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] hover:-translate-y-1 hover:scale-[1.01] hover:border-foreground/20 hover:shadow-[0_10px_30px_-10px_rgba(0,0,0,0.06)] md:h-[380px] md:flex-row md:items-stretch md:even:flex-row-reverse">
+                                <div class="relative h-80 w-full overflow-hidden md:h-full md:w-[420px] md:flex-none">
+                                    <img
+                                        src={member.imagePath}
+                                        alt={member.name}
+                                        class="h-full w-full object-cover transition duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] grayscale group-hover:scale-105 group-hover:grayscale-0"
+                                        loading="lazy"
+                                    />
+                                    <div class="absolute left-6 top-6 flex h-10 w-10 items-center justify-center rounded-xl bg-foreground/25 text-sm font-black text-background backdrop-blur">
+                                        0{index + 1}
+                                    </div>
+                                </div>
+                                <div class="flex flex-1 flex-col justify-center gap-5 px-6 py-10 md:px-12">
+                                    <div class="text-xs font-extrabold uppercase tracking-[0.15em] text-muted-foreground">
+                                        {member.role}
+                                    </div>
+                                    <h4 class="text-3xl font-extrabold tracking-tight text-foreground md:text-[2.5rem]">
+                                        {member.name}
+                                    </h4>
+                                    {member.description && (
+                                        <p class="max-w-2xl text-lg leading-relaxed text-muted-foreground">
+                                            {member.description}
+                                        </p>
+                                    )}
+                                    <div class="mt-auto">
+                                        <a
+                                            href="#"
+                                            class="group/link inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.05em] text-foreground transition hover:gap-4"
+                                        >
+                                            <span>View Full Profile</span>
+                                            <svg
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2.5"
+                                                class="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1"
+                                            >
+                                                <path d="M5 12H19M19 12L12 5M19 12L12 19" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-8">
+                <div>
+                    <h3 class="text-3xl font-extrabold tracking-tight text-foreground md:text-4xl">
+                        Meet the Leaders
+                    </h3>
+                    <p class="mt-3 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+                        The crew that turns strategy into real, repeatable execution.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    {
+                        leaders.map((member) => (
+                            <div class="group overflow-hidden rounded-3xl border border-foreground/10 bg-background transition duration-500 hover:-translate-y-0.5 hover:border-foreground/20 hover:shadow-[0_12px_26px_-16px_rgba(0,0,0,0.25)]">
+                                <div class="relative aspect-[4/3] w-full overflow-hidden">
+                                    <img
+                                        src={member.imagePath}
+                                        alt={member.name}
+                                        class="h-full w-full object-cover transition duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] grayscale group-hover:scale-105 group-hover:grayscale-0"
+                                        loading="lazy"
+                                    />
+                                </div>
+                                <div class="flex flex-col gap-3 p-6">
+                                    <div class="text-xs font-extrabold uppercase tracking-[0.15em] text-muted-foreground">
+                                        {member.role}
+                                    </div>
+                                    <h4 class="text-xl font-extrabold tracking-tight text-foreground">
+                                        {member.name}
+                                    </h4>
+                                    {member.description && (
+                                        <p class="text-base leading-relaxed text-muted-foreground">
+                                            {member.description}
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-8">
+                <div>
+                    <h3 class="text-3xl font-extrabold tracking-tight text-foreground md:text-4xl">
+                        Meet the Team
+                    </h3>
+                    <p class="mt-3 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+                        Specialists across design, engineering, and growth.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                    {
+                        team.map((member) => (
+                            <div class="flex items-center gap-4 rounded-2xl border border-foreground/10 bg-background p-4 transition hover:border-foreground/20 hover:shadow-[0_10px_18px_-14px_rgba(0,0,0,0.25)]">
+                                <img
+                                    src={member.imagePath}
+                                    alt={member.name}
+                                    class="h-12 w-12 flex-none rounded-full object-cover"
+                                    loading="lazy"
+                                />
+                                <div class="min-w-0">
+                                    <div class="truncate text-base font-extrabold tracking-tight text-foreground">
+                                        {member.name}
+                                    </div>
+                                    <div class="truncate text-sm font-semibold text-muted-foreground">
+                                        {member.role}
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
         </div>
     </div>
 
     <div
-        class="pointer-events-none absolute -bottom-[5%] -right-2 select-none text-[20vw] font-black leading-none text-black/5"
+        class="pointer-events-none absolute -bottom-[5%] -right-2 select-none text-[20vw] font-black leading-none text-foreground/5"
     >
         EXPERTISE
     </div>
