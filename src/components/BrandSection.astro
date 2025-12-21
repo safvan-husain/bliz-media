@@ -1,0 +1,61 @@
+---
+import BrandPhysics from "./BrandPhysics";
+
+const brands = [
+    { name: "Google", id: "google" },
+    { name: "Meta", id: "meta" },
+    { name: "Amazon", id: "amazon" },
+    { name: "Microsoft", id: "microsoft" },
+    { name: "Apple", id: "apple" },
+    { name: "OpenAI", id: "openai" },
+    { name: "Anthropic", id: "anthropic" },
+    { name: "Mistral", id: "mistral" },
+    { name: "NVIDIA", id: "nvidia" },
+    { name: "Stripe", id: "stripe" },
+    { name: "Vercel", id: "vercel" },
+    { name: "Supabase", id: "supabase" },
+];
+---
+
+<section class="py-24 px-4 bg-white overflow-hidden">
+    <div class="max-w-[var(--max-width-container)] mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2
+                    class="text-4xl md:text-5xl font-bold tracking-tight text-[var(--color-foreground)] mb-6"
+                >
+                    Powering the Next Generation of <span
+                        class="text-muted-foreground">Digital Innovation</span
+                    >
+                </h2>
+                <p
+                    class="text-xl text-muted-foreground leading-relaxed mb-8 max-w-xl"
+                >
+                    We collaborate with world-class technology leaders to build
+                    scalable, high-performance solutions that redefine industry
+                    standards.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <div
+                        class="flex items-center gap-2 px-4 py-2 bg-muted rounded-full text-sm font-medium"
+                    >
+                        <div
+                            class="w-2 h-2 bg-green-500 rounded-full animate-pulse"
+                        >
+                        </div>
+                        Active Partnerships
+                    </div>
+                    <div
+                        class="flex items-center gap-2 px-4 py-2 border border-muted rounded-full text-sm font-medium text-muted-foreground"
+                    >
+                        Physics Enabled
+                    </div>
+                </div>
+            </div>
+
+            <div class="h-[500px] w-full">
+                <BrandPhysics client:load brands={brands} />
+            </div>
+        </div>
+    </div>
+</section>
