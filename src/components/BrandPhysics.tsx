@@ -4,6 +4,7 @@ import Matter from "matter-js";
 interface Brand {
     name: string;
     id: string;
+    color?: string;
 }
 
 interface BrandPhysicsProps {
@@ -22,8 +23,113 @@ export default function BrandPhysics({ brands }: BrandPhysicsProps) {
     const isInViewRef = useRef(false);
     const isRunningRef = useRef(false);
     const pendingRestartRef = useRef(false);
+    const colorCacheRef = useRef<Map<string, { fill: string; text: string }>>(new Map());
 
     brandsRef.current = brands;
+
+    const getContrastingTextColor = (background: string) => {
+        const hexMatch = background.trim().match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/i);
+        if (hexMatch) {
+            const hex = hexMatch[1].toLowerCase();
+            const full = hex.length === 3 ? hex.split("").map((c) => c + c).join("") : hex;
+            const r = parseInt(full.slice(0, 2), 16);
+            const g = parseInt(full.slice(2, 4), 16);
+            const b = parseInt(full.slice(4, 6), 16);
+
+            const srgb = [r, g, b].map((v) => {
+                const c = v / 255;
+                return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+            });
+            const luminance = 0.2126 * srgb[0] + 0.7152 * srgb[1] + 0.0722 * srgb[2];
+            return luminance > 0.6 ? "#09090b" : "#ffffff";
+        }
+
+        const rgbMatch = background.match(
+            /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)(?:\s*,\s*([\d.]+))?\s*\)/
+        );
+        if (!rgbMatch) return "#09090b";
+
+        const r = Number(rgbMatch[1]);
+        const g = Number(rgbMatch[2]);
+        const b = Number(rgbMatch[3]);
+
+        const srgb = [r, g, b].map((v) => {
+            const c = v / 255;
+            return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+        });
+        const luminance = 0.2126 * srgb[0] + 0.7152 * srgb[1] + 0.0722 * srgb[2];
+
+        return luminance > 0.6 ? "#09090b" : "#ffffff";
+    };
+
+    const normalizeTailwindColorClass = (value: string) => {
+        const trimmed = value.trim();
+        if (!trimmed) return "bg-white";
+
+        if (trimmed.startsWith("#")) return trimmed;
+        if (trimmed.startsWith("rgb")) return trimmed;
+        if (trimmed.startsWith("hsl")) return trimmed;
+        if (trimmed.startsWith("var(")) return trimmed;
+
+        if (/\b(bg|text|from|via|to)-/.test(trimmed)) return trimmed;
+        if (/^[a-z]+-\d{2,3}$/.test(trimmed)) return `bg-${trimmed}`;
+
+        return trimmed;
+    };
+
+    const resolveBrandColors = (value?: string) => {
+        const normalized = normalizeTailwindColorClass(value ?? "bg-white");
+
+        if (
+            normalized.startsWith("#") ||
+            normalized.startsWith("rgb") ||
+            normalized.startsWith("hsl") ||
+            normalized.startsWith("var(")
+        ) {
+            const probe = document.createElement("div");
+            probe.style.position = "absolute";
+            probe.style.left = "-9999px";
+            probe.style.top = "-9999px";
+            probe.style.width = "1px";
+            probe.style.height = "1px";
+            probe.style.pointerEvents = "none";
+            probe.style.backgroundColor = normalized;
+            document.body.appendChild(probe);
+            const computedBackground = window.getComputedStyle(probe).backgroundColor;
+            probe.remove();
+
+            return {
+                fill: normalized,
+                text: getContrastingTextColor(computedBackground && computedBackground !== "rgba(0, 0, 0, 0)" ? computedBackground : normalized),
+            };
+        }
+
+        const cached = colorCacheRef.current.get(normalized);
+        if (cached) return cached;
+
+        const probe = document.createElement("div");
+        probe.className = normalized;
+        probe.style.position = "absolute";
+        probe.style.left = "-9999px";
+        probe.style.top = "-9999px";
+        probe.style.width = "1px";
+        probe.style.height = "1px";
+        probe.style.pointerEvents = "none";
+        document.body.appendChild(probe);
+
+        const style = window.getComputedStyle(probe);
+        const backgroundColor = style.backgroundColor;
+        const textColor = style.color;
+        probe.remove();
+
+        const fill =
+            backgroundColor && backgroundColor !== "rgba(0, 0, 0, 0)" ? backgroundColor : textColor || "white";
+        const text = getContrastingTextColor(fill);
+
+        const resolved = { fill, text };
+        colorCacheRef.current.set(normalized, resolved);
+        return resolved;
+    };
 
     const pause = () => {
         const runner = runnerRef.current;
@@ -114,12 +220,14 @@ export default function BrandPhysics({ brands }: BrandPhysicsProps) {
             const textWidth = brand.name.length * 10 + 40;
             const textHeight = 40;
 
+            const { fill, text } = resolveBrandColors(brand.color);
+
             const body = Bodies.rectangle(x, y, textWidth, textHeight, {
                 chamfer: { radius: 20 },
                 restitution: 0.6,
                 friction: 0.1,
                 render: {
-                    fillStyle: "white",
+                    fillStyle: fill,
                     strokeStyle: "#09090b",
                     lineWidth: 2,
                 },
@@ -127,6 +235,7 @@ export default function BrandPhysics({ brands }: BrandPhysicsProps) {
 
             // Attach metadata for rendering text
             (body as any).brandName = brand.name;
+            (body as any).brandTextColor = text;
             return body;
         });
 
@@ -156,24 +265,25 @@ export default function BrandPhysics({ brands }: BrandPhysicsProps) {
             max: { x: width, y: height },
         });
 
-        const afterRender = () => {
-            const context = render.context;
-            context.font = "600 16px Inter, sans-serif";
-            context.textAlign = "center";
-            context.textBaseline = "middle";
-            context.fillStyle = "#09090b";
+	        const afterRender = () => {
+	            const context = render.context;
+	            context.font = "600 16px Inter, sans-serif";
+	            context.textAlign = "center";
+	            context.textBaseline = "middle";
 
-            bodies.forEach((body) => {
-                const { x, y } = body.position;
-                const angle = body.angle;
+	            bodies.forEach((body) => {
+	                const { x, y } = body.position;
+	                const angle = body.angle;
+                    const textColor = (body as any).brandTextColor ?? "#09090b";
 
-                context.save();
-                context.translate(x, y);
-                context.rotate(angle);
-                context.fillText((body as any).brandName, 0, 0);
-                context.restore();
-            });
-        };
+	                context.save();
+	                context.translate(x, y);
+	                context.rotate(angle);
+                    context.fillStyle = textColor;
+	                context.fillText((body as any).brandName, 0, 0);
+	                context.restore();
+	            });
+	        };
 
         Matter.Events.on(render, "afterRender", afterRender);
 
