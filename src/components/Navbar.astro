@@ -10,7 +10,9 @@ const currentPath = Astro.url.pathname;
 ---
 
 <nav
-    class="fixed top-0 left-0 right-0 z-50 px-6 pt-8 flex justify-between items-center max-w-[1600px] mx-auto"
+    id="main-nav"
+    data-theme="dark"
+    class="fixed top-0 left-0 right-0 z-50 px-6 pt-8 flex justify-between items-center max-w-[1600px] mx-auto transition-all duration-500"
 >
     <!-- Logo Section -->
     <div class="flex items-center gap-3">
@@ -19,14 +21,17 @@ const currentPath = Astro.url.pathname;
         >
             <span class="text-white font-black text-xl italic">B</span>
         </div>
-        <span class="text-white font-black text-2xl tracking-tighter uppercase"
+        <span
+            id="nav-title"
+            class="nav-text font-black text-2xl tracking-tighter uppercase transition-colors duration-500"
             >Bliz</span
         >
     </div>
 
     <!-- Navigation Links - Desktop -->
     <div
-        class="hidden lg:flex items-center gap-1 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-full px-2 py-1.5"
+        id="nav-links-container"
+        class="nav-pill hidden lg:flex items-center gap-1 backdrop-blur-2xl border transition-all duration-500 rounded-full px-2 py-1.5"
     >
         {
             navLinks.map((link) => {
@@ -36,10 +41,10 @@ const currentPath = Astro.url.pathname;
                 return (
                     <a
                         href={link.href}
-                        class={`px-6 py-2 rounded-full text-[13px] uppercase tracking-widest transition-all duration-300 ${
+                        class={`nav-link px-6 py-2 rounded-full text-[13px] uppercase tracking-widest transition-all duration-500 ${
                             isActive
-                                ? "bg-white/10 text-white font-bold"
-                                : "text-white/60 hover:text-white hover:bg-white/5 font-medium"
+                                ? "nav-link-active font-bold"
+                                : "nav-link-inactive font-medium"
                         }`}
                     >
                         {link.name}
@@ -50,7 +55,10 @@ const currentPath = Astro.url.pathname;
     </div>
 
     <!-- Mobile Menu Toggle (Simplified) -->
-    <button class="lg:hidden p-2 text-white">
+    <button
+        id="mobile-toggle"
+        class="lg:hidden p-2 nav-text transition-colors duration-500"
+    >
         <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-6 w-6"
@@ -67,10 +75,84 @@ const currentPath = Astro.url.pathname;
     </button>
 </nav>
 
+<script>
+    const nav = document.getElementById("main-nav");
+    const sections = ["hero", "services", "brands", "team", "contact"];
+
+    const themes = {
+        hero: "dark",
+        services: "light",
+        brands: "light",
+        team: "light",
+        contact: "light",
+    };
+
+    const observerOptions = {
+        root: null,
+        rootMargin: "-10% 0px -80% 0px",
+        threshold: 0,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const sectionId = entry.target.id;
+                const theme =
+                    themes[sectionId as keyof typeof themes] || "light";
+                nav?.setAttribute("data-theme", theme);
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+    });
+</script>
+
 <style>
     /* Premium font smoothing */
     nav {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Theme Styles */
+    #main-nav[data-theme="dark"] .nav-text {
+        color: white;
+    }
+    #main-nav[data-theme="dark"] .nav-pill {
+        background-color: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+    #main-nav[data-theme="dark"] .nav-link-inactive {
+        color: rgba(255, 255, 255, 0.6);
+    }
+    #main-nav[data-theme="dark"] .nav-link-inactive:hover {
+        color: white;
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+    #main-nav[data-theme="dark"] .nav-link-active {
+        color: white;
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    #main-nav[data-theme="light"] .nav-text {
+        color: #0c1b33;
+    }
+    #main-nav[data-theme="light"] .nav-pill {
+        background-color: rgba(12, 27, 51, 0.05);
+        border-color: rgba(12, 27, 51, 0.1);
+    }
+    #main-nav[data-theme="light"] .nav-link-inactive {
+        color: rgba(12, 27, 51, 0.6);
+    }
+    #main-nav[data-theme="light"] .nav-link-inactive:hover {
+        color: #0c1b33;
+        background-color: rgba(12, 27, 51, 0.05);
+    }
+    #main-nav[data-theme="light"] .nav-link-active {
+        color: #0c1b33;
+        background-color: rgba(12, 27, 51, 0.1);
     }
 </style>
