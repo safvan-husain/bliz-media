@@ -4,7 +4,6 @@ import Hero from "../components/Hero.astro";
 import Services from "../components/Services.astro";
 import BrandSection from "../components/BrandSection.astro";
 import Team from "../components/Team.astro";
-import { TestimonialsSection } from "../components/blocks/testimonials-with-marquee";
 import Contact from "../components/Contact.astro";
 
 const testimonials = [
@@ -43,13 +42,7 @@ const testimonials = [
 <Layout title="Bliz Media - Web Development & Digital Marketing">
   <Hero />
   <Services />
-  <BrandSection />
+  <BrandSection testimonials={testimonials} />
   <Team />
-  <TestimonialsSection
-    client:visible
-    title="Trusted by Leading Brands"
-    description="Our clients trust us to blend creativity and strategy to deliver real business impact."
-    testimonials={testimonials}
-  />
   <Contact />
 </Layout>

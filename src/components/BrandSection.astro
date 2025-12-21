@@ -1,5 +1,24 @@
 ---
 import BrandPhysics from "./BrandPhysics";
+import { TestimonialsSection } from "./blocks/testimonials-with-marquee";
+
+interface Author {
+    name: string;
+    handle: string;
+    avatar: string;
+}
+
+interface Testimonial {
+    author: Author;
+    text: string;
+    href?: string;
+}
+
+interface Props {
+    testimonials?: Testimonial[];
+}
+
+const { testimonials = [] } = Astro.props as Props;
 
 const brands = [
     { name: "Google", id: "google" },
@@ -17,12 +36,21 @@ const brands = [
 ];
 ---
 
-<section class="py-24 px-4 bg-white overflow-hidden">
-    <div class="max-w-[var(--max-width-container)] mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<section class="overflow-hidden bg-white px-4 py-24">
+    <div
+        class="mx-auto flex max-w-[var(--max-width-container)] flex-col gap-24"
+    >
+        <TestimonialsSection
+            client:visible
+            title="Trusted by Leading Brands"
+            description="Our clients trust us to blend creativity and strategy to deliver real business impact."
+            testimonials={testimonials}
+            className="bg-transparent px-0 py-0"
+        />
+        <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div>
                 <h2
-                    class="text-4xl md:text-5xl font-bold tracking-tight text-[var(--color-foreground)] mb-6"
+                    class="text-4xl font-bold tracking-tight text-[var(--color-foreground)] mb-6 md:text-5xl"
                 >
                     Powering the Next Generation of <span
                         class="text-muted-foreground">Digital Innovation</span
@@ -44,11 +72,6 @@ const brands = [
                         >
                         </div>
                         Active Partnerships
-                    </div>
-                    <div
-                        class="flex items-center gap-2 px-4 py-2 border border-muted rounded-full text-sm font-medium text-muted-foreground"
-                    >
-                        Physics Enabled
                     </div>
                 </div>
             </div>

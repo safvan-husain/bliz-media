@@ -159,11 +159,8 @@ export default function BrandPhysics({ brands }: BrandPhysicsProps) {
     }, [brands]);
 
     return (
-        <div className="relative w-full h-[400px] cursor-grab active:cursor-grabbing overflow-hidden rounded-xl border border-muted bg-muted/30">
+        <div className="relative w-full h-[400px] cursor-grab active:cursor-grabbing overflow-hidden rounded-xl border border-muted bg-muted/30 p-2 m-2">
             <div ref={sceneRef} className="w-full h-full" />
-            <div className="absolute top-4 left-4 pointer-events-none">
-                <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Interactive Ecosystem</h3>
-            </div>
         </div>
     );
 }
