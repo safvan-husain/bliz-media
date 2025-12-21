@@ -8,20 +8,14 @@ interface TeamMember {
 
 const founders: TeamMember[] = [
     {
-        name: "Alex Rivera",
-        role: "Founder & CEO",
-        imagePath:
-            "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop",
-        description:
-            "Visionary leader with 15+ years of experience in digital transformation and strategic branding. Alex has led Bliz Media to become a premier agency in the region.",
+        name: "Anwar Sadiq",
+        role: "Founder",
+        imagePath: "/images/team/anwar-sadiq.png",
     },
     {
-        name: "Sarah Chen",
-        role: "Co-Founder & Creative Director",
-        imagePath:
-            "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop",
-        description:
-            "Award-winning designer focused on creating immersive brand experiences. Sarah's philosophy centers on the intersection of human psychology and visual storytelling.",
+        name: "Ajnas VP",
+        role: "Founder",
+        imagePath: "/images/team/ajnas-vp.png",
     },
 ];
 
@@ -120,10 +114,18 @@ const team: TeamMember[] = [
 ];
 ---
 
-<section
-    id="team"
-    class="relative overflow-hidden bg-muted px-6 py-36"
->
+<section id="team" class="relative overflow-hidden bg-white px-6 py-36">
+    <!-- Mesh Gradient Background -->
+    <div class="absolute inset-0 z-0 opacity-40">
+        <div
+            class="absolute -left-[10%] -top-[10%] h-[60%] w-[60%] rounded-full bg-primary/5 blur-[120px]"
+        >
+        </div>
+        <div
+            class="absolute -right-[10%] -bottom-[10%] h-[60%] w-[60%] rounded-full bg-primary/5 blur-[120px]"
+        >
+        </div>
+    </div>
     <div
         class="relative z-10 mx-auto flex max-w-[var(--max-width-container)] flex-col gap-20"
     >
@@ -148,7 +150,9 @@ const team: TeamMember[] = [
                 </h2>
             </div>
             <div class="md:max-w-sm">
-                <p class="text-lg font-medium leading-relaxed text-muted-foreground">
+                <p
+                    class="text-lg font-medium leading-relaxed text-muted-foreground"
+                >
                     A collective of creative minds and strategic thinkers
                     dedicated to elevating your brand through innovation and
                     excellence.
@@ -160,77 +164,83 @@ const team: TeamMember[] = [
             <div class="flex flex-col gap-8">
                 <div class="flex items-end justify-between gap-6">
                     <div>
-                        <h3 class="text-3xl font-extrabold tracking-tight text-foreground md:text-4xl">
+                        <h3
+                            class="text-3xl font-extrabold tracking-tight text-foreground md:text-4xl"
+                        >
                             Meet the Visionaries
                         </h3>
-                        <p class="mt-3 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+                        <p
+                            class="mt-3 max-w-2xl text-lg leading-relaxed text-muted-foreground"
+                        >
                             Founders guiding the mission, culture, and craft.
                         </p>
                     </div>
                 </div>
 
-                <div class="flex flex-col gap-6">
-                    {
-                        founders.map((member, index) => (
-                            <div class="group flex flex-col overflow-hidden rounded-[40px] border border-foreground/10 bg-background transition duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] hover:-translate-y-1 hover:scale-[1.01] hover:border-foreground/20 hover:shadow-[0_10px_30px_-10px_rgba(0,0,0,0.06)] md:h-[380px] md:flex-row md:items-stretch md:even:flex-row-reverse">
-                                <div class="relative h-80 w-full overflow-hidden md:h-full md:w-[420px] md:flex-none">
-                                    <img
-                                        src={member.imagePath}
-                                        alt={member.name}
-                                        class="h-full w-full object-cover transition duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] grayscale group-hover:scale-105 group-hover:grayscale-0"
-                                        loading="lazy"
-                                    />
-                                    <div class="absolute left-6 top-6 flex h-10 w-10 items-center justify-center rounded-xl bg-foreground/25 text-sm font-black text-background backdrop-blur">
-                                        0{index + 1}
+                <div class="group relative mx-auto mt-24 w-full max-w-5xl">
+                    {/* The Combined Glassy Card */}
+                    <div
+                        class="relative w-full overflow-visible rounded-[50px] border border-white/20 bg-white/5  backdrop-blur-xl transition-all duration-500 group-hover:border-white/30"
+                    >
+                        {/* Red Glow Backdrop */}
+                        <div
+                            class="absolute -inset-1 rounded-[50px] bg-gradient-to-tr from-primary/20 to-transparent blur-3xl opacity-0 transition duration-500 group-hover:opacity-100"
+                        >
+                        </div>
+
+                        <div
+                            class="relative grid grid-cols-1 items-end md:grid-cols-2"
+                        >
+                            {
+                                founders.map((member, i) => (
+                                    <div
+                                        class={`relative flex flex-col items-center pb-12 px-6 ${i === 0 ? "md:items-end md:pr-8" : "md:items-start md:pl-8"}`}
+                                    >
+                                        {/* The Cut-out Image */}
+                                        <div class="relative -mt-40 w-full max-w-[380px] flex justify-center">
+                                            <img
+                                                src={member.imagePath}
+                                                alt={member.name}
+                                                class={`h-auto w-full object-contain transition duration-700 ease-out group-hover:scale-[1.03] filter brightness-110 contrast-110 ${i === 0 ? "md:translate-x-4" : "md:-translate-x-4"}`}
+                                                style="mix-blend-mode: multiply;"
+                                            />
+                                        </div>
+
+                                        {/* Info inside card */}
+                                        <div class="relative z-10 -mt-4 flex flex-col items-center text-center">
+                                            <h4 class="text-3xl font-black tracking-tight text-foreground md:text-5xl">
+                                                {member.name}
+                                            </h4>
+                                            <div class="mt-2 text-xs font-extrabold uppercase tracking-[0.2em] text-primary">
+                                                {member.role}
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="flex flex-1 flex-col justify-center gap-5 px-6 py-10 md:px-12">
-                                    <div class="text-xs font-extrabold uppercase tracking-[0.15em] text-muted-foreground">
-                                        {member.role}
-                                    </div>
-                                    <h4 class="text-3xl font-extrabold tracking-tight text-foreground md:text-[2.5rem]">
-                                        {member.name}
-                                    </h4>
-                                    {member.description && (
-                                        <p class="max-w-2xl text-lg leading-relaxed text-muted-foreground">
-                                            {member.description}
-                                        </p>
-                                    )}
-                                    <div class="mt-auto">
-                                        <a
-                                            href="#"
-                                            class="group/link inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.05em] text-foreground transition hover:gap-4"
-                                        >
-                                            <span>View Full Profile</span>
-                                            <svg
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                stroke-width="2.5"
-                                                class="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1"
-                                            >
-                                                <path d="M5 12H19M19 12L12 5M19 12L12 19" />
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        ))
-                    }
+                                ))
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="flex flex-col gap-8">
                 <div>
-                    <h3 class="text-3xl font-extrabold tracking-tight text-foreground md:text-4xl">
+                    <h3
+                        class="text-3xl font-extrabold tracking-tight text-foreground md:text-4xl"
+                    >
                         Meet the Leaders
                     </h3>
-                    <p class="mt-3 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-                        The crew that turns strategy into real, repeatable execution.
+                    <p
+                        class="mt-3 max-w-2xl text-lg leading-relaxed text-muted-foreground"
+                    >
+                        The crew that turns strategy into real, repeatable
+                        execution.
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <div
+                    class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+                >
                     {
                         leaders.map((member) => (
                             <div class="group overflow-hidden rounded-3xl border border-foreground/10 bg-background transition duration-500 hover:-translate-y-0.5 hover:border-foreground/20 hover:shadow-[0_12px_26px_-16px_rgba(0,0,0,0.25)]">
@@ -263,15 +273,21 @@ const team: TeamMember[] = [
 
             <div class="flex flex-col gap-8">
                 <div>
-                    <h3 class="text-3xl font-extrabold tracking-tight text-foreground md:text-4xl">
+                    <h3
+                        class="text-3xl font-extrabold tracking-tight text-foreground md:text-4xl"
+                    >
                         Meet the Team
                     </h3>
-                    <p class="mt-3 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+                    <p
+                        class="mt-3 max-w-2xl text-lg leading-relaxed text-muted-foreground"
+                    >
                         Specialists across design, engineering, and growth.
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <div
+                    class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
+                >
                     {
                         team.map((member) => (
                             <div class="flex items-center gap-4 rounded-2xl border border-foreground/10 bg-background p-4 transition hover:border-foreground/20 hover:shadow-[0_10px_18px_-14px_rgba(0,0,0,0.25)]">
