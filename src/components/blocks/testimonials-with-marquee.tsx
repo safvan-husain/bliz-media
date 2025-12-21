@@ -46,17 +46,29 @@ export function TestimonialsSection({
         return () => observer.disconnect()
     }, [])
 
-    const testimonialCards = useMemo(
-        () =>
-            testimonials.map((testimonial, i) => (
+    const { repeatedCardsPerHalf, durationSeconds } = useMemo(() => {
+        const minCardsPerHalf = 8
+        const safeTestimonials = testimonials.length ? testimonials : []
+        const repeatCount = Math.max(
+            1,
+            Math.ceil(minCardsPerHalf / Math.max(1, safeTestimonials.length))
+        )
+
+        const repeatedCardsPerHalf = Array.from({ length: repeatCount }, (_, setIndex) =>
+            safeTestimonials.map((testimonial, i) => (
                 <TestimonialCard
-                    key={i}
+                    key={`${setIndex}-${i}`}
                     {...testimonial}
                     className="shrink-0"
                 />
-            )),
-        [testimonials]
-    )
+            ))
+        ).flat()
+
+        return {
+            repeatedCardsPerHalf,
+            durationSeconds: 20 * repeatCount
+        }
+    }, [testimonials])
 
     return (
         <section
@@ -78,19 +90,22 @@ export function TestimonialsSection({
                 </div>
 
                 <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
-                    <div className="testimonial-marquee group flex overflow-hidden p-2 [--gap:1.5rem] flex-row [--duration:20s]">
+                    <div
+                        className="testimonial-marquee group flex overflow-hidden p-2 [--gap:1.5rem] flex-row"
+                        style={{ ["--duration" as never]: `${durationSeconds}s` }}
+                    >
                         <div
                             className="testimonial-marquee-track flex w-max shrink-0 flex-row will-change-transform"
                             data-animate={shouldAnimate ? "true" : "false"}
                         >
                             <div className="flex [gap:var(--gap)] pr-[var(--gap)]">
-                                {testimonialCards}
+                                {repeatedCardsPerHalf}
                             </div>
                             <div
                                 className="flex [gap:var(--gap)] pr-[var(--gap)]"
                                 aria-hidden="true"
                             >
-                                {testimonialCards}
+                                {repeatedCardsPerHalf}
                             </div>
                         </div>
                     </div>
