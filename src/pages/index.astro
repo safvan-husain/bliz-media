@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
+import FeaturedProjects from "../components/FeaturedProjects.astro";
 import Services from "../components/Services.astro";
 import BrandSection from "../components/BrandSection.astro";
 import Team from "../components/Team.astro";
@@ -41,6 +42,7 @@ const testimonials = [
 
 <Layout title="Bliz Media - Web Development & Digital Marketing">
   <Hero />
+  <FeaturedProjects />
   <Services />
   <BrandSection testimonials={testimonials} />
   <Team />
