@@ -6,6 +6,9 @@ import react from '@astrojs/react';
 export default defineConfig({
   integrations: [react()],
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    server: {
+      allowedHosts: ['d2b54f15c8ae.ngrok-free.app', 'localhost']
+    }
   }
 });
