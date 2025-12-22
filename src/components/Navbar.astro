@@ -1,40 +1,38 @@
 ---
 const navLinks = [
-    { name: "Work", href: "/projects" },
-    { name: "Services", href: "/services" },
-    { name: "About", href: "/about" },
-    { name: "Contact", href: "/contact" },
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/about" },
+    { name: "All Services", href: "/services" },
+    { name: "Projects", href: "/projects" },
+    { name: "Blog", href: "/blog" },
 ];
 
 const currentPath = Astro.url.pathname;
 ---
 
-<nav
-    id="main-nav"
-    data-theme="dark"
-    class="fixed top-0 left-0 right-0 z-50 px-6 pt-8 flex justify-between items-center max-w-[1600px] mx-auto transition-all duration-500"
->
-    <!-- Logo Section -->
-    <div class="flex items-center gap-3">
-        <div
-            class="h-10 w-10 bg-primary rounded-full flex items-center justify-center"
-        >
-            <span class="text-white font-black text-xl italic">B</span>
+<nav class="fixed top-0 left-0 right-0 z-50 px-4 pt-6 flex justify-center">
+    <div
+        class="bg-stone-50/90 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.05)] rounded-[2.5rem] px-4 py-2 flex items-center justify-between w-full max-w-7xl"
+    >
+        <!-- Logo Section -->
+        <div class="pl-4">
+            <a
+                href="/"
+                class="flex items-center group transition-transform hover:scale-102"
+            >
+                <div class="h-10">
+                    <img
+                        src="/Bliz Media Logo.webp"
+                        alt="Bliz Media"
+                        class="h-full w-auto object-contain"
+                    />
+                </div>
+                <!-- Note: We could add the text here if needed, but per the image it's logo + tagline -->
+            </a>
         </div>
-        <span
-            id="nav-title"
-            class="nav-text font-black text-2xl tracking-tighter uppercase transition-colors duration-500"
-            >Bliz</span
-        >
-    </div>
 
-    <!-- Right Side Actions -->
-    <div class="flex items-center gap-4">
         <!-- Navigation Links - Desktop -->
-        <div
-            id="nav-links-container"
-            class="nav-pill hidden lg:flex items-center gap-1 backdrop-blur-2xl border transition-all duration-500 rounded-full px-2 py-1.5"
-        >
+        <div class="hidden lg:flex items-center gap-10">
             {
                 navLinks.map((link) => {
                     const isActive =
@@ -44,176 +42,55 @@ const currentPath = Astro.url.pathname;
                     return (
                         <a
                             href={link.href}
-                            class={`nav-link px-6 py-2 rounded-full text-[13px] uppercase tracking-widest transition-all duration-500 ${
+                            class={`text-[15px] tracking-tight transition-all duration-300 relative py-1 ${
                                 isActive
-                                    ? "nav-link-active font-bold"
-                                    : "nav-link-inactive font-medium"
+                                    ? "text-black font-semibold"
+                                    : "text-gray-500 hover:text-black font-medium"
                             }`}
                         >
                             {link.name}
+                            {isActive && (
+                                <span class="absolute -bottom-1 left-0 w-full h-[2px] bg-black rounded-full" />
+                            )}
                         </a>
                     );
                 })
             }
         </div>
 
-        <!-- Dynamic CTA Button -->
-        <div
-            id="nav-cta-container"
-            class="hidden lg:flex items-center overflow-hidden transition-all duration-500 ease-out max-w-0 opacity-0 scale-90 translate-x-4"
-        >
+        <!-- CTA Button -->
+        <div class="flex items-center">
             <a
-                href="#projects"
-                class="bg-primary text-white px-6 py-2.5 rounded-full font-bold text-sm hover:scale-105 active:scale-95 transition-all duration-300 whitespace-nowrap shadow-[0_0_20px_rgba(255,61,61,0.3)] uppercase tracking-wide"
+                href="/quote"
+                class="bg-[#000d1d] text-white px-8 py-3.5 rounded-full text-[15px] font-semibold hover:bg-[#00152a] transition-all duration-300 shadow-lg shadow-blue-900/10 active:scale-95"
             >
                 Get a Free Quote
             </a>
-        </div>
 
-        <!-- Mobile Menu Toggle (Simplified) -->
-        <button
-            id="mobile-toggle"
-            class="lg:hidden p-2 nav-text transition-colors duration-500"
-        >
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-            >
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4 6h16M4 12h16m-7 6h7"></path>
-            </svg>
-        </button>
+            <!-- Mobile Menu Toggle (Simplified) -->
+            <button class="lg:hidden ml-4 p-2 text-gray-600">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
     </div>
 </nav>
-
-<script>
-    const nav = document.getElementById("main-nav");
-    const sections = ["hero", "services", "brands", "team", "contact"];
-
-    const themes = {
-        hero: "dark",
-        services: "light",
-        brands: "light",
-        team: "light",
-        contact: "light",
-    };
-
-    const observerOptions = {
-        root: null,
-        rootMargin: "-10% 0px -80% 0px",
-        threshold: 0,
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                const sectionId = entry.target.id;
-                const theme =
-                    themes[sectionId as keyof typeof themes] || "light";
-                nav?.setAttribute("data-theme", theme);
-            }
-        });
-    }, observerOptions);
-
-    sections.forEach((id) => {
-        const el = document.getElementById(id);
-        if (el) observer.observe(el);
-    });
-
-    // Hero Visibility Observer for CTA Button
-    const heroObserver = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                const navCta = document.getElementById("nav-cta-container");
-                if (!navCta) return;
-
-                // If Hero is intersecting (visible), hide the CTA
-                // If Hero is NOT intersecting (scrolled past), show the CTA
-                if (entry.isIntersecting) {
-                    navCta.classList.remove(
-                        "max-w-xs",
-                        "opacity-100",
-                        "scale-100",
-                        "translate-x-0",
-                    );
-                    navCta.classList.add(
-                        "max-w-0",
-                        "opacity-0",
-                        "scale-90",
-                        "translate-x-4",
-                    );
-                } else {
-                    navCta.classList.remove(
-                        "max-w-0",
-                        "opacity-0",
-                        "scale-90",
-                        "translate-x-4",
-                    );
-                    navCta.classList.add(
-                        "max-w-xs",
-                        "opacity-100",
-                        "scale-100",
-                        "translate-x-0",
-                    );
-                }
-            });
-        },
-        { threshold: 0.1 },
-    ); // Trigger when 10% of hero is visible
-
-    const hero = document.getElementById("hero");
-    if (hero) heroObserver.observe(hero);
-</script>
 
 <style>
     /* Premium font smoothing */
     nav {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-    }
-
-    /* Theme Styles */
-    #main-nav[data-theme="dark"] .nav-text {
-        color: white;
-    }
-    #main-nav[data-theme="dark"] .nav-pill {
-        background-color: rgba(255, 255, 255, 0.05);
-        border-color: rgba(255, 255, 255, 0.1);
-    }
-    #main-nav[data-theme="dark"] .nav-link-inactive {
-        color: rgba(255, 255, 255, 0.6);
-    }
-    #main-nav[data-theme="dark"] .nav-link-inactive:hover {
-        color: white;
-        background-color: rgba(255, 255, 255, 0.05);
-    }
-    #main-nav[data-theme="dark"] .nav-link-active {
-        color: white;
-        background-color: rgba(255, 255, 255, 0.1);
-    }
-
-    #main-nav[data-theme="light"] .nav-text {
-        color: #0c1b33;
-    }
-    #main-nav[data-theme="light"] .nav-pill {
-        background-color: rgba(12, 27, 51, 0.05);
-        border-color: rgba(12, 27, 51, 0.1);
-    }
-    #main-nav[data-theme="light"] .nav-link-inactive {
-        color: rgba(12, 27, 51, 0.6);
-    }
-    #main-nav[data-theme="light"] .nav-link-inactive:hover {
-        color: #0c1b33;
-        background-color: rgba(12, 27, 51, 0.05);
-    }
-    #main-nav[data-theme="light"] .nav-link-active {
-        color: #0c1b33;
-        background-color: rgba(12, 27, 51, 0.1);
     }
 </style>
