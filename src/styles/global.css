@@ -40,6 +40,11 @@
 
   --animate-float: float 6s ease-in-out infinite;
 
+  --color-branding: #3d2b1f;
+  --color-website: #1a221f;
+  --color-profile: #4a3b42;
+  --color-video: #2c3e50;
+
   @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
