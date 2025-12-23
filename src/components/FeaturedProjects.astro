@@ -7,41 +7,23 @@ const projects = [
         year: "2024",
         service: "Web Development",
     },
+   
+
     {
-        name: "Nicenoir",
-        image: "/images/projects/Nicenoir.webp",
-        class: "md:col-span-2 md:row-span-1",
-        year: "2024",
-        service: "Branding",
-    },
-    {
-        name: "Tip Top",
-        image: "/images/projects/TIPTOP.webp",
-        class: "md:col-span-2 md:row-span-1",
+        name: "Travel Go",
+        image: "/images/projects/TravelGo.webp",
+        class: "md:col-span-2 md:row-span-2",
         year: "2023",
-        service: "SEO Analysis",
-    },
-    {
-        name: "Ainam Perfume",
-        image: "/images/projects/Ainam Perfume.webp",
-        class: "md:col-span-3 md:row-span-2",
-        year: "2024",
-        service: "E-commerce",
+        service: "UI/UX Design",
     },
     {
         name: "Berton",
         image: "/images/projects/BertonMockup.webp",
-        class: "md:col-span-1 md:row-span-1",
+        class: "md:col-span-3 md:row-span-2",
         year: "2023",
         service: "Product Design",
     },
-    {
-        name: "Travel Go",
-        image: "/images/projects/TravelGo.webp",
-        class: "md:col-span-1 md:row-span-1",
-        year: "2023",
-        service: "UI/UX Design",
-    },
+  
     {
         name: "Transking SEO",
         image: "/images/projects/TranskingSEO.webp",
@@ -49,13 +31,35 @@ const projects = [
         year: "2024",
         service: "Digital Marketing",
     },
+      {
+        name: "Ainam Perfume",
+        image: "/images/projects/Ainam Perfume.webp",
+        class: "md:col-span-1 md:row-span-1",
+        year: "2024",
+        service: "E-commerce",
+    },
     {
         name: "Xense",
         image: "/images/projects/XenseMockup.webp",
-        class: "md:col-span-3 md:row-span-1",
+        class: "md:col-span-2 md:row-span-1",
         year: "2024",
         service: "Web Development",
     },
+     {
+        name: "Nicenoir",
+        image: "/images/projects/Nicenoir.webp",
+        class: "md:col-span-1 md:row-span-1",
+        year: "2024",
+        service: "Branding",
+    },
+    {
+        name: "Tip Top",
+        image: "/images/projects/TIPTOP.webp",
+        class: "md:col-span-1 md:row-span-1",
+        year: "2023",
+        service: "SEO Analysis",
+    },
+  
 ];
 ---
 
@@ -80,10 +84,11 @@ const projects = [
                         />
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80" />
                         <div class="absolute bottom-0 left-0 w-full p-6 translate-y-2 transition-transform duration-300 group-hover:translate-y-0">
-                            <div class="flex items-center justify-between mb-1">
+                            <div class="flex mb-1">
                                 <span class="text-sm font-medium text-white/80">
                                     {project.service}
                                 </span>
+                                <span class="text-white/80 mx-2">&#183;</span>
                                 <span class="text-sm font-medium text-white/80">
                                     {project.year}
                                 </span>
@@ -91,6 +96,7 @@ const projects = [
                             <h3 class="text-xl font-semibold text-white md:text-2xl">
                                 {project.name}
                             </h3>
+                            
                         </div>
                     </div>
                 ))

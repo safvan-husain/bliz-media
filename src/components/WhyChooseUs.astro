@@ -1,0 +1,193 @@
+---
+const comparisonData = [
+    {
+        feature: "Focus",
+        others: "General services",
+        we: "Specialized in branding and web design",
+    },
+    {
+        feature: "Client Approach",
+        others: "General services",
+        we: "Up-to-date with industry trends",
+    },
+    {
+        feature: "Design Philosophy",
+        others: "Generic templates",
+        we: "Custom and unique",
+    },
+    {
+        feature: "Technical Process",
+        others: "Limited",
+        we: "Partnership-oriented",
+    },
+    {
+        feature: "Managing Project",
+        others: "Not structured",
+        we: "Efficient and organized",
+    },
+];
+---
+
+<section class="py-20 md:py-32 bg-[var(--color-muted)]/30">
+    <div class="container mx-auto px-4">
+        <div class="mb-16 md:text-center">
+            <span
+                class="mb-2 block text-lg font-semibold text-[var(--color-primary)]"
+                >Our Edge</span
+            >
+            <h2
+                class="mb-6 text-3xl font-bold md:text-5xl text-[var(--color-foreground)]"
+            >
+                Why Choose Us
+            </h2>
+            <p
+                class="text-lg text-[var(--color-muted-foreground)] md:text-xl max-w-2xl md:mx-auto"
+            >
+                How we stand out from competitors with tailored solutions and
+                results.
+            </p>
+        </div>
+
+        <!-- Mobile View (Cards) -->
+        <div class="grid gap-6 md:hidden">
+            {
+                comparisonData.map((item) => (
+                    <div class="rounded-2xl border border-[var(--color-muted)] bg-white p-6 shadow-sm">
+                        <h3 class="mb-4 text-lg font-semibold text-[var(--color-foreground)]">
+                            {item.feature}
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3">
+                                <div class="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-red-100 dark:bg-red-900/30">
+                                    <svg
+                                        class="h-3 w-3 text-red-600 dark:text-red-400"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M6 18L18 6M6 6l12 12"
+                                        />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <span class="text-xs font-semibold uppercase tracking-wider text-[var(--color-muted-foreground)]">
+                                        Others
+                                    </span>
+                                    <p class="text-sm text-[var(--color-foreground)]">
+                                        {item.others}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
+                                    <svg
+                                        class="h-3 w-3 text-green-600 dark:text-green-400"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M5 13l4 4L19 7"
+                                        />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <span class="text-xs font-semibold uppercase tracking-wider text-[var(--color-primary)]">
+                                        Bliz Media
+                                    </span>
+                                    <p class="text-sm font-medium text-[var(--color-foreground)]">
+                                        {item.we}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+
+        <!-- Desktop View (Table) -->
+        <div class="hidden md:block">
+            <div
+                class="overflow-hidden rounded-3xl border border-[var(--color-muted)] bg-white shadow-sm"
+            >
+                <div
+                    class="grid grid-cols-3 border-b border-[var(--color-muted)] bg-[var(--color-muted)]/50 p-6"
+                >
+                    <div
+                        class="text-lg font-semibold text-[var(--color-foreground)]"
+                    >
+                        Feature
+                    </div>
+                    <div
+                        class="text-lg font-semibold text-[var(--color-muted-foreground)]"
+                    >
+                        Others
+                    </div>
+                    <div
+                        class="text-lg font-semibold text-[var(--color-primary)]"
+                    >
+                        Bliz Media
+                    </div>
+                </div>
+
+                {
+                    comparisonData.map((item, index) => (
+                        <div
+                            class={`grid grid-cols-3 p-6 items-center hover:bg-[var(--color-muted)]/30 transition-colors ${index !== comparisonData.length - 1 ? "border-b border-[var(--color-muted)]" : ""}`}
+                        >
+                            <div class="font-medium text-[var(--color-foreground)]">
+                                {item.feature}
+                            </div>
+
+                            <div class="flex items-center gap-3 text-[var(--color-muted-foreground)]">
+                                <div class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-red-100 dark:bg-red-900/30">
+                                    <svg
+                                        class="h-3.5 w-3.5 text-red-600 dark:text-red-400"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M6 18L18 6M6 6l12 12"
+                                        />
+                                    </svg>
+                                </div>
+                                {item.others}
+                            </div>
+
+                            <div class="flex items-center gap-3 font-medium text-[var(--color-foreground)]">
+                                <div class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
+                                    <svg
+                                        class="h-3.5 w-3.5 text-green-600 dark:text-green-400"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M5 13l4 4L19 7"
+                                        />
+                                    </svg>
+                                </div>
+                                {item.we}
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
