@@ -3,65 +3,47 @@ const services = [
   {
     id: "01",
     title: "Branding",
-    items: [
-      "Creative Direction",
-      "Brand Identity",
-      "Branding Strategy",
-      "Graphic Design",
-    ],
+    image:
+      "https://images.unsplash.com/photo-1558403194-611308249627?q=80&w=2070&auto=format&fit=crop",
   },
   {
     id: "02",
     title: "Digital Marketing",
-    items: [
-      "Social Media Marketing",
-      "Performance Marketing",
-      "Search Engine Optimisation",
-      "Strategy",
-      "Market Research",
-    ],
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
   },
   {
     id: "03",
     title: "Design",
-    items: ["UX/UI Design", "Graphic Design"],
-    image: "/images/service-design.png",
+    image:
+      "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=2070&auto=format&fit=crop",
   },
   {
     id: "04",
     title: "Development",
-    items: [
-      "WordPress Website",
-      "Custom Website",
-      "Softwares",
-      "E-Commerce",
-      "Shopify",
-    ],
+    image:
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop",
   },
   {
     id: "05",
     title: "Production",
-    items: [
-      "Videography",
-      "Photography",
-      "Video Editing",
-      "Product Photography",
-    ],
+    image:
+      "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop",
   },
 ];
 ---
 
-<section id="services" class="relative py-32 bg-[#f8f9fa] overflow-hidden">
-  <!-- Subtle Grain Texture -->
+<section id="services" class="relative py-32 bg-white overflow-hidden">
+  {/* Subtle Grain Texture */}
   <div
-    class="absolute inset-0 pointer-events-none opacity-[0.05] z-50 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"
+    class="absolute inset-0 pointer-events-none opacity-[0.03] z-50 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"
   >
   </div>
 
-  <div class="max-w-[var(--max-width-container)] mx-auto px-6 relative z-10">
-    <div
-      class="flex flex-col md:flex-row justify-between items-end mb-28 gap-8"
-    >
+  <div
+    class="max-w-[var(--max-width-container)] mx-auto px-6 relative z-10 mb-24"
+  >
+    <div class="flex flex-col md:flex-row justify-between items-end gap-12">
       <div class="max-w-2xl">
         <span
           class="text-primary font-bold tracking-[0.2em] text-sm uppercase mb-4 block"
@@ -82,60 +64,157 @@ const services = [
         </p>
       </div>
     </div>
+  </div>
 
+  <div class="relative w-full">
+    {/* Gradient Overlays for smooth edges */}
     <div
-      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-32"
+      class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white via-white/80 to-transparent z-40 pointer-events-none"
     >
-      {
-        services.map((service) => (
-          <div class="group flex flex-col relative">
-            <div class="flex items-baseline justify-between mb-10 border-b border-[#0c1b33]/5 pb-8 relative">
-              <h3 class="text-4xl font-extrabold text-[#0c1b33] tracking-tight transition-transform duration-500 group-hover:translate-x-2">
-                {service.title}
-              </h3>
-              <span class="text-sm font-black text-[#0c1b33]/10 group-hover:text-primary transition-colors duration-500">
-                ({service.id})
-              </span>
-              <div class="absolute bottom-0 left-0 h-[2px] w-0 bg-primary transition-all duration-700 ease-out group-hover:w-full" />
-            </div>
+    </div>
+    <div
+      class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white via-white/80 to-transparent z-40 pointer-events-none"
+    >
+    </div>
 
-            <ul class="space-y-5 mb-12 flex-grow">
-              {service.items.map((item) => (
-                <li class="text-xl font-medium text-[#0c1b33]/50 group-hover:text-[#0c1b33] transition-all duration-300 flex items-center gap-4">
-                  <span class="w-1.5 h-1.5 rounded-full bg-[#0c1b33]/10 group-hover:bg-primary group-hover:scale-125 transition-all duration-300" />
-                  {item}
-                </li>
-              ))}
-            </ul>
+    <div class="marquee-container overflow-hidden group/marquee">
+      <div class="flex w-max animate-marquee-infinite py-12">
+        {/* Track 1 */}
+        <div class="flex gap-12 px-6">
+          {
+            services.map((service) => (
+              <div class="w-[300px] md:w-[400px] flex-shrink-0 group">
+                <div class="bg-white rounded-[2.5rem] overflow-hidden shadow-2xl shadow-[#0c1b33]/10 border border-[#0c1b33]/5 aspect-[4/3] relative transition-all duration-700 hover:scale-[1.02] cursor-pointer">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                  />
 
-            {service.image && (
-              <div class="mt-4 overflow-hidden rounded-[2.5rem] bg-[#0c1b33]/5 aspect-[4/5] relative group/img cursor-pointer shadow-2xl shadow-black/5 transition-transform duration-500 hover:-translate-y-2">
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  class="w-full h-full object-cover transform group-hover/img:scale-110 transition-transform duration-1000 ease-out"
-                />
-                <div class="absolute inset-0 bg-primary/0 group-hover/img:bg-primary/10 transition-colors duration-500" />
-                <div class="absolute bottom-6 right-6 h-12 w-12 rounded-full bg-white flex items-center justify-center opacity-0 translate-y-4 group-hover/img:opacity-100 group-hover/img:translate-y-0 transition-all duration-500">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M5 12h14m-7-7 7 7-7 7" />
-                  </svg>
+                  {/* Premium Overlay */}
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#0c1b33]/90 via-[#0c1b33]/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+
+                  <div class="absolute inset-0 flex flex-col justify-end p-10">
+                    <span class="text-primary font-black text-[10px] tracking-[0.4em] uppercase mb-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 opacity-0 group-hover:opacity-100">
+                      {service.id}
+                    </span>
+                    <h3 class="text-3xl md:text-4xl font-black text-white tracking-tighter leading-[0.9] mb-1">
+                      {service.title.split(" ").map((word, i) => (
+                        <span class="block">{word}</span>
+                      ))}
+                    </h3>
+
+                    <div class="w-10 h-[2px] bg-primary mt-6 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                  </div>
+
+                  {/* Corner Icon */}
+                  <div class="absolute top-8 right-8 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M7 17L17 7M17 7H7M17 7V17" />
+                    </svg>
+                  </div>
                 </div>
               </div>
-            )}
-          </div>
-        ))
-      }
+            ))
+          }
+        </div>
+
+        {/* Track 2 (Duplicate for seamless loop) */}
+        <div class="flex gap-12 px-6" aria-hidden="true">
+          {
+            services.map((service) => (
+              <div class="w-[300px] md:w-[400px] flex-shrink-0 group">
+                <div class="bg-white rounded-[2.5rem] overflow-hidden shadow-2xl shadow-[#0c1b33]/10 border border-[#0c1b33]/5 aspect-[4/3] relative transition-all duration-700 hover:scale-[1.02] cursor-pointer">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                  />
+
+                  {/* Premium Overlay */}
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#0c1b33]/90 via-[#0c1b33]/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+
+                  <div class="absolute inset-0 flex flex-col justify-end p-10">
+                    <span class="text-primary font-black text-[10px] tracking-[0.4em] uppercase mb-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 opacity-0 group-hover:opacity-100">
+                      {service.id}
+                    </span>
+                    <h3 class="text-3xl md:text-4xl font-black text-white tracking-tighter leading-[0.9] mb-1">
+                      {service.title.split(" ").map((word, i) => (
+                        <span class="block">{word}</span>
+                      ))}
+                    </h3>
+
+                    <div class="w-10 h-[2px] bg-primary mt-6 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                  </div>
+
+                  {/* Corner Icon */}
+                  <div class="absolute top-8 right-8 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M7 17L17 7M17 7H7M17 7V17" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  .marquee-container {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
+  }
+
+  @keyframes marquee-infinite {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee-infinite {
+    animation: marquee-infinite 20s linear infinite;
+  }
+
+  /* Faster on hover pause or stay constant? User said constant linear animation, but usually pause is better UX */
+  .group\/marquee:hover .animate-marquee-infinite {
+    animation-play-state: paused;
+  }
+
+  @media (max-width: 768px) {
+    .animate-marquee-infinite {
+      animation-duration: 15s;
+    }
+  }
+</style>
