@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Team from "../components/Team.astro";
+import WhyChooseUs from "../components/WhyChooseUs.astro";
+import Achievements from "../components/Achievements.astro";
+---
+
+<Layout title="About Us - Bliz Media">
+  <section class="bg-neutral-100 py-20 px-6 md:py-32">
+    <div class="mx-auto max-w-[1200px] text-center">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-[#0c1b33] sm:text-5xl md:text-6xl">
+        About Us
+      </h1>
+      <p class="mt-4 text-lg text-neutral-600 max-w-2xl mx-auto">
+        We are a team of dedicated professionals committed to delivering excellence in web development and digital marketing.
+      </p>
+    </div>
+  </section>
+
+  <Achievements />
+  <WhyChooseUs />
+  <Team />
+</Layout>
