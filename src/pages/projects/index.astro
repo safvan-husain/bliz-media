@@ -1,0 +1,46 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { projects } from "../../data/projects";
+---
+
+<Layout title="Projects | Our Work">
+  <section class="py-20 md:py-32">
+    <div class="container mx-auto px-4">
+      <h1 class="mb-12 text-3xl font-bold md:text-5xl text-[var(--color-foreground)]">
+        All Projects
+      </h1>
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-4 md:auto-rows-[250px]">
+        {
+          projects.map((project) => (
+            <a
+              href={`/project/${project.slug}`}
+              class={`group relative overflow-hidden rounded-3xl ${project.class} block`}
+            >
+              <img
+                src={project.image}
+                alt={project.name}
+                class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80" />
+              <div class="absolute bottom-0 left-0 w-full p-6 translate-y-2 transition-transform duration-300 group-hover:translate-y-0">
+                <div class="flex mb-1">
+                  <span class="text-sm font-medium text-white/80">
+                    {project.service}
+                  </span>
+                  <span class="text-white/80 mx-2">&#183;</span>
+                  <span class="text-sm font-medium text-white/80">
+                    {project.year}
+                  </span>
+                </div>
+                <h3 class="text-xl font-semibold text-white md:text-2xl">
+                  {project.name}
+                </h3>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>

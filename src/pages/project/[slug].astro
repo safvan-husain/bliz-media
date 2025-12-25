@@ -1,0 +1,63 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { projects } from "../../data/projects";
+
+export async function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<Layout title={`${project.name} | Project Details`}>
+  <section class="py-20 md:py-32">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <a
+          href="/projects"
+          class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-black mb-8 transition-colors"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="mr-2"
+          >
+            <path d="M19 12H5"></path>
+            <path d="M12 19l-7-7 7-7"></path>
+          </svg>
+          Back to Projects
+        </a>
+
+        <div class="rounded-3xl overflow-hidden mb-12 shadow-xl">
+          <img
+            src={project.image}
+            alt={project.name}
+            class="w-full h-auto object-cover max-h-[600px]"
+          />
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-8 mb-12">
+            <div class="flex-1">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">{project.name}</h1>
+                <div class="flex items-center gap-4 text-gray-600">
+                    <span class="bg-gray-100 px-3 py-1 rounded-full text-sm font-medium">{project.service}</span>
+                    <span>{project.year}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="prose prose-lg max-w-none" set:html={project.details} />
+      </div>
+    </div>
+  </section>
+</Layout>
