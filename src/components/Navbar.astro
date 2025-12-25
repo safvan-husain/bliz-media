@@ -1,8 +1,10 @@
 ---
+import { services } from "../data/services";
+
 const navLinks = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
-    { name: "All Services", href: "/services" },
+    { name: "All Services", href: "/services", dropdown: true },
     { name: "Projects", href: "/projects" },
     { name: "Blog", href: "/blogs" },
 ];
@@ -12,7 +14,7 @@ const currentPath = Astro.url.pathname;
 
 <nav class="fixed top-0 left-0 right-0 z-50 px-4 pt-6 flex justify-center">
     <div
-        class="bg-stone-50/90 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.05)] rounded-[2.5rem] px-4 py-2 flex items-center justify-between w-full max-w-7xl"
+        class="bg-stone-50/90 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.05)] rounded-[2.5rem] px-4 py-2 flex items-center justify-between w-full max-w-7xl relative"
     >
         <!-- Logo Section -->
         <div class="pl-4">
@@ -27,7 +29,6 @@ const currentPath = Astro.url.pathname;
                         class="h-full w-auto object-contain"
                     />
                 </div>
-                <!-- Note: We could add the text here if needed, but per the image it's logo + tagline -->
             </a>
         </div>
 
@@ -39,6 +40,91 @@ const currentPath = Astro.url.pathname;
                         currentPath === link.href ||
                         (link.href !== "/" &&
                             currentPath.startsWith(link.href));
+
+                    if (link.dropdown) {
+                        return (
+                            <div class="relative group/dropdown py-4">
+                                <a
+                                    href={link.href}
+                                    class={`text-[15px] tracking-tight transition-all duration-300 relative flex items-center gap-1.5 ${
+                                        isActive
+                                            ? "text-black font-semibold"
+                                            : "text-gray-500 hover:text-black font-medium"
+                                    }`}
+                                >
+                                    {link.name}
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="12"
+                                        height="12"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="3"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="transition-transform duration-300 group-hover/dropdown:rotate-180"
+                                    >
+                                        <path d="m6 9 6 6 6-6" />
+                                    </svg>
+                                    {isActive && (
+                                        <span class="absolute -bottom-1 left-0 w-full h-[2px] bg-black rounded-full" />
+                                    )}
+                                </a>
+
+                                {/* Dropdown Menu */}
+                                <div class="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover/dropdown:opacity-100 group-hover/dropdown:visible transition-all duration-300 transform translate-y-2 group-hover/dropdown:translate-y-0 min-w-[280px]">
+                                    <div class="bg-white/95 backdrop-blur-2xl rounded-3xl shadow-2xl shadow-black/10 border border-black/5 overflow-hidden p-3 grid grid-cols-1 gap-1">
+                                        {services.map((service) => (
+                                            <a
+                                                href={`/services/${service.slug}`}
+                                                class="flex items-center gap-4 p-3 rounded-2xl hover:bg-zinc-50 transition-all duration-300 group/item border border-transparent hover:border-black/5"
+                                            >
+                                                <div class="w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 bg-zinc-100">
+                                                    <img
+                                                        src={service.image}
+                                                        alt=""
+                                                        class="w-full h-full object-cover opacity-80 group-hover/item:opacity-100 transition-opacity"
+                                                    />
+                                                </div>
+                                                <div class="flex flex-col">
+                                                    <span class="text-[14px] font-bold text-[#0c1b33] leading-none mb-1 group-hover/item:text-primary transition-colors">
+                                                        {service.title}
+                                                    </span>
+                                                    <span class="text-[11px] text-zinc-400 font-medium line-clamp-1">
+                                                        {service.excerpt}
+                                                    </span>
+                                                </div>
+                                            </a>
+                                        ))}
+
+                                        <div class="mt-2 pt-2 border-t border-zinc-100 px-3 pb-1">
+                                            <a
+                                                href="/services"
+                                                class="text-[12px] font-bold tracking-widest text-primary hover:translate-x-1 transition-transform inline-flex items-center gap-2"
+                                            >
+                                                EXPLORE ALL SERVICES
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="14"
+                                                    height="14"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    stroke-width="3"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                >
+                                                    <path d="M5 12h14m-7-7 7 7-7 7" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    }
+
                     return (
                         <a
                             href={link.href}
@@ -58,7 +144,7 @@ const currentPath = Astro.url.pathname;
             }
         </div>
 
-        <!-- CTA Button -->
+        <!-- Mobile Menu Toggle -->
         <div class="flex items-center">
             <a
                 href="/quote"
@@ -67,11 +153,13 @@ const currentPath = Astro.url.pathname;
                 Get a Free Quote
             </a>
 
-            <!-- Mobile Menu Toggle (Simplified) -->
-            <button class="lg:hidden ml-4 p-2 text-gray-600">
+            <button
+                class="lg:hidden ml-4 p-2 text-gray-600 mobile-menu-toggle"
+                id="menu-toggle"
+            >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6"
+                    class="h-6 w-6 menu-icon"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -82,10 +170,97 @@ const currentPath = Astro.url.pathname;
                         stroke-width="2"
                         d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6 close-icon hidden"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
             </button>
         </div>
     </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div
+        id="mobile-menu"
+        class="fixed inset-0 bg-white z-[-1] lg:hidden translate-y-[-100%] transition-transform duration-500 pt-32 px-6"
+    >
+        <div class="flex flex-col gap-8">
+            {
+                navLinks.map((link) => {
+                    const isActive =
+                        currentPath === link.href ||
+                        (link.href !== "/" &&
+                            currentPath.startsWith(link.href));
+                    return (
+                        <a
+                            href={link.href}
+                            class={`text-4xl font-black tracking-tighter transition-all duration-300 ${
+                                isActive
+                                    ? "text-primary"
+                                    : "text-[#0c1b33]/40 hover:text-[#0c1b33]"
+                            }`}
+                        >
+                            {link.name}
+                        </a>
+                    );
+                })
+            }
+            <div class="mt-8 pt-8 border-t border-zinc-100">
+                <a
+                    href="/quote"
+                    class="inline-block bg-[#000d1d] text-white px-10 py-5 rounded-full text-lg font-black tracking-tight hover:bg-[#00152a] transition-all duration-300"
+                >
+                    Get a Free Quote
+                </a>
+            </div>
+        </div>
+    </div>
 </nav>
+
+<script>
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuIcon = document.querySelector(".menu-icon");
+    const closeIcon = document.querySelector(".close-icon");
+
+    menuToggle?.addEventListener("click", () => {
+        const isOpen = mobileMenu?.classList.contains("translate-y-0");
+
+        if (isOpen) {
+            mobileMenu?.classList.remove("translate-y-0");
+            mobileMenu?.classList.add("translate-y-[-100%]");
+            menuIcon?.classList.remove("hidden");
+            closeIcon?.classList.add("hidden");
+            document.body.style.overflow = "";
+        } else {
+            mobileMenu?.classList.remove("translate-y-[-100%]");
+            mobileMenu?.classList.add("translate-y-0");
+            menuIcon?.classList.add("hidden");
+            closeIcon?.classList.remove("hidden");
+            document.body.style.overflow = "hidden";
+        }
+    });
+
+    // Close menu when clicking a link
+    const mobileLinks = mobileMenu?.querySelectorAll("a");
+    mobileLinks?.forEach((link) => {
+        link.addEventListener("click", () => {
+            mobileMenu?.classList.remove("translate-y-0");
+            mobileMenu?.classList.add("translate-y-[-100%]");
+            menuIcon?.classList.remove("hidden");
+            closeIcon?.classList.add("hidden");
+            document.body.style.overflow = "";
+        });
+    });
+</script>
 
 <style>
     /* Premium font smoothing */

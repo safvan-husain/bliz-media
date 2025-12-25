@@ -1,38 +1,6 @@
 ---
 import ServiceShowcase from "./ServiceShowcase.astro";
-
-const services = [
-  {
-    id: "01",
-    title: "Branding",
-    image:
-      "https://images.unsplash.com/photo-1558403194-611308249627?q=80&w=2070&auto=format&fit=crop",
-  },
-  {
-    id: "02",
-    title: "Digital Marketing",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
-  },
-  {
-    id: "03",
-    title: "Design",
-    image:
-      "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=2070&auto=format&fit=crop",
-  },
-  {
-    id: "04",
-    title: "Development",
-    image:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop",
-  },
-  {
-    id: "05",
-    title: "Production",
-    image:
-      "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop",
-  },
-];
+import { services } from "../data/services";
 ---
 
 <section id="services" class="relative py-32 bg-zinc-50 overflow-hidden">
@@ -75,7 +43,10 @@ const services = [
         <div class="flex gap-12 px-6">
           {
             services.map((service) => (
-              <div class="w-[300px] md:w-[400px] flex-shrink-0 group">
+              <a
+                href={`/services/${service.slug}`}
+                class="w-[300px] md:w-[400px] flex-shrink-0 group"
+              >
                 <div class="bg-white rounded-[2.5rem] overflow-hidden shadow-2xl shadow-[#0c1b33]/10 border border-[#0c1b33]/5 aspect-[4/3] relative transition-all duration-700 hover:scale-[1.02] cursor-pointer">
                   <img
                     src={service.image}
@@ -116,7 +87,7 @@ const services = [
                     </svg>
                   </div>
                 </div>
-              </div>
+              </a>
             ))
           }
         </div>
@@ -125,7 +96,10 @@ const services = [
         <div class="flex gap-12 px-6" aria-hidden="true">
           {
             services.map((service) => (
-              <div class="w-[300px] md:w-[400px] flex-shrink-0 group">
+              <a
+                href={`/services/${service.slug}`}
+                class="w-[300px] md:w-[400px] flex-shrink-0 group"
+              >
                 <div class="bg-white rounded-[2.5rem] overflow-hidden shadow-2xl shadow-[#0c1b33]/10 border border-[#0c1b33]/5 aspect-[4/3] relative transition-all duration-700 hover:scale-[1.02] cursor-pointer">
                   <img
                     src={service.image}
@@ -166,7 +140,7 @@ const services = [
                     </svg>
                   </div>
                 </div>
-              </div>
+              </a>
             ))
           }
         </div>
