@@ -1,0 +1,70 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { blogs } from "../../data/blogs";
+---
+
+<Layout title="Blogs | Our Insights">
+  <section class="py-20 md:py-32">
+    <div class="container mx-auto px-4">
+      <h1 class="mb-12 text-3xl font-bold md:text-5xl text-[var(--color-foreground)]">
+        Latest Blogs
+      </h1>
+
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {
+          blogs.map((blog) => (
+            <a
+              href={`/blogs/${blog.slug}`}
+              class="group block overflow-hidden rounded-3xl bg-white shadow-lg transition-transform duration-300 hover:-translate-y-2"
+            >
+              <div class="relative h-64 overflow-hidden">
+                <img
+                  src={blog.image}
+                  alt={blog.title}
+                  class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div class="absolute inset-0 bg-black/10 transition-opacity duration-300 group-hover:opacity-0" />
+              </div>
+
+              <div class="p-6">
+                <div class="flex items-center gap-4 mb-4 text-sm text-gray-500">
+                  <span class="bg-gray-100 px-3 py-1 rounded-full font-medium text-black">
+                    {blog.category}
+                  </span>
+                  <span>{blog.date}</span>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 group-hover:text-blue-600 transition-colors">
+                  {blog.title}
+                </h3>
+
+                <p class="text-gray-600 line-clamp-3">
+                  {blog.excerpt}
+                </p>
+
+                <div class="mt-4 flex items-center text-sm font-medium text-blue-600">
+                  Read Article
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="ml-2 transition-transform group-hover:translate-x-1"
+                  >
+                    <path d="M5 12h14"></path>
+                    <path d="M12 5l7 7-7 7"></path>
+                  </svg>
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>
