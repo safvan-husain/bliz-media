@@ -69,16 +69,6 @@ const services = [
   </div>
 
   <div class="relative w-full">
-    {/* Gradient Overlays for smooth edges */}
-    <div
-      class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white via-white/80 to-transparent z-40 pointer-events-none"
-    >
-    </div>
-    <div
-      class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white via-white/80 to-transparent z-40 pointer-events-none"
-    >
-    </div>
-
     <div class="marquee-container overflow-hidden group/marquee">
       <div class="flex w-max animate-marquee-infinite py-12">
         {/* Track 1 */}
@@ -191,13 +181,6 @@ const services = [
 
 <style>
   .marquee-container {
-    mask-image: linear-gradient(
-      to right,
-      transparent,
-      black 10%,
-      black 90%,
-      transparent
-    );
   }
 
   @keyframes marquee-infinite {
