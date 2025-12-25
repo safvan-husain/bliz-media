@@ -1,66 +1,5 @@
 ---
-const projects = [
-    {
-        name: "Transking",
-        image: "/images/projects/Transking.webp",
-        class: "md:col-span-2 md:row-span-2",
-        year: "2024",
-        service: "Web Development",
-    },
-   
-
-    {
-        name: "Travel Go",
-        image: "/images/projects/TravelGo.webp",
-        class: "md:col-span-2 md:row-span-2",
-        year: "2023",
-        service: "UI/UX Design",
-    },
-    {
-        name: "Berton",
-        image: "/images/projects/BertonMockup.webp",
-        class: "md:col-span-3 md:row-span-2",
-        year: "2023",
-        service: "Product Design",
-    },
-  
-    {
-        name: "Transking SEO",
-        image: "/images/projects/TranskingSEO.webp",
-        class: "md:col-span-1 md:row-span-1",
-        year: "2024",
-        service: "Digital Marketing",
-    },
-      {
-        name: "Ainam Perfume",
-        image: "/images/projects/Ainam Perfume.webp",
-        class: "md:col-span-1 md:row-span-1",
-        year: "2024",
-        service: "E-commerce",
-    },
-    {
-        name: "Xense",
-        image: "/images/projects/XenseMockup.webp",
-        class: "md:col-span-2 md:row-span-1",
-        year: "2024",
-        service: "Web Development",
-    },
-     {
-        name: "Nicenoir",
-        image: "/images/projects/Nicenoir.webp",
-        class: "md:col-span-1 md:row-span-1",
-        year: "2024",
-        service: "Branding",
-    },
-    {
-        name: "Tip Top",
-        image: "/images/projects/TIPTOP.webp",
-        class: "md:col-span-1 md:row-span-1",
-        year: "2023",
-        service: "SEO Analysis",
-    },
-  
-];
+import { projects } from "../data/projects";
 ---
 
 <section class="py-20 md:py-32">
@@ -74,8 +13,9 @@ const projects = [
         <div class="grid grid-cols-1 gap-4 md:grid-cols-4 md:auto-rows-[250px]">
             {
                 projects.map((project) => (
-                    <div
-                        class={`group relative overflow-hidden rounded-3xl ${project.class}`}
+                    <a
+                        href={`/project/${project.slug}`}
+                        class={`group relative overflow-hidden rounded-3xl ${project.class} block`}
                     >
                         <img
                             src={project.image}
@@ -98,7 +38,7 @@ const projects = [
                             </h3>
                             
                         </div>
-                    </div>
+                    </a>
                 ))
             }
         </div>
