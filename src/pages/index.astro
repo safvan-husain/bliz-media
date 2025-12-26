@@ -7,6 +7,7 @@ import BrandSection from "../components/BrandSection.astro";
 import Contact from "../components/Contact.astro";
 import WhyChooseUs from "../components/WhyChooseUs.astro";
 import Achievements from "../components/Achievements.astro";
+import LetsWork from "../components/LetsWork";
 
 const testimonials = [
   {
@@ -48,5 +49,6 @@ const testimonials = [
   <Services />
   <BrandSection testimonials={testimonials} />
   <WhyChooseUs />
+  <LetsWork client:load />
   <Contact />
 </Layout>
