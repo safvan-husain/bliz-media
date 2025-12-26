@@ -4,11 +4,33 @@ import { projects } from "../data/projects";
 
 <section class="py-20 md:py-32 bg-white">
     <div class="container mx-auto px-4">
-        <h2
-            class="mb-12 text-3xl font-bold md:text-5xl text-[var(--color-foreground)]"
-        >
-            Featured Projects
-        </h2>
+        <div class="flex flex-wrap items-center justify-between mb-12 gap-6">
+            <h2
+                class="text-3xl font-bold md:text-5xl text-[var(--color-foreground)]"
+            >
+                Featured Projects
+            </h2>
+            <a
+                href="/projects"
+                class="group inline-flex items-center gap-2 rounded-full border border-[var(--color-foreground)] px-6 py-3 text-sm font-medium text-[var(--color-foreground)] transition-all hover:bg-[var(--color-foreground)] hover:text-white"
+            >
+                View All Projects
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="transition-transform group-hover:translate-x-1"
+                    ><line x1="5" y1="12" x2="19" y2="12"></line><polyline
+                        points="12 5 19 12 12 19"></polyline></svg
+                >
+            </a>
+        </div>
 
         <div class="grid grid-cols-1 gap-4 md:grid-cols-4 md:auto-rows-[250px]">
             {

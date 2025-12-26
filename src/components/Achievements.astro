@@ -45,19 +45,15 @@ const achievements = [
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {achievements.map((item, index) => (
-                <div class="group relative p-8 bg-white border border-secondary/20 rounded-2xl hover:border-primary/20 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5">
-                    <!-- Subtle number in background -->
+                <div class="group relative p-8 bg-white hover:bg-black border border-secondary/20 rounded-2xl hover:border-primary/20 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5">
                     <div class="relative z-10">
-                        <div class="text-4xl md:text-5xl font-bold text-primary mb-6 flex items-baseline gap-1">
+                        <div class="text-4xl md:text-5xl font-bold text-black group-hover:text-white mb-6 flex items-baseline gap-1">
                             {item.number}
                         </div>
-                        <p class="text-muted-foreground leading-relaxed">
+                        <p class="text-muted-foreground group-hover:text-white leading-relaxed">
                             {item.description}
                         </p>
                     </div>
-
-                    <!-- Bottom Accent Bar -->
-                    <div class="absolute bottom-0 left-8 right-8 h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-t-full"></div>
                 </div>
             ))}
         </div>
