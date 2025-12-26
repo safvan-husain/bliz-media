@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 
 export default function LetsWork() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -9,11 +9,17 @@ export default function LetsWork() {
         offset: ["start start", "end end"]
     });
 
+    const smoothProgress = useSpring(scrollYProgress, {
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001
+    });
+
     // Scale from 1 to 50 (covers viewport)
-    const scale = useTransform(scrollYProgress, [0, 1], [1, 50]);
+    const scale = useTransform(smoothProgress, [0, 1], [1, 50]);
 
     // Inverse scale for text to maintain linear visual growth to ~8x (no shrinking)
-    const textScale = useTransform(scrollYProgress, (t) => (1 + 7 * t) / (1 + 49 * t));
+    const textScale = useTransform(smoothProgress, (t: number) => (1 + 6 * t) / (1 + 49 * t));
 
     return (
         <div ref={containerRef} className="relative h-[300vh] bg-white">
@@ -24,7 +30,7 @@ export default function LetsWork() {
                 >
                     <motion.span
                         style={{ scale: textScale }}
-                        className="whitespace-nowrap text-3xl font-bold text-white"
+                        className="whitespace-nowrap text-3xl font-extrabold text-white uppercase"
                     >
                         Let's Work
                     </motion.span>
