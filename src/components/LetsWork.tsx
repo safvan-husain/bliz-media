@@ -26,11 +26,11 @@ export default function LetsWork() {
             <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
                 <motion.div
                     style={{ scale }}
-                    className="relative flex h-48 w-48 items-center justify-center rounded-full bg-black"
+                    className="relative flex h-56 w-56 items-center justify-center rounded-full bg-black"
                 >
                     <motion.span
                         style={{ scale: textScale }}
-                        className="whitespace-nowrap text-3xl font-extrabold text-white uppercase"
+                        className="whitespace-nowrap text-2xl font-extrabold text-white uppercase p-4"
                     >
                         Let's Work
                     </motion.span>
