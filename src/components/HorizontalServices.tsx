@@ -33,12 +33,13 @@ export default function HorizontalServices({ services }: HorizontalServicesProps
             The user wants the CARDS to move horizontally.
         */}
 
-                <motion.div style={{ x }} className="flex gap-8 px-12 md:px-24 w-max">
+                <motion.div style={{ x }} className="flex gap-8 px-12 md:px-24 w-max will-change-transform">
                     {/* Header Card or Title Block could be the first item if desired, but user kept them separate in previous design. 
                Let's just scroll the services cards. */}
                     {services.map((service) => (
                         <ServiceCard key={service.id} service={service} />
                     ))}
+                    <ViewAllServicesCard />
                 </motion.div>
             </div>
         </section>
@@ -49,10 +50,10 @@ function ServiceCard({ service }: { service: Service }) {
     return (
         <a
             href={`/services/${service.slug}`}
-            className="group relative w-[80vw] md:w-[600px] h-[50vh] md:h-[600px] rounded-[3rem] overflow-hidden shadow-2xl transition-all duration-700 hover:scale-[1.01] flex-shrink-0 cursor-pointer block"
+            className="group relative w-[80vw] md:w-[600px] h-[50vh] md:h-[600px] rounded-[3rem] overflow-hidden shadow-2xl transition-all duration-700 hover:scale-[1.01] flex-shrink-0 cursor-pointer block isolate transform-gpu [backface-visibility:hidden]"
         >
             {/* Background Image */}
-            <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-zinc-900">
                 <img
                     src={service.image}
                     alt={service.title}
@@ -113,6 +114,52 @@ function ServiceCard({ service }: { service: Service }) {
 
             {/* Inner Border Flare */}
             <div className="absolute inset-0 border-[1px] border-white/0 group-hover:border-white/20 transition-all duration-1000 rounded-[3rem] pointer-events-none scale-95 group-hover:scale-100" />
+        </a>
+    );
+}
+
+function ViewAllServicesCard() {
+    return (
+        <a
+            href="/services"
+            className="group relative w-[80vw] md:w-[600px] h-[50vh] md:h-[600px] rounded-[3rem] overflow-hidden shadow-2xl transition-all duration-700 hover:scale-[1.01] flex-shrink-0 cursor-pointer block isolate transform-gpu [backface-visibility:hidden] bg-[#0c1b33] border border-white/10"
+        >
+            {/* Subtle Gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-50" />
+
+            {/* Decorative Circle */}
+            <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-primary/20 rounded-full blur-3xl group-hover:bg-primary/30 transition-all duration-700" />
+
+            {/* Content */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center text-white z-10">
+                <h3 className="text-4xl md:text-6xl font-black tracking-tighter mb-8 transform transition-all duration-700 group-hover:scale-105">
+                    Ready to see<br /> everything?
+                </h3>
+
+                <div
+                    className="bg-white text-[#0c1b33] px-12 py-6 rounded-full font-black tracking-[0.2em] text-sm flex items-center gap-4 border border-transparent transition-all duration-500 hover:bg-[#ff3d3d] hover:text-white hover:scale-110 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] active:scale-95 group-hover:-translate-y-2"
+                >
+                    VIEW ALL SERVICES
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="transition-transform duration-500 group-hover:translate-x-1"
+                    >
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                    </svg>
+                </div>
+            </div>
+
+            {/* Inner Border Flare */}
+            <div className="absolute inset-0 border-[1px] border-white/10 group-hover:border-white/30 transition-all duration-1000 rounded-[3rem] pointer-events-none scale-95 group-hover:scale-100" />
         </a>
     );
 }
