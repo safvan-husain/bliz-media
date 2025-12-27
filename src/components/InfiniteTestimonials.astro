@@ -1,0 +1,98 @@
+---
+const { testimonials } = Astro.props;
+
+// Duplicate testimonials to ensure we have a long enough strip
+// If the array is short, we repeat it multiple times to ensure it fills reasonable screen width
+// We aim for at least 12 items in a single set to be safe
+const minItems = 12;
+let items = [...testimonials];
+if (items.length > 0) {
+  while (items.length < minItems) {
+    items = [...items, ...testimonials];
+  }
+}
+
+// Card styling variables
+const cardClass =
+  "flex flex-col rounded-lg border-t bg-gradient-to-b from-muted/50 to-muted/10 p-4 text-start sm:p-6 hover:from-muted/60 hover:to-muted/20 min-w-[320px] max-w-[320px] transition-colors duration-300 h-full justify-between";
+---
+
+<div class="w-full overflow-hidden py-10">
+  <div class="wrapper flex gap-8">
+    <div class="carousel-group flex gap-8 items-stretch">
+      {
+        items.map((t) => (
+          <a href={t.href || "#"} class={cardClass}>
+            <div class="flex items-center gap-3">
+              <div class="h-12 w-12 rounded-full overflow-hidden bg-gray-200">
+                <img
+                  src={t.author.avatar}
+                  alt={t.author.name}
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="flex flex-col items-start">
+                <h3 class="text-md font-semibold leading-none text-foreground">
+                  {t.author.name}
+                </h3>
+                <p class="text-sm text-muted-foreground">{t.author.handle}</p>
+              </div>
+            </div>
+            <p class="mt-4 text-sm text-muted-foreground whitespace-normal italic">
+              "{t.text}"
+            </p>
+          </a>
+        ))
+      }
+    </div>
+    <!-- Duplicate group for infinite scroll -->
+    <div class="carousel-group flex gap-8 items-stretch" aria-hidden="true">
+      {
+        items.map((t) => (
+          <a href={t.href || "#"} class={cardClass}>
+            <div class="flex items-center gap-3">
+              <div class="h-12 w-12 rounded-full overflow-hidden bg-gray-200">
+                <img
+                  src={t.author.avatar}
+                  alt={t.author.name}
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="flex flex-col items-start">
+                <h3 class="text-md font-semibold leading-none text-foreground">
+                  {t.author.name}
+                </h3>
+                <p class="text-sm text-muted-foreground">{t.author.handle}</p>
+              </div>
+            </div>
+            <p class="mt-4 text-sm text-muted-foreground whitespace-normal italic">
+              "{t.text}"
+            </p>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .carousel-group {
+    animation: scroll 60s linear infinite;
+    flex-shrink: 0; /* Prevent shrinking */
+  }
+
+  .wrapper:hover .carousel-group {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      /* Move left by 100% of the group width + the gap (2rem = 32px) */
+      /* Note: 2rem in Tailwind gap-8 is 2rem. */
+      transform: translateX(calc(-100% - 2rem));
+    }
+  }
+</style>

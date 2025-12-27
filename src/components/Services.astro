@@ -1,9 +1,9 @@
 ---
-import ServiceShowcase from "./ServiceShowcase.astro";
 import { services } from "../data/services";
+import HorizontalServices from "./HorizontalServices";
 ---
 
-<section id="services" class="relative py-32 bg-zinc-50 overflow-hidden">
+<section id="services" class="relative bg-zinc-50">
   {/* Subtle Grain Texture */}
   <div
     class="absolute inset-0 pointer-events-none opacity-[0.03] z-50 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"
@@ -11,7 +11,7 @@ import { services } from "../data/services";
   </div>
 
   <div
-    class="max-w-[var(--max-width-container)] mx-auto px-6 relative z-10 mb-24"
+    class="max-w-[var(--max-width-container)] mx-auto px-6 relative z-10 pt-32 pb-12"
   >
     <div class="flex flex-col md:flex-row justify-between items-end gap-12">
       <div class="max-w-2xl">
@@ -26,157 +26,12 @@ import { services } from "../data/services";
         </h2>
       </div>
       <div class="max-w-sm pb-2">
-        <p
-          class="text-lg font-medium text-[#0c1b33]/60 leading-relaxed"
-        >
+        <p class="text-lg font-medium text-[#0c1b33]/60 leading-relaxed">
           We think out of the box when it comes to creative.
         </p>
       </div>
     </div>
   </div>
 
-  <div class="relative w-full">
-    <div class="marquee-container overflow-hidden group/marquee">
-      <div class="flex w-max animate-marquee-infinite py-12">
-        {/* Track 1 */}
-        <div class="flex gap-12 px-6">
-          {
-            services.map((service) => (
-              <a
-                href={`/services/${service.slug}`}
-                class="w-[300px] md:w-[400px] flex-shrink-0 group"
-              >
-                <div class="bg-white rounded-[2.5rem] overflow-hidden shadow-2xl shadow-[#0c1b33]/10 border border-[#0c1b33]/5 aspect-[4/3] relative transition-all duration-700 hover:scale-[1.02] cursor-pointer">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                  />
-
-                  {/* Premium Overlay */}
-                  <div class="absolute inset-0 bg-gradient-to-t from-[#0c1b33]/90 via-[#0c1b33]/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
-
-                  <div class="absolute inset-0 flex flex-col justify-end p-10">
-                    <span class="text-primary font-black text-[10px] tracking-[0.4em] uppercase mb-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 opacity-0 group-hover:opacity-100">
-                      {service.id}
-                    </span>
-                    <h3 class="text-3xl md:text-4xl font-black text-white tracking-tighter leading-[0.9] mb-1">
-                      {service.title.split(" ").map((word, i) => (
-                        <span class="block">{word}</span>
-                      ))}
-                    </h3>
-
-                    <div class="w-10 h-[2px] bg-primary mt-6 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                  </div>
-
-                  {/* Corner Icon */}
-                  <div class="absolute top-8 right-8 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path d="M7 17L17 7M17 7H7M17 7V17" />
-                    </svg>
-                  </div>
-                </div>
-              </a>
-            ))
-          }
-        </div>
-
-        {/* Track 2 (Duplicate for seamless loop) */}
-        <div class="flex gap-12 px-6" aria-hidden="true">
-          {
-            services.map((service) => (
-              <a
-                href={`/services/${service.slug}`}
-                class="w-[300px] md:w-[400px] flex-shrink-0 group"
-              >
-                <div class="bg-white rounded-[2.5rem] overflow-hidden shadow-2xl shadow-[#0c1b33]/10 border border-[#0c1b33]/5 aspect-[4/3] relative transition-all duration-700 hover:scale-[1.02] cursor-pointer">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                  />
-
-                  {/* Premium Overlay */}
-                  <div class="absolute inset-0 bg-gradient-to-t from-[#0c1b33]/90 via-[#0c1b33]/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
-
-                  <div class="absolute inset-0 flex flex-col justify-end p-10">
-                    <span class="text-primary font-black text-[10px] tracking-[0.4em] uppercase mb-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 opacity-0 group-hover:opacity-100">
-                      {service.id}
-                    </span>
-                    <h3 class="text-3xl md:text-4xl font-black text-white tracking-tighter leading-[0.9] mb-1">
-                      {service.title.split(" ").map((word, i) => (
-                        <span class="block">{word}</span>
-                      ))}
-                    </h3>
-
-                    <div class="w-10 h-[2px] bg-primary mt-6 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                  </div>
-
-                  {/* Corner Icon */}
-                  <div class="absolute top-8 right-8 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path d="M7 17L17 7M17 7H7M17 7V17" />
-                    </svg>
-                  </div>
-                </div>
-              </a>
-            ))
-          }
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="mt-12">
-    <ServiceShowcase />
-  </div>
+  <HorizontalServices client:load services={services} />
 </section>
-
-<style>
-  .marquee-container {
-  }
-
-  @keyframes marquee-infinite {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  .animate-marquee-infinite {
-    animation: marquee-infinite 20s linear infinite;
-  }
-
-  /* Faster on hover pause or stay constant? User said constant linear animation, but usually pause is better UX */
-  .group\/marquee:hover .animate-marquee-infinite {
-    animation-play-state: paused;
-  }
-
-  @media (max-width: 768px) {
-    .animate-marquee-infinite {
-      animation-duration: 15s;
-    }
-  }
-</style>

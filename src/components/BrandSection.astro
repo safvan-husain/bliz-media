@@ -1,6 +1,6 @@
 ---
 import BrandPhysics from "./BrandPhysics";
-import { TestimonialsSection } from "./blocks/testimonials-with-marquee";
+import InfiniteTestimonials from "./InfiniteTestimonials.astro";
 
 interface Author {
     name: string;
@@ -36,17 +36,19 @@ const brands = [
 ];
 ---
 
-<section id="brands" class="overflow-hidden bg-gray-50 px-4 py-24">
+<section id="brands" class="overflow-hidden bg-gray-50 py-24">
+    <div class="mx-auto max-w-[var(--max-width-container)] px-4 mb-12 flex flex-col items-center text-center gap-4">
+        <h2 class="text-3xl font-semibold leading-tight sm:text-5xl sm:leading-tight text-[var(--color-foreground)]">Trusted by Leading Brands</h2>
+        <p class="text-md max-w-[600px] font-medium text-[var(--color-muted-foreground)] sm:text-xl">Our clients trust us to blend creativity and strategy to deliver real business impact.</p>
+    </div>
+
+    <div class="w-full mb-24">
+        <InfiniteTestimonials testimonials={testimonials} />
+    </div>
+
     <div
-        class="mx-auto flex max-w-[var(--max-width-container)] flex-col gap-24"
+        class="mx-auto flex max-w-[var(--max-width-container)] px-4 flex-col gap-24"
     >
-        <TestimonialsSection
-            client:visible
-            title="Trusted by Leading Brands"
-            description="Our clients trust us to blend creativity and strategy to deliver real business impact."
-            testimonials={testimonials}
-            className="bg-transparent px-0 py-0"
-        />
         <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div>
                 <h2

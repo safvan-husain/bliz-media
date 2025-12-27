@@ -1,20 +1,24 @@
 export interface Service {
-    id: string;
-    title: string;
-    slug: string;
-    image: string;
-    excerpt: string;
-    content: string;
+  id: string;
+  title: string;
+  slug: string;
+  image: string;
+  excerpt: string;
+  content: string;
+  color: string;
+  tags: string[];
 }
 
 export const services: Service[] = [
-    {
-        id: "01",
-        title: "Branding",
-        slug: "branding",
-        image: "https://images.unsplash.com/photo-1558403194-611308249627?q=80&w=2070&auto=format&fit=crop",
-        excerpt: "Building unique identities that resonate with your target audience.",
-        content: `
+  {
+    id: "01",
+    title: "Branding",
+    slug: "branding",
+    image: "https://images.unsplash.com/photo-1558403194-611308249627?q=80&w=2070&auto=format&fit=crop",
+    excerpt: "Building unique identities that resonate with your target audience.",
+    color: "bg-branding",
+    tags: ["Deliverables", "Timeline"],
+    content: `
       <div class="space-y-6">
         <p class="text-gray-600">
           Your brand is more than just a logo. It's the emotional connection you build with your audience. We help you define your voice, values, and visual identity to stand out in a crowded market.
@@ -28,14 +32,16 @@ export const services: Service[] = [
         </ul>
       </div>
     `,
-    },
-    {
-        id: "02",
-        title: "Digital Marketing",
-        slug: "digital-marketing",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
-        excerpt: "Strategizing for growth and high-impact online presence.",
-        content: `
+  },
+  {
+    id: "02",
+    title: "Digital Marketing",
+    slug: "digital-marketing",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
+    excerpt: "Strategizing for growth and high-impact online presence.",
+    color: "bg-secondary",
+    tags: ["Strategy", "Growth"],
+    content: `
       <div class="space-y-6">
         <p class="text-gray-600">
           We drive results through data-driven marketing strategies that put your brand in front of the right people at the right time.
@@ -46,14 +52,16 @@ export const services: Service[] = [
         </p>
       </div>
     `,
-    },
-    {
-        id: "03",
-        title: "Design",
-        slug: "design",
-        image: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=2070&auto=format&fit=crop",
-        excerpt: "Crafting intuitive and aesthetically pleasing digital products.",
-        content: `
+  },
+  {
+    id: "03",
+    title: "Design",
+    slug: "design",
+    image: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=2070&auto=format&fit=crop",
+    excerpt: "Crafting intuitive and aesthetically pleasing digital products.",
+    color: "bg-profile",
+    tags: ["Content", "Design"],
+    content: `
       <div class="space-y-6">
         <p class="text-gray-600">
           We believe that great design is invisible. It should feel intuitive, effortless, and delightful while solve complex problems.
@@ -64,14 +72,16 @@ export const services: Service[] = [
         </p>
       </div>
     `,
-    },
-    {
-        id: "04",
-        title: "Development",
-        slug: "development",
-        image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop",
-        excerpt: "Building robust, scalable, and high-performance web applications.",
-        content: `
+  },
+  {
+    id: "04",
+    title: "Development",
+    slug: "development",
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop",
+    excerpt: "Building robust, scalable, and high-performance web applications.",
+    color: "bg-website",
+    tags: ["Structure", "Functionality"],
+    content: `
       <div class="space-y-6">
         <p class="text-gray-600">
           Modern web development requires more than just coding. It requires a deep understanding of architecture, performance, and security.
@@ -82,14 +92,16 @@ export const services: Service[] = [
         </p>
       </div>
     `,
-    },
-    {
-        id: "05",
-        title: "Production",
-        slug: "production",
-        image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop",
-        excerpt: "Professional media production for maximum brand impact.",
-        content: `
+  },
+  {
+    id: "05",
+    title: "Production",
+    slug: "production",
+    image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop",
+    excerpt: "Professional media production for maximum brand impact.",
+    color: "bg-video",
+    tags: ["Product Insight", "Brand Story"],
+    content: `
       <div class="space-y-6">
         <p class="text-gray-600">
           High-quality content is the lifeblood of modern brands. We provide professional photography and videography services to tell your story.
@@ -100,5 +112,5 @@ export const services: Service[] = [
         </p>
       </div>
     `,
-    },
+  },
 ];
