@@ -2,8 +2,6 @@
 const { testimonials } = Astro.props;
 
 // Duplicate testimonials to ensure we have a long enough strip
-// If the array is short, we repeat it multiple times to ensure it fills reasonable screen width
-// We aim for at least 12 items in a single set to be safe
 const minItems = 12;
 let items = [...testimonials];
 if (items.length > 0) {
@@ -12,33 +10,94 @@ if (items.length > 0) {
   }
 }
 
-// Card styling variables
 const cardClass =
-  "flex flex-col rounded-lg border-t bg-gradient-to-b from-muted/50 to-muted/10 p-4 text-start sm:p-6 hover:from-muted/60 hover:to-muted/20 min-w-[320px] max-w-[320px] transition-colors duration-300 h-full justify-between";
+  "flex flex-col rounded-xl border border-gray-400 bg-white p-6 shadow-sm hover:shadow-md transition-all duration-300 h-full min-w-[320px] max-w-[320px] relative group";
 ---
 
 <div class="w-full overflow-hidden py-10">
-  <div class="wrapper flex gap-8">
-    <div class="carousel-group flex gap-8 items-stretch">
+  <div class="wrapper flex gap-6">
+    <div class="carousel-group flex gap-6 items-stretch">
       {
         items.map((t) => (
           <a href={t.href || "#"} class={cardClass}>
-            <div class="flex items-center gap-3">
-              <div class="h-12 w-12 rounded-full overflow-hidden bg-gray-200">
-                <img
-                  src={t.author.avatar}
-                  alt={t.author.name}
-                  class="w-full h-full object-cover"
-                />
+            {/* Header: User Info + Google Icon */}
+            <div class="flex justify-between items-start w-full mb-3">
+              <div class="flex gap-3">
+                <div class="h-10 w-10 shrink-0 rounded-full overflow-hidden bg-gray-100 ring-1 ring-gray-100">
+                  <img
+                    src={t.author.avatar}
+                    alt={t.author.name}
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <!-- User Name and Time -->
+                <div class="flex flex-col items-start leading-none gap-1">
+                  <h3 class="text-sm font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                    {t.author.name}
+                  </h3>
+                  <p class="text-xs text-gray-500 font-medium">4 months ago</p>
+                </div>
               </div>
-              <div class="flex flex-col items-start">
-                <h3 class="text-md font-semibold leading-none text-foreground">
-                  {t.author.name}
-                </h3>
-                <p class="text-sm text-muted-foreground">{t.author.handle}</p>
+              <div class="shrink-0 text-gray-400">
+                {/* Google G Icon */}
+                <svg viewBox="0 0 24 24" class="h-5 w-5" aria-hidden="true">
+                  <path
+                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                    fill="#4285F4"
+                  />
+                  <path
+                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                    fill="#34A853"
+                  />
+                  <path
+                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                    fill="#FBBC05"
+                  />
+                  <path
+                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                    fill="#EA4335"
+                  />
+                  <path d="M1 1h22v22H1z" fill="none" />
+                </svg>
               </div>
             </div>
-            <p class="mt-4 text-sm text-muted-foreground whitespace-normal italic">
+
+            {/* Rating Stars + Verified Badge */}
+            <div class="flex items-center gap-1 mb-3">
+              <div class="flex text-yellow-400">
+                {[...Array(5)].map(() => (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="w-4 h-4"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                ))}
+              </div>
+              
+              {/* Verified Blue Badge */}
+               <svg
+                class="w-4 h-4 text-blue-500 ml-1"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8.603 3.799A4.49 4.49 0 0112 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 013.498 1.307 4.491 4.491 0 011.307 3.497A4.49 4.49 0 0121.75 12a4.49 4.49 0 01-1.549 3.397 4.491 4.491 0 01-1.307 3.497 4.491 4.491 0 01-3.497 1.307A4.49 4.49 0 0112 21.75a4.49 4.49 0 01-3.397-1.549 4.49 4.49 0 01-3.498-1.306 4.491 4.491 0 01-1.307-3.498A4.49 4.49 0 012.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 011.307-3.497 4.49 4.49 0 013.497-1.307zm4.45 6.75a.75.75 0 00-1.1-1.02l-1.4 1.5a.75.75 0 00-.04.86l.63 1.35a.75.75 0 001.35-.64l-.45-.96 1.01-1.09z"
+                  clip-rule="evenodd"
+                /> 
+              </svg>
+            </div>
+
+            {/* Testimonial Text */}
+            <p class="text-sm text-gray-600 leading-relaxed line-clamp-4">
               "{t.text}"
             </p>
           </a>
@@ -46,26 +105,82 @@ const cardClass =
       }
     </div>
     <!-- Duplicate group for infinite scroll -->
-    <div class="carousel-group flex gap-8 items-stretch" aria-hidden="true">
+    <div class="carousel-group flex gap-6 items-stretch" aria-hidden="true">
       {
         items.map((t) => (
           <a href={t.href || "#"} class={cardClass}>
-            <div class="flex items-center gap-3">
-              <div class="h-12 w-12 rounded-full overflow-hidden bg-gray-200">
-                <img
-                  src={t.author.avatar}
-                  alt={t.author.name}
-                  class="w-full h-full object-cover"
-                />
+           <div class="flex justify-between items-start w-full mb-3">
+              <div class="flex gap-3">
+                <div class="h-10 w-10 shrink-0 rounded-full overflow-hidden bg-gray-100 ring-1 ring-gray-100">
+                  <img
+                    src={t.author.avatar}
+                    alt={t.author.name}
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="flex flex-col items-start leading-none gap-1">
+                  <h3 class="text-sm font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                    {t.author.name}
+                  </h3>
+                  <p class="text-xs text-gray-500 font-medium">4 months ago</p>
+                </div>
               </div>
-              <div class="flex flex-col items-start">
-                <h3 class="text-md font-semibold leading-none text-foreground">
-                  {t.author.name}
-                </h3>
-                <p class="text-sm text-muted-foreground">{t.author.handle}</p>
+              <div class="shrink-0 text-gray-400">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" aria-hidden="true">
+                  <path
+                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                    fill="#4285F4"
+                  />
+                  <path
+                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                    fill="#34A853"
+                  />
+                  <path
+                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                    fill="#FBBC05"
+                  />
+                  <path
+                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                    fill="#EA4335"
+                  />
+                  <path d="M1 1h22v22H1z" fill="none" />
+                </svg>
               </div>
             </div>
-            <p class="mt-4 text-sm text-muted-foreground whitespace-normal italic">
+
+            <div class="flex items-center gap-1 mb-3">
+              <div class="flex text-yellow-400">
+                {[...Array(5)].map(() => (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="w-4 h-4"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                ))}
+              </div>
+              
+              <svg
+                class="w-4 h-4 text-blue-500 ml-1"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8.603 3.799A4.49 4.49 0 0112 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 013.498 1.307 4.491 4.491 0 011.307 3.497A4.49 4.49 0 0121.75 12a4.49 4.49 0 01-1.549 3.397 4.491 4.491 0 01-1.307 3.497 4.491 4.491 0 01-3.497 1.307A4.49 4.49 0 0112 21.75a4.49 4.49 0 01-3.397-1.549 4.49 4.49 0 01-3.498-1.306 4.491 4.491 0 01-1.307-3.498A4.49 4.49 0 012.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 011.307-3.497 4.49 4.49 0 013.497-1.307zm4.45 6.75a.75.75 0 00-1.1-1.02l-1.4 1.5a.75.75 0 00-.04.86l.63 1.35a.75.75 0 001.35-.64l-.45-.96 1.01-1.09z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+
+            <p class="text-sm text-gray-600 leading-relaxed line-clamp-4">
               "{t.text}"
             </p>
           </a>
@@ -90,9 +205,8 @@ const cardClass =
       transform: translateX(0);
     }
     100% {
-      /* Move left by 100% of the group width + the gap (2rem = 32px) */
-      /* Note: 2rem in Tailwind gap-8 is 2rem. */
-      transform: translateX(calc(-100% - 2rem));
+      /* Move left by 100% of the group width + the gap (1.5rem = 24px) */
+      transform: translateX(calc(-100% - 1.5rem));
     }
   }
 </style>
