@@ -4,6 +4,7 @@ interface TeamMember {
     role: string;
     imagePath: string;
     description?: string;
+    bgColor?: string;
 }
 
 const founders: TeamMember[] = [
@@ -11,11 +12,19 @@ const founders: TeamMember[] = [
         name: "Anwar Sadiq",
         role: "Founder",
         imagePath: "/images/team/anwar-sadiq.png",
+        bgColor: "bg-team-green",
     },
     {
         name: "Ajnas VP",
         role: "Founder",
         imagePath: "/images/team/ajnas-vp.png",
+        bgColor: "bg-team-blue",
+    },
+    {
+        name: "Saleel",
+        role: "Marketing Strategist",
+        imagePath: "/images/team/leaders/Saleel.webp",
+        bgColor: "bg-team-olive",
     },
 ];
 
@@ -24,36 +33,21 @@ const leaders: TeamMember[] = [
         name: "Hujjath",
         role: "Head of Development",
         imagePath: "/images/team/leaders/Hujjath.webp",
-        description:
-            "Full-stack architect dedicated to building scalable, high-performance web solutions. Hujjath ensures that every project we deliver is technically flawless.",
-    },
-    {
-        name: "Saleel",
-        role: "Marketing Strategist",
-        imagePath: "/images/team/leaders/Saleel.webp",
-        description:
-            "Data-driven marketer specializing in growth hacking and cross-channel digital campaigns. Saleel turns complex data into actionable success.",
     },
     {
         name: "Salman",
         role: "Head of Strategy",
         imagePath: "/images/team/leaders/Salman.webp",
-        description:
-            "Connects business goals to clear roadmaps, aligning brand, product, and performance to drive measurable growth.",
     },
     {
         name: "Sinan",
         role: "Operations Lead",
         imagePath: "/images/team/leaders/Sinan.webp",
-        description:
-            "Keeps teams moving with crisp processes, client communication, and delivery standards that scale across projects.",
     },
     {
         name: "Vaishnav",
         role: "Head of Product",
         imagePath: "/images/team/leaders/Vaishnav.webp",
-        description:
-            "Turns insights into experiences—guiding discovery, UX direction, and iteration to ship products users love.",
     },
 ];
 
@@ -109,169 +103,139 @@ const team: TeamMember[] = [
 ];
 ---
 
-<section id="team" class="relative overflow-hidden bg-white px-6 py-36">
-    <!-- Mesh Gradient Background -->
-    <div class="absolute inset-0 z-0 opacity-40">
+<section
+    id="team"
+    class="relative overflow-hidden bg-foreground px-6 py-36 text-white"
+>
+    <!-- Background Accents -->
+    <div class="absolute inset-0 z-0 opacity-20">
         <div
-            class="absolute -left-[10%] -top-[10%] h-[60%] w-[60%] rounded-full bg-primary/5 blur-[120px]"
+            class="absolute -left-[10%] -top-[10%] h-[60%] w-[60%] rounded-full bg-primary/20 blur-[120px]"
         >
         </div>
         <div
-            class="absolute -right-[10%] -bottom-[10%] h-[60%] w-[60%] rounded-full bg-primary/5 blur-[120px]"
+            class="absolute -right-[10%] -bottom-[10%] h-[60%] w-[60%] rounded-full bg-primary/20 blur-[120px]"
         >
         </div>
     </div>
-    <div
-        class="relative z-10 mx-auto flex max-w-[var(--max-width-container)] flex-col gap-20"
-    >
-        <div
-            class="flex flex-col gap-8 md:flex-row md:items-end md:justify-between"
-        >
-            <div>
-                <span
-                    class="mb-4 block text-xs font-extrabold uppercase tracking-[0.2em] text-muted-foreground"
-                >
-                    Our Talent
-                </span>
+
+    <div class="relative z-10 mx-auto max-w-[var(--max-width-container)]">
+        <!-- Founders Section (Matched to Image) -->
+        <div class="flex flex-col gap-12 md:flex-row md:items-start lg:gap-20">
+            <div class="md:w-1/3 lg:w-1/4">
                 <h2
-                    class="text-5xl font-black leading-none text-foreground md:text-7xl"
+                    class="text-6xl font-black leading-[0.9] tracking-tighter md:text-7xl lg:text-8xl"
                 >
-                    The People
-                </h2>
-                <h2
-                    class="text-5xl font-black leading-none text-foreground md:text-7xl"
-                >
-                    Behind Bliz Media
+                    Meet <br /> the Team
                 </h2>
             </div>
-            <div class="md:max-w-sm">
-                <p
-                    class="text-lg font-medium leading-relaxed text-muted-foreground"
-                >
-                    A collective of creative minds and strategic thinkers
-                    dedicated to elevating your brand through innovation and
-                    excellence.
-                </p>
-            </div>
-        </div>
 
-        <div class="flex flex-col gap-16">
-            <div class="flex flex-col gap-8">
-                <div class="group relative mx-auto mt-48 w-full max-w-5xl">
-                    <div
-                        class="relative grid grid-cols-1 items-end md:grid-cols-2"
-                    >
-                        {
-                            founders.map((member, i) => (
-                                <div
-                                    class={`relative flex flex-col items-center pb-12 px-6 ${i === 0 ? "md:items-end md:pr-12" : "md:items-start md:pl-12"}`}
-                                >
-                                    {/* The Cut-out Image */}
-                                    <div class="relative -mt-40 w-full max-w-[420px] flex justify-center">
-                                        <img
-                                            src={member.imagePath}
-                                            alt={member.name}
-                                            class={`h-auto w-full object-contain transition duration-700 ease-out group-hover:scale-[1.05] filter brightness-110 contrast-110 ${i === 0 ? "md:translate-x-4" : "md:-translate-x-4"}`}
-                                            style="mix-blend-mode: multiply;"
-                                        />
-                                    </div>
-
-                                    {/* Info */}
-                                    <div class="relative z-10 -mt-8 flex flex-col items-center text-center">
-                                        <h4 class="text-4xl font-black tracking-tight text-foreground md:text-6xl">
-                                            {member.name}
-                                        </h4>
-                                        <div class="mt-2 text-sm font-extrabold uppercase tracking-[0.2em] text-primary">
-                                            {member.role}
-                                        </div>
-                                    </div>
-                                </div>
-                            ))
-                        }
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex flex-col gap-8 max-w-6xl mx-auto">
-                <div>
-                    <p
-                        class="mt-3 max-w-2xl text-lg leading-relaxed text-muted-foreground"
-                    >
-                        The crew that turns strategy into real, repeatable
-                        execution.
-                    </p>
-                </div>
-
-                <div class="flex flex-col gap-12">
-                    {
-                        leaders.map((member) => (
-                            <div class="group flex flex-col items-center gap-8 md:flex-row md:gap-16">
-                                <div class="relative w-full max-w-[250px] flex-none overflow-hidden rounded-3xl">
-                                    <img
-                                        src={member.imagePath}
-                                        alt={member.name}
-                                        class="aspect-[4/5] w-full object-cover transition duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] grayscale group-hover:scale-105"
-                                        loading="lazy"
-                                    />
-                                </div>
-                                <div class="flex flex-col gap-4">
-                                    <div class="flex flex-col gap-1">
-                                        <div class="text-xs font-extrabold uppercase tracking-[0.2em] text-primary">
-                                            {member.role}
-                                        </div>
-                                        <h4 class="text-3xl font-black tracking-tight text-foreground md:text-5xl">
-                                            {member.name}
-                                        </h4>
-                                    </div>
-                                    <p class="max-w-2xl text-lg leading-relaxed text-muted-foreground">
-                                        {member.description}
-                                    </p>
-                                </div>
-                            </div>
-                        ))
-                    }
-                </div>
-            </div>
-
-            <div class="flex flex-col gap-8">
-                <div>
-                    <p
-                        class="mt-3 max-w-2xl text-lg leading-relaxed text-muted-foreground"
-                    >
-                        Specialists across design, engineering, and growth.
-                    </p>
-                </div>
-
-                <div
-                    class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
-                >
-                    {
-                        team.map((member) => (
-                            <div class="flex items-center gap-4 rounded-2xl p-4 transition-colors hover:bg-foreground/5">
+            <div
+                class="grid flex-1 grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8"
+            >
+                {
+                    founders.map((member) => (
+                        <div class="group flex flex-col items-center text-center">
+                            <div
+                                class={`relative aspect-[1/1.6] w-full max-w-[300px] overflow-hidden rounded-full ${member.bgColor} transition-transform duration-500 hover:scale-105`}
+                            >
                                 <img
                                     src={member.imagePath}
                                     alt={member.name}
-                                    class="h-12 w-12 flex-none rounded-full object-cover grayscale transition duration-300 hover:grayscale-0"
+                                    class="h-full w-full object-cover object-top mix-blend-luminosity brightness-110 contrast-110 transition-all duration-500 group-hover:mix-blend-normal group-hover:scale-110"
                                     loading="lazy"
                                 />
-                                <div class="min-w-0">
-                                    <div class="truncate text-base font-extrabold tracking-tight text-foreground">
-                                        {member.name}
-                                    </div>
-                                    <div class="truncate text-xs font-bold uppercase tracking-wider text-muted-foreground">
-                                        {member.role}
-                                    </div>
+                            </div>
+                            <div class="mt-6">
+                                <h3 class="text-2xl font-bold tracking-tight">
+                                    {member.name}
+                                </h3>
+                                <p class="text-sm font-semibold uppercase tracking-widest text-white/50">
+                                    {member.role}
+                                </p>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+
+        <!-- Leaders Section -->
+        <div class="mt-40">
+            <div class="mb-12 flex flex-col gap-4">
+                <h3 class="text-3xl font-black md:text-5xl">Leadership</h3>
+                <p class="max-w-2xl text-lg text-white/60">
+                    The core team driving strategy and execution across our key
+                    departments.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+                {
+                    leaders.map((member) => (
+                        <div class="group flex flex-col gap-6">
+                            <div class="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-white/5 border border-white/10">
+                                <img
+                                    src={member.imagePath}
+                                    alt={member.name}
+                                    class="h-full w-full object-cover transition duration-700 ease-out grayscale group-hover:grayscale-0 group-hover:scale-105"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <div class="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+                                    {member.role}
+                                </div>
+                                <h4 class="text-2xl font-black tracking-tight">
+                                    {member.name}
+                                </h4>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+
+        <!-- Core Team Section -->
+        <div class="mt-40">
+            <div class="mb-12 flex flex-col gap-4">
+                <h3 class="text-3xl font-black md:text-5xl">Core Team</h3>
+                <p class="max-w-2xl text-lg text-white/60">
+                    Specialists across design, engineering, and growth dedicated
+                    to your success.
+                </p>
+            </div>
+
+            <div
+                class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+            >
+                {
+                    team.map((member) => (
+                        <div class="flex items-center gap-4 rounded-2xl bg-white/5 p-4 border border-white/5 transition-colors hover:bg-white/10 hover:border-white/20">
+                            <img
+                                src={member.imagePath}
+                                alt={member.name}
+                                class="h-12 w-12 flex-none rounded-full object-cover grayscale transition duration-300 group-hover:grayscale-0"
+                                loading="lazy"
+                            />
+                            <div class="min-w-0">
+                                <div class="truncate text-base font-bold tracking-tight">
+                                    {member.name}
+                                </div>
+                                <div class="truncate text-xs font-bold uppercase tracking-wider text-white/40">
+                                    {member.role}
                                 </div>
                             </div>
-                        ))
-                    }
-                </div>
+                        </div>
+                    ))
+                }
             </div>
         </div>
     </div>
 
+    <!-- Background Decorative Text -->
     <div
-        class="pointer-events-none absolute -bottom-[5%] -right-2 select-none text-[20vw] font-black leading-none text-foreground/5"
+        class="pointer-events-none absolute -bottom-[5%] -right-2 select-none text-[20vw] font-black leading-none text-white/5"
     >
         EXPERTISE
     </div>

@@ -46,6 +46,10 @@
   --color-profile: #4a3b42;
   --color-video: #2c3e50;
 
+  --color-team-green: #A6D700;
+  --color-team-blue: #A8C6FA;
+  --color-team-olive: #4E533B;
+
   @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
