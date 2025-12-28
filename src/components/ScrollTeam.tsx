@@ -6,6 +6,8 @@ export default function ScrollTeam() {
     const sectionRef = useRef<HTMLDivElement>(null);
     const isLockedRef = useRef(false);
     const [isLocked, setIsLocked] = useState(false);
+    const lastScrollY = useRef(0);
+    const hasCompletedAnimation = useRef(false);
     
     // Use motion value for progress (0 to 1)
     const progress = useMotionValue(0);
@@ -40,6 +42,51 @@ export default function ScrollTeam() {
         }
     }, []);
 
+    // Check unlock conditions - unlock only when both scroll and animation are at extremes
+    const checkUnlockConditions = useCallback(() => {
+        if (!isLockedRef.current) return;
+
+        const currentProgress = progress.get(); // 0 to 1
+        const animationProgress = currentProgress * 100; // Convert to 0-100%
+
+        // Since section is sticky and h-screen, scroll position = animation progress
+        // Unlock conditions:
+        // 1. Animation at 0% AND user scrolling up (can go above section)
+        // 2. Animation at 100% AND user scrolling down (can go below section to footer)
+        const canUnlockUp = animationProgress <= 5; // Small threshold (5%)
+        const canUnlockDown = animationProgress >= 95; // Small threshold (95%)
+
+        if (canUnlockUp || canUnlockDown) {
+            // Check scroll direction
+            const currentScrollY = window.scrollY;
+            const scrollDirection = currentScrollY > lastScrollY.current ? 'down' : 'up';
+            lastScrollY.current = currentScrollY;
+
+            if ((canUnlockUp && scrollDirection === 'up') || (canUnlockDown && scrollDirection === 'down')) {
+                unlockScroll();
+                if (canUnlockUp) {
+                    hasCompletedAnimation.current = false;
+                    progress.set(0);
+                } else {
+                    hasCompletedAnimation.current = true;
+                }
+            }
+        }
+    }, [progress, unlockScroll]);
+
+    // Track scroll and check unlock conditions
+    useEffect(() => {
+        // Initialize last scroll position
+        lastScrollY.current = window.scrollY;
+        
+        const handleScroll = () => {
+            checkUnlockConditions();
+        };
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [checkUnlockConditions]);
+
     // Check if section is in viewport using IntersectionObserver
     useEffect(() => {
         const el = sectionRef.current;
@@ -51,13 +98,13 @@ export default function ScrollTeam() {
                 // 0.95 means 95% of section is visible (allowing for small margins)
                 const isFullyVisible = entry.intersectionRatio >= 0.95;
                 
+                // Lock when section is fully visible (works in both directions for reverse animation)
                 if (isFullyVisible && !prefersReducedMotion.current) {
                     lockScroll();
                 } else {
-                    // Only unlock if progress is complete or section is out of view
-                    const currentProgress = progress.get();
-                    if (currentProgress >= 1 || entry.intersectionRatio < 0.1) {
-                        unlockScroll();
+                    // Only unlock if section is completely out of view AND conditions are met
+                    if (entry.intersectionRatio < 0.1) {
+                        checkUnlockConditions();
                     }
                 }
             },
@@ -76,6 +123,7 @@ export default function ScrollTeam() {
                 const viewportHeight = window.innerHeight;
                 // More lenient check: section top is near viewport top and bottom is near viewport bottom
                 const isInView = rect.top <= 50 && rect.bottom >= (viewportHeight - 50);
+                // Lock if section is in view (works for both directions)
                 if (isInView && !prefersReducedMotion.current) {
                     lockScroll();
                 }
@@ -99,24 +147,48 @@ export default function ScrollTeam() {
             return;
         }
 
-        // Prevent default scroll
+        const delta = e.deltaY;
+        const current = progress.get();
+        const animationProgress = current * 100; // 0-100%
+
+        // Check unlock conditions before preventing default
+        // Since section is sticky, scroll position = animation progress
+        const canUnlockUp = animationProgress <= 5 && delta < 0; // Scrolling up at 0%
+        const canUnlockDown = animationProgress >= 95 && delta > 0; // Scrolling down at 100%
+
+        if (canUnlockUp || canUnlockDown) {
+            // Allow normal scroll - don't prevent default
+            unlockScroll();
+            if (canUnlockUp) {
+                hasCompletedAnimation.current = false;
+                progress.set(0);
+            } else {
+                hasCompletedAnimation.current = true;
+            }
+            return;
+        }
+
+        // Prevent default scroll and hijack it (works in both directions)
         e.preventDefault();
         e.stopPropagation();
         
-        const delta = e.deltaY;
         const sensitivity = 0.0015; // Slightly higher sensitivity
         
-        const current = progress.get();
+        // Allow progress to go both up and down (0 to 1)
         const next = Math.min(Math.max(current + delta * sensitivity, 0), 1);
         progress.set(next);
         
-        // Release scroll when progress reaches 1
+        // Mark as completed when reaching 1, but keep locked for reverse
         if (next >= 1) {
-            setTimeout(() => {
-                unlockScroll();
-            }, 200);
+            hasCompletedAnimation.current = true;
+        } else if (next <= 0) {
+            // Reset completion flag when back at start
+            hasCompletedAnimation.current = false;
         }
-    }, [progress, unlockScroll]);
+        
+        // Check unlock conditions after updating progress
+        setTimeout(() => checkUnlockConditions(), 0);
+    }, [progress, checkUnlockConditions, unlockScroll]);
 
     // Handle touch events (mobile)
     const touchStartY = useRef(0);
@@ -132,25 +204,47 @@ export default function ScrollTeam() {
     const handleTouchMove = useCallback((e: TouchEvent) => {
         if (!isLockedRef.current || !isTouching.current || prefersReducedMotion.current) return;
         
+        const currentY = e.touches[0].clientY;
+        const delta = touchStartY.current - currentY;
+        const current = progress.get();
+        const animationProgress = current * 100;
+
+        // Check unlock conditions
+        // delta > 0 means scrolling up (touch moving down = scrolling up)
+        // delta < 0 means scrolling down (touch moving up = scrolling down)
+        const canUnlockUp = animationProgress <= 5 && delta > 0; // At 0% and scrolling up
+        const canUnlockDown = animationProgress >= 95 && delta < 0; // At 100% and scrolling down
+
+        if (canUnlockUp || canUnlockDown) {
+            unlockScroll();
+            if (canUnlockUp) {
+                hasCompletedAnimation.current = false;
+                progress.set(0);
+            } else {
+                hasCompletedAnimation.current = true;
+            }
+            return;
+        }
+        
         e.preventDefault();
         e.stopPropagation();
         
-        const currentY = e.touches[0].clientY;
-        const delta = touchStartY.current - currentY;
         const sensitivity = 0.003; // Higher for touch
-        
-        const current = progress.get();
         const next = Math.min(Math.max(current + delta * sensitivity, 0), 1);
         progress.set(next);
         
         touchStartY.current = currentY;
         
+        // Mark completion status but keep locked for reverse
         if (next >= 1) {
-            setTimeout(() => {
-                unlockScroll();
-            }, 200);
+            hasCompletedAnimation.current = true;
+        } else if (next <= 0) {
+            hasCompletedAnimation.current = false;
         }
-    }, [progress, unlockScroll]);
+        
+        // Check unlock conditions after updating
+        setTimeout(() => checkUnlockConditions(), 0);
+    }, [progress, checkUnlockConditions, unlockScroll]);
 
     const handleTouchEnd = useCallback(() => {
         isTouching.current = false;
@@ -182,9 +276,10 @@ export default function ScrollTeam() {
     useEffect(() => {
         if (!isLocked) {
             const current = progress.get();
-            // Only reset if we're not in the middle of animation
-            if (current < 0.1) {
+            // Only reset if progress is very low (near start)
+            if (current < 0.05) {
                 progress.set(0);
+                hasCompletedAnimation.current = false;
             }
         }
     }, [isLocked, progress]);
