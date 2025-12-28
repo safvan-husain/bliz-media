@@ -1,5 +1,25 @@
+/**
+ * `useScrollLockAnimation`
+ *
+ * Use this hook for full-screen “experience” sections where scrolling should drive an
+ * animation instead of immediately moving the page. It’s ideal for things like:
+ * - Team/portfolio/story sections with a scroll-driven reveal
+ * - Progress-based SVG/Canvas animations
+ * - Step-by-step sections that should “hold” attention for a moment
+ *
+ * The component using this hook gets:
+ * - `sectionRef`: attach to the section you want to lock on
+ * - `progress`: a `MotionValue<number>` from `0` → `1` you can map to transforms/opacity/etc.
+ * - `isLocked`: whether the page is currently locked by this section (optional UI signal)
+ *
+ * Config:
+ * - `scrollLength`: how much scrolling is needed to go `0` → `1` (higher = longer/slower)
+ * - `mobileMultiplier`: adjusts touch feel on mobile
+ *
+ * Note: Respects the user’s “reduced motion” preference and won’t lock in that mode.
+ */
 import { useRef, useEffect, useState, useCallback } from "react";
-import { useMotionValue, MotionValue } from "framer-motion";
+import { useMotionValue } from "framer-motion";
 
 interface UseScrollLockAnimationConfig {
     /**
@@ -25,6 +45,14 @@ export function useScrollLockAnimation({
     const isLockedRef = useRef(false);
     const [isLocked, setIsLocked] = useState(false);
     const prefersReducedMotion = useRef(false);
+    const scrollLockState = useRef<{
+        scrollY: number;
+        bodyOverflow: string;
+        bodyPosition: string;
+        bodyTop: string;
+        bodyWidth: string;
+        htmlOverflow: string;
+    } | null>(null);
 
     // Progress value (0 to 1)
     const progress = useMotionValue(0);
@@ -34,35 +62,150 @@ export function useScrollLockAnimation({
     // 1 = scrollLength * sensitivity => sensitivity = 1 / scrollLength
     const sensitivity = 1 / scrollLength;
     const touchSensitivity = sensitivity * mobileMultiplier;
+    const preLockSlopPx = 80;
+
+    const normalizeWheelDeltaY = useCallback((e: WheelEvent) => {
+        // Convert line/page deltas to pixels for consistent math.
+        if (e.deltaMode === 1) return e.deltaY * 16; // DOM_DELTA_LINE (heuristic)
+        if (e.deltaMode === 2) return e.deltaY * window.innerHeight; // DOM_DELTA_PAGE
+        return e.deltaY; // DOM_DELTA_PIXEL
+    }, []);
 
     useEffect(() => {
         const media = window.matchMedia("(prefers-reduced-motion: reduce)");
         prefersReducedMotion.current = media.matches;
     }, []);
 
+    const snapSectionToTop = useCallback(() => {
+        const el = sectionRef.current;
+        if (!el) return null;
+
+        const rect = el.getBoundingClientRect();
+        const targetScrollY = window.scrollY + rect.top;
+        const maxScrollY = Math.max(
+            0,
+            document.documentElement.scrollHeight - window.innerHeight
+        );
+        const clampedScrollY = Math.min(Math.max(targetScrollY, 0), maxScrollY);
+
+        if (Math.abs(window.scrollY - clampedScrollY) > 1) {
+            window.scrollTo({ top: clampedScrollY, behavior: "auto" });
+        }
+
+        return clampedScrollY;
+    }, []);
+
+    const applyScrollLock = useCallback((scrollY: number) => {
+        const body = document.body;
+        const html = document.documentElement;
+
+        if (!scrollLockState.current) {
+            scrollLockState.current = {
+                scrollY,
+                bodyOverflow: body.style.overflow,
+                bodyPosition: body.style.position,
+                bodyTop: body.style.top,
+                bodyWidth: body.style.width,
+                htmlOverflow: html.style.overflow
+            };
+        } else {
+            scrollLockState.current.scrollY = scrollY;
+        }
+
+        html.style.overflow = "hidden";
+        body.style.overflow = "hidden";
+        body.style.position = "fixed";
+        body.style.top = `-${scrollY}px`;
+        body.style.width = "100%";
+    }, []);
+
+    const removeScrollLock = useCallback(() => {
+        const lock = scrollLockState.current;
+        if (!lock) return;
+
+        const body = document.body;
+        const html = document.documentElement;
+
+        body.style.overflow = lock.bodyOverflow;
+        body.style.position = lock.bodyPosition;
+        body.style.top = lock.bodyTop;
+        body.style.width = lock.bodyWidth;
+        html.style.overflow = lock.htmlOverflow;
+
+        scrollLockState.current = null;
+        window.scrollTo({ top: lock.scrollY, behavior: "auto" });
+    }, []);
+
     // Lock/unlock scroll helpers
     const lockScroll = useCallback(() => {
         if (!isLockedRef.current && !prefersReducedMotion.current) {
-            // Snap the section to the top of the viewport
-            if (sectionRef.current) {
-                // We use 'nearest' or 'start' depending on behavior, 
-                // but strictly 'start' ensures it covers the screen if it's h-screen.
-                sectionRef.current.scrollIntoView({ behavior: "auto", block: "start" });
-            }
+            const snappedScrollY = snapSectionToTop();
+            const targetScrollY = snappedScrollY ?? window.scrollY;
 
             isLockedRef.current = true;
             setIsLocked(true);
-            document.body.style.overflow = "hidden";
+            applyScrollLock(targetScrollY);
+
+            // Beat trackpad momentum: ensure we end up at the snapped position.
+            requestAnimationFrame(() => {
+                if (!isLockedRef.current) return;
+                window.scrollTo({ top: targetScrollY, behavior: "auto" });
+            });
         }
-    }, []);
+    }, [applyScrollLock, snapSectionToTop]);
 
     const unlockScroll = useCallback(() => {
         if (isLockedRef.current) {
             isLockedRef.current = false;
             setIsLocked(false);
-            document.body.style.overflow = "";
+            removeScrollLock();
         }
-    }, []);
+    }, [removeScrollLock]);
+
+    const shouldPreLockForScrollInput = useCallback((deltaY: number) => {
+        const el = sectionRef.current;
+        if (!el) return false;
+
+        const currentProgress = progress.get();
+        // If the animation is already at an edge, allow scrolling "away" from the section
+        // without immediately re-locking.
+        if (currentProgress <= 0.001 && deltaY < 0) return false;
+        if (currentProgress >= 0.999 && deltaY > 0) return false;
+
+        const rect = el.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+
+        // Only consider "full screen-ish" sections for this behavior.
+        if (rect.height < viewportHeight * 0.8) return false;
+
+        // Only intercept when the section is near / intersecting the viewport.
+        const isNearViewport =
+            rect.top < viewportHeight + preLockSlopPx &&
+            rect.bottom > -preLockSlopPx;
+        if (!isNearViewport) return false;
+
+        // If already nearly aligned, lock immediately.
+        const isNearlyFullScreen =
+            rect.top <= preLockSlopPx &&
+            rect.bottom >= viewportHeight - preLockSlopPx;
+        if (isNearlyFullScreen) return true;
+
+        // Predict whether this input would "cross" the lock point (top ~ 0),
+        // which is where the one-frame flicker usually happens.
+        const predictedTop = rect.top - deltaY;
+
+        // Scrolling down: element moves up (top decreases)
+        if (deltaY > 0 && rect.top > preLockSlopPx && predictedTop <= preLockSlopPx) {
+            return true;
+        }
+
+        // Scrolling up: element moves down (top increases)
+        if (deltaY < 0 && rect.top < -preLockSlopPx && predictedTop >= -preLockSlopPx) {
+            return true;
+        }
+
+        return Math.abs(rect.top) <= preLockSlopPx;
+    }, [preLockSlopPx, progress]);
 
     const snapProgressToNearestEdge = useCallback(() => {
         const el = sectionRef.current;
@@ -90,13 +233,9 @@ export function useScrollLockAnimation({
 
         const observer = new IntersectionObserver(
             ([entry]) => {
-                const isFullyVisible = entry.intersectionRatio >= 0.95;
                 const isOutOfView = entry.intersectionRatio < 0.1;
 
-                if (isFullyVisible && !prefersReducedMotion.current) {
-                    // Lock when section is fully visible
-                    lockScroll();
-                } else if (isOutOfView) {
+                if (isOutOfView) {
                     // Section out of view - unlock and snap progress.
                     unlockScroll();
                     snapProgressToNearestEdge();
@@ -110,37 +249,42 @@ export function useScrollLockAnimation({
 
         observer.observe(el);
 
-        // Initial check mechanism
-        const checkInitial = () => {
-            requestAnimationFrame(() => {
-                const rect = el.getBoundingClientRect();
-                const viewportHeight = window.innerHeight;
-                // Heuristic: if it looks like it's taking up the screen
-                const isInView = rect.top <= 50 && rect.bottom >= (viewportHeight - 50);
-                if (isInView && !prefersReducedMotion.current) {
-                    lockScroll();
-                }
-            });
-        };
-
-        const timeoutId = setTimeout(checkInitial, 100);
+        const rafId = requestAnimationFrame(() => {
+            snapProgressToNearestEdge();
+        });
 
         return () => {
             observer.disconnect();
-            clearTimeout(timeoutId);
+            cancelAnimationFrame(rafId);
             // Ensure we unlock on unmount
             unlockScroll();
         };
-    }, [lockScroll, snapProgressToNearestEdge, unlockScroll]);
+    }, [snapProgressToNearestEdge, unlockScroll]);
 
 
     // Handle wheel events (desktop)
     const handleWheel = useCallback((e: WheelEvent) => {
-        if (!isLockedRef.current || prefersReducedMotion.current) {
+        if (prefersReducedMotion.current || e.ctrlKey) return;
+
+        const delta = normalizeWheelDeltaY(e);
+
+        // If we're not locked yet, pre-lock synchronously (capture phase) when the
+        // next scroll input would cross the lock point. This avoids the 1-frame
+        // overshoot/flicker caused by async observers + snap.
+        if (!isLockedRef.current) {
+            if (!shouldPreLockForScrollInput(delta)) return;
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Ensure progress starts at the correct edge for the entry direction.
+            if (delta > 0) progress.set(0);
+            if (delta < 0) progress.set(1);
+
+            lockScroll();
             return;
         }
 
-        const delta = e.deltaY;
         const current = progress.get();
 
         // Prevent default and hijack scroll
@@ -149,9 +293,6 @@ export function useScrollLockAnimation({
 
         const next = Math.min(Math.max(current + delta * sensitivity, 0), 1);
         progress.set(next);
-
-        // Logic found in previous implementation: 
-        // Only unlock if at boundaries AND scrolling away from component content
 
         // Scrolling UP at 0%
         if (next <= 0 && delta < 0) {
@@ -170,26 +311,44 @@ export function useScrollLockAnimation({
             }, 50);
             return;
         }
-    }, [progress, unlockScroll, sensitivity]);
+    }, [lockScroll, normalizeWheelDeltaY, progress, sensitivity, shouldPreLockForScrollInput, unlockScroll]);
 
     // Handle touch events (mobile)
     const touchStartY = useRef(0);
     const isTouching = useRef(false);
 
     const handleTouchStart = useCallback((e: TouchEvent) => {
-        if (!isLockedRef.current || prefersReducedMotion.current) return;
+        if (prefersReducedMotion.current) return;
         isTouching.current = true;
         touchStartY.current = e.touches[0].clientY;
     }, []);
 
     const handleTouchMove = useCallback((e: TouchEvent) => {
-        if (!isLockedRef.current || !isTouching.current || prefersReducedMotion.current) return;
+        if (!isTouching.current || prefersReducedMotion.current) return;
+
+        const currentY = e.touches[0].clientY;
+        const delta = touchStartY.current - currentY; // Drag up = positive delta = scroll down
+
+        if (!isLockedRef.current) {
+            if (!shouldPreLockForScrollInput(delta)) {
+                touchStartY.current = currentY;
+                return;
+            }
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            if (delta > 0) progress.set(0);
+            if (delta < 0) progress.set(1);
+
+            lockScroll();
+            touchStartY.current = currentY;
+            return;
+        }
 
         e.preventDefault();
         e.stopPropagation();
 
-        const currentY = e.touches[0].clientY;
-        const delta = touchStartY.current - currentY; // Drag up = positive delta = scroll down
         const current = progress.get();
 
         const next = Math.min(Math.max(current + delta * touchSensitivity, 0), 1);
@@ -214,7 +373,7 @@ export function useScrollLockAnimation({
             }, 50);
             return;
         }
-    }, [progress, unlockScroll, touchSensitivity]);
+    }, [lockScroll, progress, shouldPreLockForScrollInput, touchSensitivity, unlockScroll]);
 
     const handleTouchEnd = useCallback(() => {
         isTouching.current = false;
@@ -223,19 +382,19 @@ export function useScrollLockAnimation({
 
     // Attach event listeners
     useEffect(() => {
-        const el = sectionRef.current;
-        if (!el) return;
+        const wheelOptions: AddEventListenerOptions = { passive: false, capture: true };
+        const touchOptions: AddEventListenerOptions = { passive: false, capture: true };
 
-        el.addEventListener("wheel", handleWheel, { passive: false });
-        el.addEventListener("touchstart", handleTouchStart, { passive: false });
-        el.addEventListener("touchmove", handleTouchMove, { passive: false });
-        el.addEventListener("touchend", handleTouchEnd);
+        window.addEventListener("wheel", handleWheel, wheelOptions);
+        window.addEventListener("touchstart", handleTouchStart, touchOptions);
+        window.addEventListener("touchmove", handleTouchMove, touchOptions);
+        window.addEventListener("touchend", handleTouchEnd, { capture: true });
 
         return () => {
-            el.removeEventListener("wheel", handleWheel);
-            el.removeEventListener("touchstart", handleTouchStart);
-            el.removeEventListener("touchmove", handleTouchMove);
-            el.removeEventListener("touchend", handleTouchEnd);
+            window.removeEventListener("wheel", handleWheel, wheelOptions);
+            window.removeEventListener("touchstart", handleTouchStart, touchOptions);
+            window.removeEventListener("touchmove", handleTouchMove, touchOptions);
+            window.removeEventListener("touchend", handleTouchEnd, { capture: true });
         };
     }, [handleWheel, handleTouchStart, handleTouchMove, handleTouchEnd]);
 

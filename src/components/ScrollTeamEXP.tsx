@@ -3,7 +3,7 @@ import { motion, useTransform } from "framer-motion";
 import { useScrollLockAnimation } from "../hooks/useScrollLockAnimation";
 
 export default function ScrollTeamEXP() {
-    const { sectionRef, progress, isLocked } = useScrollLockAnimation({
+    const { sectionRef, progress } = useScrollLockAnimation({
         scrollLength: 8000, // Customize duration here: higher = slower animation
     });
 
@@ -34,7 +34,7 @@ export default function ScrollTeamEXP() {
     return (
         <section
             ref={sectionRef}
-            className="relative h-screen w-full bg-[#0c1b33] overflow-clip flex items-center justify-center"
+            className="relative flex h-screen w-full items-center justify-center overflow-clip bg-secondary"
         >
             {/* Progress Circle */}
             <div className="relative flex items-center justify-center">
@@ -50,8 +50,8 @@ export default function ScrollTeamEXP() {
                         cy="100"
                         r={radius}
                         fill="none"
-                        stroke="rgba(255, 255, 255, 0.1)"
                         strokeWidth="8"
+                        className="stroke-white/10"
                     />
                     {/* Progress circle */}
                     <motion.circle
@@ -59,10 +59,10 @@ export default function ScrollTeamEXP() {
                         cy="100"
                         r={radius}
                         fill="none"
-                        stroke="#ff3d3d"
                         strokeWidth="8"
                         strokeLinecap="round"
                         strokeDasharray={circumference}
+                        className="stroke-primary"
                         style={{
                             strokeDashoffset: strokeDashoffset,
                         }}
