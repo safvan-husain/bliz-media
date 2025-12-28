@@ -97,14 +97,29 @@ export default function ScrollTeam() {
                 // Use intersectionRatio to detect when section is fully visible
                 // 0.95 means 95% of section is visible (allowing for small margins)
                 const isFullyVisible = entry.intersectionRatio >= 0.95;
+                const isOutOfView = entry.intersectionRatio < 0.1;
                 
-                // Lock when section is fully visible (works in both directions for reverse animation)
                 if (isFullyVisible && !prefersReducedMotion.current) {
+                    // Lock when section is fully visible
+                    // Reset only if we're not currently locked (section just entered)
+                    if (!isLockedRef.current) {
+                        progress.set(0);
+                        hasCompletedAnimation.current = false;
+                    }
                     lockScroll();
-                } else {
-                    // Only unlock if section is completely out of view AND conditions are met
-                    if (entry.intersectionRatio < 0.1) {
-                        checkUnlockConditions();
+                } else if (isOutOfView) {
+                    // Section is completely out of view - reset everything for next time
+                    const currentProgress = progress.get();
+                    
+                    // Reset animation state when out of view
+                    if (currentProgress > 0.05) {
+                        progress.set(0);
+                    }
+                    hasCompletedAnimation.current = false;
+                    
+                    // Unlock if still locked
+                    if (isLockedRef.current) {
+                        unlockScroll();
                     }
                 }
             },
@@ -272,14 +287,21 @@ export default function ScrollTeam() {
         };
     }, [handleWheel, handleTouchStart, handleTouchMove, handleTouchEnd]);
 
-    // Reset progress when section is no longer active
+    // Reset progress when section is no longer active and out of view
     useEffect(() => {
         if (!isLocked) {
-            const current = progress.get();
-            // Only reset if progress is very low (near start)
-            if (current < 0.05) {
-                progress.set(0);
-                hasCompletedAnimation.current = false;
+            // Check if section is actually out of view
+            const el = sectionRef.current;
+            if (el) {
+                const rect = el.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                const isOutOfView = rect.bottom < 0 || rect.top > viewportHeight;
+                
+                if (isOutOfView) {
+                    // Section is out of view - reset everything
+                    progress.set(0);
+                    hasCompletedAnimation.current = false;
+                }
             }
         }
     }, [isLocked, progress]);
