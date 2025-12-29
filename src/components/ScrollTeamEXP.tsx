@@ -25,26 +25,36 @@ export default function ScrollTeamEXP() {
 
     // Animation transforms based on progress
     // Founders animations - early in scroll (0-40%)
-    const foundersY = useTransform(smoothProgress, [0, 0.35], ["0%", "-150%"]);
-    const foundersOpacity = useTransform(smoothProgress, [0.15, 0.35], [1, 0]);
+    const founderLeftY = useTransform(smoothProgress, [0, 0.32], ["0%", "-150%"]);
+    const founderLeftOpacity = useTransform(smoothProgress, [0.12, 0.32], [1, 0]);
 
-    // Leaders arrival - middle section (35-60%)
-    const leadersEntryY = useTransform(smoothProgress, [0.35, 0.55], ["40vh", "0vh"]);
-    const leadersEntryOpacity = useTransform(smoothProgress, [0.35, 0.5], [0, 1]);
+    const founderRightY = useTransform(smoothProgress, [0.05, 0.35], ["0%", "-150%"]);
+    const founderRightOpacity = useTransform(smoothProgress, [0.17, 0.35], [1, 0]);
 
-    const titleX = useTransform(smoothProgress, [0.35, 0.55], ["0%", "120%"]);
-    const titleY = useTransform(smoothProgress, [0.35, 0.55], ["0%", "-20vh"]);
-    const titleScale = useTransform(smoothProgress, [0.35, 0.55], [1, 0.6]);
+    const foundersEndProgress = 0.35;
+    const textAnimDuration = 0.4;
+    const textAnimStart = foundersEndProgress * 0.5;
+    const textAnimEnd = textAnimStart + textAnimDuration;
+
+    // Leaders arrival - middle section (35-70%) - slower
+    const leadersEntryY = useTransform(smoothProgress, [0.35, 0.7], ["40vh", "0vh"]);
+    const leadersEntryOpacity = useTransform(smoothProgress, [0.35, 0.6], [0, 1]);
+
+    const titleX = useTransform(smoothProgress, [textAnimStart, textAnimEnd], ["0%", "0%"]);
+    const titleY = useTransform(smoothProgress, [textAnimStart, textAnimEnd], ["0%", "-30vh"]);
+    const titleScale = useTransform(smoothProgress, [textAnimStart, textAnimEnd], [1, 0.8]);
 
     // Word animations for "Meet the Team" merging to single line
-    const word2X = useTransform(smoothProgress, [0.35, 0.55], ["0em", "2.1em"]);
-    const word2Y = useTransform(smoothProgress, [0.35, 0.55], ["0em", "-0.9em"]);
+    const word2X = useTransform(smoothProgress, [textAnimStart, textAnimEnd], ["0em", "2.6em"]);
+    const word2Y = useTransform(smoothProgress, [textAnimStart, textAnimEnd], ["0em", "-0.9em"]);
 
-    const word3X = useTransform(smoothProgress, [0.35, 0.55], ["0em", "3.6em"]);
-    const word3Y = useTransform(smoothProgress, [0.35, 0.55], ["0em", "-1.8em"]);
+    const word3X = useTransform(smoothProgress, [textAnimStart, textAnimEnd], ["0em", "4.2em"]);
+    const word3Y = useTransform(smoothProgress, [textAnimStart, textAnimEnd], ["0em", "-1.8em"]);
 
-    // Leaders horizontal scroll - later section (55-85%)
-    const leadersX = useTransform(smoothProgress, [0.55, 1], ["0%", "-70%"]);
+    // Leaders horizontal scroll - later section (45-100%) - slower
+    const leadersX = useTransform(smoothProgress, [0.45, 1], ["0%", "-70%"]);
+
+    const displayedFounders = founders.slice(0, 2);
 
     return (
         <section ref={sectionRef} className="relative h-screen bg-secondary overflow-clip">
@@ -58,7 +68,7 @@ export default function ScrollTeamEXP() {
                 </div>
 
                 {/* Content Container */}
-                <div className="container mx-auto px-6 h-full flex flex-col md:flex-row md:items-center lg:gap-20 pt-20 md:pt-36">
+                <div className="container mx-auto px-6 h-full flex flex-col md:flex-row md:items-center lg:gap-20 pt-0">
                     {/* Fixed Title */}
                     <motion.div
                         style={{
@@ -67,7 +77,7 @@ export default function ScrollTeamEXP() {
                             scale: isDesktop ? titleScale : 1,
                             transformOrigin: "left top",
                         }}
-                        className="md:w-1/3 lg:w-1/4 z-30"
+                        className="md:w-1/3 lg:w-1/4 z-30 pt-20 md:pt-36"
                     >
                         <h2 className="text-6xl font-black leading-[0.9] tracking-tighter md:text-7xl lg:text-8xl text-white flex flex-col">
                             <motion.span className="inline-block origin-left">Meet</motion.span>
@@ -94,15 +104,19 @@ export default function ScrollTeamEXP() {
 
                     <div className="flex-1 relative w-full h-full min-h-0">
                         {/* 1. Founders Frame */}
-                        <motion.div
-                            style={{ y: foundersY, opacity: foundersOpacity }}
-                            className="absolute inset-0 w-full flex items-center justify-center z-20"
-                        >
-                            <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                                {founders.map((member) => (
-                                    <div key={member.name} className="flex flex-col items-center text-center group">
+                        <div className="absolute inset-0 w-full flex items-start justify-center z-20">
+                            <div className="w-full max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-0 justify-items-stretch items-start">
+                                {displayedFounders.map((member, index) => (
+                                    <motion.div
+                                        key={member.name}
+                                        style={{
+                                            y: index === 0 ? founderLeftY : founderRightY,
+                                            opacity: index === 0 ? founderLeftOpacity : founderRightOpacity,
+                                        }}
+                                        className="flex flex-col items-center text-center group w-full"
+                                    >
                                         <div
-                                            className={`relative aspect-[1/1.6] w-full max-w-[300px] overflow-hidden rounded-b-[150px] ${member.bgColor} border-[6px] border-white/30 shadow-2xl transition-all duration-500 hover:scale-105 hover:border-white`}
+                                            className={`relative aspect-[1/1.2] w-full max-w-[340px] sm:max-w-none overflow-hidden rounded-b-[150px] ${member.bgColor} border-[6px] border-white/30 shadow-2xl transition-all duration-500 hover:scale-105 hover:border-white`}
                                         >
                                             <img
                                                 src={member.imagePath}
@@ -119,10 +133,10 @@ export default function ScrollTeamEXP() {
                                                 {member.role}
                                             </p>
                                         </div>
-                                    </div>
+                                    </motion.div>
                                 ))}
                             </div>
-                        </motion.div>
+                        </div>
 
                         {/* 2. Leaders Frame */}
                         <motion.div
