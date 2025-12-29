@@ -30,7 +30,7 @@ export default function LetsWork() {
                 >
                     <motion.span
                         style={{ scale: textScale }}
-                        className="whitespace-nowrap text-2xl font-['Anton'] text-white uppercase p-4 tracking-wide"
+                        className="max-w-[80vw] text-center text-sm sm:text-lg md:text-2xl font-['Anton'] text-white uppercase px-3 tracking-wide leading-tight"
                     >
                         Let's Work
                     </motion.span>
