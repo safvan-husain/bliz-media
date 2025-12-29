@@ -33,7 +33,7 @@ import { founders, leaders, coreTeam } from "../data/team";
                 </h2>
             </div>
 
-            <div class="flex flex-col gap-12">
+            <div class="grid grid-cols-2 gap-6">
                 {
                     founders.map((member) => (
                         <div class="group flex flex-col items-center text-center">
@@ -62,7 +62,7 @@ import { founders, leaders, coreTeam } from "../data/team";
 
             <div class="mt-32 z-[100]">
                 <h3 class="text-4xl font-black mb-12">Leadership</h3>
-                <div class="flex flex-col gap-12">
+                <div class="grid grid-cols-2 gap-6">
                     {
                         leaders.map((member) => (
                             <div class="group flex flex-col gap-6">

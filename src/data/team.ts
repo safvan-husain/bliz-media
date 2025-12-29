@@ -19,12 +19,7 @@ export const founders: TeamMember[] = [
         imagePath: "/images/team/ajnas-vp.png",
         bgColor: "bg-team-blue",
     },
-    {
-        name: "Saleel",
-        role: "Marketing Strategist",
-        imagePath: "/images/team/leaders/Saleel.webp",
-        bgColor: "bg-team-olive",
-    },
+
 ];
 
 export const leaders: TeamMember[] = [
@@ -49,9 +44,10 @@ export const leaders: TeamMember[] = [
         imagePath: "/images/team/leaders/Vaishnav.webp",
     },
     {
-        name: "Arjun",
-        role: "Creative Director",
-        imagePath: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop",
+        name: "Saleel",
+        role: "Marketing Strategist",
+        imagePath: "/images/team/leaders/Saleel.webp",
+        bgColor: "bg-team-olive",
     },
     {
         name: "Nikhil",
