@@ -1,6 +1,7 @@
 ---
 import { services } from "../data/services";
 import HorizontalServices from "./HorizontalServices";
+import ServicesList from "./ServicesList.astro";
 ---
 
 <section id="services" class="relative bg-zinc-50">
@@ -13,8 +14,8 @@ import HorizontalServices from "./HorizontalServices";
   <div
     class="max-w-[var(--max-width-container)] mx-auto px-6 relative z-10 pt-32 pb-12"
   >
-    <div class="flex flex-col md:flex-row justify-between items-end gap-12">
-      <div class="max-w-2xl">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-12">
+      <div class="max-w-2xl text-center md:text-start">
         <span
           class="text-primary font-bold tracking-[0.2em] text-sm uppercase mb-4 block"
           >What we do</span
@@ -26,12 +27,18 @@ import HorizontalServices from "./HorizontalServices";
         </h2>
       </div>
       <div class="max-w-sm pb-2">
-        <p class="text-lg font-medium text-[#0c1b33]/60 leading-relaxed">
+        <p class="text-lg text-center md:text-end font-medium text-[#0c1b33]/60 leading-relaxed">
           We think out of the box when it comes to creative.
         </p>
       </div>
     </div>
   </div>
 
-  <HorizontalServices client:load services={services} />
+  <div class="md:hidden">
+    <ServicesList services={services} />
+  </div>
+
+  <div class="hidden md:block">
+    <HorizontalServices client:media="(min-width: 768px)" services={services} />
+  </div>
 </section>
