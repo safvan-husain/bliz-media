@@ -5,7 +5,7 @@ import { useScrollLockAnimation } from "../hooks/useScrollLockAnimation";
 
 export default function ScrollTeamEXP() {
     const { sectionRef, progress } = useScrollLockAnimation({
-        scrollLength: 1000,
+        scrollLength: 2000,
     });
 
     const smoothProgress = useSpring(progress, {
@@ -25,15 +25,15 @@ export default function ScrollTeamEXP() {
 
     // Animation transforms based on progress
     // Founders animations - early in scroll (0-40%)
-    const founderLeftY = useTransform(smoothProgress, [0, 0.32], ["0%", "-150%"]);
-    const founderLeftOpacity = useTransform(smoothProgress, [0.12, 0.32], [1, 0]);
+    const founderLeftY = useTransform(smoothProgress, [0, 0.72], ["0%", "-150%"]);
+    const founderLeftOpacity = useTransform(smoothProgress, [0.22, 0.62], [1, 0]);
 
-    const founderRightY = useTransform(smoothProgress, [0.05, 0.35], ["0%", "-150%"]);
-    const founderRightOpacity = useTransform(smoothProgress, [0.17, 0.35], [1, 0]);
+    const founderRightY = useTransform(smoothProgress, [0.15, 0.75], ["-20%", "-150%"]);
+    const founderRightOpacity = useTransform(smoothProgress, [0.27, 0.65], [1, 0]);
 
-    const foundersEndProgress = 0.35;
+    const foundersEndProgress = 0.45;
     const textAnimDuration = 0.4;
-    const textAnimStart = foundersEndProgress * 0.5;
+    const textAnimStart = foundersEndProgress * 0.6;
     const textAnimEnd = textAnimStart + textAnimDuration;
 
     // Leaders arrival - middle section (35-70%) - slower
@@ -104,8 +104,8 @@ export default function ScrollTeamEXP() {
 
                     <div className="flex-1 relative w-full h-full min-h-0">
                         {/* 1. Founders Frame */}
-                        <div className="absolute inset-0 w-full flex items-start justify-center z-20">
-                            <div className="w-full max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-0 justify-items-stretch items-start">
+                        <div className="absolute top-0 inset-0 w-full flex items-start justify-center z-20">
+                            <div className="max-w-4xl grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-0 justify-items-stretch items-start">
                                 {displayedFounders.map((member, index) => (
                                     <motion.div
                                         key={member.name}
@@ -116,7 +116,7 @@ export default function ScrollTeamEXP() {
                                         className="flex flex-col items-center text-center group w-full"
                                     >
                                         <div
-                                            className={`relative aspect-[1/1.2] w-full max-w-[340px] sm:max-w-none overflow-hidden rounded-b-[150px] ${member.bgColor} border-[6px] border-white/30 shadow-2xl transition-all duration-500 hover:scale-105 hover:border-white`}
+                                            className={`relative aspect-[1/1.2] max-w-[300px] sm:max-w-none overflow-hidden rounded-b-[150px] ${member.bgColor} border-[6px] border-white/30 shadow-2xl transition-all duration-500 hover:scale-105 hover:border-white`}
                                         >
                                             <img
                                                 src={member.imagePath}
