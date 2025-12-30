@@ -1,11 +1,74 @@
-import { motion, useSpring, useTransform } from "framer-motion";
-import { useState, useEffect } from "react";
-import { founders, leaders, type TeamMember } from "../data/team";
+import { motion, type MotionValue, useSpring, useTransform } from "framer-motion";
+import { coreTeam, founders, leaders, type TeamMember } from "../data/team";
 import { useScrollLockAnimation } from "../hooks/useScrollLockAnimation";
+
+const TEAM_SEGMENTS = {
+    founders: {
+        start: 0,
+        holdEnd: 0.2,
+        outEnd: 0.25,
+        label: "Founders",
+    },
+    marketers: {
+        start: 0.25,
+        inEnd: 0.33,
+        holdEnd: 0.45,
+        outEnd: 0.5,
+        label: "Marketers",
+    },
+    technologists: {
+        start: 0.5,
+        inEnd: 0.58,
+        holdEnd: 0.7,
+        outEnd: 0.75,
+        label: "Technologists",
+    },
+    team: {
+        start: 0.75,
+        inEnd: 0.82,
+        outEnd: 1,
+        label: "Team",
+    },
+} as const;
+
+// Progress detents (pauses) for each spotlight segment, except the final "Team" segment.
+const TEAM_SCROLL_PAUSE_POINTS = [
+    { at: TEAM_SEGMENTS.founders.holdEnd },
+    { at: TEAM_SEGMENTS.marketers.holdEnd },
+    { at: TEAM_SEGMENTS.technologists.holdEnd },
+];
+
+function useSpotlightPairMotion({
+    progress,
+    start,
+    inEnd,
+    holdEnd,
+    outEnd,
+    rightStagger = 0.02,
+}: {
+    progress: MotionValue<number>;
+    start: number;
+    inEnd: number;
+    holdEnd: number;
+    outEnd: number;
+    rightStagger?: number;
+}) {
+    const leftY = useTransform(progress, [start, inEnd, holdEnd, outEnd], ["20%", "0%", "0%", "-150%"]);
+    const leftOpacity = useTransform(progress, [start, inEnd, holdEnd, outEnd], [0, 1, 1, 0]);
+
+    const rightStart = start + rightStagger;
+    const rightInEnd = inEnd + rightStagger;
+    const rightY = useTransform(progress, [rightStart, rightInEnd, holdEnd, outEnd], ["20%", "0%", "0%", "-150%"]);
+    const rightOpacity = useTransform(progress, [rightStart, rightInEnd, holdEnd, outEnd], [0, 1, 1, 0]);
+
+    return { leftY, leftOpacity, rightY, rightOpacity };
+}
 
 export default function ScrollTeamEXP() {
     const { sectionRef, progress } = useScrollLockAnimation({
         scrollLength: 2000,
+        pauseHoldMs: 500,
+        pausePoints: TEAM_SCROLL_PAUSE_POINTS,
     });
 
     const smoothProgress = useSpring(progress, {
@@ -14,47 +77,91 @@ export default function ScrollTeamEXP() {
         restDelta: 0.001,
     });
 
-    const [isDesktop, setIsDesktop] = useState(false);
+    const labelFade = 0.02;
+    const foundersLabelOpacity = useTransform(
+        smoothProgress,
+        [TEAM_SEGMENTS.founders.start, TEAM_SEGMENTS.founders.outEnd - labelFade, TEAM_SEGMENTS.founders.outEnd],
+        [1, 1, 0]
+    );
+    const marketersLabelOpacity = useTransform(
+        smoothProgress,
+        [
+            TEAM_SEGMENTS.marketers.start,
+            TEAM_SEGMENTS.marketers.start + labelFade,
+            TEAM_SEGMENTS.marketers.outEnd - labelFade,
+            TEAM_SEGMENTS.marketers.outEnd,
+        ],
+        [0, 1, 1, 0]
+    );
+    const technologistsLabelOpacity = useTransform(
+        smoothProgress,
+        [
+            TEAM_SEGMENTS.technologists.start,
+            TEAM_SEGMENTS.technologists.start + labelFade,
+            TEAM_SEGMENTS.technologists.outEnd - labelFade,
+            TEAM_SEGMENTS.technologists.outEnd,
+        ],
+        [0, 1, 1, 0]
+    );
+    const teamLabelOpacity = useTransform(
+        smoothProgress,
+        [TEAM_SEGMENTS.team.start, TEAM_SEGMENTS.team.start + labelFade],
+        [0, 1]
+    );
 
-    useEffect(() => {
-        const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
-        checkDesktop();
-        window.addEventListener("resize", checkDesktop);
-        return () => window.removeEventListener("resize", checkDesktop);
-    }, []);
+    const spotlightFounders = founders.slice(0, 2);
+    const spotlightMarketers = leaders.filter((member) => /marketing|strategy/i.test(member.role)).slice(0, 2);
+    const spotlightTechnologists = leaders.filter((member) => /development|tech/i.test(member.role)).slice(0, 2);
 
-    // Animation transforms based on progress
-    // Founders animations - early in scroll (0-40%)
-    const founderLeftY = useTransform(smoothProgress, [0, 0.72], ["0%", "-150%"]);
-    const founderLeftOpacity = useTransform(smoothProgress, [0.22, 0.62], [1, 0]);
+    const spotlightNames = new Set(
+        [...spotlightFounders, ...spotlightMarketers, ...spotlightTechnologists].map((member) => member.name)
+    );
+    const restOfTeam = [...leaders.filter((member) => !spotlightNames.has(member.name)), ...coreTeam];
 
-    const founderRightY = useTransform(smoothProgress, [0.15, 0.75], ["-20%", "-150%"]);
-    const founderRightOpacity = useTransform(smoothProgress, [0.27, 0.65], [1, 0]);
+    const founderLeftY = useTransform(
+        smoothProgress,
+        [TEAM_SEGMENTS.founders.holdEnd, TEAM_SEGMENTS.founders.outEnd],
+        ["0%", "-150%"]
+    );
+    const founderLeftOpacity = useTransform(
+        smoothProgress,
+        [TEAM_SEGMENTS.founders.holdEnd, TEAM_SEGMENTS.founders.outEnd],
+        [1, 0]
+    );
+    const founderRightY = useTransform(
+        smoothProgress,
+        [TEAM_SEGMENTS.founders.holdEnd, TEAM_SEGMENTS.founders.outEnd],
+        ["0%", "-150%"]
+    );
+    const founderRightOpacity = useTransform(
+        smoothProgress,
+        [TEAM_SEGMENTS.founders.holdEnd, TEAM_SEGMENTS.founders.outEnd],
+        [1, 0]
+    );
 
-    const foundersEndProgress = 0.45;
-    const textAnimDuration = 0.4;
-    const textAnimStart = foundersEndProgress * 0.6;
-    const textAnimEnd = textAnimStart + textAnimDuration;
+    const marketersMotion = useSpotlightPairMotion({
+        progress: smoothProgress,
+        start: TEAM_SEGMENTS.marketers.start,
+        inEnd: TEAM_SEGMENTS.marketers.inEnd,
+        holdEnd: TEAM_SEGMENTS.marketers.holdEnd,
+        outEnd: TEAM_SEGMENTS.marketers.outEnd,
+    });
 
-    // Leaders arrival - middle section (35-70%) - slower
-    const leadersEntryY = useTransform(smoothProgress, [0.35, 0.7], ["40vh", "0vh"]);
-    const leadersEntryOpacity = useTransform(smoothProgress, [0.35, 0.6], [0, 1]);
+    const technologistsMotion = useSpotlightPairMotion({
+        progress: smoothProgress,
+        start: TEAM_SEGMENTS.technologists.start,
+        inEnd: TEAM_SEGMENTS.technologists.inEnd,
+        holdEnd: TEAM_SEGMENTS.technologists.holdEnd,
+        outEnd: TEAM_SEGMENTS.technologists.outEnd,
+    });
 
-    const titleX = useTransform(smoothProgress, [textAnimStart, textAnimEnd], ["0%", "0%"]);
-    const titleY = useTransform(smoothProgress, [textAnimStart, textAnimEnd], ["0%", "-30vh"]);
-    const titleScale = useTransform(smoothProgress, [textAnimStart, textAnimEnd], [1, 0.8]);
-
-    // Word animations for "Meet the Team" merging to single line
-    const word2X = useTransform(smoothProgress, [textAnimStart, textAnimEnd], ["0em", "2.6em"]);
-    const word2Y = useTransform(smoothProgress, [textAnimStart, textAnimEnd], ["0em", "-0.9em"]);
-
-    const word3X = useTransform(smoothProgress, [textAnimStart, textAnimEnd], ["0em", "4.2em"]);
-    const word3Y = useTransform(smoothProgress, [textAnimStart, textAnimEnd], ["0em", "-1.8em"]);
-
-    // Leaders horizontal scroll - later section (45-100%) - slower
-    const leadersX = useTransform(smoothProgress, [0.45, 1], ["0%", "-70%"]);
-
-    const displayedFounders = founders.slice(0, 2);
+    const teamEntryY = useTransform(smoothProgress, [TEAM_SEGMENTS.team.start, TEAM_SEGMENTS.team.inEnd], ["40vh", "0vh"]);
+    const teamEntryOpacity = useTransform(
+        smoothProgress,
+        [TEAM_SEGMENTS.team.start, TEAM_SEGMENTS.team.inEnd],
+        [0, 1]
+    );
+    const teamX = useTransform(smoothProgress, [TEAM_SEGMENTS.team.inEnd, TEAM_SEGMENTS.team.outEnd], ["0%", "-70%"]);
 
     return (
         <section ref={sectionRef} className="relative h-screen bg-secondary overflow-clip">
@@ -70,93 +177,89 @@ export default function ScrollTeamEXP() {
                 {/* Content Container */}
                 <div className="container mx-auto px-6 h-full flex flex-col md:flex-row md:items-center lg:gap-20 pt-0">
                     {/* Fixed Title */}
-                    <motion.div
-                        style={{
-                            x: isDesktop ? titleX : 0,
-                            y: isDesktop ? titleY : 0,
-                            scale: isDesktop ? titleScale : 1,
-                            transformOrigin: "left top",
-                        }}
-                        className="md:w-1/3 lg:w-1/4 z-30 pt-20 md:pt-36"
-                    >
-                        <h2 className="text-6xl font-black leading-[0.9] tracking-tighter md:text-7xl lg:text-8xl text-white flex flex-col">
-                            <motion.span className="inline-block origin-left">Meet</motion.span>
-                            <motion.span
-                                style={{
-                                    x: isDesktop ? word2X : 0,
-                                    y: isDesktop ? word2Y : 0
-                                }}
-                                className="inline-block origin-left"
-                            >
-                                the
+                    <div className="md:w-1/3 lg:w-1/4 z-30 pt-20 md:pt-36">
+                        <h2 className="relative text-6xl font-black leading-[0.9] tracking-tighter md:text-7xl lg:text-8xl text-white">
+                            <motion.span style={{ opacity: foundersLabelOpacity }} className="absolute inset-0">
+                                {TEAM_SEGMENTS.founders.label}
                             </motion.span>
-                            <motion.span
-                                style={{
-                                    x: isDesktop ? word3X : 0,
-                                    y: isDesktop ? word3Y : 0
-                                }}
-                                className="inline-block origin-left"
-                            >
-                                Team
+                            <motion.span style={{ opacity: marketersLabelOpacity }} className="absolute inset-0">
+                                {TEAM_SEGMENTS.marketers.label}
                             </motion.span>
+                            <motion.span style={{ opacity: technologistsLabelOpacity }} className="absolute inset-0">
+                                {TEAM_SEGMENTS.technologists.label}
+                            </motion.span>
+                            <motion.span style={{ opacity: teamLabelOpacity }} className="absolute inset-0">
+                                {TEAM_SEGMENTS.team.label}
+                            </motion.span>
+                            {/* Keeps layout stable while swapping keywords */}
+                            <span className="opacity-0">{TEAM_SEGMENTS.technologists.label}</span>
                         </h2>
-                    </motion.div>
+                    </div>
 
                     <div className="flex-1 relative w-full h-full min-h-0">
                         {/* 1. Founders Frame */}
-                        <div className="absolute top-0 inset-0 w-full flex items-start justify-center z-20">
+                        <div className="absolute top-0 inset-0 w-full flex items-start justify-center z-20 pt-20 md:pt-36">
                             <div className="max-w-4xl grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-0 justify-items-stretch items-start">
-                                {displayedFounders.map((member, index) => (
+                                {spotlightFounders.map((member, index) => (
                                     <motion.div
                                         key={member.name}
                                         style={{
                                             y: index === 0 ? founderLeftY : founderRightY,
                                             opacity: index === 0 ? founderLeftOpacity : founderRightOpacity,
                                         }}
-                                        className="flex flex-col items-center text-center group w-full"
                                     >
-                                        <div
-                                            className={`relative aspect-[1/1.2] max-w-[300px] sm:max-w-none overflow-hidden rounded-b-[150px] ${member.bgColor} border-[6px] border-white/30 shadow-2xl transition-all duration-500 hover:scale-105 hover:border-white`}
-                                        >
-                                            <img
-                                                src={member.imagePath}
-                                                alt={member.name}
-                                                className="h-full w-full object-cover object-top mix-blend-luminosity brightness-110 contrast-110 transition-all duration-700 group-hover:mix-blend-normal group-hover:scale-110"
-                                            />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                                        </div>
-                                        <div className="mt-8">
-                                            <h3 className="text-3xl font-black tracking-tight text-white">
-                                                {member.name}
-                                            </h3>
-                                            <p className="text-sm font-extrabold uppercase tracking-[0.2em] text-white/50">
-                                                {member.role}
-                                            </p>
-                                        </div>
+                                        <TeamSpotlightCard member={member} />
                                     </motion.div>
                                 ))}
                             </div>
                         </div>
 
-                        {/* 2. Leaders Frame */}
+                        {/* 2. Marketers Frame */}
+                        <div className="absolute top-0 inset-0 w-full flex items-start justify-center z-30 pt-20 md:pt-36">
+                            <div className="max-w-4xl grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-0 justify-items-stretch items-start">
+                                {spotlightMarketers.map((member, index) => (
+                                    <motion.div
+                                        key={member.name}
+                                        style={{
+                                            y: index === 0 ? marketersMotion.leftY : marketersMotion.rightY,
+                                            opacity: index === 0 ? marketersMotion.leftOpacity : marketersMotion.rightOpacity,
+                                        }}
+                                    >
+                                        <TeamSpotlightCard member={member} />
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* 3. Technologists Frame */}
+                        <div className="absolute top-0 inset-0 w-full flex items-start justify-center z-40 pt-20 md:pt-36">
+                            <div className="max-w-4xl grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-0 justify-items-stretch items-start">
+                                {spotlightTechnologists.map((member, index) => (
+                                    <motion.div
+                                        key={member.name}
+                                        style={{
+                                            y: index === 0 ? technologistsMotion.leftY : technologistsMotion.rightY,
+                                            opacity: index === 0 ? technologistsMotion.leftOpacity : technologistsMotion.rightOpacity,
+                                        }}
+                                    >
+                                        <TeamSpotlightCard member={member} />
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* 4. Rest Of Team Carousel */}
                         <motion.div
                             style={{
-                                y: leadersEntryY,
-                                opacity: leadersEntryOpacity,
+                                y: teamEntryY,
+                                opacity: teamEntryOpacity,
                             }}
                             className="absolute inset-0 w-full h-full flex flex-col justify-center items-start z-50"
                         >
-                            <div className="w-full mb-12 hidden">
-                                <h3 className="text-4xl font-black md:text-6xl text-white">Leadership</h3>
-                                <p className="max-w-2xl text-lg text-white/60 mt-4">
-                                    Strategic minds leading our design, engineering, and growth.
-                                </p>
-                            </div>
-
                             <div className="relative w-full overflow-visible">
-                                <motion.div style={{ x: leadersX }} className="flex gap-10 lg:gap-14 w-max pr-[30vw]">
-                                    {leaders.map((member) => (
-                                        <LeaderCard key={member.name} member={member} />
+                                <motion.div style={{ x: teamX }} className="flex gap-10 lg:gap-14 w-max pr-[30vw]">
+                                    {restOfTeam.map((member) => (
+                                        <TeamCarouselCard key={member.name} member={member} />
                                     ))}
                                 </motion.div>
                             </div>
@@ -174,7 +277,7 @@ export default function ScrollTeamEXP() {
     );
 }
 
-function LeaderCard({ member }: { member: TeamMember }) {
+function TeamCarouselCard({ member }: { member: TeamMember }) {
     return (
         <div className="group flex flex-col gap-6 w-[350px] flex-shrink-0">
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl bg-white/5 border border-white/10 shadow-2xl transition-all duration-500 hover:border-white/30">
@@ -192,6 +295,29 @@ function LeaderCard({ member }: { member: TeamMember }) {
                 <h4 className="text-3xl font-black tracking-tight text-white group-hover:text-primary transition-colors duration-300">
                     {member.name}
                 </h4>
+            </div>
+        </div>
+    );
+}
+
+function TeamSpotlightCard({ member }: { member: TeamMember }) {
+    const backgroundClass = member.bgColor ?? "bg-primary/20";
+
+    return (
+        <div className="flex flex-col items-center text-center group w-full">
+            <div
+                className={`relative aspect-[1/1.2] max-w-[300px] sm:max-w-none overflow-hidden rounded-b-[150px] ${backgroundClass} border-[6px] border-white/30 shadow-2xl transition-all duration-500 hover:scale-105 hover:border-white`}
+            >
+                <img
+                    src={member.imagePath}
+                    alt={member.name}
+                    className="h-full w-full object-cover object-top mix-blend-luminosity brightness-110 contrast-110 transition-all duration-700 group-hover:mix-blend-normal group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            </div>
+            <div className="mt-8">
+                <h3 className="text-3xl font-black tracking-tight text-white">{member.name}</h3>
+                <p className="text-sm font-extrabold uppercase tracking-[0.2em] text-white/50">{member.role}</p>
             </div>
         </div>
     );

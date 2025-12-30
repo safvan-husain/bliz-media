@@ -15,11 +15,34 @@
  * Config:
  * - `scrollLength`: how much scrolling is needed to go `0` → `1` (higher = longer/slower)
  * - `mobileMultiplier`: adjusts touch feel on mobile
+ * - `pausePoints`: optional progress “detents” that can pause briefly
+ * - `pauseHoldMs`: default pause duration for detents
  *
  * Note: Respects the user’s “reduced motion” preference and won’t lock in that mode.
  */
-import { useRef, useEffect, useState, useCallback } from "react";
+import { useRef, useEffect, useState, useCallback, useMemo } from "react";
 import { useMotionValue } from "framer-motion";
+
+type ScrollPauseDirection = "forward" | "backward" | "both";
+
+export interface ScrollPausePoint {
+    /**
+     * Progress value (0..1) where the hook should pause.
+     */
+    at: number;
+
+    /**
+     * How long to pause at this point (ms). If omitted, uses `pauseHoldMs`.
+     * Set to `0` to create a detent without a timed pause (requires another scroll input to continue).
+     */
+    holdMs?: number;
+
+    /**
+     * Which scroll direction triggers this pause.
+     * Default: "forward"
+     */
+    direction?: ScrollPauseDirection;
+}
 
 interface UseScrollLockAnimationConfig {
     /**
@@ -35,11 +58,24 @@ interface UseScrollLockAnimationConfig {
      * Default: 2 (Touch is usually faster/less precise)
      */
     mobileMultiplier?: number;
+
+    /**
+     * Optional progress pause points (“detents”) to help hold attention on key frames.
+     */
+    pausePoints?: ScrollPausePoint[];
+
+    /**
+     * Default pause duration used by pausePoints that don’t specify holdMs.
+     * Default: 450ms
+     */
+    pauseHoldMs?: number;
 }
 
 export function useScrollLockAnimation({
     scrollLength = 1000,
-    mobileMultiplier = 2
+    mobileMultiplier = 2,
+    pausePoints: pausePointsInput = [],
+    pauseHoldMs = 450
 }: UseScrollLockAnimationConfig = {}) {
     const sectionRef = useRef<HTMLDivElement>(null);
     const isLockedRef = useRef(false);
@@ -63,6 +99,73 @@ export function useScrollLockAnimation({
     const sensitivity = 1 / scrollLength;
     const touchSensitivity = sensitivity * mobileMultiplier;
     const preLockSlopPx = 80;
+
+    const pausePoints = useMemo(() => {
+        if (!pausePointsInput.length) return [];
+
+        return pausePointsInput
+            .map((point) => {
+                const holdMs = typeof point.holdMs === "number" ? point.holdMs : pauseHoldMs;
+                const direction: ScrollPauseDirection = point.direction ?? "forward";
+                return { at: point.at, holdMs, direction };
+            })
+            // Avoid pausing at the edges so scroll can unlock naturally.
+            .filter((point) => Number.isFinite(point.at) && point.at > 0.001 && point.at < 0.999 && point.holdMs >= 0)
+            .sort((a, b) => a.at - b.at);
+    }, [pauseHoldMs, pausePointsInput]);
+
+    const pauseUntilRef = useRef(0);
+    const pauseTimeoutRef = useRef<number | null>(null);
+
+    const clearPauseTimeout = useCallback(() => {
+        if (pauseTimeoutRef.current === null) return;
+        window.clearTimeout(pauseTimeoutRef.current);
+        pauseTimeoutRef.current = null;
+    }, []);
+
+    const startPause = useCallback(
+        (holdMs: number) => {
+            if (holdMs <= 0) return;
+            clearPauseTimeout();
+            pauseUntilRef.current = Date.now() + holdMs;
+            pauseTimeoutRef.current = window.setTimeout(() => {
+                pauseUntilRef.current = 0;
+                pauseTimeoutRef.current = null;
+            }, holdMs);
+        },
+        [clearPauseTimeout]
+    );
+
+    const isPaused = useCallback(() => {
+        if (pauseUntilRef.current === 0) return false;
+        if (Date.now() < pauseUntilRef.current) return true;
+        pauseUntilRef.current = 0;
+        return false;
+    }, []);
+
+    const getCrossedPausePoint = useCallback(
+        (current: number, next: number, delta: number) => {
+            if (!pausePoints.length || delta === 0 || current === next) return null;
+            const epsilon = 0.0005;
+
+            if (delta > 0) {
+                for (const point of pausePoints) {
+                    if (point.direction !== "forward" && point.direction !== "both") continue;
+                    if (point.at > current + epsilon && point.at <= next + epsilon) return point;
+                }
+                return null;
+            }
+
+            for (let i = pausePoints.length - 1; i >= 0; i -= 1) {
+                const point = pausePoints[i];
+                if (point.direction !== "backward" && point.direction !== "both") continue;
+                if (point.at < current - epsilon && point.at >= next - epsilon) return point;
+            }
+
+            return null;
+        },
+        [pausePoints]
+    );
 
     const normalizeWheelDeltaY = useCallback((e: WheelEvent) => {
         // Convert line/page deltas to pixels for consistent math.
@@ -291,7 +394,16 @@ export function useScrollLockAnimation({
         e.preventDefault();
         e.stopPropagation();
 
+        if (isPaused()) return;
+
         const next = Math.min(Math.max(current + delta * sensitivity, 0), 1);
+        const pausePoint = getCrossedPausePoint(current, next, delta);
+        if (pausePoint) {
+            progress.set(pausePoint.at);
+            startPause(pausePoint.holdMs);
+            return;
+        }
+
         progress.set(next);
 
         // Scrolling UP at 0%
@@ -311,7 +423,17 @@ export function useScrollLockAnimation({
             }, 50);
             return;
         }
-    }, [lockScroll, normalizeWheelDeltaY, progress, sensitivity, shouldPreLockForScrollInput, unlockScroll]);
+    }, [
+        getCrossedPausePoint,
+        isPaused,
+        lockScroll,
+        normalizeWheelDeltaY,
+        progress,
+        sensitivity,
+        shouldPreLockForScrollInput,
+        startPause,
+        unlockScroll
+    ]);
 
     // Handle touch events (mobile)
     const touchStartY = useRef(0);
@@ -349,11 +471,23 @@ export function useScrollLockAnimation({
         e.preventDefault();
         e.stopPropagation();
 
+        if (isPaused()) {
+            touchStartY.current = currentY;
+            return;
+        }
+
         const current = progress.get();
 
         const next = Math.min(Math.max(current + delta * touchSensitivity, 0), 1);
-        progress.set(next);
+        const pausePoint = getCrossedPausePoint(current, next, delta);
+        if (pausePoint) {
+            progress.set(pausePoint.at);
+            startPause(pausePoint.holdMs);
+            touchStartY.current = currentY;
+            return;
+        }
 
+        progress.set(next);
         touchStartY.current = currentY;
 
         // Scrolling UP (delta < 0) at 0%
@@ -373,7 +507,16 @@ export function useScrollLockAnimation({
             }, 50);
             return;
         }
-    }, [lockScroll, progress, shouldPreLockForScrollInput, touchSensitivity, unlockScroll]);
+    }, [
+        getCrossedPausePoint,
+        isPaused,
+        lockScroll,
+        progress,
+        shouldPreLockForScrollInput,
+        startPause,
+        touchSensitivity,
+        unlockScroll
+    ]);
 
     const handleTouchEnd = useCallback(() => {
         isTouching.current = false;
@@ -397,6 +540,12 @@ export function useScrollLockAnimation({
             window.removeEventListener("touchend", handleTouchEnd, { capture: true });
         };
     }, [handleWheel, handleTouchStart, handleTouchMove, handleTouchEnd]);
+
+    useEffect(() => {
+        return () => {
+            clearPauseTimeout();
+        };
+    }, [clearPauseTimeout]);
 
     return {
         sectionRef,
