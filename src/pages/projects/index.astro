@@ -1,21 +1,39 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { projects } from "../../data/projects";
+
+const services = ["All", ...new Set(projects.map((project) => project.service))];
 ---
+
 
 <Layout title="Projects | Our Work">
   <section class="py-20 md:py-32">
     <div class="container mx-auto px-4">
       <h1 class="mb-12 text-3xl font-bold md:text-5xl text-[var(--color-foreground)]">
-        All Projects
+        Our Projects
       </h1>
+
+      <div class="mb-10 flex flex-wrap gap-3">
+        {
+          services.map((service) => (
+            <button
+              type="button"
+              data-service-filter={service}
+              class="inline-flex items-center rounded-full border border-[var(--color-muted-foreground)] bg-transparent px-4 py-2 text-sm font-medium text-[var(--color-foreground)] transition-colors"
+            >
+              {service}
+            </button>
+          ))
+        }
+      </div>
 
       <div class="grid grid-cols-1 gap-4 md:grid-cols-4 md:auto-rows-[250px]">
         {
           projects.map((project) => (
             <a
               href={`/project/${project.slug}`}
-              class={`group relative overflow-hidden rounded-3xl ${project.class} block`}
+              data-service-name={project.service}
+              class={`group relative block overflow-hidden rounded-3xl ${project.class}`}
             >
               <img
                 src={project.image}
@@ -43,4 +61,66 @@ import { projects } from "../../data/projects";
       </div>
     </div>
   </section>
+
+  <script>
+    const buttons = Array.from(
+      document.querySelectorAll("[data-service-filter]")
+    );
+    const cards = Array.from(
+      document.querySelectorAll("[data-service-name]")
+    );
+
+    const activeClasses = [
+      "bg-[var(--color-primary)]",
+      "text-white",
+      "border-[var(--color-primary)]",
+    ];
+
+    const inactiveClasses = [
+      "bg-transparent",
+      "text-[var(--color-foreground)]",
+      "border-[var(--color-muted-foreground)]",
+    ];
+
+    function setActiveButton(activeButton: any) {
+      buttons.forEach((button) => {
+        button.classList.remove(...activeClasses);
+        button.classList.add(...inactiveClasses);
+      });
+
+      if (activeButton) {
+        activeButton.classList.remove(...inactiveClasses);
+        activeButton.classList.add(...activeClasses);
+      }
+    }
+
+    function filterProjects(service: any) {
+      cards.forEach((card) => {
+        const cardService = card.getAttribute("data-service-name");
+        const shouldShow = service === "All" || cardService === service;
+
+        if (shouldShow) {
+          card.classList.remove("hidden");
+        } else {
+          card.classList.add("hidden");
+        }
+      });
+    }
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const service = button.getAttribute("data-service-filter");
+        setActiveButton(button);
+        filterProjects(service);
+      });
+    });
+
+    if (buttons.length) {
+      const allButton =
+        buttons.find((btn) => btn.getAttribute("data-service-filter") === "All") ||
+        buttons[0];
+      setActiveButton(allButton);
+      filterProjects("All");
+    }
+  </script>
 </Layout>
