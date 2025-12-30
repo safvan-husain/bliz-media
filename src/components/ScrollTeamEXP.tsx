@@ -66,7 +66,7 @@ function useSpotlightPairMotion({
 
 export default function ScrollTeamEXP() {
     const { sectionRef, progress } = useScrollLockAnimation({
-        scrollLength: 4000,
+        scrollLength: 3000,
         pauseHoldMs: 0,
         pausePoints: TEAM_SCROLL_PAUSE_POINTS,
     });
@@ -185,7 +185,7 @@ export default function ScrollTeamEXP() {
                 {/* Content Container */}
                 <div className="relative container mx-auto px-6 h-full flex flex-col md:flex-row md:items-center lg:gap-20 pt-0">
                     {/* Fixed Title */}
-                    <div className="md:w-1/3 lg:w-1/4 z-30 absolute bottom-20 left-0">
+                    <div className="md:w-1/3 lg:w-1/4 z-30 absolute left-0">
                         <motion.p 
                             style={{ opacity: meetTheOpacity }}
                             className="text-6xl font-black leading-[0.9] tracking-tighter md:text-7xl lg:text-8xl text-white"
@@ -319,12 +319,11 @@ function TeamCarouselCard({ member }: { member: TeamMember }) {
 }
 
 function TeamSpotlightCard({ member }: { member: TeamMember }) {
-    const backgroundClass = member.bgColor ?? "bg-primary/20";
 
     return (
         <div className="flex flex-col items-center text-center group w-full max-w-[400px]">
             <div
-                className={`relative aspect-[1/1.2] max-w-[300px] sm:max-w-none overflow-hidden rounded-b-[150px] ${backgroundClass} border-[6px] border-white/30 shadow-2xl transition-all duration-500 hover:scale-105 hover:border-white`}
+                className={`relative aspect-[1/1.2] max-w-[300px] sm:max-w-none overflow-hidden rounded-b-[150px] border-[6px] border-white/30 shadow-2xl transition-all duration-500 hover:scale-105 hover:border-white`}
             >
                 <img
                     src={member.imagePath}
