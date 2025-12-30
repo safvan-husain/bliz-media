@@ -66,8 +66,8 @@ function useSpotlightPairMotion({
 
 export default function ScrollTeamEXP() {
     const { sectionRef, progress } = useScrollLockAnimation({
-        scrollLength: 2000,
-        pauseHoldMs: 500,
+        scrollLength: 4000,
+        pauseHoldMs: 0,
         pausePoints: TEAM_SCROLL_PAUSE_POINTS,
     });
 
@@ -108,6 +108,14 @@ export default function ScrollTeamEXP() {
         [TEAM_SEGMENTS.team.start, TEAM_SEGMENTS.team.start + labelFade],
         [0, 1]
     );
+
+    // Fade out "Meet The" when team segment starts
+    const meetTheOpacity = useTransform(
+        smoothProgress,
+        [TEAM_SEGMENTS.team.start - labelFade, TEAM_SEGMENTS.team.start],
+        [1, 0]
+    );
+
 
     const spotlightFounders = founders.slice(0, 2);
     const spotlightMarketers = leaders.filter((member) => /marketing|strategy/i.test(member.role)).slice(0, 2);
@@ -175,10 +183,23 @@ export default function ScrollTeamEXP() {
                 </div>
 
                 {/* Content Container */}
-                <div className="container mx-auto px-6 h-full flex flex-col md:flex-row md:items-center lg:gap-20 pt-0">
+                <div className="relative container mx-auto px-6 h-full flex flex-col md:flex-row md:items-center lg:gap-20 pt-0">
                     {/* Fixed Title */}
-                    <div className="md:w-1/3 lg:w-1/4 z-30 pt-20 md:pt-36">
+                    <div className="md:w-1/3 lg:w-1/4 z-30 absolute bottom-20 left-0">
+                        <motion.p 
+                            style={{ opacity: meetTheOpacity }}
+                            className="text-6xl font-black leading-[0.9] tracking-tighter md:text-7xl lg:text-8xl text-white"
+                        >
+                            Meet
+                        </motion.p>
+                        <motion.p 
+                            style={{ opacity: meetTheOpacity }}
+                            className="text-6xl font-black leading-[0.9] tracking-tighter md:text-7xl lg:text-8xl text-white"
+                        >
+                            The
+                        </motion.p>
                         <h2 className="relative text-6xl font-black leading-[0.9] tracking-tighter md:text-7xl lg:text-8xl text-white">
+
                             <motion.span style={{ opacity: foundersLabelOpacity }} className="absolute inset-0">
                                 {TEAM_SEGMENTS.founders.label}
                             </motion.span>
@@ -188,18 +209,15 @@ export default function ScrollTeamEXP() {
                             <motion.span style={{ opacity: technologistsLabelOpacity }} className="absolute inset-0">
                                 {TEAM_SEGMENTS.technologists.label}
                             </motion.span>
-                            <motion.span style={{ opacity: teamLabelOpacity }} className="absolute inset-0">
-                                {TEAM_SEGMENTS.team.label}
-                            </motion.span>
                             {/* Keeps layout stable while swapping keywords */}
                             <span className="opacity-0">{TEAM_SEGMENTS.technologists.label}</span>
                         </h2>
                     </div>
 
-                    <div className="flex-1 relative w-full h-full min-h-0">
+                    <div className="flex-1 relative w-full h-full min-h-0 absolute right-0">
                         {/* 1. Founders Frame */}
-                        <div className="absolute top-0 inset-0 w-full flex items-start justify-center z-20 pt-20 md:pt-36">
-                            <div className="max-w-4xl grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-0 justify-items-stretch items-start">
+                        <div className="absolute right-8 w-auto flex items-start justify-end z-20">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 justify-items-end items-start">
                                 {spotlightFounders.map((member, index) => (
                                     <motion.div
                                         key={member.name}
@@ -215,8 +233,8 @@ export default function ScrollTeamEXP() {
                         </div>
 
                         {/* 2. Marketers Frame */}
-                        <div className="absolute top-0 inset-0 w-full flex items-start justify-center z-30 pt-20 md:pt-36">
-                            <div className="max-w-4xl grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-0 justify-items-stretch items-start">
+                        <div className="absolute right-8 w-auto flex items-start justify-end z-30">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 justify-items-end items-start">
                                 {spotlightMarketers.map((member, index) => (
                                     <motion.div
                                         key={member.name}
@@ -232,8 +250,8 @@ export default function ScrollTeamEXP() {
                         </div>
 
                         {/* 3. Technologists Frame */}
-                        <div className="absolute top-0 inset-0 w-full flex items-start justify-center z-40 pt-20 md:pt-36">
-                            <div className="max-w-4xl grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-0 justify-items-stretch items-start">
+                        <div className="absolute right-8 w-auto flex items-start justify-end z-40">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 justify-items-end items-start">
                                 {spotlightTechnologists.map((member, index) => (
                                     <motion.div
                                         key={member.name}
@@ -304,7 +322,7 @@ function TeamSpotlightCard({ member }: { member: TeamMember }) {
     const backgroundClass = member.bgColor ?? "bg-primary/20";
 
     return (
-        <div className="flex flex-col items-center text-center group w-full">
+        <div className="flex flex-col items-center text-center group w-full max-w-[400px]">
             <div
                 className={`relative aspect-[1/1.2] max-w-[300px] sm:max-w-none overflow-hidden rounded-b-[150px] ${backgroundClass} border-[6px] border-white/30 shadow-2xl transition-all duration-500 hover:scale-105 hover:border-white`}
             >
