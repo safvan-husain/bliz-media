@@ -1,4 +1,5 @@
 import { motion, type MotionValue, useSpring, useTransform } from "framer-motion";
+import { useState, useEffect } from "react";
 import { coreTeam, founders, leaders, type TeamMember } from "../data/team";
 import { useScrollLockAnimation } from "../hooks/useScrollLockAnimation";
 
@@ -11,7 +12,7 @@ const TEAM_SEGMENTS = {
     },
     marketers: {
         start: 0.25,
-        inEnd: 0.33,
+        inEnd: 0.45,
         holdEnd: 0.45,
         outEnd: 0.5,
         label: "Marketers",
@@ -72,49 +73,35 @@ export default function ScrollTeamEXP() {
     });
 
     const smoothProgress = useSpring(progress, {
-        stiffness: 100,
-        damping: 30,
-        restDelta: 0.001,
+        stiffness: 80,
+        damping: 40,
+        restDelta: 0.0001,
     });
 
-    const labelFade = 0.02;
-    const foundersLabelOpacity = useTransform(
-        smoothProgress,
-        [TEAM_SEGMENTS.founders.start, TEAM_SEGMENTS.founders.outEnd - labelFade, TEAM_SEGMENTS.founders.outEnd],
-        [1, 1, 0]
-    );
-    const marketersLabelOpacity = useTransform(
-        smoothProgress,
-        [
-            TEAM_SEGMENTS.marketers.start,
-            TEAM_SEGMENTS.marketers.start + labelFade,
-            TEAM_SEGMENTS.marketers.outEnd - labelFade,
-            TEAM_SEGMENTS.marketers.outEnd,
-        ],
-        [0, 1, 1, 0]
-    );
-    const technologistsLabelOpacity = useTransform(
-        smoothProgress,
-        [
-            TEAM_SEGMENTS.technologists.start,
-            TEAM_SEGMENTS.technologists.start + labelFade,
-            TEAM_SEGMENTS.technologists.outEnd - labelFade,
-            TEAM_SEGMENTS.technologists.outEnd,
-        ],
-        [0, 1, 1, 0]
-    );
-    const teamLabelOpacity = useTransform(
-        smoothProgress,
-        [TEAM_SEGMENTS.team.start, TEAM_SEGMENTS.team.start + labelFade],
-        [0, 1]
-    );
+    // State for current active label
+    const [currentLabel, setCurrentLabel] = useState<string>(TEAM_SEGMENTS.founders.label);
+    const [showMeetThe, setShowMeetThe] = useState(true);
 
-    // Fade out "Meet The" when team segment starts
-    const meetTheOpacity = useTransform(
-        smoothProgress,
-        [TEAM_SEGMENTS.team.start - labelFade, TEAM_SEGMENTS.team.start],
-        [1, 0]
-    );
+    // Update label based on scroll progress
+    useEffect(() => {
+        const unsubscribe = smoothProgress.on("change", (value) => {
+            if (value >= TEAM_SEGMENTS.team.start) {
+                setCurrentLabel("");
+                setShowMeetThe(false);
+            } else if (value >= TEAM_SEGMENTS.technologists.start) {
+                setCurrentLabel(TEAM_SEGMENTS.technologists.label);
+                setShowMeetThe(true);
+            } else if (value >= TEAM_SEGMENTS.marketers.start) {
+                setCurrentLabel(TEAM_SEGMENTS.marketers.label);
+                setShowMeetThe(true);
+            } else {
+                setCurrentLabel(TEAM_SEGMENTS.founders.label);
+                setShowMeetThe(true);
+            }
+        });
+
+        return unsubscribe;
+    }, [smoothProgress]);
 
 
     const spotlightFounders = founders.slice(0, 2);
@@ -186,31 +173,22 @@ export default function ScrollTeamEXP() {
                 <div className="relative container mx-auto px-6 h-full flex flex-col md:flex-row md:items-center lg:gap-20 pt-0">
                     {/* Fixed Title */}
                     <div className="md:w-1/3 lg:w-1/4 z-30 absolute left-20 bottom-40">
-                        <motion.p 
-                            style={{ opacity: meetTheOpacity }}
-                            className="text-6xl font-black leading-[0.9] tracking-tighter md:text-7xl lg:text-8xl text-white"
+                        <p 
+                            className={`text-6xl font-black leading-[0.9] tracking-tighter md:text-7xl lg:text-8xl text-white transition-opacity duration-500 ease-in-out ${
+                                showMeetThe ? 'opacity-100' : 'opacity-0'
+                            }`}
                         >
                             Meet
-                        </motion.p>
-                        <motion.p 
-                            style={{ opacity: meetTheOpacity }}
-                            className="text-6xl font-black leading-[0.9] tracking-tighter md:text-7xl lg:text-8xl text-white"
+                        </p>
+                        <p 
+                            className={`text-6xl font-black leading-[0.9] tracking-tighter md:text-7xl lg:text-8xl text-white transition-opacity duration-500 ease-in-out ${
+                                showMeetThe ? 'opacity-100' : 'opacity-0'
+                            }`}
                         >
                             The
-                        </motion.p>
-                        <h2 className="relative text-6xl font-black leading-[0.9] tracking-tighter md:text-7xl lg:text-8xl text-white">
-
-                            <motion.span style={{ opacity: foundersLabelOpacity }} className="absolute inset-0">
-                                {TEAM_SEGMENTS.founders.label}
-                            </motion.span>
-                            <motion.span style={{ opacity: marketersLabelOpacity }} className="absolute inset-0">
-                                {TEAM_SEGMENTS.marketers.label}
-                            </motion.span>
-                            <motion.span style={{ opacity: technologistsLabelOpacity }} className="absolute inset-0">
-                                {TEAM_SEGMENTS.technologists.label}
-                            </motion.span>
-                            {/* Keeps layout stable while swapping keywords */}
-                            <span className="opacity-0">{TEAM_SEGMENTS.technologists.label}</span>
+                        </p>
+                        <h2 className="text-6xl font-black leading-[0.9] tracking-tighter md:text-7xl lg:text-8xl text-white transition-all duration-900 ease-in-out">
+                            {currentLabel}
                         </h2>
                     </div>
 
