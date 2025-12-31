@@ -2,6 +2,12 @@
 import { services } from "../data/services";
 import HorizontalServices from "./HorizontalServices";
 import ServicesList from "./ServicesList.astro";
+
+interface Props {
+  showViewAll?: boolean;
+}
+
+const { showViewAll = true } = Astro.props;
 ---
 
 <section id="services" class="relative bg-zinc-50">
@@ -35,10 +41,10 @@ import ServicesList from "./ServicesList.astro";
   </div>
 
   <div class="md:hidden">
-    <ServicesList services={services} />
+    <ServicesList services={services} showViewAll={showViewAll} />
   </div>
 
   <div class="hidden md:block">
-    <HorizontalServices client:media="(min-width: 768px)" services={services} />
+    <HorizontalServices client:media="(min-width: 768px)" services={services} showViewAll={showViewAll} />
   </div>
 </section>

@@ -3,9 +3,10 @@ import type { Service } from "../data/services";
 
 interface Props {
   services: Service[];
+  showViewAll?: boolean;
 }
 
-const { services } = Astro.props;
+const { services, showViewAll = true } = Astro.props;
 ---
 
 <div class="pb-12 px-6">
@@ -72,6 +73,7 @@ const { services } = Astro.props;
       ))
     }
 
+    {showViewAll && (
     <a
       href="/services"
       class="group relative h-[420px] rounded-[3rem] overflow-hidden shadow-2xl transition-all duration-700 hover:scale-[1.01] block isolate bg-secondary border border-white/10"
@@ -106,5 +108,6 @@ const { services } = Astro.props;
 
       <div class="absolute inset-0 border-[1px] border-white/10 group-hover:border-white/30 transition-all duration-1000 rounded-[3rem] pointer-events-none scale-95 group-hover:scale-100" />
     </a>
+    )}
   </div>
 </div>

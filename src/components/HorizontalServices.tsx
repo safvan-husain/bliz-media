@@ -4,9 +4,10 @@ import type { Service } from "../data/services";
 
 interface HorizontalServicesProps {
     services: Service[];
+    showViewAll?: boolean;
 }
 
-export default function HorizontalServices({ services }: HorizontalServicesProps) {
+export default function HorizontalServices({ services, showViewAll = true }: HorizontalServicesProps) {
     const targetRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: targetRef,
@@ -39,7 +40,7 @@ export default function HorizontalServices({ services }: HorizontalServicesProps
                     {services.map((service) => (
                         <ServiceCard key={service.id} service={service} />
                     ))}
-                    <ViewAllServicesCard />
+                    {showViewAll && <ViewAllServicesCard />}
                 </motion.div>
             </div>
         </section>
