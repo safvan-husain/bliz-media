@@ -83,7 +83,7 @@ function ServiceCard({ service }: { service: Service }) {
                     {service.tags && service.tags.map((tag) => (
                         <span
                             key={tag}
-                            className="px-8 py-2.5 rounded-full border border-white/30 bg-white/10 backdrop-blur-md text-xs font-black uppercase tracking-[0.2em] transition-all duration-500 hover:bg-white hover:text-black"
+                            className="px-8 py-2.5 rounded-full border border-white/30 backdrop-blur-md text-xs font-black uppercase tracking-[0.2em] transition-all duration-500 bg-white/80 text-black"
                         >
                             {tag}
                         </span>
@@ -91,7 +91,7 @@ function ServiceCard({ service }: { service: Service }) {
                 </div>
 
                 <div
-                    className="bg-[#0c1b33] text-white px-10 py-5 rounded-full font-black tracking-[0.2em] text-xs flex items-center gap-4 border border-white/10 transition-all duration-500 hover:bg-[#ff3d3d] hover:scale-110 hover:shadow-[0_0_30px_rgba(255,61,61,0.4)] active:scale-95 group-hover:-translate-y-2"
+                    className="bg-[var(--color-foreground)] text-white px-10 py-5 rounded-full font-black tracking-[0.2em] text-xs flex items-center gap-4 border border-white/10 transition-all duration-500 hover:bg-[#ff3d3d] hover:scale-110 hover:shadow-[0_0_30px_rgba(255,61,61,0.4)] active:scale-95 group-hover:-translate-y-2"
                 >
                     VIEW MORE
                     <svg

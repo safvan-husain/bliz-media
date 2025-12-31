@@ -1,30 +1,40 @@
 import React from 'react';
-import ShaderBackground from './ui/shader-background';
+import { WebGLShader } from './ui/web-gl-shader';
+import { LiquidButton } from './ui/liquid-glass-button';
 
 const ServicesHero = () => {
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      <ShaderBackground />
-      
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <h1 className="text-5xl md:text-7xl font-bold text-black mb-8 leading-tight">
-          Our Services
-        </h1>
-        
-        <blockquote className="text-xl md:text-2xl text-gray-800 font-light italic leading-relaxed">
-          "We don't just build websites, we craft digital experiences that transform your business and captivate your audience."
-        </blockquote>
-        
-        <div className="mt-8">
-          <p className="text-lg text-gray-700">
-            Discover how we can elevate your digital presence
-          </p>
+    <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
+      <WebGLShader />
+
+      <div className="min-h-screen flex flex-col items-center justify-center">
+        <div className="flex relative p-2 w-full mx-auto max-w-3xl">
+          <main className="flex flex-col items-center justify-center py-10 overflow-hidden">
+            <h1 className="mb-3 text-white text-center text-7xl font-extrabold tracking-tighter md:text-[clamp(2rem,8vw,7rem)]">
+              Design is Everything
+            </h1>
+
+            <p className="text-white/60 px-6 text-center text-xs md:text-sm lg:text-lg">
+              Unleashing creativity through bold visuals, seamless interfaces, and limitless possibilities.
+            </p>
+
+            <div className="my-8 flex items-center justify-center gap-1">
+              <span className="relative flex h-3 w-3 items-center justify-center">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75"></span>
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
+              </span>
+              <p className="text-xs text-green-500">Available for New Projects</p>
+            </div>
+
+            <div className="flex justify-center">
+              <LiquidButton className="text-white border rounded-full" size={'xl'}>
+                Let's Go
+              </LiquidButton>
+            </div>
+          </main>
         </div>
       </div>
-      
-      {/* Subtle overlay for better contrast */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/20 z-0"></div>
-    </section>
+    </div>
   );
 };
 
