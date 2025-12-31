@@ -22,7 +22,7 @@ export default function LetsWork() {
     const textScale = useTransform(smoothProgress, (t: number) => (1 + 6 * t) / (1 + 49 * t));
 
     return (
-        <div ref={containerRef} className="relative h-[300vh] bg-white">
+        <div ref={containerRef} className="relative h-[200vh] bg-white">
             <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
                 <motion.div
                     style={{ scale }}

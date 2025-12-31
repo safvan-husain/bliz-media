@@ -185,7 +185,7 @@ export default function ScrollTeamEXP() {
                 {/* Content Container */}
                 <div className="relative container mx-auto px-6 h-full flex flex-col md:flex-row md:items-center lg:gap-20 pt-0">
                     {/* Fixed Title */}
-                    <div className="md:w-1/3 lg:w-1/4 z-30 absolute left-0">
+                    <div className="md:w-1/3 lg:w-1/4 z-30 absolute left-20 bottom-40">
                         <motion.p 
                             style={{ opacity: meetTheOpacity }}
                             className="text-6xl font-black leading-[0.9] tracking-tighter md:text-7xl lg:text-8xl text-white"
