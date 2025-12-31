@@ -18,7 +18,9 @@ const { project } = Astro.props;
       <div class="max-w-4xl mx-auto">
         <a
           href="/projects"
-          class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-black mb-8 transition-colors"
+          class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-black mb-8 transition-colors opacity-0 translate-y-8 [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
+          data-animate-on-scroll
+          style="transition-duration: 700ms; transition-timing-function: ease-out;"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +40,7 @@ const { project } = Astro.props;
           Back to Projects
         </a>
 
-        <div class="rounded-3xl overflow-hidden mb-12 shadow-xl">
+        <div class="rounded-3xl overflow-hidden mb-12 shadow-xl opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0" data-animate-on-scroll>
           <img
             src={project.image}
             alt={project.name}
@@ -46,7 +48,7 @@ const { project } = Astro.props;
           />
         </div>
 
-        <div class="flex flex-col md:flex-row gap-8 mb-12">
+        <div class="flex flex-col md:flex-row gap-8 mb-12 opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0" data-animate-on-scroll>
             <div class="flex-1">
                 <h1 class="text-4xl md:text-5xl font-bold mb-4">{project.name}</h1>
                 <div class="flex items-center gap-4 text-gray-600">
@@ -56,8 +58,24 @@ const { project } = Astro.props;
             </div>
         </div>
 
-        <div class="prose prose-lg max-w-none" set:html={project.details} />
+        <div class="prose prose-lg max-w-none opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0" data-animate-on-scroll set:html={project.details} />
       </div>
     </div>
   </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('animate-in');
+            }, index * 100); // Stagger by 100ms
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('[data-animate-on-scroll]').forEach(el => observer.observe(el));
+    });
+  </script>
 </Layout>

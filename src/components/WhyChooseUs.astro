@@ -77,7 +77,9 @@ const comparisonData = [
                     comparisonData.map((item, index) => {
                         const isEven = index % 2 === 0;
                         return (
-                        <div class="col-span-full grid grid-cols-1 md:grid-cols-2 items-stretch border-b border-gray-200/60 last:border-0">
+                        <div class={`col-span-full grid grid-cols-1 md:grid-cols-2 items-stretch border-b border-gray-200/60 last:border-0 opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0`}
+                             data-animate-on-scroll
+                             style={`transition-delay: ${index * 150}ms;`}>
                             <!-- Others Column (Includes Attribute Name) -->
                             <div class={`flex flex-col md:flex-row md:items-center gap-4 p-6 md:pl-8 transition-colors duration-300 ${isEven ? 'bg-white' : 'bg-stone-100'}`}>
                                 <div class="flex items-center gap-3">
@@ -140,4 +142,20 @@ const comparisonData = [
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('animate-in');
+                        }, index * 100); // Stagger by 100ms
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('[data-animate-on-scroll]').forEach(el => observer.observe(el));
+        });
+    </script>
 </section>

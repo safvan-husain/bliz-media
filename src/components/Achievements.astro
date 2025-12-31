@@ -45,7 +45,9 @@ const achievements = [
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {achievements.map((item, index) => (
-                <div class="group relative p-8 bg-white hover:bg-black border border-secondary/20 rounded-2xl hover:border-primary/20 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5">
+                <div class="group relative p-8 bg-white hover:bg-black border border-secondary/20 rounded-2xl hover:border-primary/20 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 opacity-0 translate-y-8 [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0" 
+                     data-animate-on-scroll
+                     style={`transition-delay: ${index * 100}ms; transition-duration: 700ms; transition-timing-function: ease-out;`}>
                     <div class="relative z-10">
                         <div class="text-4xl md:text-5xl font-bold text-black group-hover:text-white mb-6 flex items-baseline gap-1">
                             {item.number}
@@ -58,6 +60,22 @@ const achievements = [
             ))}
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('animate-in');
+                        }, index * 100); // Stagger by 100ms
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('[data-animate-on-scroll]').forEach(el => observer.observe(el));
+        });
+    </script>
 </section>
 
 <style>
