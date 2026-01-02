@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import PricingCards from "../../components/PricingCards.astro";
 import { services } from "../../data/services";
 
 export async function getStaticPaths() {
@@ -101,6 +102,11 @@ const { service } = Astro.props;
             </div>
         </div>
     </section>
+
+    {/* Pricing Cards Section - Only show if service has plans */}
+    {service.plans && service.plans.length > 0 && (
+        <PricingCards plans={service.plans} serviceName={service.title} />
+    )}
 
     {/* Other Services Navigation */}
     <section class="py-20 bg-zinc-50">

@@ -1,3 +1,11 @@
+export interface Plan {
+  name: string;
+  title: string;
+  includes: string[];
+  deployment: string;
+  hosting: string;
+}
+
 export interface Service {
   id: string;
   title: string;
@@ -7,6 +15,7 @@ export interface Service {
   content: string;
   color: string;
   tags: string[];
+  plans?: Plan[];
 }
 
 export const services: Service[] = [
@@ -92,6 +101,55 @@ export const services: Service[] = [
         </p>
       </div>
     `,
+    plans: [
+      {
+        name: "PLAN 1",
+        title: "HTML / WORDPRESS STATIC WEBSITE",
+        includes: [
+          "3 to 7 static pages",
+          "HTML or WordPress based website",
+          "Fully responsive for mobile tablet and desktop",
+          "SEO friendly structure",
+          "Contact form integration",
+          "WhatsApp chat icon integration",
+          "Basic security setup",
+          "Fast loading performance"
+        ],
+        deployment: "Website deployment included",
+        hosting: "1 year FREE hosting included"
+      },
+      {
+        name: "PLAN 2",
+        title: "SHOPIFY ECOMMERCE WEBSITE",
+        includes: [
+          "Shopify theme implementation",
+          "Product and collection setup",
+          "Cart and checkout configuration",
+          "Mobile optimized store",
+          "Order and customer management",
+          "WhatsApp chat icon integration",
+          "Secure payment gateway integration Razorpay Stripe PayPal"
+        ],
+        deployment: "Website deployment included",
+        hosting: "Hosting not included"
+      },
+      {
+        name: "PLAN 3",
+        title: "DYNAMIC CUSTOM CODED WEBSITE",
+        includes: [
+          "Nextjs React Nodejs",
+          "Custom front end and back end development",
+          "Dynamic pages and database integration",
+          "Admin dashboard",
+          "Authentication and user roles",
+          "API integrations",
+          "WhatsApp chat icon integration",
+          "Scalable architecture"
+        ],
+        deployment: "Website deployment included",
+        hosting: "Hosting not included"
+      }
+    ]
   },
   {
     id: "05",
