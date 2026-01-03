@@ -4,6 +4,7 @@ export interface Plan {
   includes: string[];
   deployment: string;
   hosting: string;
+  premium?: boolean;
 }
 
 export interface Service {
@@ -121,6 +122,7 @@ export const services: Service[] = [
       {
         name: "PLAN 2",
         title: "SHOPIFY ECOMMERCE WEBSITE",
+        premium: true,
         includes: [
           "Shopify theme implementation",
           "Product and collection setup",
