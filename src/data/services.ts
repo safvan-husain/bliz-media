@@ -114,7 +114,8 @@ export const services: Service[] = [
           "Contact form integration",
           "WhatsApp chat icon integration",
           "Basic security setup",
-          "Fast loading performance"
+          "Fast loading performance",
+          ""
         ],
         deployment: "Website deployment included",
         hosting: "1 year FREE hosting included"
@@ -130,7 +131,9 @@ export const services: Service[] = [
           "Mobile optimized store",
           "Order and customer management",
           "WhatsApp chat icon integration",
-          "Secure payment gateway integration Razorpay Stripe PayPal"
+          "Secure payment gateway integration Razorpay Stripe PayPal",
+          "",
+          ""
         ],
         deployment: "Website deployment included",
         hosting: "Hosting not included"

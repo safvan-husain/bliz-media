@@ -1,5 +1,7 @@
 ---
-import type { Plan } from '../data/services';
+import type { Plan } from "../data/services";
+import PricingCard from "./PricingCard.astro";
+import PremiumPricingCard from "./PremiumPricingCard.astro";
 
 interface Props {
   plans: Plan[];
@@ -7,18 +9,17 @@ interface Props {
 }
 
 const { plans, serviceName } = Astro.props;
-
-function generateWhatsAppLink(planTitle: string, serviceName: string) {
-  const message = `Hi! I'm interested in the ${planTitle} for ${serviceName}. Could you please provide more details?`;
-  const encodedMessage = encodeURIComponent(message);
-  return `https://wa.me/YOUR_PHONE_NUMBER?text=${encodedMessage}`;
-}
 ---
 
 <section class="py-20 bg-white">
   <div class="max-w-[var(--max-width-container)] mx-auto px-6">
-    <div class="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0" data-animate-on-scroll>
-      <h2 class="text-4xl md:text-5xl font-black tracking-tighter text-[#0c1b33] mb-4">
+    <div
+      class="text-center mb-16 translate-y-8 opacity-0 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
+      data-animate-on-scroll
+    >
+      <h2
+        class="text-4xl md:text-5xl font-black tracking-tighter text-[#0c1b33] mb-4"
+      >
         Choose Your Plan
       </h2>
       <p class="text-xl text-[#0c1b33]/60 max-w-2xl mx-auto">
@@ -26,16 +27,16 @@ function generateWhatsAppLink(planTitle: string, serviceName: string) {
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto lg:items-end">
+    <div class="flex flex-col md:flex-row gap-8 max-w-6xl mx-auto items-end">
       {plans.map((plan, index) => (
-        <div 
-          class="opacity-0 translate-y-8 [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0 flex flex-col lg:h-full"
+        <div
+          class={`opacity-0  transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0 flex flex-col lg:h-full flex-1 min-w-0 md:flex-[0_1_calc(50%-1rem)] lg:flex-[0_1_calc(33.333%-1.33rem)]`}
           data-animate-on-scroll
           style={`transition-delay: ${index * 200}ms;`}
         >
           {plan.premium ? (
             /* Premium Wrapper Container */
-            <div class="relative bg-gradient-to-br from-primary to-primary/80 rounded-3xl p-1 shadow-2xl shadow-primary/20 transform scale-105 flex flex-col lg:h-full">
+            <div class="relative bg-gradient-to-br from-primary to-primary/80 rounded-3xl p-1 shadow-2xl shadow-primary/20 transform flex flex-col lg:h-full">
               {/* Popular Label */}
               <div class="text-center py-4 flex-shrink-0">
                 <span class="text-white font-black tracking-[0.2em] text-sm uppercase">
@@ -43,204 +44,11 @@ function generateWhatsAppLink(planTitle: string, serviceName: string) {
                 </span>
               </div>
               
-              {/* Inner Card */}
-              <div class="bg-white rounded-3xl p-8 flex flex-col flex-grow hover:shadow-xl transition-all duration-500">
-                {/* Plan Header */}
-                <div class="text-center mb-8 flex-shrink-0">
-                  <h3 class="text-xl font-black tracking-tight text-[#0c1b33] my-2">
-                    {plan.title}
-                  </h3>
-                </div>
-
-                {/* Features List */}
-                <div class="mb-8 flex-shrink-0">
-                  <h4 class="text-sm font-black tracking-[0.2em] text-[#0c1b33]/60 uppercase mb-4">
-                    Includes:
-                  </h4>
-                  <ul class="space-y-3">
-                    {plan.includes.map((feature) => (
-                      <li class="flex items-start gap-3">
-                        <svg 
-                          class="w-5 h-5 text-primary mt-0.5 flex-shrink-0" 
-                          fill="currentColor" 
-                          viewBox="0 0 20 20"
-                        >
-                          <path 
-                            fill-rule="evenodd" 
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" 
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                        <span class="text-sm text-[#0c1b33]/70 leading-relaxed">
-                          {feature}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Flexible spacer to push content to bottom */}
-                <div class="flex-grow"></div>
-
-                {/* Deployment & Hosting Info */}
-                <div class="mb-8 flex-shrink-0">
-                  <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-6 space-y-4">
-                    <div class="flex items-start gap-3">
-                      <img 
-                        src="/icons/deploy-svgrepo-com.svg" 
-                        alt="Deployment" 
-                        class="w-5 h-5 mt-0.5 flex-shrink-0"
-                      />
-                      <div>
-                        <span class="text-xs font-black tracking-[0.2em] text-[#0c1b33]/60 uppercase block">
-                          Deployment
-                        </span>
-                        <span class="text-sm text-[#0c1b33]/70">
-                          {plan.deployment}
-                        </span>
-                      </div>
-                    </div>
-                    
-                    <div class="flex items-start gap-3">
-                      <img 
-                        src="/icons/hosting-svgrepo-com.svg" 
-                        alt="Hosting" 
-                        class="w-5 h-5 mt-0.5 flex-shrink-0"
-                      />
-                      <div>
-                        <span class="text-xs font-black tracking-[0.2em] text-[#0c1b33]/60 uppercase block">
-                          Hosting
-                        </span>
-                        <span class="text-sm text-[#0c1b33]/70">
-                          {plan.hosting}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Contact Button */}
-                <a
-                  href={generateWhatsAppLink(plan.title, serviceName)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="w-full inline-flex items-center justify-center gap-3 bg-primary text-white px-8 py-4 rounded-full font-black tracking-[0.2em] text-xs transition-all duration-500 hover:bg-primary/90 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,61,61,0.4)] active:scale-95 group flex-shrink-0"
-                >
-                  CONTACT US
-                  <svg 
-                    class="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1" 
-                    fill="currentColor" 
-                    viewBox="0 0 20 20"
-                  >
-                    <path 
-                      fill-rule="evenodd" 
-                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" 
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                </a>
-              </div>
+            <PricingCard plan={plan} serviceName={serviceName} />
             </div>
           ) : (
-            /* Regular Card */
-            <div 
-              class="relative bg-white rounded-3xl border-2 border-zinc-100 p-8 hover:border-primary/20 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2 flex flex-col lg:h-full"
-            >
-              {/* Plan Header */}
-              <div class="text-center mb-8 flex-shrink-0">
-                <h3 class="text-xl font-black tracking-tight text-[#0c1b33] my-2">
-                  {plan.title}
-                </h3>
-              </div>
-
-              {/* Features List */}
-              <div class="mb-8 flex-shrink-0">
-                <h4 class="text-sm font-black tracking-[0.2em] text-[#0c1b33]/60 uppercase mb-4">
-                  Includes:
-                </h4>
-                <ul class="space-y-3">
-                  {plan.includes.map((feature) => (
-                    <li class="flex items-start gap-3">
-                      <svg 
-                        class="w-5 h-5 text-primary mt-0.5 flex-shrink-0" 
-                        fill="currentColor" 
-                        viewBox="0 0 20 20"
-                      >
-                        <path 
-                          fill-rule="evenodd" 
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" 
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                      <span class="text-sm text-[#0c1b33]/70 leading-relaxed">
-                        {feature}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Flexible spacer to push content to bottom */}
-              <div class="flex-grow"></div>
-
-              {/* Deployment & Hosting Info */}
-              <div class="mb-8 flex-shrink-0">
-                <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-6 space-y-4">
-                  <div class="flex items-start gap-3">
-                    <img 
-                      src="/icons/deploy-svgrepo-com.svg" 
-                      alt="Deployment" 
-                      class="w-5 h-5 mt-0.5 flex-shrink-0"
-                    />
-                    <div>
-                      <span class="text-xs font-black tracking-[0.2em] text-[#0c1b33]/60 uppercase block">
-                        Deployment
-                      </span>
-                      <span class="text-sm text-[#0c1b33]/70">
-                        {plan.deployment}
-                      </span>
-                    </div>
-                  </div>
-                  
-                  <div class="flex items-start gap-3">
-                    <img 
-                      src="/icons/hosting-svgrepo-com.svg" 
-                      alt="Hosting" 
-                      class="w-5 h-5 mt-0.5 flex-shrink-0"
-                    />
-                    <div>
-                      <span class="text-xs font-black tracking-[0.2em] text-[#0c1b33]/60 uppercase block">
-                        Hosting
-                      </span>
-                      <span class="text-sm text-[#0c1b33]/70">
-                        {plan.hosting}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Contact Button */}
-              <a
-                href={generateWhatsAppLink(plan.title, serviceName)}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="w-full inline-flex items-center justify-center gap-3 bg-[#0c1b33] text-white px-8 py-4 rounded-full font-black tracking-[0.2em] text-xs transition-all duration-500 hover:bg-primary hover:scale-105 hover:shadow-[0_0_30px_rgba(255,61,61,0.4)] active:scale-95 group flex-shrink-0"
-              >
-                CONTACT US
-                <svg 
-                  class="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1" 
-                  fill="currentColor" 
-                  viewBox="0 0 20 20"
-                >
-                  <path 
-                    fill-rule="evenodd" 
-                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" 
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </a>
-            </div>
+            /* Regular Card Component */
+            <PricingCard plan={plan} serviceName={serviceName} />
           )}
         </div>
       ))}
@@ -249,17 +57,22 @@ function generateWhatsAppLink(planTitle: string, serviceName: string) {
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add('animate-in');
-          }, index * 100);
-        }
-      });
-    }, { threshold: 0.1 });
+  document.addEventListener("DOMContentLoaded", function () {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add("animate-in");
+            }, index * 100);
+          }
+        });
+      },
+      { threshold: 0.1 },
+    );
 
-    document.querySelectorAll('[data-animate-on-scroll]').forEach(el => observer.observe(el));
+    document
+      .querySelectorAll("[data-animate-on-scroll]")
+      .forEach((el) => observer.observe(el));
   });
 </script>
