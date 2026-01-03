@@ -1,7 +1,6 @@
 ---
 import type { Plan } from "../data/services";
 import PricingCard from "./PricingCard.astro";
-import PremiumPricingCard from "./PremiumPricingCard.astro";
 
 interface Props {
   plans: Plan[];
@@ -34,7 +33,7 @@ const { plans, serviceName } = Astro.props;
           data-animate-on-scroll
           style={`transition-delay: ${index * 200}ms;`}
         >
-          {plan.premium ? (
+          {plan.popular ? (
             /* Premium Wrapper Container */
             <div class="relative bg-gradient-to-br from-primary to-primary/80 rounded-3xl p-1 shadow-2xl shadow-primary/20 transform flex flex-col lg:h-full">
               {/* Popular Label */}

@@ -4,7 +4,7 @@ export interface Plan {
   includes: string[];
   deployment: string;
   hosting: string;
-  premium?: boolean;
+  popular?: boolean;
 }
 
 export interface Service {
@@ -105,7 +105,7 @@ export const services: Service[] = [
     plans: [
       {
         name: "PLAN 1",
-        title: "HTML / WORDPRESS STATIC WEBSITE",
+        title: "HTML / Wordpress static website",
         includes: [
           "3 to 7 static pages",
           "HTML or WordPress based website",
@@ -120,10 +120,27 @@ export const services: Service[] = [
         deployment: "Website deployment included",
         hosting: "1 year FREE hosting included"
       },
+
+      {
+        name: "PLAN 3",
+        title: "Dynamic custom coded website",
+        includes: [
+          "Next.js, React, Node.js, Astro.js",
+          "Custom front end and back end development",
+          "Dynamic pages and database integration",
+          "Admin dashboard",
+          "Authentication and user roles",
+          "API integrations",
+          "WhatsApp chat icon integration",
+          "Scalable architecture"
+        ],
+        deployment: "Website deployment included",
+        hosting: "Hosting not included",
+        popular: true,
+      },
       {
         name: "PLAN 2",
-        title: "SHOPIFY ECOMMERCE WEBSITE",
-        premium: true,
+        title: "Shopify E-Commerce website",
         includes: [
           "Shopify theme implementation",
           "Product and collection setup",
@@ -138,22 +155,6 @@ export const services: Service[] = [
         deployment: "Website deployment included",
         hosting: "Hosting not included"
       },
-      {
-        name: "PLAN 3",
-        title: "DYNAMIC CUSTOM CODED WEBSITE",
-        includes: [
-          "Nextjs React Nodejs",
-          "Custom front end and back end development",
-          "Dynamic pages and database integration",
-          "Admin dashboard",
-          "Authentication and user roles",
-          "API integrations",
-          "WhatsApp chat icon integration",
-          "Scalable architecture"
-        ],
-        deployment: "Website deployment included",
-        hosting: "Hosting not included"
-      }
     ]
   },
   {
