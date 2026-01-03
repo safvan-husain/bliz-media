@@ -15,7 +15,7 @@ function generateWhatsAppLink(planTitle: string, serviceName: string) {
 }
 ---
 
-<div class="bg-white rounded-3xl border-2 border-zinc-100 p-8 hover:border-primary/20 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2 flex flex-col lg:h-full">
+<div class="bg-white rounded-3xl border-2 border-zinc-100 p-8 group-hover:border-primary/20 transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-primary/10 flex flex-col lg:h-full">
   {/* Plan Header */}
   <div class="text-center mb-8 flex-shrink-0">
     <h3 class="text-xl font-black tracking-tight text-[#0c1b33] my-2">
@@ -31,8 +31,9 @@ function generateWhatsAppLink(planTitle: string, serviceName: string) {
     <ul class="space-y-3">
       {plan.includes.map((feature) => (
         <li class="flex items-start gap-3">
+          {/* using text-white here to hide it while keepting it to match the height */}
           <svg 
-            class={`${feature === ""? " text-white" : "text-primary"} w-5 h-5  mt-0.5 flex-shrink-0`} 
+            class={`${feature === ""? " text-white opacity-0" : "text-primary"} w-5 h-5  mt-0.5 flex-shrink-0`} 
             fill="currentColor" 
             viewBox="0 0 20 20"
           >

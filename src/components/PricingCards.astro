@@ -30,7 +30,7 @@ const { plans, serviceName } = Astro.props;
     <div class="flex flex-col md:flex-row gap-8 max-w-6xl mx-auto items-end">
       {plans.map((plan, index) => (
         <div
-          class={`opacity-0  transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0 flex flex-col lg:h-full flex-1 min-w-0 md:flex-[0_1_calc(50%-1rem)] lg:flex-[0_1_calc(33.333%-1.33rem)]`}
+          class={`group opacity-0 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0 hover:-translate-y-2 hover:scale-[1.02] flex flex-col lg:h-full flex-1 min-w-0 md:flex-[0_1_calc(50%-1rem)] lg:flex-[0_1_calc(33.333%-1.33rem)]`}
           data-animate-on-scroll
           style={`transition-delay: ${index * 200}ms;`}
         >
@@ -38,8 +38,8 @@ const { plans, serviceName } = Astro.props;
             /* Premium Wrapper Container */
             <div class="relative bg-gradient-to-br from-primary to-primary/80 rounded-3xl p-1 shadow-2xl shadow-primary/20 transform flex flex-col lg:h-full">
               {/* Popular Label */}
-              <div class="text-center py-4 flex-shrink-0">
-                <span class="text-white font-black tracking-[0.2em] text-sm uppercase">
+              <div class="text-center py-2 flex-shrink-0">
+                <span class="text-white font-black tracking-[0.2em] text-xs uppercase">
                   Most Popular
                 </span>
               </div>
