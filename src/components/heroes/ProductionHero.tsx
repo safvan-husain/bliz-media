@@ -1,20 +1,17 @@
 "use client";
 import React from "react";
-import { PremiumHero } from "../ui/hero";
+import IntroAnimation from "../ui/scroll-morph-hero";
 
 interface ProductionHeroProps {
     title: string;
 }
 
 export function ProductionHero({ title }: ProductionHeroProps) {
-    const productionTitles = ["Cinematic", "Stunning", "Engaging", "Impactful", "Creative"];
-    const productionSubtitle = "Professional media production services that tell your brand story with visual excellence and cinematic impact across all digital platforms.";
-
     return (
-        <PremiumHero
-            title={title}
-            titles={productionTitles}
-            subtitle={productionSubtitle}
-        />
+        <div className="w-full h-screen pt-22 relative">
+            <IntroAnimation />
+            {/* We can potentially overlay the title here if needed, 
+                but IntroAnimation has its own internal text sequence. */}
+        </div>
     );
 }

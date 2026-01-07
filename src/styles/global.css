@@ -1,8 +1,14 @@
 @import "tailwindcss";
 
+
 @keyframes testimonial-marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .testimonial-marquee-track {
@@ -26,17 +32,21 @@
 }
 
 @theme {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --color-background: #0a0a0a;
+  --color-foreground: #ededed;
+
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  --color-background: #ffffff;
-  --color-foreground: #1a221f;
   --color-primary: #ff3d3d;
   --color-secondary: #0c1b33;
   --color-accent: #25d366;
   --color-muted: #f4f4f5;
   --color-muted-foreground: #71717a;
   --color-instagram: #e4405f;
-  
+
   --max-width-container: 1280px;
 
   --animate-float: float 6s ease-in-out infinite;
@@ -51,10 +61,24 @@
   --color-team-olive: #4E533B;
 
   @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-10px);
+    }
   }
 }
+
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
 
 @layer base {
   :root {
@@ -68,6 +92,7 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
