@@ -1,11 +1,5 @@
-"use client";
+import { SparklesText } from "@/components/ui/sparkles-text"
 
-import IntroAnimation from "./scroll-morph-hero";
-
-export default function Demo() {
-  return (
-    <div className="w-full h-[800px] border rounded-lg overflow-hidden relative">
-      <IntroAnimation />
-    </div>
-  );
+export function SparklesTextDemo() {
+  return <SparklesText text="Magic UI" />;
 }
