@@ -1,7 +1,6 @@
 "use client";
-import React from "react";
+
 import { SparklesCore } from "../ui/sparkles";
-import { Code2, Database, Layout as LayoutIcon } from "lucide-react";
 
 interface WebDevelopmentHeroProps {
     title: string;
@@ -27,7 +26,7 @@ export function WebDevelopmentHero({ title }: WebDevelopmentHeroProps) {
                     {title}
                 </h1>
 
-                <div className="w-[40rem] h-40 relative hidden md:block">
+                <div className="w-[40rem] md:h-40 relative">
                     {/* Gradients */}
                     <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
                     <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
@@ -40,7 +39,7 @@ export function WebDevelopmentHero({ title }: WebDevelopmentHeroProps) {
                         minSize={0.4}
                         maxSize={1}
                         particleDensity={1200}
-                        className="w-full h-full"
+                        className="hidden md:block w-full h-full"
                         particleColor="#FFFFFF"
                     />
 
