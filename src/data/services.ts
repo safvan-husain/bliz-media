@@ -7,6 +7,12 @@ export interface Plan {
   popular?: boolean;
 }
 
+export interface FloatingIconSectionContent {
+  icons: string[];
+  title: string;
+  subtitle: string;
+}
+
 export interface Service {
   id: string;
   title: string;
@@ -17,6 +23,7 @@ export interface Service {
   color: string;
   tags: string[];
   plans?: Plan[];
+  floatingIconSectionContent?: FloatingIconSectionContent;
 }
 
 export const services: Service[] = [
@@ -155,7 +162,21 @@ export const services: Service[] = [
         deployment: "Website deployment included",
         hosting: "Hosting not included"
       },
-    ]
+    ],
+    floatingIconSectionContent: {
+      icons: [
+        "/technologies-icons/html5-svgrepo-com.svg",
+        "/technologies-icons/wordpress-svgrepo-com.svg",
+        "/technologies-icons/astro-svgrepo-com.svg",
+        "/technologies-icons/tailwind-svgrepo-com.svg",
+        "/technologies-icons/shopify-svgrepo-com.svg",
+        "/technologies-icons/next-dot-js-svgrepo-com.svg",
+        "/technologies-icons/react-svgrepo-com.svg",
+        "/technologies-icons/node-js-svgrepo-com.svg",
+      ],
+      title: "Technologies",
+      subtitle: "We use the latest technologies to build your website",
+    }
   },
   {
     id: "05",

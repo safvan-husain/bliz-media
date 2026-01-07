@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import PricingCards from "../../components/PricingCards.astro";
+import FloatingIcons from "../../components/FloatingIcons";
 import { services } from "../../data/services";
 
 export async function getStaticPaths() {
@@ -102,6 +103,11 @@ const { service } = Astro.props;
             </div>
         </div>
     </section>
+
+    {/* Floating Icons Section */}
+    {service.floatingIconSectionContent && (
+        <FloatingIcons client:visible content={service.floatingIconSectionContent} />
+    )}
 
     {/* Pricing Cards Section - Only show if service has plans */}
     {service.plans && service.plans.length > 0 && (
