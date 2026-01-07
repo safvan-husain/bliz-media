@@ -32,8 +32,8 @@ export function BrandingHero({ title, description, images }: BrandingHeroProps) 
             images={images && images.length > 0 ? images : defaultImages}
             ctaText="START YOUR PROJECT"
             onCtaClick={() => (window.location.href = "/quote")}
-            secondaryCtaText="VIEW OUR WORK"
-            onSecondaryCtaClick={() => (window.location.href = "/work")}
+            secondaryCtaText="SEE OUR WORK"
+            onSecondaryCtaClick={() => (window.location.href = "/projects")}
         />
     )
 }

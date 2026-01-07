@@ -98,29 +98,60 @@ export function DigitalMarketingHero({
                         ))}
                     </h1>
 
-                    <div
-                        className="inline-block group relative bg-gradient-to-b from-black/10 to-white/10 
-                        dark:from-white/10 dark:to-black/10 p-px rounded-2xl backdrop-blur-lg 
-                        overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
-                    >
-                        <Button
-                            variant="ghost"
-                            className="rounded-[1.15rem] px-8 py-6 text-lg font-semibold backdrop-blur-md 
-                            bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
-                            text-black dark:text-white transition-all duration-300 
-                            group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
-                            hover:shadow-md dark:hover:shadow-neutral-800/50"
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-12">
+                        <div
+                            className="inline-block group relative bg-gradient-to-b from-black/10 to-white/10 
+                            dark:from-white/10 dark:to-black/10 p-px rounded-full backdrop-blur-lg 
+                            overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 w-full sm:w-auto"
                         >
-                            <span className="opacity-90 group-hover:opacity-100 transition-opacity">
-                                Discover Excellence
-                            </span>
-                            <span
-                                className="ml-3 opacity-70 group-hover:opacity-100 group-hover:translate-x-1.5 
-                                transition-all duration-300"
+                            <Button
+                                onClick={() => (window.location.href = "/quote")}
+                                variant="ghost"
+                                className="w-full sm:w-auto rounded-full px-10 py-7 text-xs font-black tracking-[0.2em] backdrop-blur-md 
+                                bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
+                                text-black dark:text-white transition-all duration-300 
+                                group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
+                                hover:shadow-md dark:hover:shadow-neutral-800/50 uppercase"
                             >
-                                →
-                            </span>
-                        </Button>
+                                START YOUR PROJECT
+                                <span
+                                    className="ml-3 opacity-70 group-hover:opacity-100 group-hover:translate-x-1.5 
+                                    transition-all duration-300"
+                                >
+                                    →
+                                </span>
+                            </Button>
+                        </div>
+
+                        <div
+                            className="inline-block group relative bg-gradient-to-b from-black/2 via-white/5 to-black/2 
+                            p-px rounded-full backdrop-blur-lg overflow-hidden w-full sm:w-auto"
+                        >
+                            <Button
+                                onClick={() => (window.location.href = "/projects")}
+                                variant="ghost"
+                                className="w-full sm:w-auto rounded-full px-10 py-7 text-xs font-black tracking-[0.2em] backdrop-blur-md 
+                                bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 
+                                text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white transition-all duration-300 
+                                border border-black/5 dark:border-white/5 uppercase"
+                            >
+                                SEE OUR WORK
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="3"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    className="ml-3 transition-transform duration-300 group-hover:translate-x-1"
+                                >
+                                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                                </svg>
+                            </Button>
+                        </div>
                     </div>
                 </motion.div>
             </div>

@@ -98,7 +98,7 @@ export const services: Service[] = [
         <p class="text-gray-600">
           We believe that great design is invisible. It should feel intuitive, effortless, and delightful while solve complex problems.
         </p>
-        <h3 class="text-xl font-semibold text-[#0c1b33]">UI/UX Mastery</h3>
+        <h3 class="text-xl font-semibold text-white">UI/UX Mastery</h3>
         <p class="text-gray-600">
           Our design process focuses on user research, wireframing, and high-fidelity prototyping to ensure your product delivers real value.
         </p>
