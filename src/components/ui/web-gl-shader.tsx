@@ -50,11 +50,16 @@ export function WebGLShader() {
         float gx = p.x;
         float bx = p.x * (1.0 - d);
         
-        float r = 0.05 / abs(p.y + sin((rx + time) * xScale) * yScale);
-        float g = 0.05 / abs(p.y + sin((gx + time) * xScale) * yScale);
-        float b = 0.05 / abs(p.y + sin((bx + time) * xScale) * yScale);
+        float line1 = 0.05 / abs(p.y + sin((rx + time) * xScale) * yScale);
+        float line2 = 0.05 / abs(p.y + sin((gx + time) * xScale) * yScale);
+        float line3 = 0.05 / abs(p.y + sin((bx + time) * xScale) * yScale);
         
-        gl_FragColor = vec4(r, g, b, 1.0);
+        // Mixing red, orange, and white for variety
+        vec3 red = vec3(line1, 0.0, 0.0);
+        vec3 orange = vec3(line2, line2 * 0.4, 0.0);
+        vec3 white = vec3(line3 * 0.8);
+        
+        gl_FragColor = vec4(red + orange + white, 1.0);
       }
     `
 
@@ -76,11 +81,11 @@ export function WebGLShader() {
 
       const position = [
         -1.0, -1.0, 0.0,
-         1.0, -1.0, 0.0,
-        -1.0,  1.0, 0.0,
-         1.0, -1.0, 0.0,
-        -1.0,  1.0, 0.0,
-         1.0,  1.0, 0.0,
+        1.0, -1.0, 0.0,
+        -1.0, 1.0, 0.0,
+        1.0, -1.0, 0.0,
+        -1.0, 1.0, 0.0,
+        1.0, 1.0, 0.0,
       ]
 
       const positions = new THREE.BufferAttribute(new Float32Array(position), 3)
