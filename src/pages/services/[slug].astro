@@ -8,6 +8,7 @@ import { services } from "../../data/services";
 import { DigitalMarketingHero } from "../../components/heroes/DigitalMarketingHero";
 import { WebDevelopmentHero } from "../../components/heroes/WebDevelopmentHero";
 import { ProductionHero } from "../../components/heroes/ProductionHero";
+import { BrandingHero } from "../../components/heroes/BrandingHero";
 
 export async function getStaticPaths() {
     return services.map((service) => ({
@@ -27,6 +28,8 @@ const { service } = Astro.props;
             <WebDevelopmentHero title={service.title} client:load />
         ) : service.slug === "production" ? (
             <ProductionHero title={service.title} client:load />
+        ) : service.slug === "branding" ? (
+            <BrandingHero title={service.title} client:load />
         ) : (
             <section class="relative pt-40 pb-20 overflow-hidden">
                 {/* Background Decorative Elements */}
