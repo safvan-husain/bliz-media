@@ -71,7 +71,7 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
     const step = (endAngle - startAngle) / (count - 1);
 
     return (
-        <section className={`relative overflow-hidden bg-white text-secondary min-h-screen flex flex-col ${className}`}>
+        <section className={`relative overflow-hidden bg-white pt-34 text-secondary min-h-screen flex flex-col ${className}`}>
             {/* Background ring container that controls geometry */}
             <div
                 className="relative mx-auto"
@@ -129,7 +129,7 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
             </div>
 
             {/* Content positioned below the arc */}
-            <div className="relative z-10 flex-1 flex items-center justify-center px-6 -mt-40 md:-mt-52 lg:-mt-64">
+            <div className="relative z-10 flex-1 flex items-center justify-center px-6 -mt-40 md:-mt-52 lg:-mt-[32rem]">
                 <div className="text-center max-w-2xl px-6 opacity-0 animate-fade-in" style={{ animationDelay: '800ms', animationFillMode: 'forwards' }}>
                     <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tighter text-secondary leading-tight">
                         {title}
