@@ -9,7 +9,7 @@ interface WebDevelopmentHeroProps {
 
 export function WebDevelopmentHero({ title }: WebDevelopmentHeroProps) {
     return (
-        <div className="min-h-screen w-full bg-black flex pt-22 flex-col items-center justify-center overflow-hidden relative">
+        <div className="min-h-screen w-full bg-black flex pt-22 flex-col items-center justify-center overflow-hidden relative bg-black">
             <div className="relative z-20 flex flex-col items-center justify-center px-4">
                 <h1 className="md:text-7xl text-4xl lg:text-9xl font-black text-center text-white tracking-tighter leading-none mb-4">
                     {title}
@@ -100,12 +100,6 @@ export function WebDevelopmentHero({ title }: WebDevelopmentHeroProps) {
                     </a>
                 </div>
             </div>
-
-            {/* Radial Gradient for depth and smooth edges */}
-            <div className="absolute inset-0 w-full h-full bg-[#0c1b33] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black_80%)] pointer-events-none opacity-60"></div>
-
-            {/* Bottom transition gradient */}
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0c1b33] to-transparent z-10" />
         </div>
     );
 }
