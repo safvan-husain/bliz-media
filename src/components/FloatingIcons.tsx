@@ -8,15 +8,29 @@ export default function FloatingIcons({
 }) {
     const { icons, title, subtitle } = content;
 
-    // Manual positions to ensure good distribution around the center text
-    const positions = [
-        { top: "10%", left: "15%" },
-        { top: "15%", right: "15%" },
-        { bottom: "15%", left: "20%" },
-        { bottom: "20%", right: "20%" },
-        { top: "50%", left: "5%" },
-        { top: "50%", right: "5%" },
-    ];
+    // Calculate positions dynamically based on the number of icons
+    const positions = icons.map((_, index) => {
+        const isLeft = index % 2 === 0;
+        const sideIndex = Math.floor(index / 2);
+        const sideCount = Math.ceil(icons.length / 2);
+
+        // Spread icons in an arc on each side to avoid the center text
+        // Left side: 120° to 240° (keeps them between roughly 12% and 35% horizontally)
+        // Right side: -60° to 60° (keeps them between roughly 65% and 88% horizontally)
+        const arcProgress = sideCount > 1 ? (sideIndex / (sideCount - 1)) : 0.5;
+        const angle = isLeft
+            ? (2 * Math.PI / 3) + arcProgress * (Math.PI * 2 / 3)
+            : (-Math.PI / 3) + arcProgress * (Math.PI * 2 / 3);
+
+        // Use slightly randomized radii for a more natural floating appearance
+        const radiusX = 35 + (Math.sin(index * 1.5) * 5);
+        const radiusY = 35 + (Math.cos(index * 2.5) * 5);
+
+        return {
+            left: `${50 + radiusX * Math.cos(angle)}%`,
+            top: `${50 + radiusY * Math.sin(angle)}%`,
+        };
+    });
 
     return (
         <section className="relative py-32 overflow-hidden bg-zinc-50 border-y border-zinc-100/50 min-h-[40rem] flex flex-col items-center justify-center">
@@ -54,12 +68,10 @@ export default function FloatingIcons({
                     return (
                         <motion.div
                             key={index}
-                            className="absolute w-16 h-16 md:w-24 md:h-24 bg-white/80 backdrop-blur-xl rounded-2xl md:rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white/50 flex items-center justify-center p-4 md:p-6"
+                            className="absolute w-16 h-16 md:w-24 md:h-24 bg-white/80 backdrop-blur-xl rounded-2xl md:rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white/50 flex items-center justify-center p-4 md:p-6 -translate-x-1/2 -translate-y-1/2"
                             style={{
                                 top: pos.top,
-                                bottom: pos.bottom,
                                 left: pos.left,
-                                right: pos.right,
                             }}
                             initial={{ opacity: 0, scale: 0.8 }}
                             whileInView={{ opacity: 1, scale: 1 }}
