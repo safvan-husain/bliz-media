@@ -29,7 +29,12 @@ const { service } = Astro.props;
         ) : service.slug === "production" ? (
             <ProductionHero title={service.title} client:load />
         ) : service.slug === "branding" ? (
-            <BrandingHero title={service.title} client:load />
+            <BrandingHero
+                title={service.title}
+                description={service.excerpt}
+                images={service.heroImages}
+                client:load
+            />
         ) : (
             <section class="relative pt-40 pb-20 overflow-hidden">
                 {/* Background Decorative Elements */}

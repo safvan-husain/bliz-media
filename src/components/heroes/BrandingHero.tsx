@@ -1,69 +1,39 @@
 "use client"
 
 import React from "react"
-import { ImageCarouselHero } from "../ui/image-carousel-hero"
+import { ArcGalleryHero } from "../ui/arc-gallery-hero-component"
 
 interface BrandingHeroProps {
     title: string
+    description?: string
+    images?: string[]
 }
 
-export function BrandingHero({ title }: BrandingHeroProps) {
-    const images = [
-        {
-            id: "1",
-            src: "https://images.unsplash.com/photo-1558403194-611308249627?q=80&w=2070&auto=format&fit=crop",
-            alt: "Branding Design 1",
-            rotation: -5,
-        },
-        {
-            id: "2",
-            src: "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=2071&auto=format&fit=crop",
-            alt: "Branding Design 2",
-            rotation: 8,
-        },
-        {
-            id: "3",
-            src: "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=2094&auto=format&fit=crop",
-            alt: "Branding Design 3",
-            rotation: -12,
-        },
-        {
-            id: "4",
-            src: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?q=80&w=2070&auto=format&fit=crop",
-            alt: "Branding Design 4",
-            rotation: 6,
-        },
-        {
-            id: "5",
-            src: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop",
-            alt: "Branding Design 5",
-            rotation: -3,
-        },
-    ]
-
-    const features = [
-        {
-            title: "Visual Identity",
-            description: "Crafting distinct logos and visual systems that capture your essence.",
-        },
-        {
-            title: "Brand Strategy",
-            description: "Building the foundation for your brand's voice and market position.",
-        },
-        {
-            title: "Digital Presence",
-            description: "Extending your brand across every touchpoint for a unified experience.",
-        },
+export function BrandingHero({ title, description, images }: BrandingHeroProps) {
+    const defaultImages = [
+        'https://images.unsplash.com/photo-1755004609214-c252674df1ca?q=80&w=400&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1750218537952-0ae056c7f53a?q=80&w=400&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1755038995605-038a7345658f?q=80&w=400&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1546238232-20216dec9f72?q=80&w=400&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=400&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=400&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1753724223372-9a1df8eb5212?q=80&w=400&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1754079132860-5b37dab49daa?q=80&w=400&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=400&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1754079132962-2f6c62f14d33?q=80&w=400&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1754764987594-2236e7736115?q=80&w=400&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1755048796967-75a82d214846?q=80&w=400&auto=format&fit=crop',
     ]
 
     return (
-        <ImageCarouselHero
+        <ArcGalleryHero
             title={title}
-            description="Creating iconic brands that resonate, inspire, and drive meaningful connection with your audience."
-            ctaText="BEGIN YOUR JOURNEY"
-            images={images}
-            features={features}
+            description={description || "Creating iconic brands that resonate, inspire, and drive meaningful connection with your audience."}
+            images={images && images.length > 0 ? images : defaultImages}
+            ctaText="START YOUR PROJECT"
             onCtaClick={() => (window.location.href = "/quote")}
+            secondaryCtaText="VIEW OUR WORK"
+            onSecondaryCtaClick={() => (window.location.href = "/work")}
         />
     )
 }
