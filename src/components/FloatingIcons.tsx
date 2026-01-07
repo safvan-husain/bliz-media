@@ -45,7 +45,7 @@ export default function FloatingIcons({
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.7 }}
-                    className="text-4xl md:text-5xl font-black text-[#0c1b33] mb-6 tracking-tighter"
+                    className="hidden sm:block text-4xl md:text-5xl font-black text-[#0c1b33] mb-6 tracking-tighter"
                 >
                     {title}
                 </motion.h2>
