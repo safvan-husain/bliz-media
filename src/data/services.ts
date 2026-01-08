@@ -33,7 +33,7 @@ export const services: Service[] = [
     title: "Branding",
     slug: "branding",
     image: "https://images.unsplash.com/photo-1558403194-611308249627?q=80&w=2070&auto=format&fit=crop",
-    excerpt: "Building unique identities that resonate with your target audience.",
+    excerpt: "Crafting iconic digital identities that command attention and drive meaningful connections.",
     color: "bg-branding",
     tags: ["Deliverables", "Timeline"],
     heroImages: [

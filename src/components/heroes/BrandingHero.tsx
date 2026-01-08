@@ -28,12 +28,13 @@ export function BrandingHero({ title, description, images }: BrandingHeroProps) 
     return (
         <ArcGalleryHero
             title={title}
-            description={description || "Creating iconic brands that resonate, inspire, and drive meaningful connection with your audience."}
+            description={description || "Crafting iconic digital identities that command attention and drive meaningful connections."}
             images={images && images.length > 0 ? images : defaultImages}
             ctaText="START YOUR PROJECT"
             onCtaClick={() => (window.location.href = "/quote")}
             secondaryCtaText="SEE OUR WORK"
             onSecondaryCtaClick={() => (window.location.href = "/projects")}
+            theme="dark"
         />
     )
 }

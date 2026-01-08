@@ -23,6 +23,7 @@ type ArcGalleryHeroProps = {
     cardSizeSm?: number;
     // optional extra class on outer section
     className?: string;
+    theme?: 'light' | 'dark';
 };
 
 export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
@@ -42,6 +43,7 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
     cardSizeMd = 100,
     cardSizeSm = 80,
     className = '',
+    theme = 'light',
 }) => {
     const [dimensions, setDimensions] = useState({
         radius: radiusLg,
@@ -71,7 +73,7 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
     const step = (endAngle - startAngle) / (count - 1);
 
     return (
-        <section className={`relative overflow-hidden bg-white pt-34 text-secondary min-h-screen flex flex-col ${className}`}>
+        <section className={`relative overflow-hidden pt-34 min-h-screen flex flex-col ${theme === 'dark' ? 'bg-black text-white' : 'bg-white text-secondary'} ${className}`}>
             {/* Background ring container that controls geometry */}
             <div
                 className="relative mx-auto"
@@ -108,7 +110,7 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
                                 }}
                             >
                                 <div
-                                    className="rounded-2xl shadow-xl overflow-hidden ring-1 ring-zinc-200 bg-white transition-transform hover:scale-105 w-full h-full"
+                                    className={`rounded-2xl shadow-xl overflow-hidden ring-1 transition-transform hover:scale-105 w-full h-full ${theme === 'dark' ? 'ring-white/10 bg-zinc-900' : 'ring-zinc-200 bg-white'}`}
                                     style={{ transform: `rotate(${angle / 4}deg)` }}
                                 >
                                     <img
@@ -131,10 +133,10 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
             {/* Content positioned below the arc */}
             <div className="relative z-10 flex-1 flex items-center justify-center px-6 -mt-40 md:-mt-52 lg:-mt-[32rem]">
                 <div className="text-center max-w-2xl px-6 opacity-0 animate-fade-in" style={{ animationDelay: '800ms', animationFillMode: 'forwards' }}>
-                    <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tighter text-secondary leading-tight">
+                    <h1 className={`text-4xl sm:text-6xl lg:text-7xl font-black tracking-tighter leading-tight ${theme === 'dark' ? 'text-white' : 'text-secondary'}`}>
                         {title}
                     </h1>
-                    <p className="mt-6 text-xl text-zinc-600 font-medium">
+                    <p className={`mt-6 text-xl font-medium ${theme === 'dark' ? 'text-zinc-400' : 'text-zinc-600'}`}>
                         {description}
                     </p>
                     <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -146,7 +148,7 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
                         </button>
                         <button
                             onClick={onSecondaryCtaClick}
-                            className="w-full sm:w-auto px-10 py-4 rounded-full border-2 border-zinc-200 text-secondary font-black tracking-widest text-xs hover:bg-zinc-50 transition-all duration-300 active:scale-95"
+                            className={`w-full sm:w-auto px-10 py-4 rounded-full border-2 font-black tracking-widest text-xs transition-all duration-300 active:scale-95 ${theme === 'dark' ? 'border-white/20 text-white hover:bg-white/10' : 'border-zinc-200 text-secondary hover:bg-zinc-50'}`}
                         >
                             {secondaryCtaText}
                         </button>
