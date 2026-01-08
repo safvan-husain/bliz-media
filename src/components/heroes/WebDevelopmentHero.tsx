@@ -49,7 +49,7 @@ export function WebDevelopmentHero({ title }: WebDevelopmentHeroProps) {
         ...techIcons.map((icon, index) => ({
             id: index + 1,
             icon: icon,
-            white: index === 5 || index === 1 || index === 0, // Next.js, WordPress, Html.
+            white: false, // Next.js, WordPress, Html - now dark for light theme
             className: [
                 'top-[25%] left-[12%]',
                 'top-[35%] right-[10%]',
@@ -61,9 +61,9 @@ export function WebDevelopmentHero({ title }: WebDevelopmentHeroProps) {
                 'top-[45%] left-[18%]',
             ][index] || 'top-[50%] left-[50%]'
         })),
-        { id: 101, icon: IconGitHub, white: true, className: 'top-[85%] left-[72%]' },
+        { id: 101, icon: IconGitHub, white: false, className: 'top-[85%] left-[72%]' },
         { id: 102, icon: IconFigma, className: 'top-[50%] right-[8%]' },
-        { id: 103, icon: IconVercel, white: true, className: 'top-[60%] left-[8%]' },
+        { id: 103, icon: IconVercel, white: false, className: 'top-[60%] left-[8%]' },
         { id: 106, icon: IconStripe, className: 'top-[28%] right-[22%]' },
     ];
 

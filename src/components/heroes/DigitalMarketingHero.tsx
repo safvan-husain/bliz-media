@@ -17,7 +17,7 @@ function FloatingPaths({ position }: { position: number }) {
     return (
         <div className="absolute inset-0 pointer-events-none">
             <svg
-                className="w-full h-full text-slate-950 dark:text-white"
+                className="w-full h-full text-slate-950"
                 viewBox="0 0 696 316"
                 fill="none"
             >
@@ -55,7 +55,7 @@ export function DigitalMarketingHero({
     const words = title.split(" ");
 
     return (
-        <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-white dark:bg-neutral-950">
+        <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-white">
             <div className="absolute inset-0">
                 <FloatingPaths position={1} />
                 <FloatingPaths position={-1} />
@@ -88,8 +88,7 @@ export function DigitalMarketingHero({
                                             damping: 25,
                                         }}
                                         className="inline-block text-transparent bg-clip-text 
-                                        bg-gradient-to-r from-neutral-900 to-neutral-700/80 
-                                        dark:from-white dark:to-white/80"
+                                        bg-gradient-to-r from-neutral-900 to-neutral-700/80"
                                     >
                                         {letter}
                                     </motion.span>
@@ -101,17 +100,17 @@ export function DigitalMarketingHero({
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-12">
                         <div
                             className="inline-block group relative bg-gradient-to-b from-black/10 to-white/10 
-                            dark:from-white/10 dark:to-black/10 p-px rounded-full backdrop-blur-lg 
+                            p-px rounded-full backdrop-blur-lg 
                             overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 w-full sm:w-auto"
                         >
                             <Button
                                 onClick={() => (window.location.href = "/quote")}
                                 variant="ghost"
                                 className="w-full sm:w-auto rounded-full px-10 py-7 text-xs font-black tracking-[0.2em] backdrop-blur-md 
-                                bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
-                                text-black dark:text-white transition-all duration-300 
-                                group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
-                                hover:shadow-md dark:hover:shadow-neutral-800/50 uppercase"
+                                bg-white/95 hover:bg-white/100 
+                                text-black transition-all duration-300 
+                                group-hover:-translate-y-0.5 border border-black/10
+                                hover:shadow-md uppercase"
                             >
                                 START YOUR PROJECT
                                 <span
@@ -131,9 +130,9 @@ export function DigitalMarketingHero({
                                 onClick={() => (window.location.href = "/projects")}
                                 variant="ghost"
                                 className="w-full sm:w-auto rounded-full px-10 py-7 text-xs font-black tracking-[0.2em] backdrop-blur-md 
-                                bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 
-                                text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white transition-all duration-300 
-                                border border-black/5 dark:border-white/5 uppercase"
+                                bg-black/5 hover:bg-black/10 
+                                text-black/60 hover:text-black transition-all duration-300 
+                                border border-black/5 uppercase"
                             >
                                 SEE OUR WORK
                                 <svg

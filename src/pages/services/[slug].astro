@@ -38,14 +38,12 @@ const { service } = Astro.props;
             />
         ) : (
             <>
-                <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-black">
-                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,61,61,0.15)_0%,transparent_70%)]" />
-
+                <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-white">
                     <div class="max-w-4xl mx-auto px-6 relative z-10 text-center space-y-12 pt-22">
                         <div class="space-y-4">
                             <SparklesText
                                 text={service.title}
-                                className="text-6xl md:text-9xl font-black tracking-tighter text-white leading-[0.85]"
+                                className="text-6xl md:text-9xl font-black tracking-tighter text-black leading-[0.85]"
                                 client:load
                             />
                         </div>
@@ -53,7 +51,7 @@ const { service } = Astro.props;
                         <div class="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4">
                             <a
                                 href="/quote"
-                                class="w-full sm:w-auto inline-flex items-center justify-center gap-4 bg-primary text-white px-10 py-5 rounded-full font-black tracking-[0.2em] text-xs transition-all duration-500 hover:bg-white hover:text-black hover:scale-110 hover:shadow-[0_0_30px_rgba(255,61,61,0.4)] active:scale-95 group"
+                                class="w-full sm:w-auto inline-flex items-center justify-center gap-4 bg-primary text-white px-10 py-5 rounded-full font-black tracking-[0.2em] text-xs transition-all duration-500 hover:bg-black hover:text-white hover:scale-110 hover:shadow-[0_0_30px_rgba(255,61,61,0.4)] active:scale-95 group"
                             >
                                 START YOUR PROJECT
                                 <svg
@@ -74,7 +72,7 @@ const { service } = Astro.props;
                             </a>
                             <a
                                 href="/projects"
-                                class="w-full sm:w-auto inline-flex items-center justify-center gap-4 border-2 border-white/20 text-white px-10 py-5 rounded-full font-black tracking-[0.2em] text-xs transition-all duration-500 hover:border-primary hover:text-primary active:scale-95 group"
+                                class="w-full sm:w-auto inline-flex items-center justify-center gap-4 border-2 border-black/20 text-black px-10 py-5 rounded-full font-black tracking-[0.2em] text-xs transition-all duration-500 hover:border-primary hover:text-primary active:scale-95 group"
                             >
                                 SEE OUR WORK
                                 <svg
@@ -95,7 +93,7 @@ const { service } = Astro.props;
                             {service.plans && service.plans.length > 0 && (
                                 <a
                                     href="#pricing"
-                                    class="w-full sm:w-auto inline-flex items-center justify-center gap-4 border-2 border-white/5 text-white/40 px-10 py-5 rounded-full font-black tracking-[0.2em] text-xs transition-all duration-500 hover:border-primary hover:text-primary active:scale-95"
+                                    class="w-full sm:w-auto inline-flex items-center justify-center gap-4 border-2 border-black/5 text-black/40 px-10 py-5 rounded-full font-black tracking-[0.2em] text-xs transition-all duration-500 hover:border-primary hover:text-primary active:scale-95"
                                 >
                                     VIEW PRICING
                                 </a>
@@ -105,10 +103,10 @@ const { service } = Astro.props;
                 </section>
 
                 {/* Service Content Section */}
-                <section class="pb-20 bg-black text-white">
+                <section class="pb-20 bg-white text-black">
                     <div class="max-w-4xl mx-auto px-6">
                         <div
-                            class="prose prose-invert prose-2xl max-w-none prose-headings:text-white prose-p:text-zinc-400 prose-li:text-zinc-400 prose-p:leading-relaxed opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
+                            class="prose prose-lg md:prose-2xl max-w-none prose-headings:text-black prose-headings:font-bold prose-p:text-zinc-600 prose-li:text-zinc-600 prose-strong:text-black prose-p:leading-relaxed opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
                             data-animate-on-scroll
                         >
                             <div set:html={service.content} />

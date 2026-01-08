@@ -34,7 +34,7 @@ export function BrandingHero({ title, description, images }: BrandingHeroProps) 
             onCtaClick={() => (window.location.href = "/quote")}
             secondaryCtaText="SEE OUR WORK"
             onSecondaryCtaClick={() => (window.location.href = "/projects")}
-            theme="dark"
+            theme="light"
         />
     )
 }

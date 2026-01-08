@@ -15,7 +15,7 @@ interface SparklesHeroProps {
 
 export function SparklesHero({ title, subtitle, buttons }: SparklesHeroProps) {
     return (
-        <section className="h-[80vh] w-full bg-black flex flex-col items-center justify-center overflow-hidden relative">
+        <section className="h-[80vh] w-full bg-white flex flex-col items-center justify-center overflow-hidden relative">
             <div className="absolute inset-0 w-full h-full">
                 <SparklesCore
                     id="tsparticlesfullpage"
@@ -24,18 +24,18 @@ export function SparklesHero({ title, subtitle, buttons }: SparklesHeroProps) {
                     maxSize={1.4}
                     particleDensity={100}
                     className="w-full h-full"
-                    particleColor="#FFFFFF"
+                    particleColor="#000000"
                 />
             </div>
 
             <div className="relative z-20 flex flex-col items-center justify-center text-center px-6">
                 <SparklesText
                     text={title}
-                    className="text-6xl md:text-9xl font-black tracking-tighter text-white leading-[0.85] mb-8"
+                    className="text-6xl md:text-9xl font-black tracking-tighter text-black leading-[0.85] mb-8"
                 />
 
                 {subtitle && (
-                    <p className="max-w-2xl text-zinc-400 text-lg md:text-xl mb-12">
+                    <p className="max-w-2xl text-zinc-600 text-lg md:text-xl mb-12">
                         {subtitle}
                     </p>
                 )}
@@ -49,8 +49,8 @@ export function SparklesHero({ title, subtitle, buttons }: SparklesHeroProps) {
                                 button.variant === "primary"
                                     ? "w-full sm:w-auto inline-flex items-center justify-center gap-4 bg-[#FF3D3D] text-white px-10 py-5 rounded-full font-black tracking-[0.2em] text-xs transition-all duration-500 hover:bg-white hover:text-black hover:scale-110 hover:shadow-[0_0_30px_rgba(255,61,61,0.4)] active:scale-95 group"
                                     : button.variant === "secondary"
-                                        ? "w-full sm:w-auto inline-flex items-center justify-center gap-4 border-2 border-white/20 text-white px-10 py-5 rounded-full font-black tracking-[0.2em] text-xs transition-all duration-500 hover:border-[#FF3D3D] hover:text-[#FF3D3D] active:scale-95 group"
-                                        : "w-full sm:w-auto inline-flex items-center justify-center gap-4 border-2 border-white/5 text-white/40 px-10 py-5 rounded-full font-black tracking-[0.2em] text-xs transition-all duration-500 hover:border-[#FF3D3D] hover:text-[#FF3D3D] active:scale-95"
+                                        ? "w-full sm:w-auto inline-flex items-center justify-center gap-4 border-2 border-black/20 text-black px-10 py-5 rounded-full font-black tracking-[0.2em] text-xs transition-all duration-500 hover:border-[#FF3D3D] hover:text-[#FF3D3D] active:scale-95 group"
+                                        : "w-full sm:w-auto inline-flex items-center justify-center gap-4 border-2 border-black/5 text-black/40 px-10 py-5 rounded-full font-black tracking-[0.2em] text-xs transition-all duration-500 hover:border-[#FF3D3D] hover:text-[#FF3D3D] active:scale-95"
                             }
                         >
                             {button.text}
@@ -83,7 +83,7 @@ export function SparklesHero({ title, subtitle, buttons }: SparklesHeroProps) {
             </div>
 
             {/* Radial Gradient to prevent sharp edges */}
-            <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(50%_50%_at_50%_50%,transparent_0%,white_100%)] pointer-events-none"></div>
+            <div className="absolute inset-0 w-full h-full bg-white [mask-image:radial-gradient(50%_50%_at_50%_50%,transparent_0%,white_100%)] pointer-events-none"></div>
         </section>
     );
 }

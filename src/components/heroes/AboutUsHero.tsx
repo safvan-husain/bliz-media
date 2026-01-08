@@ -33,12 +33,12 @@ export function AboutUsHero({ title }: AboutUsHeroProps) {
                     maxSize={1.4}
                     particleDensity={200}
                     className="w-full h-full"
-                    particleColor="#FFFFFF"
+                    particleColor="#000000"
                 />
             </div>
 
             <div className="relative z-20 flex flex-col items-center justify-center px-4">
-                <h1 className="md:text-7xl text-5xl lg:text-9xl font-black text-center text-foreground tracking-tighter leading-none mb-4 uppercase">
+                <h1 className="md:text-6xl text-4xl lg:text-7xl font-black text-center text-foreground tracking-tighter leading-none mb-4 uppercase">
                     {displayTitle}
                 </h1>
 
@@ -55,7 +55,7 @@ export function AboutUsHero({ title }: AboutUsHeroProps) {
                         maxSize={1}
                         particleDensity={1200}
                         className="hidden md:block w-full h-full"
-                        particleColor="#FFFFFF"
+                        particleColor="#000000"
                     />
 
                     {/* Radial Gradient to prevent sharp edges */}
