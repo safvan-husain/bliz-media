@@ -145,7 +145,7 @@ function HeroGeometric({
                 />
             </div>
 
-            <div className="relative z-10 container mx-auto px-4 md:px-6">
+            <div className="relative z-10 container mx-auto pt-4 md:pt-6">
                 <div className="max-w-3xl mx-auto text-center">
                     <motion.div
                         custom={0}
@@ -154,8 +154,8 @@ function HeroGeometric({
                         animate="visible"
                         className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] mb-8 md:mb-12"
                     >
-                        <Circle className="h-2 w-2 fill-primary/80" />
-                        <span className="text-sm text-white/60 tracking-wide">
+                        <Circle className="h-2 w-2 fill-green-500/80" />
+                        <span className="text-sm text-black/60 tracking-wide">
                             {badge}
                         </span>
                     </motion.div>
@@ -167,13 +167,13 @@ function HeroGeometric({
                         animate="visible"
                     >
                         <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-6 md:mb-8 tracking-tight">
-                            <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/80">
+                            <span className="bg-clip-text text-transparent bg-gradient-to-b from-black to-black/50">
                                 {title1}
                             </span>
                             <br />
                             <span
                                 className={cn(
-                                    "bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-white/90 to-rose-300 "
+                                    "bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-black/60 to-rose-300 "
                                 )}
                             >
                                 {title2}
