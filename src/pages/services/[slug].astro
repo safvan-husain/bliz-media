@@ -119,16 +119,6 @@ const { service } = Astro.props;
         )
     }
 
-    {/* Floating Icons Section */}
-    {
-        service.floatingIconSectionContent && (
-            <FloatingIcons
-                client:visible
-                content={service.floatingIconSectionContent}
-            />
-        )
-    }
-
     {/* Pricing Cards Section - Only show if service has plans */}
     {
         service.plans && service.plans.length > 0 && (
