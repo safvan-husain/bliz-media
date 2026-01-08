@@ -34,7 +34,7 @@ export default function HorizontalServices({ services, showViewAll = true }: Hor
             The user wants the CARDS to move horizontally.
         */}
 
-                <motion.div style={{ x }} className="flex gap-8 pt-10 px-12 md:px-24 w-max will-change-transform">
+                <motion.div style={{ x }} className="flex gap-8 pt-10 md:pt-22 px-12 md:px-24 w-max will-change-transform">
                     {/* Header Card or Title Block could be the first item if desired, but user kept them separate in previous design. 
                Let's just scroll the services cards. */}
                     {services.map((service) => (
@@ -54,7 +54,7 @@ function ServiceCard({ service }: { service: Service }) {
             className="group relative w-[80vw] md:w-[600px] h-[50vh] md:h-[600px] rounded-[3rem] overflow-hidden shadow-2xl transition-all duration-700 hover:scale-[1.01] flex-shrink-0 cursor-pointer block isolate transform-gpu [backface-visibility:hidden]"
         >
             {/* Background Image */}
-            <div className="absolute inset-0 bg-zinc-900">
+            <div className="absolute inset-0 bg-zinc-900 rounded-[3rem] overflow-hidden">
                 <img
                     src={service.cardImage || service.image}
                     alt={service.title}
@@ -64,11 +64,11 @@ function ServiceCard({ service }: { service: Service }) {
 
             {/* Premium Color Overlay */}
             <div
-                className={`absolute inset-0 ${service.color || 'bg-black'} opacity-80 mix-blend-multiply transition-all duration-700 group-hover:opacity-90`}
+                className={`absolute inset-0 ${service.color || 'bg-black'} opacity-80 mix-blend-multiply transition-all duration-700 group-hover:opacity-90 rounded-[3rem]`}
             />
 
             {/* Subtle Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60 opacity-60" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60 opacity-60 rounded-[3rem]" />
 
             {/* Content */}
             <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center text-white z-10">
@@ -92,7 +92,7 @@ function ServiceCard({ service }: { service: Service }) {
                 </div>
 
                 <div
-                    className="bg-[var(--color-foreground)] text-white px-10 py-5 rounded-full font-black tracking-[0.2em] text-xs flex items-center gap-4 border border-white/10 transition-all duration-500 hover:bg-[#ff3d3d] hover:scale-110 hover:shadow-[0_0_30px_rgba(255,61,61,0.4)] active:scale-95 group-hover:-translate-y-2"
+                    className="bg-black text-white px-10 py-5 rounded-full font-black tracking-[0.2em] text-xs flex items-center gap-4 border border-white/10 transition-all duration-500 hover:bg-[#ff3d3d] hover:scale-110 hover:shadow-[0_0_30px_rgba(255,61,61,0.4)] active:scale-95 group-hover:-translate-y-2"
                 >
                     VIEW MORE
                     <svg
@@ -126,7 +126,7 @@ function ViewAllServicesCard() {
             className="group relative w-[80vw] md:w-[600px] h-[50vh] md:h-[600px] rounded-[3rem] overflow-hidden shadow-2xl transition-all duration-700 hover:scale-[1.01] flex-shrink-0 cursor-pointer block isolate transform-gpu [backface-visibility:hidden] bg-[#0c1b33] border border-white/10"
         >
             {/* Subtle Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-50" />
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-50 rounded-[3rem]" />
 
             {/* Decorative Circle */}
             <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-primary/20 rounded-full blur-3xl group-hover:bg-primary/30 transition-all duration-700" />
