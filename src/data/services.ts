@@ -26,6 +26,7 @@ export interface Service {
   floatingIconSectionContent?: FloatingIconSectionContent;
   heroImages?: string[];
   cardImage?: string;
+  unsplashImage?: string;
 }
 
 export const services: Service[] = [
@@ -34,6 +35,7 @@ export const services: Service[] = [
     title: "Branding",
     slug: "branding",
     image: "/images/service-card-imags/branding.png",
+    unsplashImage: "https://images.unsplash.com/photo-1548094990-c16ca90f1f0d",
     excerpt: "Crafting iconic digital identities that command attention and drive meaningful connections.",
     color: "bg-branding",
     tags: ["Deliverables", "Timeline"],
@@ -71,6 +73,7 @@ export const services: Service[] = [
     title: "Digital Marketing",
     slug: "digital-marketing",
     image: "/images/service-card-imags/digital-marketing.png",
+    unsplashImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
     excerpt: "Strategizing for growth and high-impact online presence.",
     color: "bg-secondary",
     tags: ["Strategy", "Growth"],
@@ -91,6 +94,7 @@ export const services: Service[] = [
     title: "Design",
     slug: "design",
     image: "/images/service-card-imags/design.png",
+    unsplashImage: "https://plus.unsplash.com/premium_photo-1661281412140-dfb328ae967b",
     excerpt: "Crafting intuitive and aesthetically pleasing digital products.",
     color: "bg-profile",
     tags: ["Content", "Design"],
@@ -112,6 +116,7 @@ export const services: Service[] = [
     title: "Development",
     slug: "development",
     image: "/images/service-card-imags/development.png",
+    unsplashImage: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop",
     excerpt: "Building robust, scalable, and high-performance web applications.",
     color: "bg-website",
     tags: ["Structure", "Functionality"],
@@ -200,6 +205,7 @@ export const services: Service[] = [
     title: "Production",
     slug: "production",
     image: "/images/service-card-imags/production.png",
+    unsplashImage: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=800&auto=format&fit=crop",
     excerpt: "Professional media production for maximum brand impact.",
     color: "bg-video",
     tags: ["Product Insight", "Brand Story"],
