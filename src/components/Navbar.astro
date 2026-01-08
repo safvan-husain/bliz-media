@@ -13,7 +13,7 @@ const currentPath = Astro.url.pathname;
 
 <nav class="fixed top-0 left-0 right-0 z-50 px-4 pt-6 flex justify-center">
     <div
-        class="bg-stone-50/80 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.05)] rounded-[2.5rem] px-4 py-2 flex items-center justify-between w-full max-w-[80rem] relative"
+        class="bg-black/60 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.2)] rounded-[2.5rem] px-4 py-2 flex items-center justify-between w-full max-w-[80rem] relative"
     >
         <!-- Logo Section -->
         <div class="pl-4">
@@ -25,7 +25,7 @@ const currentPath = Astro.url.pathname;
                     <img
                         src="/Bliz Media Logo.webp"
                         alt="Bliz Media"
-                        class="h-full w-auto object-contain"
+                        class="h-full w-auto object-contain "
                     />
                 </div>
             </a>
@@ -47,8 +47,8 @@ const currentPath = Astro.url.pathname;
                                     href={link.href}
                                     class={`text-[15px] tracking-tight transition-all duration-300 relative flex items-center gap-1.5 ${
                                         isActive
-                                            ? "text-black font-semibold"
-                                            : "text-gray-500 hover:text-black font-medium"
+                                            ? "text-white font-semibold"
+                                            : "text-white/60 hover:text-white font-medium"
                                     }`}
                                 >
                                     {link.name}
@@ -67,19 +67,19 @@ const currentPath = Astro.url.pathname;
                                         <path d="m6 9 6 6 6-6" />
                                     </svg>
                                     {isActive && (
-                                        <span class="absolute -bottom-1 left-0 w-full h-[2px] bg-black rounded-full" />
+                                        <span class="absolute -bottom-1 left-0 w-full h-[2px] bg-white rounded-full" />
                                     )}
                                 </a>
 
                                 {/* Dropdown Menu */}
                                 <div class="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover/dropdown:opacity-100 group-hover/dropdown:visible transition-all duration-300 transform translate-y-2 group-hover/dropdown:translate-y-0 min-w-[280px]">
-                                    <div class="bg-white/95 backdrop-blur-2xl rounded-3xl shadow-2xl shadow-black/10 border border-black/5 overflow-hidden p-3 grid grid-cols-1 gap-1">
+                                    <div class="bg-zinc-900/95 backdrop-blur-2xl rounded-3xl shadow-2xl shadow-black/40 border border-white/10 overflow-hidden p-3 grid grid-cols-1 gap-1">
                                         {services.map((service) => (
                                             <a
                                                 href={`/services/${service.slug}`}
-                                                class="flex items-center gap-4 p-3 rounded-2xl hover:bg-zinc-50 transition-all duration-300 group/item border border-transparent hover:border-black/5"
+                                                class="flex items-center gap-4 p-3 rounded-2xl hover:bg-white/5 transition-all duration-300 group/item border border-transparent hover:border-white/5"
                                             >
-                                                <div class="w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 bg-zinc-100">
+                                                <div class="w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 bg-white/10">
                                                     <img
                                                         src={service.image}
                                                         alt=""
@@ -87,17 +87,17 @@ const currentPath = Astro.url.pathname;
                                                     />
                                                 </div>
                                                 <div class="flex flex-col">
-                                                    <span class="text-[14px] font-bold text-[#0c1b33] leading-none mb-1 group-hover/item:text-primary transition-colors">
+                                                    <span class="text-[14px] font-bold text-white leading-none mb-1 group-hover/item:text-primary transition-colors">
                                                         {service.title}
                                                     </span>
-                                                    <span class="text-[11px] text-zinc-400 font-medium line-clamp-1">
+                                                    <span class="text-[11px] text-white/40 font-medium line-clamp-1">
                                                         {service.excerpt}
                                                     </span>
                                                 </div>
                                             </a>
                                         ))}
 
-                                        <div class="mt-2 pt-2 border-t border-zinc-100 px-3 pb-1">
+                                        <div class="mt-2 pt-2 border-t border-white/5 px-3 pb-1">
                                             <a
                                                 href="/services"
                                                 class="text-[12px] font-bold tracking-widest text-primary hover:translate-x-1 transition-transform inline-flex items-center gap-2"
@@ -129,13 +129,13 @@ const currentPath = Astro.url.pathname;
                             href={link.href}
                             class={`text-[15px] tracking-tight transition-all duration-300 relative py-1 ${
                                 isActive
-                                    ? "text-black font-semibold"
-                                    : "text-gray-500 hover:text-black font-medium"
+                                    ? "text-white font-semibold"
+                                    : "text-white/60 hover:text-white font-medium"
                             }`}
                         >
                             {link.name}
                             {isActive && (
-                                <span class="absolute -bottom-1 left-0 w-full h-[2px] bg-black rounded-full" />
+                                <span class="absolute -bottom-1 left-0 w-full h-[2px] bg-white rounded-full" />
                             )}
                         </a>
                     );
@@ -147,13 +147,13 @@ const currentPath = Astro.url.pathname;
         <div class="flex items-center">
             <a
                 href="/quote"
-                class="hidden md:block bg-[#000d1d] text-white px-8 py-3.5 rounded-full text-[15px] font-semibold hover:bg-[#00152a] transition-all duration-300 shadow-lg shadow-blue-900/10 active:scale-95"
+                class="hidden md:block bg-white text-black px-8 py-3.5 rounded-full text-[15px] font-semibold hover:bg-white/90 transition-all duration-300 shadow-lg active:scale-95"
             >
                 Get a Free Quote
             </a>
 
             <button
-                class="lg:hidden ml-4 p-2 text-gray-600 mobile-menu-toggle"
+                class="lg:hidden ml-4 p-2 text-white/70 hover:text-white mobile-menu-toggle"
                 id="menu-toggle"
             >
                 <svg
@@ -189,7 +189,7 @@ const currentPath = Astro.url.pathname;
     <!-- Mobile Menu Overlay -->
     <div
         id="mobile-menu"
-        class="fixed inset-0 bg-white z-[-1] lg:hidden translate-y-[-100%] transition-transform duration-500 pt-32 px-6"
+        class="fixed inset-0 bg-black z-[-1] lg:hidden translate-y-[-100%] transition-transform duration-500 pt-32 px-6"
     >
         <div class="flex flex-col gap-8">
             {
@@ -204,7 +204,7 @@ const currentPath = Astro.url.pathname;
                             class={`text-4xl font-black tracking-tighter transition-all duration-300 ${
                                 isActive
                                     ? "text-primary"
-                                    : "text-[#0c1b33]/40 hover:text-[#0c1b33]"
+                                    : "text-white/40 hover:text-white"
                             }`}
                         >
                             {link.name}
@@ -212,10 +212,10 @@ const currentPath = Astro.url.pathname;
                     );
                 })
             }
-            <div class="mt-8 pt-8 border-t border-zinc-100">
+            <div class="mt-8 pt-8 border-t border-white/10">
                 <a
                     href="/quote"
-                    class="inline-block bg-[#000d1d] text-white px-10 py-5 rounded-full text-lg font-black tracking-tight hover:bg-[#00152a] transition-all duration-300"
+                    class="inline-block bg-white text-black px-10 py-5 rounded-full text-lg font-black tracking-tight hover:bg-white/90 transition-all duration-300"
                 >
                     Get a Free Quote
                 </a>
