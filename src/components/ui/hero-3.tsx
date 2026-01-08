@@ -104,7 +104,6 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
                     )}
                 </motion.h1>
 
-                {/* Description */}
                 <motion.p
                     initial="hidden"
                     animate="show"

@@ -2,7 +2,7 @@ import React from 'react';
 import { HeroGeometric } from "./ui/shape-landing-hero";
 
 const heroData = {
-  badge: "Available for projects",
+  badge: "Available for work",
   title1: "Elevate Your Business",
   title2: "With Bliz Media"
 };
