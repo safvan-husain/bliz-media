@@ -25,6 +25,7 @@ export interface Service {
   plans?: Plan[];
   floatingIconSectionContent?: FloatingIconSectionContent;
   heroImages?: string[];
+  cardImage?: string;
 }
 
 export const services: Service[] = [
@@ -93,6 +94,7 @@ export const services: Service[] = [
     excerpt: "Crafting intuitive and aesthetically pleasing digital products.",
     color: "bg-profile",
     tags: ["Content", "Design"],
+    cardImage: "/images/service-card-imags/design.png",
     content: `
       <div class="space-y-6">
         <p class="text-gray-600">
@@ -201,6 +203,7 @@ export const services: Service[] = [
     excerpt: "Professional media production for maximum brand impact.",
     color: "bg-video",
     tags: ["Product Insight", "Brand Story"],
+    cardImage: "/images/service-card-imags/production.png",
     content: `
       <div class="space-y-6">
         <p class="text-gray-600">

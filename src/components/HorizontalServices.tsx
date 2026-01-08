@@ -56,7 +56,7 @@ function ServiceCard({ service }: { service: Service }) {
             {/* Background Image */}
             <div className="absolute inset-0 bg-zinc-900">
                 <img
-                    src={service.image}
+                    src={service.cardImage || service.image}
                     alt={service.title}
                     className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
                 />
