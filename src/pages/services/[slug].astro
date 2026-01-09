@@ -10,6 +10,7 @@ import { WebDevelopmentHero } from "../../components/heroes/WebDevelopmentHero";
 import { ProductionHero } from "../../components/heroes/ProductionHero";
 import { BrandingHero } from "../../components/heroes/BrandingHero";
 import { SparklesText } from "../../components/ui/sparkles-text";
+import { WebDevelopmentContent } from "../../components/services/WebDevelopmentContent";
 
 export async function getStaticPaths() {
     return services.map((service) => ({
@@ -70,7 +71,7 @@ const { service } = Astro.props;
                             </svg>
                         </a>
                         <a
-                            href="/projects"
+                            href={`/projects?filter=${service.title}`}
                             class="w-full sm:w-auto inline-flex items-center justify-center gap-4 border-2 border-black/20 text-black px-10 py-5 rounded-full font-black tracking-[0.2em] text-xs transition-all duration-500 hover:border-primary hover:text-primary active:scale-95 group"
                         >
                             SEE OUR WORK
@@ -140,6 +141,15 @@ const { service } = Astro.props;
                                     serviceName={service.title}
                                 />
                             </div>
+                        );
+                    }
+                    if (block.component === "WebDevelopmentContent") {
+                        return (
+                            <section class="pb-20 bg-white">
+                                <div class="max-w-4xl mx-auto px-6">
+                                    <WebDevelopmentContent client:load />
+                                </div>
+                            </section>
                         );
                     }
                 }

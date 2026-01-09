@@ -44,7 +44,7 @@ export function ProductionHero({ title }: ProductionHeroProps) {
                         </svg>
                     </a>
                     <a
-                        href="/projects"
+                        href={`/projects?filter=${title}`}
                         className="w-full sm:w-auto inline-flex items-center justify-center gap-4 border-2 border-black/20 text-black px-10 py-5 rounded-full font-black tracking-[0.2em] text-xs transition-all duration-500 hover:border-black hover:bg-black/5 active:scale-95 group"
                     >
                         SEE OUR WORK

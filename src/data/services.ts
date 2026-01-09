@@ -15,7 +15,7 @@ export interface FloatingIconSectionContent {
 
 export type ServiceContentBlock =
   | { type: 'html'; content: string }
-  | { type: 'component'; component: 'Technologies' | 'Pricing' };
+  | { type: 'component'; component: 'Technologies' | 'Pricing' | 'WebDevelopmentContent' };
 
 export interface Service {
   id: string;
@@ -127,78 +127,8 @@ export const services: Service[] = [
     tags: ["Structure", "Functionality"],
     contentBlocks: [
       {
-        type: 'html',
-        content: `
-          <div class="space-y-6">
-            <div>
-              <h3 class="text-xl font-semibold text-[#0c1b33]">High-performance websites built to scale your business</h3>
-              <p class="text-gray-600 mt-2">
-                A website is more than just an online presence — it’s your most powerful digital asset.
-                At Bliz, we build websites that are visually impressive, technically strong, and strategically designed to convert visitors into customers.
-              </p>
-              <p class="text-gray-600 mt-2">
-                Whether you need a simple business website or a fully dynamic custom platform, our development approach ensures performance, scalability, and long-term growth.
-              </p>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-semibold text-[#0c1b33] mb-2">What We Deliver</h3>
-              <p class="text-gray-600 mb-2">What You Get With Our Website Development</p>
-              <ul class="list-disc pl-5 space-y-2 text-gray-600">
-                <li>Clean, modern UI tailored to your brand</li>
-                <li>Mobile-first, fully responsive design</li>
-                <li>Fast loading speed and optimized performance</li>
-                <li>SEO-friendly structure from day one</li>
-                <li>Secure, scalable, and future-ready architecture</li>
-                <li>Easy content management and flexibility</li>
-              </ul>
-              <p class="text-gray-600 mt-2">
-                Every project is built with a focus on user experience, business objectives, and technical excellence.
-              </p>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-semibold text-[#0c1b33] mb-2">Our Development Approach</h3>
-              <p class="text-gray-600 mb-4">We follow a clear, transparent workflow to deliver results — without unnecessary complexity.</p>
-              <div class="space-y-4 text-gray-600">
-                <div>
-                  <strong class="block text-[#0c1b33]">1. Discovery & Planning</strong>
-                  <span>Understanding your business, goals, and target audience.</span>
-                </div>
-                <div>
-                  <strong class="block text-[#0c1b33]">2. UI/UX & Architecture</strong>
-                  <span>Designing intuitive layouts and defining the right technical structure.</span>
-                </div>
-                <div>
-                  <strong class="block text-[#0c1b33]">3. Development & Integration</strong>
-                  <span>Building fast, secure, and scalable solutions using modern technologies.</span>
-                </div>
-                <div>
-                  <strong class="block text-[#0c1b33]">4. Testing & Optimization</strong>
-                  <span>Ensuring performance, responsiveness, and cross-browser compatibility.</span>
-                </div>
-                <div>
-                  <strong class="block text-[#0c1b33]">5. Launch & Support</strong>
-                  <span>Smooth deployment with post-launch support when needed.</span>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-semibold text-[#0c1b33] mb-2">Who We Build Websites For</h3>
-              <ul class="list-disc pl-5 space-y-2 text-gray-600">
-                <li>Startups launching their first product</li>
-                <li>Local businesses looking to grow online</li>
-                <li>Service-based companies generating leads</li>
-                <li>E-commerce brands scaling sales</li>
-                <li>Businesses needing custom web solutions</li>
-              </ul>
-              <p class="text-gray-600 mt-4">
-                If your business needs a website that looks professional and performs reliably, you’re in the right place.
-              </p>
-            </div>
-          </div>
-        `
+        type: 'component',
+        component: 'WebDevelopmentContent'
       },
       {
         type: 'component',

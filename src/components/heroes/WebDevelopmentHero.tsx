@@ -74,7 +74,7 @@ export function WebDevelopmentHero({ title }: WebDevelopmentHeroProps) {
             ctaText="START YOUR PROJECT"
             ctaHref="/quote"
             secondaryCtaText="SEE OUR WORK"
-            secondaryCtaHref="/projects"
+            secondaryCtaHref={`/projects?filter=${title}`}
             icons={combinedIcons}
         />
     );

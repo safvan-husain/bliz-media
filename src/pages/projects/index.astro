@@ -3,14 +3,18 @@ import Layout from "../../layouts/Layout.astro";
 import { projects } from "../../data/projects";
 import Testimonials from "@/components/Testimonials.astro";
 
-const services = ["All", ...new Set(projects.map((project) => project.service))];
+const services = [
+  "All",
+  ...new Set(projects.map((project) => project.service)),
+];
 ---
-
 
 <Layout title="Projects | Our Work">
   <section class="py-20 pt-32 md:py-32">
     <div class="container mx-auto px-4">
-      <h1 class="mb-12 text-3xl font-bold md:text-5xl text-[var(--color-foreground)]">
+      <h1
+        class="mb-12 text-3xl font-bold md:text-5xl text-[var(--color-foreground)]"
+      >
         Our Projects
       </h1>
 
@@ -65,11 +69,9 @@ const services = ["All", ...new Set(projects.map((project) => project.service))]
 
   <script>
     const buttons = Array.from(
-      document.querySelectorAll("[data-service-filter]")
+      document.querySelectorAll("[data-service-filter]"),
     );
-    const cards = Array.from(
-      document.querySelectorAll("[data-service-name]")
-    );
+    const cards = Array.from(document.querySelectorAll("[data-service-name]"));
 
     const activeClasses = [
       "bg-[var(--color-primary)]",
@@ -116,12 +118,30 @@ const services = ["All", ...new Set(projects.map((project) => project.service))]
       });
     });
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const filterParam = urlParams.get("filter");
+
     if (buttons.length) {
-      const allButton =
-        buttons.find((btn) => btn.getAttribute("data-service-filter") === "All") ||
-        buttons[0];
-      setActiveButton(allButton);
-      filterProjects("All");
+      let targetButton = null;
+
+      if (filterParam) {
+        targetButton = buttons.find(
+          (btn) =>
+            btn.getAttribute("data-service-filter")?.toLowerCase() ===
+            filterParam.toLowerCase(),
+        );
+      }
+
+      if (!targetButton) {
+        targetButton =
+          buttons.find(
+            (btn) => btn.getAttribute("data-service-filter") === "All",
+          ) || buttons[0];
+      }
+
+      const service = targetButton.getAttribute("data-service-filter");
+      setActiveButton(targetButton);
+      filterProjects(service);
     }
   </script>
 </Layout>

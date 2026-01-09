@@ -127,7 +127,7 @@ export function DigitalMarketingHero({
                             p-px rounded-full backdrop-blur-lg overflow-hidden w-full sm:w-auto"
                         >
                             <Button
-                                onClick={() => (window.location.href = "/projects")}
+                                onClick={() => (window.location.href = `/projects?filter=${title}`)}
                                 variant="ghost"
                                 className="w-full sm:w-auto rounded-full px-10 py-7 text-xs font-black tracking-[0.2em] backdrop-blur-md 
                                 bg-black/5 hover:bg-black/10 
