@@ -67,7 +67,7 @@ export const WebDevelopmentContent = () => {
         <div className="space-y-24 py-12">
             {/* Intro Section */}
             <section className="space-y-6 max-w-6xl">
-                <h3 className="text-3xl font-bold text-[#0c1b33] leading-tight">
+                <h3 className="text-3xl font-bold text-secondary leading-tight">
                     {CONTENT.intro.title}
                 </h3>
                 <div className="space-y-4 text-lg text-zinc-600 leading-relaxed">
@@ -79,7 +79,7 @@ export const WebDevelopmentContent = () => {
             {/* Deliverables Section */}
             <section>
                 <div className="mb-10">
-                    <h3 className="text-2xl font-bold text-[#0c1b33] mb-2">{CONTENT.deliverables.title}</h3>
+                    <h3 className="text-2xl font-bold text-secondary mb-2">{CONTENT.deliverables.title}</h3>
                     <p className="text-zinc-500 font-medium">{CONTENT.deliverables.subtitle}</p>
                 </div>
 
@@ -87,16 +87,16 @@ export const WebDevelopmentContent = () => {
                     {CONTENT.deliverables.items.map((item, idx) => (
                         <div
                             key={idx}
-                            className="group p-6 rounded-2xl bg-zinc-50 border border-zinc-100 hover:border-black/5 hover:bg-white hover:shadow-lg hover:shadow-black/5 transition-all duration-300"
+                            className="group p-6 rounded-2xl bg-secondary border border-white/5 hover:bg-secondary-light hover:shadow-lg hover:shadow-black/5 transition-all duration-300"
                         >
-                            <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                                <item.icon className="w-6 h-6 text-[#0c1b33]" />
+                            <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                                <item.icon className="w-6 h-6 text-white" />
                             </div>
-                            <h4 className="text-lg font-semibold text-[#0c1b33]">{item.text}</h4>
+                            <h4 className="text-lg font-semibold text-white">{item.text}</h4>
                         </div>
                     ))}
                 </div>
-                <p className="mt-8 text-zinc-600 italic border-l-4 border-primary/20 pl-4">
+                <p className="mt-8 text-zinc-500 italic border-l-4 border-primary/20 pl-4">
                     {CONTENT.deliverables.description}
                 </p>
             </section>
@@ -104,7 +104,7 @@ export const WebDevelopmentContent = () => {
             {/* Approach Section */}
             <section>
                 <div className="mb-12">
-                    <h3 className="text-2xl font-bold text-[#0c1b33] mb-2">{CONTENT.approach.title}</h3>
+                    <h3 className="text-2xl font-bold text-secondary mb-2">{CONTENT.approach.title}</h3>
                     <p className="text-zinc-600 max-w-2xl">{CONTENT.approach.subtitle}</p>
                 </div>
 
@@ -119,12 +119,12 @@ export const WebDevelopmentContent = () => {
                                 </div>
                             </div>
                             <div className="flex-grow pt-2">
-                                <div className="p-6 md:p-8 rounded-3xl bg-zinc-50 border border-zinc-100 group-hover:bg-white group-hover:shadow-xl group-hover:shadow-black/5 group-hover:-translate-y-1 transition-all duration-300">
+                                <div className="p-6 md:p-8 rounded-3xl bg-secondary border border-white/5 group-hover:bg-secondary-light group-hover:shadow-xl group-hover:shadow-black/5 group-hover:-translate-y-1 transition-all duration-300">
                                     <div className="flex items-start justify-between mb-2">
-                                        <h4 className="text-xl font-bold text-[#0c1b33]">{step.title}</h4>
-                                        <step.icon className="w-6 h-6 text-zinc-300 group-hover:text-primary transition-colors" />
+                                        <h4 className="text-xl font-bold text-white">{step.title}</h4>
+                                        <step.icon className="w-6 h-6 text-zinc-100 group-hover:text-primary transition-colors" />
                                     </div>
-                                    <p className="text-zinc-600">{step.description}</p>
+                                    <p className="text-zinc-100">{step.description}</p>
                                 </div>
                             </div>
                         </div>
@@ -133,7 +133,7 @@ export const WebDevelopmentContent = () => {
             </section>
 
             {/* Target Audience Section */}
-            <section className="bg-[#0c1b33] text-white rounded-[2.5rem] p-8 md:p-12 overflow-hidden relative">
+            <section className="bg-secondary text-white rounded-[2.5rem] p-8 md:p-12 overflow-hidden relative">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
                 <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/20 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2" />
 
