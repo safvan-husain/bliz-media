@@ -41,7 +41,7 @@ interface WebDevelopmentHeroProps {
 }
 
 export function WebDevelopmentHero({ title }: WebDevelopmentHeroProps) {
-    const developmentService = services.find(s => s.slug === "development");
+    const developmentService = services.find(s => s.slug === "web-development");
     const techIcons = developmentService?.floatingIconSectionContent?.icons || [];
 
     // Combine tech icons from data with some system icons from demo
@@ -70,7 +70,7 @@ export function WebDevelopmentHero({ title }: WebDevelopmentHeroProps) {
     return (
         <FloatingIconsHero
             title={title}
-            subtitle="Building robust, scalable, and high-performance web applications with the latest technologies."
+            subtitle="We design and develop fast, secure, and scalable websites tailored to your business goals — from simple static sites to advanced custom web applications and e-commerce platforms"
             ctaText="START YOUR PROJECT"
             ctaHref="/quote"
             secondaryCtaText="SEE OUR WORK"
