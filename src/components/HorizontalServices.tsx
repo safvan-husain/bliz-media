@@ -22,11 +22,11 @@ export default function HorizontalServices({ services, showViewAll = true }: Hor
     // "0%" -> "0%"
     // "100%" -> "-70%" (approx, enough to reveal the last card)
     // Adjust "-75%" based on testing or calculate dynamically if needed but fixed % works well for responsive usually if using calc.
-    const x = useTransform(scrollYProgress, [0, 1], ["1%", "-65%"]);
+    const x = useTransform(scrollYProgress, [0, 1], ["3%", "-65%"]);
 
     return (
-        <section ref={targetRef} className="relative h-[300vh] bg-zinc-50 mt-10">
-            <div className="sticky top-0 h-screen flex items-center overflow-hidden">
+        <section ref={targetRef} className="relative h-[300vh] bg-zinc-50">
+            <div className="sticky top-8 h-screen flex items-center overflow-hidden">
                 {/* Header content that stays or moves? User said "instead of scrolling vertically these carousel should move".
             Usually the header is separate. But let's keep the header outside or separate if it shouldn't scroll away immediately.
             If the whole section pins, the header might be pinned too or scrolled past.
@@ -34,7 +34,7 @@ export default function HorizontalServices({ services, showViewAll = true }: Hor
             The user wants the CARDS to move horizontally.
         */}
 
-                <motion.div style={{ x }} className="flex gap-8 pt-10 md:pt-22 px-12 md:px-24 w-max will-change-transform">
+                <motion.div style={{ x }} className="flex gap-8 px-12 md:px-24 w-max will-change-transform">
                     {/* Header Card or Title Block could be the first item if desired, but user kept them separate in previous design. 
                Let's just scroll the services cards. */}
                     {services.map((service) => (
