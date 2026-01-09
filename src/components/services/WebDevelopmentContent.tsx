@@ -66,7 +66,7 @@ export const WebDevelopmentContent = () => {
     return (
         <div className="space-y-24 py-12">
             {/* Intro Section */}
-            <section className="space-y-6 max-w-3xl">
+            <section className="space-y-6 max-w-6xl">
                 <h3 className="text-3xl font-bold text-[#0c1b33] leading-tight">
                     {CONTENT.intro.title}
                 </h3>
