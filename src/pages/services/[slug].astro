@@ -117,6 +117,15 @@ const { service } = Astro.props;
         )
     }
 
+    {
+        (service.floatingIconSectionContent?.icons?.length ?? 0) > 0 && (
+            <FloatingIcons
+                client:load
+                content={service.floatingIconSectionContent!}
+            />
+        )
+    }
+
     {/* Pricing Cards Section - Only show if service has plans */}
     {
         service.plans && service.plans.length > 0 && (

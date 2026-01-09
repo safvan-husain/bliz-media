@@ -22,7 +22,7 @@ export default function HorizontalServices({ services, showViewAll = true }: Hor
     // "0%" -> "0%"
     // "100%" -> "-70%" (approx, enough to reveal the last card)
     // Adjust "-75%" based on testing or calculate dynamically if needed but fixed % works well for responsive usually if using calc.
-    const x = useTransform(scrollYProgress, [0, 1], ["3%", "-65%"]);
+    const x = useTransform(scrollYProgress, [0, 1], ["1%", "-65%"]);
 
     return (
         <section ref={targetRef} className="relative h-[300vh] bg-zinc-50">

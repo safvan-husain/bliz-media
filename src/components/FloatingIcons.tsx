@@ -33,7 +33,7 @@ export default function FloatingIcons({
     });
 
     return (
-        <section className="relative py-32 overflow-hidden bg-zinc-50 border-y border-zinc-100/50 min-h-[40rem] flex flex-col items-center justify-center">
+        <section className="text-black relative py-32 bg-zinc-50 min-h-[40rem] flex flex-col items-center justify-center">
             {/* Background decoration */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/3 rounded-full blur-[100px]" />
@@ -45,7 +45,7 @@ export default function FloatingIcons({
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.7 }}
-                    className="hidden sm:block text-4xl md:text-5xl font-black text-[#0c1b33] mb-6 tracking-tighter"
+                    className="hidden sm:block text-4xl md:text-5xl font-black text-black mb-6 tracking-tighter"
                 >
                     {title}
                 </motion.h2>
