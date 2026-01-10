@@ -83,16 +83,14 @@ export const WebDevelopmentContent = () => {
                     <p className="text-zinc-500 font-medium">{CONTENT.deliverables.subtitle}</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {CONTENT.deliverables.items.map((item, idx) => (
                         <div
                             key={idx}
-                            className="group p-6 rounded-2xl bg-secondary border border-white/5 hover:bg-secondary-light hover:shadow-lg hover:shadow-black/5 transition-all duration-300"
+                            className="flex items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-sm"
                         >
-                            <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                                <item.icon className="w-6 h-6 text-white" />
-                            </div>
-                            <h4 className="text-lg font-semibold text-white">{item.text}</h4>
+                            <item.icon className="w-5 h-5 text-primary flex-shrink-0" />
+                            <span className="font-medium text-white/90 text-sm">{item.text}</span>
                         </div>
                     ))}
                 </div>
@@ -112,19 +110,19 @@ export const WebDevelopmentContent = () => {
                     <div className="absolute left-[27px] top-4 bottom-4 w-[2px] bg-zinc-100 hidden md:block" />
 
                     {CONTENT.approach.steps.map((step, idx) => (
-                        <div key={idx} className="relative flex flex-col md:flex-row gap-6 md:gap-10 group">
+                        <div key={idx} className="relative flex flex-col md:flex-row gap-6 md:gap-10 group items-center">
                             <div className="flex-shrink-0 relative z-10">
-                                <div className="w-14 h-14 rounded-full bg-white border-4 border-zinc-50 shadow-sm flex items-center justify-center font-black text-lg text-zinc-300 group-hover:text-primary group-hover:border-primary/10 transition-colors duration-300">
+                                <div className="w-14 h-14 rounded-full bg-white border-4 border-zinc-50 shadow-sm flex items-center justify-center font-black text-lg text-zinc-300 group-hover:text-primary group-hover:border-primary/10 transition-all duration-300">
                                     {step.number}
                                 </div>
                             </div>
                             <div className="flex-grow pt-2">
-                                <div className="p-6 md:p-8 rounded-3xl bg-secondary border border-white/5 group-hover:bg-secondary-light group-hover:shadow-xl group-hover:shadow-black/5 group-hover:-translate-y-1 transition-all duration-300">
-                                    <div className="flex items-start justify-between mb-2">
+                                <div className="p-6 md:p-8 rounded-3xl bg-secondary/95 border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-xl shadow-black/5 group-hover:-translate-y-1">
+                                    <div className="flex items-start justify-between mb-4">
                                         <h4 className="text-xl font-bold text-white">{step.title}</h4>
-                                        <step.icon className="w-6 h-6 text-zinc-100 group-hover:text-primary transition-colors" />
+                                        <step.icon className="w-6 h-6 text-primary" />
                                     </div>
-                                    <p className="text-zinc-100">{step.description}</p>
+                                    <p className="text-white/70 leading-relaxed">{step.description}</p>
                                 </div>
                             </div>
                         </div>
