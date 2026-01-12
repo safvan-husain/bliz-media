@@ -23,7 +23,6 @@ export interface Service {
   slug: string;
   image: string;
   excerpt: string;
-  content: string;
   contentBlocks?: ServiceContentBlock[];
   color: string;
   tags: string[];
@@ -64,20 +63,6 @@ export const services: Service[] = [
         component: 'BrandingContent'
       }
     ],
-    content: `
-      <div class="space-y-6">
-        <p class="text-gray-600">
-          Your brand is more than just a logo. It's the emotional connection you build with your audience. We help you define your voice, values, and visual identity to stand out in a crowded market.
-        </p>
-        <h3 class="text-xl font-semibold text-[#0c1b33]">The Branding Process</h3>
-        <ul class="list-disc pl-5 space-y-2 text-gray-600">
-          <li>Market Research & Strategy</li>
-          <li>Logo Design & Visual ID</li>
-          <li>Brand Voice & Messaging</li>
-          <li>Brand Guidelines</li>
-        </ul>
-      </div>
-    `,
   },
   {
     id: "02",
@@ -88,17 +73,6 @@ export const services: Service[] = [
     excerpt: "Digital Marketing That Drives Real Growth",
     color: "bg-secondary",
     tags: ["Strategy", "Growth"],
-    content: `
-      <div class="space-y-6">
-        <p class="text-gray-600">
-          We drive results through data-driven marketing strategies that put your brand in front of the right people at the right time.
-        </p>
-        <h3 class="text-xl font-semibold text-[#0c1b33]">Our Approach</h3>
-        <p class="text-gray-600">
-          From SEO and content marketing to paid social and PPC, we use the full spectrum of digital tools to scale your business.
-        </p>
-      </div>
-    `,
     contentBlocks: [
       {
         type: 'component',
@@ -116,18 +90,6 @@ export const services: Service[] = [
     color: "bg-profile",
     tags: ["Content", "Design"],
     cardImage: "/images/service-card-imags/design.png",
-    content: `
-      <div class="space-y-6">
-        <p class="text-gray-600">
-          We believe that great design is invisible. It should feel intuitive, effortless, and delightful while solve complex problems.
-        </p>
-        <h3 class="text-xl font-semibold text-white">UI/UX Mastery</h3>
-        <p class="text-gray-600">
-          Our design process focuses on user research, wireframing, and high-fidelity prototyping to ensure your product delivers real value.
-        </p>
-      </div>
-      </div>
-    `,
     contentBlocks: [
       {
         type: 'component',
@@ -158,17 +120,6 @@ export const services: Service[] = [
         component: 'Pricing'
       }
     ],
-    content: `
-      <div class="space-y-6">
-        <p class="text-gray-600">
-          Modern web development requires more than just coding. It requires a deep understanding of architecture, performance, and security.
-        </p>
-        <h3 class="text-xl font-semibold text-[#0c1b33]">Tech Stack</h3>
-        <p class="text-gray-600">
-          We specialize in React, Next.js, Astro, and other modern frameworks to build lightning-fast web experiences.
-        </p>
-      </div>
-    `,
     plans: [
       {
         name: "PLAN 1",
@@ -187,7 +138,6 @@ export const services: Service[] = [
         deployment: "Website deployment included",
         hosting: "1 year FREE hosting included"
       },
-
       {
         name: "PLAN 3",
         title: "Dynamic custom coded website",
@@ -254,16 +204,5 @@ export const services: Service[] = [
         component: 'ProductionContent'
       }
     ],
-    content: `
-      <div class="space-y-6">
-        <p class="text-gray-600">
-          High-quality content is the lifeblood of modern brands. We provide professional photography and videography services to tell your story.
-        </p>
-        <h3 class="text-xl font-semibold text-[#0c1b33]">Media Services</h3>
-        <p class="text-gray-600">
-          From corporate films to social media snippets, we deliver cinematic quality that captures attention and inspires action.
-        </p>
-      </div>
-    `,
   },
 ];
