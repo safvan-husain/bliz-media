@@ -111,22 +111,29 @@ export const WebDevelopmentContent = () => {
                     <p className="text-zinc-600 max-w-2xl">{CONTENT.approach.subtitle}</p>
                 </div>
 
-                <div className="flex flex-col">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {CONTENT.approach.steps.map((step, idx) => (
                         <div
                             key={idx}
-                            className="flex items-start gap-8 md:gap-16 py-12 border-b border-zinc-100 first:border-t group"
+                            className="group relative p-8 rounded-3xl border border-zinc-100 bg-white/50 hover:bg-white hover:border-zinc-200 hover:shadow-xl hover:shadow-secondary/5 transition-all duration-300"
                         >
-                            <div className="text-5xl md:text-7xl font-bold text-zinc-200 tabular-nums transition-colors duration-300 group-hover:text-primary/20">
+                            <div className="absolute top-6 right-8 text-4xl font-bold text-zinc-100 group-hover:text-primary/10 transition-colors duration-300">
                                 {step.number}
                             </div>
-                            <div className="space-y-3 pt-2 md:pt-4">
-                                <h4 className="text-xl md:text-2xl font-bold text-secondary group-hover:text-primary transition-colors duration-300">
-                                    {step.title}
-                                </h4>
-                                <p className="text-zinc-600 text-lg leading-relaxed max-w-3xl">
-                                    {step.description}
-                                </p>
+
+                            <div className="relative z-10 space-y-4">
+                                <div className="w-12 h-12 rounded-2xl bg-secondary/5 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                                    <step.icon className="w-6 h-6 text-secondary group-hover:text-white transition-colors duration-300" />
+                                </div>
+
+                                <div className="space-y-2">
+                                    <h4 className="text-xl font-bold text-secondary group-hover:text-primary transition-colors duration-300">
+                                        {step.title}
+                                    </h4>
+                                    <p className="text-zinc-600 text-sm leading-relaxed">
+                                        {step.description}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     ))}
