@@ -1,0 +1,221 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { ContactForm } from "../components/contact/ContactForm";
+
+const contactInfo = {
+    email: "hello@blizmedia.com",
+    phone: "+971 50 123 4567",
+    address: "Dubai Design District, Building 7, Dubai, UAE",
+    whatsapp: "https://wa.me/971501234567",
+};
+---
+
+<Layout title="Contact Us | Bliz Media">
+    <main class="pt-32 pb-24 min-h-screen bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                    <!-- Left Side: Form -->
+                    <div class="space-y-12">
+                        <div>
+                            <span
+                                class="text-primary font-bold tracking-widest uppercase text-sm mb-4 block"
+                                >Get In Touch</span
+                            >
+                            <h1
+                                class="text-5xl md:text-6xl font-bold text-secondary mb-6 leading-tight"
+                            >
+                                Ready to <span class="text-primary"
+                                    >Elevate</span
+                                > Your Brand?
+                            </h1>
+                            <p
+                                class="text-gray-600 text-xl max-w-lg leading-relaxed"
+                            >
+                                We're here to turn your vision into reality.
+                                Reach out and let's start something
+                                extraordinary together.
+                            </p>
+                        </div>
+
+                        <ContactForm client:load />
+                    </div>
+
+                    <!-- Right Side: Info & Presence -->
+                    <div class="lg:sticky lg:top-40 space-y-12">
+                        <div
+                            class="relative rounded-3xl overflow-hidden shadow-2xl h-[400px] group"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200"
+                                alt="Bliz Media Office"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent"
+                            >
+                            </div>
+                            <div
+                                class="absolute bottom-8 left-8 right-8 text-white"
+                            >
+                                <h3 class="text-2xl font-bold mb-2">
+                                    Our Creative Studio
+                                </h3>
+                                <p class="text-white/80">
+                                    Where big ideas come to life.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div
+                                class="p-8 rounded-3xl bg-zinc-50 border border-zinc-100 space-y-4"
+                            >
+                                <div
+                                    class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="lucide lucide-mail"
+                                        ><rect
+                                            width="20"
+                                            height="16"
+                                            x="2"
+                                            y="4"
+                                            rx="2"></rect><path
+                                            d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
+                                        ></path></svg
+                                    >
+                                </div>
+                                <div>
+                                    <h4
+                                        class="font-bold text-secondary text-lg"
+                                    >
+                                        Email Us
+                                    </h4>
+                                    <p class="text-zinc-500">
+                                        {contactInfo.email}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="p-8 rounded-3xl bg-zinc-50 border border-zinc-100 space-y-4"
+                            >
+                                <div
+                                    class="w-12 h-12 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="lucide lucide-message-circle"
+                                        ><path
+                                            d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"
+                                        ></path></svg
+                                    >
+                                </div>
+                                <div>
+                                    <h4
+                                        class="font-bold text-secondary text-lg"
+                                    >
+                                        WhatsApp
+                                    </h4>
+                                    <p class="text-zinc-500">Quick Chat</p>
+                                    <a
+                                        href={contactInfo.whatsapp}
+                                        class="text-primary font-bold text-sm hover:underline"
+                                        >Message Now →</a
+                                    >
+                                </div>
+                            </div>
+
+                            <div
+                                class="p-8 rounded-3xl bg-zinc-50 border border-zinc-100 space-y-4"
+                            >
+                                <div
+                                    class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="lucide lucide-phone"
+                                        ><path
+                                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                                        ></path></svg
+                                    >
+                                </div>
+                                <div>
+                                    <h4
+                                        class="font-bold text-secondary text-lg"
+                                    >
+                                        Call Us
+                                    </h4>
+                                    <p class="text-zinc-500">
+                                        {contactInfo.phone}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="p-8 rounded-3xl bg-zinc-50 border border-zinc-100 space-y-4"
+                            >
+                                <div
+                                    class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="lucide lucide-map-pin"
+                                        ><path
+                                            d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
+                                        ></path><circle cx="12" cy="10" r="3"
+                                        ></circle></svg
+                                    >
+                                </div>
+                                <div>
+                                    <h4
+                                        class="font-bold text-secondary text-lg"
+                                    >
+                                        Visit Us
+                                    </h4>
+                                    <p class="text-zinc-500 leading-snug">
+                                        {contactInfo.address}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</Layout>

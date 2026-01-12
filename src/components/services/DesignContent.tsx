@@ -237,7 +237,7 @@ export const DesignContent = () => {
                 </div>
 
                 <a
-                    href="/contact"
+                    href="/contact?service=design"
                     className="inline-flex items-center justify-center gap-3 bg-primary text-white px-8 py-4 rounded-full font-bold tracking-wide hover:bg-black transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-xl hover:-translate-y-1"
                 >
                     {CONTENT.cta.buttonText}
