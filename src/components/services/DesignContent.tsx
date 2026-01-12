@@ -172,7 +172,7 @@ export const DesignContent = () => {
                                     {step.number}
                                 </div>
                             </div>
-                            <div className="flex-grow pt-2">
+                            <div className="flex-grow pt-2 w-full">
                                 <div className="p-6 md:p-8 rounded-3xl bg-secondary/95 border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-xl shadow-black/5 group-hover:-translate-y-1">
                                     <div className="flex items-start justify-between mb-4">
                                         <h4 className="text-xl font-bold text-white">{step.title}</h4>

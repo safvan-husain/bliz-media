@@ -111,24 +111,22 @@ export const WebDevelopmentContent = () => {
                     <p className="text-zinc-600 max-w-2xl">{CONTENT.approach.subtitle}</p>
                 </div>
 
-                <div className="grid grid-cols-1 gap-8 relative">
-                    <div className="absolute left-[27px] top-4 bottom-4 w-[2px] bg-zinc-100 hidden md:block" />
-
+                <div className="flex flex-col">
                     {CONTENT.approach.steps.map((step, idx) => (
-                        <div key={idx} className="relative flex flex-col md:flex-row gap-6 md:gap-10 group items-center">
-                            <div className="flex-shrink-0 relative z-10">
-                                <div className="w-14 h-14 rounded-full bg-white border-4 border-zinc-50 shadow-sm flex items-center justify-center font-black text-lg text-zinc-300 group-hover:text-primary group-hover:border-primary/10 transition-all duration-300">
-                                    {step.number}
-                                </div>
+                        <div
+                            key={idx}
+                            className="flex items-start gap-8 md:gap-16 py-12 border-b border-zinc-100 first:border-t group"
+                        >
+                            <div className="text-5xl md:text-7xl font-bold text-zinc-200 tabular-nums transition-colors duration-300 group-hover:text-primary/20">
+                                {step.number}
                             </div>
-                            <div className="flex-grow pt-2">
-                                <div className="p-6 md:p-8 rounded-3xl bg-secondary/95 border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-xl shadow-black/5 group-hover:-translate-y-1">
-                                    <div className="flex items-start justify-between mb-4">
-                                        <h4 className="text-xl font-bold text-white">{step.title}</h4>
-                                        <step.icon className="w-6 h-6 text-primary" />
-                                    </div>
-                                    <p className="text-white/70 leading-relaxed">{step.description}</p>
-                                </div>
+                            <div className="space-y-3 pt-2 md:pt-4">
+                                <h4 className="text-xl md:text-2xl font-bold text-secondary group-hover:text-primary transition-colors duration-300">
+                                    {step.title}
+                                </h4>
+                                <p className="text-zinc-600 text-lg leading-relaxed max-w-3xl">
+                                    {step.description}
+                                </p>
                             </div>
                         </div>
                     ))}

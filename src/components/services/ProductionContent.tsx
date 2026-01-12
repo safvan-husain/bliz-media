@@ -161,25 +161,27 @@ export const ProductionContent = () => {
                     <p className="text-zinc-600 max-w-2xl">{CONTENT.process.subtitle}</p>
                 </div>
 
-                <div className="grid grid-cols-1 gap-8 relative">
-                    <div className="absolute left-[27px] top-4 bottom-4 w-[2px] bg-zinc-100 hidden md:block" />
-
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {CONTENT.process.steps.map((step, idx) => (
-                        <div key={idx} className="relative flex flex-col md:flex-row gap-6 md:gap-10 group items-center">
-                            <div className="flex-shrink-0 relative z-10">
-                                <div className="w-14 h-14 rounded-full bg-white border-4 border-zinc-50 shadow-sm flex items-center justify-center font-black text-lg text-zinc-300 group-hover:text-primary group-hover:border-primary/10 transition-all duration-300">
+                        <div
+                            key={idx}
+                            className="group p-8 border border-zinc-100 rounded-2xl hover:border-primary/30 transition-all duration-300"
+                        >
+                            <div className="flex justify-between items-start mb-6">
+                                <div className="p-3 bg-zinc-50 rounded-xl group-hover:bg-primary/5 transition-colors duration-300">
+                                    <step.icon className="w-6 h-6 text-zinc-400 group-hover:text-primary transition-colors duration-300" />
+                                </div>
+                                <span className="text-4xl font-black text-zinc-100 group-hover:text-primary/10 transition-colors duration-300">
                                     {step.number}
-                                </div>
+                                </span>
                             </div>
-                            <div className="flex-grow pt-2">
-                                <div className="p-6 md:p-8 rounded-3xl bg-secondary/95 border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-xl shadow-black/5 group-hover:-translate-y-1">
-                                    <div className="flex items-start justify-between mb-4">
-                                        <h4 className="text-xl font-bold text-white">{step.title}</h4>
-                                        <step.icon className="w-6 h-6 text-primary" />
-                                    </div>
-                                    <p className="text-white/70 leading-relaxed">{step.description}</p>
-                                </div>
-                            </div>
+
+                            <h4 className="text-xl font-bold text-secondary mb-3 group-hover:text-primary transition-colors duration-300">
+                                {step.title}
+                            </h4>
+                            <p className="text-zinc-500 leading-relaxed">
+                                {step.description}
+                            </p>
                         </div>
                     ))}
                 </div>
