@@ -42,7 +42,7 @@ export const services: Service[] = [
     unsplashImage: "https://images.unsplash.com/photo-1548094990-c16ca90f1f0d",
     excerpt: "Branding That Makes Your Business Memorable",
     color: "bg-branding",
-    tags: ["Deliverables", "Timeline"],
+    tags: ["Brand Strategy", "Visual Identity"],
     heroImages: [
       'https://images.unsplash.com/photo-1755004609214-c252674df1ca?q=80&w=400&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1750218537952-0ae056c7f53a?q=80&w=400&auto=format&fit=crop',
@@ -72,7 +72,7 @@ export const services: Service[] = [
     unsplashImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
     excerpt: "Digital Marketing That Drives Real Growth",
     color: "bg-secondary",
-    tags: ["Strategy", "Growth"],
+    tags: ["Growth", "Lead Generation"],
     contentBlocks: [
       {
         type: 'component',
@@ -88,7 +88,7 @@ export const services: Service[] = [
     unsplashImage: "https://plus.unsplash.com/premium_photo-1661281412140-dfb328ae967b",
     excerpt: "Design That Looks Good and Works Better",
     color: "bg-profile",
-    tags: ["Content", "Design"],
+    tags: ["UI/UX", "Creative"],
     cardImage: "/images/service-card-imags/design.png",
     contentBlocks: [
       {
@@ -105,7 +105,7 @@ export const services: Service[] = [
     unsplashImage: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop",
     excerpt: "e create fast, secure websites and web apps designed to grow with your business.",
     color: "bg-website",
-    tags: ["Structure", "Functionality"],
+    tags: ["Custom", "Scalable"],
     contentBlocks: [
       {
         type: 'component',
@@ -196,7 +196,7 @@ export const services: Service[] = [
     unsplashImage: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=800&auto=format&fit=crop",
     excerpt: "Creative Production That Brings Your Brand to Life",
     color: "bg-video",
-    tags: ["Product Insight", "Brand Story"],
+    tags: ["Content creation", "Post Production"],
     cardImage: "/images/service-card-imags/production.png",
     contentBlocks: [
       {
