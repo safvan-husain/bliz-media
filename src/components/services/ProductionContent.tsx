@@ -118,11 +118,11 @@ export const ProductionContent = () => {
                     <h3 className="text-2xl font-bold text-secondary mb-2">{CONTENT.importance.title}</h3>
                     <p className="text-zinc-500 font-medium">{CONTENT.importance.subtitle}</p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
                     {CONTENT.importance.items.map((item, idx) => (
                         <div
                             key={idx}
-                            className="flex items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-sm h-20"
+                            className="flex flex-col justify-center text-center items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-secondary/30 hover:bg-secondary-light transition-all duration-300 shadow-sm h-32"
                         >
                             <item.icon className="w-5 h-5 text-primary flex-shrink-0" />
                             <span className="font-medium text-white/90 text-sm">{item.text}</span>
@@ -215,9 +215,9 @@ export const ProductionContent = () => {
                     <h3 className="text-2xl font-bold text-secondary mb-2">{CONTENT.targetAudience.title}</h3>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
                     {CONTENT.targetAudience.items.map((item, idx) => (
-                        <div key={idx} className="flex items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-sm h-20">
+                        <div key={idx} className="flex flex-col justify-center text-center items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-secondary/30 hover:bg-secondary-light transition-all duration-300 shadow-sm h-32">
                             <item.icon className="w-5 h-5 text-primary flex-shrink-0" />
                             <span className="font-medium text-white/90 text-sm">{item.text}</span>
                         </div>
