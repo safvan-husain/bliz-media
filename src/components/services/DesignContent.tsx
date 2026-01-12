@@ -123,10 +123,10 @@ export const DesignContent = () => {
                     {CONTENT.importance.items.map((item, idx) => (
                         <div
                             key={idx}
-                            className="flex items-center gap-4 bg-white p-4 rounded-2xl border border-zinc-100 shadow-sm hover:shadow-md transition-all duration-300"
+                            className="flex items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-sm"
                         >
                             <item.icon className="w-5 h-5 text-primary flex-shrink-0" />
-                            <span className="font-medium text-zinc-700 text-sm">{item.text}</span>
+                            <span className="font-medium text-white/90 text-sm">{item.text}</span>
                         </div>
                     ))}
                 </div>
@@ -219,10 +219,10 @@ export const DesignContent = () => {
                     {CONTENT.whyChoose.items.map((item, idx) => (
                         <div
                             key={idx}
-                            className="flex items-center gap-4 bg-white p-4 rounded-2xl border border-zinc-100 shadow-sm hover:shadow-md transition-all duration-300"
+                            className="flex items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-sm"
                         >
                             <item.icon className="w-5 h-5 text-primary flex-shrink-0" />
-                            <span className="font-medium text-zinc-700 text-sm">{item.text}</span>
+                            <span className="font-medium text-white/90 text-sm">{item.text}</span>
                         </div>
                     ))}
                 </div>

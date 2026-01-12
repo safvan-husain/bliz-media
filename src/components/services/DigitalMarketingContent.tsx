@@ -144,10 +144,10 @@ export const DigitalMarketingContent = () => {
                     {CONTENT.solutions.items.map((item, idx) => (
                         <div
                             key={idx}
-                            className="flex items-center gap-4 bg-white border-2 border-zinc-100 p-4 rounded-2xl hover:border-primary/20 hover:shadow-lg transition-all duration-300"
+                            className="flex items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-sm"
                         >
-                            <item.icon className="w-5 h-5 text-secondary flex-shrink-0" />
-                            <span className="font-medium text-zinc-700 text-sm">{item.text}</span>
+                            <item.icon className="w-5 h-5 text-primary flex-shrink-0" />
+                            <span className="font-medium text-white/90 text-sm">{item.text}</span>
                         </div>
                     ))}
                 </div>
@@ -198,12 +198,12 @@ export const DigitalMarketingContent = () => {
                     {CONTENT.whyChoose.items.map((item, idx) => (
                         <div
                             key={idx}
-                            className="flex flex-col items-center text-center gap-4 bg-white p-6 rounded-2xl shadow-sm border border-zinc-100 hover:border-primary/20 transition-all duration-300"
+                            className="flex flex-col items-center text-center gap-4 bg-secondary/95 p-6 rounded-2xl border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-sm"
                         >
                             <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                                 <item.icon className="w-5 h-5" />
                             </div>
-                            <span className="font-medium text-zinc-800">{item.text}</span>
+                            <span className="font-medium text-white/90">{item.text}</span>
                         </div>
                     ))}
                 </div>

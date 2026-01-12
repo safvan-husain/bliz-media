@@ -117,10 +117,10 @@ export const ProductionContent = () => {
                     {CONTENT.importance.items.map((item, idx) => (
                         <div
                             key={idx}
-                            className="flex items-center gap-4 bg-secondary/5 p-4 rounded-xl border border-secondary/10 hover:bg-secondary/10 transition-colors"
+                            className="flex items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-sm"
                         >
-                            <item.icon className="w-5 h-5 text-secondary flex-shrink-0" />
-                            <span className="font-medium text-secondary/90 text-sm">{item.text}</span>
+                            <item.icon className="w-5 h-5 text-primary flex-shrink-0" />
+                            <span className="font-medium text-white/90 text-sm">{item.text}</span>
                         </div>
                     ))}
                 </div>
@@ -203,7 +203,7 @@ export const ProductionContent = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {CONTENT.whyChoose.items.map((item, idx) => (
                                 <div key={idx} className="flex items-center gap-3">
-                                    <div className="p-2 rounded-full bg-primary/20 text-primary">
+                                    <div className="p-3 rounded-full bg-primary/20 text-primary">
                                         <item.icon className="w-4 h-4" />
                                     </div>
                                     <span className="text-white/80">{item.text}</span>
