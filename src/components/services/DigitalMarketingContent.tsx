@@ -124,7 +124,7 @@ export const DigitalMarketingContent = () => {
                     {CONTENT.essential.items.map((item, idx) => (
                         <div
                             key={idx}
-                            className="flex items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-sm"
+                            className="flex items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-sm h-20"
                         >
                             <item.icon className="w-5 h-5 text-primary flex-shrink-0" />
                             <span className="font-medium text-white/90 text-sm">{item.text}</span>
@@ -144,7 +144,7 @@ export const DigitalMarketingContent = () => {
                     {CONTENT.solutions.items.map((item, idx) => (
                         <div
                             key={idx}
-                            className="flex items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-sm"
+                            className="flex items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-sm h-20"
                         >
                             <item.icon className="w-5 h-5 text-primary flex-shrink-0" />
                             <span className="font-medium text-white/90 text-sm">{item.text}</span>
@@ -203,7 +203,7 @@ export const DigitalMarketingContent = () => {
                     {CONTENT.whyChoose.items.map((item, idx) => (
                         <div
                             key={idx}
-                            className="flex flex-col items-center text-center gap-4 bg-secondary/95 p-6 rounded-2xl border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-sm"
+                            className="flex flex-col items-center text-center gap-4 bg-secondary/95 p-6 rounded-2xl border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-sm h-40"
                         >
                             <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                                 <item.icon className="w-5 h-5" />
@@ -223,7 +223,7 @@ export const DigitalMarketingContent = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {CONTENT.audience.items.map((item, idx) => (
-                        <div key={idx} className="flex items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-sm">
+                        <div key={idx} className="flex items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-sm h-20">
                             <item.icon className="w-5 h-5 text-primary flex-shrink-0" />
                             <span className="font-medium text-white/90 text-sm">{item.text}</span>
                         </div>
