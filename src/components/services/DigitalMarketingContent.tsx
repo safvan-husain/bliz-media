@@ -188,10 +188,10 @@ export const DigitalMarketingContent = () => {
             </section>
 
             {/* Why Choose Bliz Section */}
-            <section className="bg-zinc-50 rounded-[2.5rem] p-8 md:p-12">
-                <div className="mb-10 text-center">
+            <section>
+                <div className="mb-10">
                     <h3 className="text-2xl font-bold text-secondary mb-2">{CONTENT.whyChoose.title}</h3>
-                    <p className="text-zinc-600 max-w-2xl mx-auto">{CONTENT.whyChoose.description}</p>
+                    <p className="text-zinc-500 font-medium max-w-2xl">{CONTENT.whyChoose.description}</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -211,26 +211,23 @@ export const DigitalMarketingContent = () => {
 
 
             {/* Target Audience Section */}
-            <section className="bg-secondary text-white rounded-[2.5rem] p-8 md:p-12 overflow-hidden relative">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
-                <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/20 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2" />
-
-                <div className="relative z-10">
-                    <h3 className="text-2xl font-bold mb-8">{CONTENT.audience.title}</h3>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-                        {CONTENT.audience.items.map((item, idx) => (
-                            <div key={idx} className="flex items-center gap-4 bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/10 hover:bg-white/10 transition-colors">
-                                <item.icon className="w-5 h-5 text-primary flex-shrink-0" />
-                                <span className="font-medium text-white/90 text-sm">{item.text}</span>
-                            </div>
-                        ))}
-                    </div>
-
-                    <p className="text-white/60 text-lg border-t border-white/10 pt-8 mt-8">
-                        {CONTENT.audience.description}
-                    </p>
+            <section>
+                <div className="mb-10">
+                    <h3 className="text-2xl font-bold text-secondary mb-2">{CONTENT.audience.title}</h3>
                 </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {CONTENT.audience.items.map((item, idx) => (
+                        <div key={idx} className="flex items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-sm">
+                            <item.icon className="w-5 h-5 text-primary flex-shrink-0" />
+                            <span className="font-medium text-white/90 text-sm">{item.text}</span>
+                        </div>
+                    ))}
+                </div>
+
+                <p className="mt-8 text-zinc-500 italic border-l-4 border-primary/20 pl-4">
+                    {CONTENT.audience.description}
+                </p>
             </section>
 
             {/* CTA Section */}

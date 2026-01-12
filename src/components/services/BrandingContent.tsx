@@ -59,8 +59,12 @@ const CONTENT = {
             { text: "Brands looking to appear more professional", icon: Briefcase },
             { text: "Businesses struggling with inconsistent visuals", icon: Layout },
         ]
+    },
+    cta: {
+        title: "Let’s Build Your Brand Identity",
+        description: "From logos to full brand guidelines, we help you create a professional and memorable brand that stands out.",
+        buttonText: "Start Your Brand Journey"
     }
-    // "Why Branding Matters" content and "Why Choose Bliz" content are partially integrated or left out to match WebDevelopmentContent structure strictly as requested.
 };
 
 export const BrandingContent = () => {
@@ -132,26 +136,43 @@ export const BrandingContent = () => {
             </section>
 
             {/* Target Audience Section */}
-            <section className="bg-secondary text-white rounded-[2.5rem] p-8 md:p-12 overflow-hidden relative">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
-                <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/20 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2" />
+            <section>
+                <div className="mb-10">
+                    <h3 className="text-2xl font-bold text-secondary mb-2">{CONTENT.targetAudience.title}</h3>
+                </div>
 
-                <div className="relative z-10">
-                    <h3 className="text-2xl font-bold mb-8">{CONTENT.targetAudience.title}</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {CONTENT.targetAudience.items.map((item, idx) => (
+                        <div key={idx} className="flex items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-sm">
+                            <item.icon className="w-5 h-5 text-primary flex-shrink-0" />
+                            <span className="font-medium text-white/90 text-sm">{item.text}</span>
+                        </div>
+                    ))}
+                </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-                        {CONTENT.targetAudience.items.map((item, idx) => (
-                            <div key={idx} className="flex items-center gap-4 bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/10 hover:bg-white/10 transition-colors">
-                                <item.icon className="w-5 h-5 text-primary flex-shrink-0" />
-                                <span className="font-medium text-white/90 text-sm">{item.text}</span>
-                            </div>
-                        ))}
-                    </div>
+                <p className="mt-8 text-zinc-500 italic border-l-4 border-primary/20 pl-4">
+                    {CONTENT.targetAudience.description}
+                </p>
+            </section>
 
-                    <p className="text-white/60 text-lg">
-                        {CONTENT.targetAudience.description}
+            {/* CTA Section */}
+            <section className="text-center space-y-8 py-12">
+                <div className="space-y-4 max-w-2xl mx-auto">
+                    <h3 className="text-3xl md:text-4xl font-bold text-secondary">
+                        {CONTENT.cta.title}
+                    </h3>
+                    <p className="text-lg text-zinc-600">
+                        {CONTENT.cta.description}
                     </p>
                 </div>
+
+                <a
+                    href="/contact"
+                    className="inline-flex items-center justify-center gap-3 bg-primary text-white px-8 py-4 rounded-full font-bold tracking-wide hover:bg-black transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-xl hover:-translate-y-1"
+                >
+                    {CONTENT.cta.buttonText}
+                    <Rocket className="w-5 h-5" />
+                </a>
             </section>
         </div>
     );
