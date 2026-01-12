@@ -11,6 +11,10 @@ import { ProductionHero } from "../../components/heroes/ProductionHero";
 import { BrandingHero } from "../../components/heroes/BrandingHero";
 import { SparklesText } from "../../components/ui/sparkles-text";
 import { WebDevelopmentContent } from "../../components/services/WebDevelopmentContent";
+import { DigitalMarketingContent } from "../../components/services/DigitalMarketingContent";
+import { BrandingContent } from "../../components/services/BrandingContent";
+import { ProductionContent } from "../../components/services/ProductionContent";
+import { DesignContent } from "../../components/services/DesignContent";
 
 export async function getStaticPaths() {
     return services.map((service) => ({
@@ -148,6 +152,42 @@ const { service } = Astro.props;
                             <section class="pb-20 bg-white">
                                 <div class="max-w-6xl mx-auto px-6">
                                     <WebDevelopmentContent client:load />
+                                </div>
+                            </section>
+                        );
+                    }
+                    if (block.component === "DigitalMarketingContent") {
+                        return (
+                            <section class="pb-20 bg-white">
+                                <div class="max-w-6xl mx-auto px-6">
+                                    <DigitalMarketingContent client:load />
+                                </div>
+                            </section>
+                        );
+                    }
+                    if (block.component === "BrandingContent") {
+                        return (
+                            <section class="pb-20 bg-white">
+                                <div class="max-w-6xl mx-auto px-6">
+                                    <BrandingContent client:load />
+                                </div>
+                            </section>
+                        );
+                    }
+                    if (block.component === "ProductionContent") {
+                        return (
+                            <section class="pb-20 bg-white">
+                                <div class="max-w-6xl mx-auto px-6">
+                                    <ProductionContent client:load />
+                                </div>
+                            </section>
+                        );
+                    }
+                    if (block.component === "DesignContent") {
+                        return (
+                            <section class="pb-20 bg-white">
+                                <div class="max-w-6xl mx-auto px-6">
+                                    <DesignContent client:load />
                                 </div>
                             </section>
                         );

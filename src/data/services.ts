@@ -15,7 +15,7 @@ export interface FloatingIconSectionContent {
 
 export type ServiceContentBlock =
   | { type: 'html'; content: string }
-  | { type: 'component'; component: 'Technologies' | 'Pricing' | 'WebDevelopmentContent' };
+  | { type: 'component'; component: 'Technologies' | 'Pricing' | 'WebDevelopmentContent' | 'BrandingContent' | 'DigitalMarketingContent' | 'DesignContent' | 'ProductionContent' };
 
 export interface Service {
   id: string;
@@ -58,6 +58,12 @@ export const services: Service[] = [
       'https://images.unsplash.com/photo-1754764987594-2236e7736115?q=80&w=400&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1755048796967-75a82d214846?q=80&w=400&auto=format&fit=crop',
     ],
+    contentBlocks: [
+      {
+        type: 'component',
+        component: 'BrandingContent'
+      }
+    ],
     content: `
       <div class="space-y-6">
         <p class="text-gray-600">
@@ -93,6 +99,12 @@ export const services: Service[] = [
         </p>
       </div>
     `,
+    contentBlocks: [
+      {
+        type: 'component',
+        component: 'DigitalMarketingContent'
+      }
+    ],
   },
   {
     id: "03",
@@ -114,7 +126,14 @@ export const services: Service[] = [
           Our design process focuses on user research, wireframing, and high-fidelity prototyping to ensure your product delivers real value.
         </p>
       </div>
+      </div>
     `,
+    contentBlocks: [
+      {
+        type: 'component',
+        component: 'DesignContent'
+      }
+    ],
   },
   {
     id: "04",
@@ -229,6 +248,12 @@ export const services: Service[] = [
     color: "bg-video",
     tags: ["Product Insight", "Brand Story"],
     cardImage: "/images/service-card-imags/production.png",
+    contentBlocks: [
+      {
+        type: 'component',
+        component: 'ProductionContent'
+      }
+    ],
     content: `
       <div class="space-y-6">
         <p class="text-gray-600">
