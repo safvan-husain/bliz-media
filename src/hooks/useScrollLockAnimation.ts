@@ -24,12 +24,6 @@ import { useRef, useEffect, useState, useCallback, useMemo } from "react";
 import { useMotionValue } from "framer-motion";
 
 type ScrollPauseDirection = "forward" | "backward" | "both";
-type DetentSource = "wheel" | "touch";
-
-interface DetentLock {
-    direction: 1 | -1;
-    source: DetentSource;
-}
 
 export interface ScrollPausePoint {
     /**
@@ -123,34 +117,10 @@ export function useScrollLockAnimation({
     const pauseUntilRef = useRef(0);
     const pauseTimeoutRef = useRef<number | null>(null);
 
-    const detentLockRef = useRef<DetentLock | null>(null);
-
-    const wheelGestureActiveRef = useRef(false);
-    const wheelGestureTimeoutRef = useRef<number | null>(null);
-    const wheelGestureIdleMs = 140;
-
     const clearPauseTimeout = useCallback(() => {
         if (pauseTimeoutRef.current === null) return;
         window.clearTimeout(pauseTimeoutRef.current);
         pauseTimeoutRef.current = null;
-    }, []);
-
-    const clearWheelGestureTimeout = useCallback(() => {
-        if (wheelGestureTimeoutRef.current === null) return;
-        window.clearTimeout(wheelGestureTimeoutRef.current);
-        wheelGestureTimeoutRef.current = null;
-        wheelGestureActiveRef.current = false;
-    }, []);
-
-    const markWheelGestureActivity = useCallback(() => {
-        wheelGestureActiveRef.current = true;
-        if (wheelGestureTimeoutRef.current !== null) {
-            window.clearTimeout(wheelGestureTimeoutRef.current);
-        }
-        wheelGestureTimeoutRef.current = window.setTimeout(() => {
-            wheelGestureActiveRef.current = false;
-            wheelGestureTimeoutRef.current = null;
-        }, wheelGestureIdleMs);
     }, []);
 
     const startPause = useCallback(
@@ -293,7 +263,6 @@ export function useScrollLockAnimation({
             setIsLocked(false);
             removeScrollLock();
         }
-        detentLockRef.current = null;
     }, [removeScrollLock]);
 
     const shouldPreLockForScrollInput = useCallback((deltaY: number) => {
@@ -425,32 +394,13 @@ export function useScrollLockAnimation({
         e.preventDefault();
         e.stopPropagation();
 
-        const isNewWheelGesture = !wheelGestureActiveRef.current;
-        markWheelGestureActivity();
-
-        const deltaDirection = Math.sign(delta) < 0 ? -1 : 1;
-        const detentLock = detentLockRef.current;
-        if (detentLock) {
-            if (isNewWheelGesture || detentLock.source !== "wheel") {
-                detentLockRef.current = null;
-            } else if (deltaDirection === detentLock.direction) {
-                return;
-            } else {
-                detentLockRef.current = null;
-            }
-        }
-
         if (isPaused()) return;
 
         const next = Math.min(Math.max(current + delta * sensitivity, 0), 1);
         const pausePoint = getCrossedPausePoint(current, next, delta);
         if (pausePoint) {
             progress.set(pausePoint.at);
-            if (pausePoint.holdMs === 0) {
-                detentLockRef.current = { direction: deltaDirection, source: "wheel" };
-            } else {
-                startPause(pausePoint.holdMs);
-            }
+            startPause(pausePoint.holdMs);
             return;
         }
 
@@ -477,7 +427,6 @@ export function useScrollLockAnimation({
         getCrossedPausePoint,
         isPaused,
         lockScroll,
-        markWheelGestureActivity,
         normalizeWheelDeltaY,
         progress,
         sensitivity,
@@ -494,7 +443,6 @@ export function useScrollLockAnimation({
         if (prefersReducedMotion.current) return;
         isTouching.current = true;
         touchStartY.current = e.touches[0].clientY;
-        detentLockRef.current = null;
     }, []);
 
     const handleTouchMove = useCallback((e: TouchEvent) => {
@@ -523,16 +471,6 @@ export function useScrollLockAnimation({
         e.preventDefault();
         e.stopPropagation();
 
-        const deltaDirection = Math.sign(delta) < 0 ? -1 : 1;
-        const detentLock = detentLockRef.current;
-        if (detentLock && detentLock.source === "touch") {
-            if (deltaDirection === detentLock.direction) {
-                touchStartY.current = currentY;
-                return;
-            }
-            detentLockRef.current = null;
-        }
-
         if (isPaused()) {
             touchStartY.current = currentY;
             return;
@@ -544,11 +482,7 @@ export function useScrollLockAnimation({
         const pausePoint = getCrossedPausePoint(current, next, delta);
         if (pausePoint) {
             progress.set(pausePoint.at);
-            if (pausePoint.holdMs === 0) {
-                detentLockRef.current = { direction: deltaDirection, source: "touch" };
-            } else {
-                startPause(pausePoint.holdMs);
-            }
+            startPause(pausePoint.holdMs);
             touchStartY.current = currentY;
             return;
         }
@@ -587,7 +521,6 @@ export function useScrollLockAnimation({
     const handleTouchEnd = useCallback(() => {
         isTouching.current = false;
         touchStartY.current = 0;
-        detentLockRef.current = null;
     }, []);
 
     // Attach event listeners
@@ -611,9 +544,8 @@ export function useScrollLockAnimation({
     useEffect(() => {
         return () => {
             clearPauseTimeout();
-            clearWheelGestureTimeout();
         };
-    }, [clearPauseTimeout, clearWheelGestureTimeout]);
+    }, [clearPauseTimeout]);
 
     return {
         sectionRef,
