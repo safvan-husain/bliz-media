@@ -1,5 +1,5 @@
 ---
-import type { Plan } from '../data/services';
+import type { Plan } from "../data/services";
 
 interface Props {
   plan: Plan;
@@ -11,11 +11,13 @@ const { plan, serviceName } = Astro.props;
 function generateWhatsAppLink(planTitle: string, serviceName: string) {
   const message = `Hi! I'm interested in the ${planTitle} for ${serviceName}. Could you please provide more details?`;
   const encodedMessage = encodeURIComponent(message);
-  return `https://wa.me/YOUR_PHONE_NUMBER?text=${encodedMessage}`;
+  return `https://wa.me/971568752317?text=${encodedMessage}`;
 }
 ---
 
-<div class="bg-white rounded-3xl border-2 border-zinc-100 p-8 group-hover:border-primary/20 transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-primary/10 flex flex-col lg:h-full">
+<div
+  class="bg-white rounded-3xl border-2 border-zinc-100 p-8 group-hover:border-primary/20 transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-primary/10 flex flex-col lg:h-full"
+>
   {/* Plan Header */}
   <div class="text-center mb-8 flex-shrink-0">
     <h3 class="text-xl font-black tracking-tight text-[#0c1b33] my-2">
@@ -25,29 +27,33 @@ function generateWhatsAppLink(planTitle: string, serviceName: string) {
 
   {/* Features List */}
   <div class="mb-8 flex-shrink-0">
-    <h4 class="text-sm font-black tracking-[0.2em] text-[#0c1b33]/60 uppercase mb-4">
+    <h4
+      class="text-sm font-black tracking-[0.2em] text-[#0c1b33]/60 uppercase mb-4"
+    >
       Includes:
     </h4>
     <ul class="space-y-3">
-      {plan.includes.map((feature) => (
-        <li class="flex items-start gap-3">
-          {/* using text-white here to hide it while keepting it to match the height */}
-          <svg 
-            class={`${feature === ""? " text-white opacity-0" : "text-primary"} w-5 h-5  mt-0.5 flex-shrink-0`} 
-            fill="currentColor" 
-            viewBox="0 0 20 20"
-          >
-            <path 
-              fill-rule="evenodd" 
-              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" 
-              clip-rule="evenodd"
-            />
-          </svg>
-          <span class="text-sm text-[#0c1b33]/70 leading-relaxed">
-            {feature}
-          </span>
-        </li>
-      ))}
+      {
+        plan.includes.map((feature) => (
+          <li class="flex items-start gap-3">
+            {/* using text-white here to hide it while keepting it to match the height */}
+            <svg
+              class={`${feature === "" ? " text-white opacity-0" : "text-primary"} w-5 h-5  mt-0.5 flex-shrink-0`}
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <span class="text-sm text-[#0c1b33]/70 leading-relaxed">
+              {feature}
+            </span>
+          </li>
+        ))
+      }
     </ul>
   </div>
 
@@ -58,13 +64,15 @@ function generateWhatsAppLink(planTitle: string, serviceName: string) {
   <div class="mb-8 flex-shrink-0">
     <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-6 space-y-4">
       <div class="flex items-start gap-3">
-        <img 
-          src="/icons/deploy-svgrepo-com.svg" 
-          alt="Deployment" 
+        <img
+          src="/icons/deploy-svgrepo-com.svg"
+          alt="Deployment"
           class="w-5 h-5 mt-0.5 flex-shrink-0"
         />
         <div>
-          <span class="text-xs font-black tracking-[0.2em] text-[#0c1b33]/60 uppercase block">
+          <span
+            class="text-xs font-black tracking-[0.2em] text-[#0c1b33]/60 uppercase block"
+          >
             Deployment
           </span>
           <span class="text-sm text-[#0c1b33]/70">
@@ -72,15 +80,17 @@ function generateWhatsAppLink(planTitle: string, serviceName: string) {
           </span>
         </div>
       </div>
-      
+
       <div class="flex items-start gap-3">
-        <img 
-          src="/icons/hosting-svgrepo-com.svg" 
-          alt="Hosting" 
+        <img
+          src="/icons/hosting-svgrepo-com.svg"
+          alt="Hosting"
           class="w-5 h-5 mt-0.5 flex-shrink-0"
         />
         <div>
-          <span class="text-xs font-black tracking-[0.2em] text-[#0c1b33]/60 uppercase block">
+          <span
+            class="text-xs font-black tracking-[0.2em] text-[#0c1b33]/60 uppercase block"
+          >
             Hosting
           </span>
           <span class="text-sm text-[#0c1b33]/70">
@@ -99,16 +109,15 @@ function generateWhatsAppLink(planTitle: string, serviceName: string) {
     class="w-full inline-flex items-center justify-center gap-3 bg-[#0c1b33] text-white px-8 py-4 rounded-full font-black tracking-[0.2em] text-xs transition-all duration-500 hover:bg-primary hover:scale-105 hover:shadow-[0_0_30px_rgba(255,61,61,0.4)] active:scale-95 group flex-shrink-0"
   >
     CONTACT US
-    <svg 
-      class="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1" 
-      fill="currentColor" 
+    <svg
+      class="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1"
+      fill="currentColor"
       viewBox="0 0 20 20"
     >
-      <path 
-        fill-rule="evenodd" 
-        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" 
-        clip-rule="evenodd"
-      />
+      <path
+        fill-rule="evenodd"
+        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+        clip-rule="evenodd"></path>
     </svg>
   </a>
 </div>

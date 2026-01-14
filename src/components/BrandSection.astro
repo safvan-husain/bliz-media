@@ -2,13 +2,12 @@
 import BrandPhysics from "./BrandPhysics";
 import InfiniteTestimonials from "./InfiniteTestimonials.astro";
 
-interface Author {
+export interface Author {
     name: string;
-    handle: string;
     avatar: string;
 }
 
-interface Testimonial {
+export interface Testimonial {
     author: Author;
     text: string;
     href?: string;
@@ -38,8 +37,8 @@ const brands = [
 
 <section id="brands" class="overflow-hidden bg-gray-50 py-24">
     <div class="mx-auto max-w-[var(--max-width-container)] px-4 mb-12 flex flex-col items-center text-center gap-4">
-        <h2 class="text-3xl font-semibold leading-tight sm:text-5xl sm:leading-tight text-black">Trusted by Leading Brands</h2>
-        <p class="text-md max-w-[600px] font-medium text-[var(--color-muted-foreground)] sm:text-xl">Our clients trust us to blend creativity and strategy to deliver real business impact.</p>
+        <h2 class="text-3xl font-semibold leading-tight sm:text-5xl sm:leading-tight text-black">What Our Clients Say</h2>
+        <p class="text-md max-w-[600px] font-medium text-[var(--color-muted-foreground)] sm:text-xl">Real feedback from clients who’ve partnered with us to build impactful digital solutions.</p>
     </div>
 
     <div class="w-full mb-24">
@@ -52,18 +51,16 @@ const brands = [
         <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div>
                 <h2
-                    class="text-4xl font-bold tracking-tight text-black mb-6 md:text-5xl"
+                    class="flex flex-col text-4xl font-bold tracking-tight text-black mb-6 md:text-5xl mb-1"
                 >
-                    Powering the Next Generation of <span
-                        class="text-muted-foreground">Digital Innovation</span
+                    Trusted by Growing <span
+                        class="text-muted-foreground pt-2">Brands & Businesses</span
                     >
                 </h2>
                 <p
                     class="text-xl text-muted-foreground leading-relaxed mb-8 max-w-xl"
                 >
-                    We collaborate with world-class technology leaders to build
-                    scalable, high-performance solutions that redefine industry
-                    standards.
+                    We’ve partnered with startups, agencies, and businesses across industries to design, build, and scale impactful digital experiences.
                 </p>
                 <div class="flex flex-wrap gap-4">
                     <div
