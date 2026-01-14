@@ -196,16 +196,16 @@ export const DigitalMarketingContent = () => {
                     <p className="text-zinc-500 font-medium max-w-2xl">{CONTENT.whyChoose.description}</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
                     {CONTENT.whyChoose.items.map((item, idx) => (
                         <div
                             key={idx}
-                            className="flex flex-col items-center text-center gap-4 bg-secondary/95 p-6 rounded-2xl border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-sm h-40"
+                            className="flex flex-col items-center text-center gap-4 bg-secondary/95 p-6 rounded-2xl border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-sm h-42"
                         >
                             <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                                 <item.icon className="w-5 h-5" />
                             </div>
-                            <span className="font-medium text-white/90">{item.text}</span>
+                            <span className="font-medium text-white/90 text-sm">{item.text}</span>
                         </div>
                     ))}
                 </div>
