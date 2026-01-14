@@ -28,11 +28,11 @@ type ArcGalleryHeroProps = {
 
 export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
     images,
-    title = "Rediscover Your Memories with AI",
-    description = "Our intelligent platform finds, organizes, and brings your most cherished moments back to life.",
-    ctaText = "Explore Your Past",
+    title,
+    description,
+    ctaText,
     onCtaClick,
-    secondaryCtaText = "How It Works",
+    secondaryCtaText,
     onSecondaryCtaClick,
     startAngle = 20,
     endAngle = 160,
@@ -133,10 +133,10 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
             {/* Content positioned below the arc */}
             <div className="relative z-10 flex-1 flex items-center justify-center px-6 -mt-40 md:-mt-52 lg:-mt-[32rem]">
                 <div className="text-center max-w-2xl px-6 opacity-0 animate-fade-in" style={{ animationDelay: '800ms', animationFillMode: 'forwards' }}>
-                    <h1 className={`text-4xl sm:text-6xl lg:text-7xl font-black tracking-tighter leading-tight ${theme === 'dark' ? 'text-white' : 'text-secondary'}`}>
+                    <h1 className={`text-4xl sm:text-6xl lg:text-7xl text-black font-bold tracking-tighter`}>
                         {title}
                     </h1>
-                    <p className={`mt-6 text-xl font-medium ${theme === 'dark' ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                    <p className={`mt-6 text-xl font-medium text-zinc-600`}>
                         {description}
                     </p>
                     <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">

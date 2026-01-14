@@ -103,7 +103,6 @@ export const DesignContent = () => {
         <div className="space-y-24 py-12">
             {/* Intro Section */}
             <section className="space-y-6 max-w-6xl">
-                <span className="text-secondary font-bold tracking-wider uppercase text-sm">Design That Looks Good and Works Better</span>
                 <h3 className="text-3xl font-bold text-secondary leading-tight">
                     {CONTENT.intro.title}
                 </h3>

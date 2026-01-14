@@ -5,7 +5,7 @@ import { SparklesCore } from "../ui/sparkles";
 // Data Section - Keeping data separate from UI as per guidelines
 const aboutHeroData = {
     title: "About Us",
-    subtitle: "WE ARE THE FUTURE OF DIGITAL INNOVATION",
+    subtitle: "We are a team of creative designers, developers, and strategists dedicated to helping brands thrive in the digital era.",
     primaryButton: {
         text: "START YOUR PROJECT",
         link: "/quote"
@@ -18,10 +18,12 @@ const aboutHeroData = {
 
 interface AboutUsHeroProps {
     title?: string; // Optional prop to override default data
+    description?: string;
 }
 
-export function AboutUsHero({ title }: AboutUsHeroProps) {
+export function AboutUsHero({ title, description }: AboutUsHeroProps) {
     const displayTitle = title || aboutHeroData.title;
+    const displayDescription = description || aboutHeroData.subtitle;
 
     return (
         <div className="min-h-[70vh] w-full bg-background flex md:pt-38 flex-col items-center justify-center overflow-hidden relative">
@@ -37,10 +39,13 @@ export function AboutUsHero({ title }: AboutUsHeroProps) {
                 />
             </div>
 
-            <div className="relative z-20 flex flex-col items-center justify-center px-4">
-                <h1 className="md:text-6xl text-4xl lg:text-7xl font-black text-center text-foreground tracking-tighter leading-none mb-4 uppercase">
+            <div className="relative z-20 flex flex-col items-center justify-center px-4 text-center">
+                <h1 className={`text-4xl sm:text-6xl lg:text-7xl text-black font-bold tracking-tighter`}>
                     {displayTitle}
                 </h1>
+                <p className={`mt-6 text-xl font-medium text-zinc-600`}>
+                    {displayDescription}
+                </p>
 
                 <div className="w-[40rem] md:h-40 relative">
                     {/* Gradients - Using primary color from theme */}

@@ -70,17 +70,6 @@ const CONTENT = {
 export const BrandingContent = () => {
     return (
         <div className="space-y-24 py-12">
-            {/* Intro Section */}
-            <section className="space-y-6 max-w-6xl">
-                <h3 className="text-3xl font-bold text-secondary leading-tight">
-                    {CONTENT.intro.title}
-                </h3>
-                <div className="space-y-4 text-lg text-zinc-600 leading-relaxed">
-                    <p>{CONTENT.intro.p1}</p>
-                    <p>{CONTENT.intro.p2}</p>
-                </div>
-            </section>
-
             {/* Deliverables Section */}
             <section>
                 <div className="mb-10">

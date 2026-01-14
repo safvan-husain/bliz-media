@@ -49,8 +49,10 @@ function FloatingPaths({ position }: { position: number }) {
 
 export function DigitalMarketingHero({
     title = "Digital Marketing",
+    description,
 }: {
     title?: string;
+    description?: string;
 }) {
     const words = title.split(" ");
 
@@ -68,7 +70,7 @@ export function DigitalMarketingHero({
                     transition={{ duration: 2 }}
                     className="max-w-4xl mx-auto"
                 >
-                    <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold mb-8 tracking-tighter">
+                    <h1 className={`text-4xl sm:text-6xl lg:text-7xl text-black font-bold tracking-tighter`}>
                         {words.map((word, wordIndex) => (
                             <span
                                 key={wordIndex}
@@ -87,8 +89,7 @@ export function DigitalMarketingHero({
                                             stiffness: 150,
                                             damping: 25,
                                         }}
-                                        className="inline-block text-transparent bg-clip-text 
-                                        bg-gradient-to-r from-neutral-900 to-neutral-700/80"
+                                        className="inline-block"
                                     >
                                         {letter}
                                     </motion.span>
@@ -96,6 +97,10 @@ export function DigitalMarketingHero({
                             </span>
                         ))}
                     </h1>
+
+                    <p className={`mt-6 text-xl font-medium text-zinc-600`}>
+                        {description}
+                    </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-12">
                         <div

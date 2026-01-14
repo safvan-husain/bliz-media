@@ -28,7 +28,7 @@ export function BrandingHero({ title, description, images }: BrandingHeroProps) 
     return (
         <ArcGalleryHero
             title={title}
-            description={description || "Crafting iconic digital identities that command attention and drive meaningful connections."}
+            description={description}
             images={images && images.length > 0 ? images : defaultImages}
             ctaText="START YOUR PROJECT"
             onCtaClick={() => (window.location.href = "/quote")}

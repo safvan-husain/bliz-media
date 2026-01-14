@@ -29,11 +29,23 @@ const { service } = Astro.props;
 <Layout title={`${service.title} | Bliz Media`}>
     {
         service.slug === "digital-marketing" ? (
-            <DigitalMarketingHero title={service.title} client:load />
+            <DigitalMarketingHero
+                title={service.title}
+                description={service.excerpt}
+                client:load
+            />
         ) : service.slug === "web-development" ? (
-            <WebDevelopmentHero title={service.title} client:load />
+            <WebDevelopmentHero
+                title={service.title}
+                description={service.excerpt}
+                client:load
+            />
         ) : service.slug === "production" ? (
-            <ProductionHero title={service.title} client:load />
+            <ProductionHero
+                title={service.title}
+                description={service.excerpt}
+                client:load
+            />
         ) : service.slug === "branding" ? (
             <BrandingHero
                 title={service.title}
@@ -43,13 +55,14 @@ const { service } = Astro.props;
             />
         ) : (
             <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-white">
-                <div class="max-w-4xl mx-auto px-6 relative z-10 text-center space-y-12 pt-22">
-                    <div class="space-y-4">
-                        <SparklesText
-                            text={service.title}
-                            className="text-6xl md:text-9xl font-black tracking-tighter text-black leading-[0.85]"
-                            client:load
-                        />
+                <div class="max-w-4xl mx-auto px-6 relative z-10 text-center space-y-8 pt-22">
+                    <div class="space-y-6">
+                        <h1 class="text-4xl sm:text-6xl lg:text-7xl text-black font-bold tracking-tighter">
+                            {service.title}
+                        </h1>
+                        <p class="text-xl font-medium text-zinc-600">
+                            {service.excerpt}
+                        </p>
                     </div>
 
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4">

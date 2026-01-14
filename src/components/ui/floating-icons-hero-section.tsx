@@ -166,10 +166,10 @@ const FloatingIconsHero = React.forwardRef<
 
             {/* Container for the foreground content */}
             <div className="relative z-10 text-center px-4">
-                <h1 className="text-5xl md:text-7xl font-bold tracking-tight bg-gradient-to-b from-foreground to-foreground/70 text-transparent bg-clip-text leading-tight">
+                <h1 className={`text-4xl sm:text-6xl lg:text-7xl text-black font-bold tracking-tighter`}>
                     {title}
                 </h1>
-                <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground">
+                <p className={`mt-6 text-xl font-medium text-zinc-600 max-w-3xl mx-auto`}>
                     {subtitle}
                 </p>
                 <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">

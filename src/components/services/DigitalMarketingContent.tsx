@@ -100,12 +100,9 @@ export const DigitalMarketingContent = () => {
         <div className="space-y-24 py-12">
             {/* Intro Section */}
             <section className="space-y-6 max-w-6xl">
-                <div className="space-y-2">
-                    <p className="text-primary font-bold tracking-wider uppercase text-sm">{CONTENT.intro.subtitle}</p>
-                    <h3 className="text-3xl font-bold text-secondary leading-tight">
-                        {CONTENT.intro.title}
-                    </h3>
-                </div>
+                <h3 className="text-3xl font-bold text-secondary leading-tight">
+                    {CONTENT.intro.title}
+                </h3>
 
                 <div className="space-y-4 text-lg text-zinc-600 leading-relaxed">
                     <p>{CONTENT.intro.p1}</p>

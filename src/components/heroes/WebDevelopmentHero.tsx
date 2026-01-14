@@ -38,9 +38,10 @@ const IconVercel = (props: React.SVGProps<SVGSVGElement>) => (
 
 interface WebDevelopmentHeroProps {
     title: string;
+    description?: string;
 }
 
-export function WebDevelopmentHero({ title }: WebDevelopmentHeroProps) {
+export function WebDevelopmentHero({ title, description }: WebDevelopmentHeroProps) {
     const developmentService = services.find(s => s.slug === "web-development");
     const techIcons = developmentService?.floatingIconSectionContent?.icons || [];
 
@@ -70,7 +71,7 @@ export function WebDevelopmentHero({ title }: WebDevelopmentHeroProps) {
     return (
         <FloatingIconsHero
             title={title}
-            subtitle="We design and develop fast, secure, and scalable websites tailored to your business goals — from simple static sites to advanced custom web applications and e-commerce platforms"
+            subtitle={description || "We design and develop fast, secure, and scalable websites tailored to your business goals — from simple static sites to advanced custom web applications and e-commerce platforms"}
             ctaText="START YOUR PROJECT"
             ctaHref="/quote"
             secondaryCtaText="SEE OUR WORK"

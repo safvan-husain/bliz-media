@@ -40,7 +40,7 @@ export const services: Service[] = [
     slug: "branding",
     image: "/images/service-card-imags/branding.png",
     unsplashImage: "https://images.unsplash.com/photo-1548094990-c16ca90f1f0d",
-    excerpt: "Branding That Makes Your Business Memorable",
+    excerpt: "Build a strong, consistent brand that connects and converts",
     color: "bg-branding",
     tags: ["Brand Strategy", "Visual Identity"],
     heroImages: [
@@ -70,7 +70,7 @@ export const services: Service[] = [
     slug: "digital-marketing",
     image: "/images/service-card-imags/digital-marketing.png",
     unsplashImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
-    excerpt: "Digital Marketing That Drives Real Growth",
+    excerpt: "Strategic marketing designed to attract, engage, and convert",
     color: "bg-secondary",
     tags: ["Growth", "Lead Generation"],
     contentBlocks: [
@@ -103,7 +103,7 @@ export const services: Service[] = [
     slug: "web-development",
     image: "/images/service-card-imags/development.png",
     unsplashImage: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop",
-    excerpt: "e create fast, secure websites and web apps designed to grow with your business.",
+    excerpt: "High-performance websites built to scale your business",
     color: "bg-website",
     tags: ["Custom", "Scalable"],
     contentBlocks: [
@@ -194,7 +194,7 @@ export const services: Service[] = [
     slug: "production",
     image: "/images/service-card-imags/production.png",
     unsplashImage: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=800&auto=format&fit=crop",
-    excerpt: "Creative Production That Brings Your Brand to Life",
+    excerpt: "High-quality visual content designed to engage and inspire",
     color: "bg-video",
     tags: ["Content creation", "Post Production"],
     cardImage: "/images/service-card-imags/production.png",

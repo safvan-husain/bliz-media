@@ -4,9 +4,10 @@ import { ShaderAnimation } from "@/components/ui/shader-animation";
 
 interface ProductionHeroProps {
     title: string;
+    description?: string;
 }
 
-export function ProductionHero({ title }: ProductionHeroProps) {
+export function ProductionHero({ title, description }: ProductionHeroProps) {
     return (
         <div className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-white">
             <div className="absolute inset-0 z-0">
@@ -14,11 +15,11 @@ export function ProductionHero({ title }: ProductionHeroProps) {
             </div>
 
             <div className="relative z-10 flex flex-col items-center justify-center px-4 text-center">
-                <h1 className="pointer-events-none text-5xl md:text-8xl font-bold tracking-tighter text-black drop-shadow-2xl">
+                <h1 className={`text-4xl sm:text-6xl lg:text-7xl text-black font-bold tracking-tighter`}>
                     {title}
                 </h1>
-                <p className="mt-4 max-w-2xl text-lg md:text-xl text-zinc-600 font-medium">
-                    Pushing the boundaries of visual excellence with cutting-edge production techniques.
+                <p className={`mt-6 text-xl font-medium text-zinc-600`}>
+                    {description}
                 </p>
 
                 <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6">

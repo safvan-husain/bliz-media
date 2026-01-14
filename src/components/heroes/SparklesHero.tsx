@@ -31,14 +31,12 @@ export function SparklesHero({ title, subtitle, buttons }: SparklesHeroProps) {
             <div className="relative z-20 flex flex-col items-center justify-center text-center px-6">
                 <SparklesText
                     text={title}
-                    className="text-6xl md:text-9xl font-black tracking-tighter text-black leading-[0.85] mb-8"
+                    className="text-4xl sm:text-6xl lg:text-7xl text-black font-bold tracking-tighter"
                 />
 
-                {subtitle && (
-                    <p className="max-w-2xl text-zinc-600 text-lg md:text-xl mb-12">
-                        {subtitle}
-                    </p>
-                )}
+                <p className={`mt-6 text-xl font-medium text-zinc-600 max-w-2xl`}>
+                    {subtitle}
+                </p>
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                     {buttons?.map((button, index) => (

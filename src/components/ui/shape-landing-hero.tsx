@@ -166,18 +166,10 @@ function HeroGeometric({
                         initial="hidden"
                         animate="visible"
                     >
-                        <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-6 md:mb-8 tracking-tight">
-                            <span className="bg-clip-text text-transparent bg-gradient-to-b from-black to-black/50">
-                                {title1}
-                            </span>
+                        <h1 className="text-4xl sm:text-6xl lg:text-7xl text-black font-bold tracking-tighter">
+                            {title1}
                             <br />
-                            <span
-                                className={cn(
-                                    "bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-black/60 to-rose-300 "
-                                )}
-                            >
-                                {title2}
-                            </span>
+                            {title2}
                         </h1>
                     </motion.div>
 
@@ -187,7 +179,7 @@ function HeroGeometric({
                         initial="hidden"
                         animate="visible"
                     >
-                        <p className="text-base sm:text-lg md:text-xl text-white/40 mb-8 leading-relaxed font-light tracking-wide max-w-xl mx-auto px-4">
+                        <p className="mt-6 text-xl font-medium text-zinc-600 max-w-2xl mx-auto px-4">
                             Crafting exceptional digital experiences through
                             innovative design and cutting-edge technology.
                         </p>
