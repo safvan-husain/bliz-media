@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     Target,
     Eye,
@@ -22,7 +21,6 @@ import {
     FileSearch,
     Settings,
     Infinity,
-    CheckCircle
 } from 'lucide-react';
 
 const CONTENT = {
