@@ -57,9 +57,11 @@ const { service } = Astro.props;
             <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-white">
                 <div class="max-w-4xl mx-auto px-6 relative z-10 text-center space-y-8 pt-22">
                     <div class="space-y-6">
-                        <h1 class="text-4xl sm:text-6xl lg:text-7xl text-black font-bold tracking-tighter">
-                            {service.title}
-                        </h1>
+                        <SparklesText
+                            text={service.title}
+                            className="text-4xl sm:text-6xl lg:text-7xl text-black font-bold tracking-tighter"
+                            client:load
+                        />
                         <p class="text-xl font-medium text-zinc-600">
                             {service.excerpt}
                         </p>
