@@ -3,8 +3,9 @@ const contactInfo = {
   email: "info@blizmedia.com",
   phone: "+971 56 875 2317",
   address:
-    "One central, Dubai World Trade Centre - Sheikh Zayed Rd - Trade Center Second - Dubai - United Arab Emirates",
+    "One central, Dubai World Trade Centre - Sheikh Zayed Rd - Trade Center Second - Dubai - UAE",
   whatsapp: "https://wa.me/971568752317",
+  addressHref: "https://maps.app.goo.gl/FbovoMZndBviokjR8"
 };
 ---
 
@@ -66,7 +67,9 @@ const contactInfo = {
               >
                 <option>Web Development</option>
                 <option>Digital Marketing</option>
-                <option>Branding & Design</option>
+                <option>Branding</option>
+                <option>Design</option>
+                <option>Production</option>
                 <option>Other</option>
               </select>
             </div>
@@ -198,7 +201,7 @@ const contactInfo = {
                   </div>
                   <div>
                     <span class="block text-xs text-white/60">Location</span>
-                    <span class="block font-medium">{contactInfo.address}</span>
+                    <a href="https://maps.app.goo.gl/FbovoMZndBviokjR8" target="_blank" class="block font-medium text-sm max-w-[400px]">{contactInfo.address}</a>
                   </div>
                 </div>
               </div>
