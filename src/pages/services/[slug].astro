@@ -316,35 +316,20 @@ const relatedProjects = projects.filter(
                         .map((s, index) => (
                             <a
                                 href={`/services/${s.slug}`}
-                                class="group space-y-4 opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
+                                class="group relative aspect-video rounded-3xl overflow-hidden opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
                                 data-animate-on-scroll
                                 style={`transition-delay: ${index * 150}ms;`}
                             >
-                                <div class="aspect-video rounded-3xl overflow-hidden relative">
-                                    <img
-                                        src={s.unsplashImage || s.image}
-                                        alt={s.title}
-                                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                    />
-                                    <div class="absolute inset-0 bg-[#0c1b33]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="24"
-                                            height="24"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="white"
-                                            stroke-width="3"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        >
-                                            <path d="M7 17L17 7M17 7H7M17 7V17" />
-                                        </svg>
-                                    </div>
+                                <img
+                                    src={s.image}
+                                    alt={s.title}
+                                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                />
+                                <div class="absolute inset-0 bg-[#0c1b33]/60 group-hover:bg-[#0c1b33]/80 transition-colors duration-500 flex items-center justify-center p-6 text-center">
+                                    <h4 class="font-black text-xl tracking-tighter text-white transition-all duration-500 group-hover:scale-110">
+                                        {s.title}
+                                    </h4>
                                 </div>
-                                <h4 class="font-black text-lg tracking-tight text-[#0c1b33]/80 group-hover:text-primary transition-colors">
-                                    {s.title}
-                                </h4>
                             </a>
                         ))
                 }

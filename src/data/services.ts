@@ -30,7 +30,6 @@ export interface Service {
   floatingIconSectionContent?: FloatingIconSectionContent;
   heroImages?: string[];
   cardImage?: string;
-  unsplashImage?: string;
 }
 
 export const services: Service[] = [
@@ -39,7 +38,6 @@ export const services: Service[] = [
     title: "Branding",
     slug: "branding",
     image: "/images/service-card-imags/branding.png",
-    unsplashImage: "https://images.unsplash.com/photo-1548094990-c16ca90f1f0d",
     excerpt: "Build a strong, consistent brand that connects and converts",
     color: "bg-branding",
     tags: ["Branding"],
@@ -69,7 +67,6 @@ export const services: Service[] = [
     title: "Digital Marketing",
     slug: "digital-marketing",
     image: "/images/service-card-imags/digital-marketing.png",
-    unsplashImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
     excerpt: "Strategic marketing designed to attract, engage, and convert",
     color: "bg-secondary",
     tags: ["Digital Marketing"],
@@ -85,7 +82,6 @@ export const services: Service[] = [
     title: "Design",
     slug: "design",
     image: "/images/service-card-imags/design.png",
-    unsplashImage: "https://plus.unsplash.com/premium_photo-1661281412140-dfb328ae967b",
     excerpt: "Design That Looks Good and Works Better",
     color: "bg-profile",
     tags: ["Design"],
@@ -102,7 +98,6 @@ export const services: Service[] = [
     title: "Web Development",
     slug: "web-development",
     image: "/images/service-card-imags/development.png",
-    unsplashImage: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop",
     excerpt: "High-performance websites built to scale your business",
     color: "bg-website",
     tags: ["Web Development"],
@@ -193,7 +188,6 @@ export const services: Service[] = [
     title: "Production",
     slug: "production",
     image: "/images/service-card-imags/production.png",
-    unsplashImage: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=800&auto=format&fit=crop",
     excerpt: "High-quality visual content designed to engage and inspire",
     color: "bg-video",
     tags: ["Production"],
