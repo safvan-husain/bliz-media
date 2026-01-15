@@ -87,7 +87,7 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
                             },
                         },
                     }}
-                    className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-foreground"
+                    className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-foreground max-w-5xl"
                 >
                     {typeof title === 'string' ? (
                         title.split(" ").map((word, i) => (
@@ -109,7 +109,7 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
                     animate="show"
                     variants={FADE_IN_ANIMATION_VARIANTS}
                     transition={{ delay: 0.5 }}
-                    className="mt-6 max-w-xl text-lg text-muted-foreground"
+                    className="mt-6 max-w-xl text-lg text-muted-foreground max-w-4xl"
                 >
                     {description}
                 </motion.p>
