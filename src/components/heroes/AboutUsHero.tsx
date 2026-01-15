@@ -43,7 +43,7 @@ export function AboutUsHero({ title, description }: AboutUsHeroProps) {
                 <h1 className={`text-4xl sm:text-6xl lg:text-7xl text-black font-bold tracking-tighter`}>
                     {displayTitle}
                 </h1>
-                <p className={`mt-6 text-xl font-medium text-zinc-600`}>
+                <p className={`mt-4 text-xl font-medium text-zinc-600 max-w-3xl mb-2`}>
                     {displayDescription}
                 </p>
 
