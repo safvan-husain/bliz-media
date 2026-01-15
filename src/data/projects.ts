@@ -40,7 +40,7 @@ export const projects: Project[] = [
     image: "/images/projects/TravelGo.webp",
     class: "md:col-span-2 md:row-span-2",
     year: "2023",
-    service: "UI/UX Design",
+    service: "Design",
     slug: "travel-go",
     details: `
       <div class="space-y-6">
@@ -66,7 +66,7 @@ export const projects: Project[] = [
     image: "/images/projects/BertonMockup.webp",
     class: "md:col-span-3 md:row-span-2",
     year: "2023",
-    service: "Product Design",
+    service: "Design",
     slug: "berton",
     details: `
       <div class="space-y-6">
@@ -115,7 +115,7 @@ export const projects: Project[] = [
     image: "/images/projects/Ainam Perfume.webp",
     class: "md:col-span-1 md:row-span-1",
     year: "2024",
-    service: "E-commerce",
+    service: "Web Development",
     slug: "ainam-perfume",
     details: `
       <div class="space-y-6">
@@ -188,7 +188,7 @@ export const projects: Project[] = [
     image: "/images/projects/TIPTOP.webp",
     class: "md:col-span-1 md:row-span-1",
     year: "2023",
-    service: "SEO Analysis",
+    service: "Digital Marketing",
     slug: "tip-top",
     details: `
       <div class="space-y-6">

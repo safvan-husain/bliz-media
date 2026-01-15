@@ -2,11 +2,9 @@
 import Layout from "../../layouts/Layout.astro";
 import { projects } from "../../data/projects";
 import Testimonials from "@/components/Testimonials.astro";
+import { services as servicesData } from "../../data/services";
 
-const services = [
-  "All",
-  ...new Set(projects.map((project) => project.service)),
-];
+const services = ["All", ...servicesData.map((s) => s.title)];
 ---
 
 <Layout title="Projects | Our Work">
