@@ -2,13 +2,11 @@
 import Layout from "../../layouts/Layout.astro";
 import Services from "../../components/Services.astro";
 import ServicesHero from "../../components/ServicesHero.tsx";
-import WhyChooseUs from "@/components/WhyChooseUs.astro";
 ---
 
 <Layout title="Our Services | Bliz Media">
     <ServicesHero client:load />
     <div class="pt-20">
         <Services showViewAll={false} />
-        <WhyChooseUs />
     </div>
 </Layout>
