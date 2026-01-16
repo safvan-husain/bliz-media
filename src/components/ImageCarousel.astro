@@ -1,0 +1,93 @@
+---
+const images = [
+    "/images/home-hero/✅ move-smarter.webp",
+    "/images/home-hero/✅✅ (1).webp",
+    "/images/home-hero/✅✅ (2).webp",
+    "/images/home-hero/✅✅ (3).webp",
+    "/images/home-hero/✅✅ (4).webp",
+    "/images/home-hero/✅✅ (5).webp",
+    "/images/home-hero/✅✅.webp",
+    "/images/home-hero/✅✅1.webp",
+    "/images/home-hero/✅✅6.webp",
+    "/images/home-hero/✅✅Artboard 13x.webp",
+    "/images/home-hero/✅✅DUBAILAND, DUBAI.webp",
+];
+
+// Duplicate items for seamless loop
+const items = [...images, ...images];
+---
+
+<section class="py-24 bg-white overflow-hidden">
+    <div class="w-full overflow-hidden">
+        <div class="marquee-wrapper flex gap-6">
+            <div class="marquee-group flex gap-6 items-stretch">
+                {
+                    items.map((src) => (
+                        <div class="flex-none w-[40vw] md:w-[200px] aspect-[3/4]">
+                            <div class="w-full h-full rounded-xl overflow-hidden shadow-lg border border-gray-100 group/item relative">
+                                <img
+                                    src={src}
+                                    alt="Showcase item"
+                                    class="w-full h-full object-cover transition-transform duration-700 group-hover/item:scale-110"
+                                    loading="lazy"
+                                />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity duration-500" />
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+
+            <!-- Duplicate group for infinite scroll -->
+            <div
+                class="marquee-group flex gap-6 items-stretch"
+                aria-hidden="true"
+            >
+                {
+                    items.map((src) => (
+                        <div class="flex-none w-[40vw] md:w-[200px] aspect-[3/4]">
+                            <div class="w-full h-full rounded-xl overflow-hidden shadow-lg border border-gray-100 group/item relative">
+                                <img
+                                    src={src}
+                                    alt="Showcase item"
+                                    class="w-full h-full object-cover transition-transform duration-700 group-hover/item:scale-110"
+                                    loading="lazy"
+                                />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity duration-500" />
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .marquee-wrapper {
+        width: max-content;
+    }
+
+    .marquee-group {
+        animation: scroll 80s linear infinite;
+        flex-shrink: 0;
+    }
+
+    .marquee-wrapper:hover .marquee-group {
+        animation-play-state: paused;
+    }
+
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-100% - 1.5rem));
+        }
+    }
+
+    /* Standard no-scrollbar for safety, though overflow-hidden handles it */
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+</style>
