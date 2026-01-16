@@ -28,7 +28,7 @@ const items = [...images, ...images];
                                 <img
                                     src={src}
                                     alt="Showcase item"
-                                    class="w-full h-full object-cover transition-transform duration-700 group-hover/item:scale-110"
+                                    class="w-full h-full object-cover transition-transform duration-700"
                                     loading="lazy"
                                 />
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity duration-500" />
@@ -50,7 +50,7 @@ const items = [...images, ...images];
                                 <img
                                     src={src}
                                     alt="Showcase item"
-                                    class="w-full h-full object-cover transition-transform duration-700 group-hover/item:scale-110"
+                                    class="w-full h-full object-cover transition-transform duration-700"
                                     loading="lazy"
                                 />
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity duration-500" />
@@ -73,9 +73,9 @@ const items = [...images, ...images];
         flex-shrink: 0;
     }
 
-    .marquee-wrapper:hover .marquee-group {
+    /* .marquee-wrapper:hover .marquee-group {
         animation-play-state: paused;
-    }
+    } */
 
     @keyframes scroll {
         0% {
