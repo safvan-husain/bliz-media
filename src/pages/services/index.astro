@@ -2,20 +2,12 @@
 import Layout from "../../layouts/Layout.astro";
 import Services from "../../components/Services.astro";
 import ServicesHero from "../../components/ServicesHero.tsx";
-import FeaturedProjects from "../../components/FeaturedProjects.astro";
 ---
 
 <Layout title="Our Services | Bliz Media">
     <ServicesHero client:load />
     <div class="pt-20">
         <Services showViewAll={false} />
-    </div>
-
-    <div
-        class="opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
-        data-animate-on-scroll
-    >
-        <FeaturedProjects />
     </div>
 
     <script>
