@@ -1,14 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { AboutUsHero } from "../components/heroes/AboutUsHero";
-import Team from "../components/Team.astro";
 import Achievements from "../components/Achievements.astro";
 ---
 
 <Layout title="About Us - Bliz Media">
   <AboutUsHero client:load />
   <Achievements />
-  <Team />
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const observer = new IntersectionObserver(
