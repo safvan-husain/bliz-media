@@ -1,108 +1,51 @@
 export interface TeamMember {
+    id: string;
     name: string;
     role: string;
-    imagePath: string;
-    description?: string;
-    bgColor?: string;
+    image: string;
+    bio: string;
+    color?: string; // Optional accent color
 }
 
-export const founders: TeamMember[] = [
+export const otherTeamMembers: TeamMember[] = [
     {
-        name: "Anwar Sadiq",
-        role: "Founder",
-        imagePath: "/images/team/anwar-sadiq.png",
-        bgColor: "bg-team-green",
+        id: "01",
+        name: "James Wilson",
+        role: "Senior Designer",
+        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2544&auto=format&fit=crop",
+        bio: "Crafting intuitive and beautiful user interfaces.",
+        color: "bg-primary"
     },
     {
-        name: "Ajnas VP",
-        role: "Founder",
-        imagePath: "/images/team/ajnas-vp.png",
-        bgColor: "bg-team-blue",
-    },
-
-];
-
-export const leaders: TeamMember[] = [
-    {
-        name: "Hujjath",
-        role: "Head of Development",
-        imagePath: "/images/team/leaders/Hujjath.webp",
-    },
-    {
-        name: "Salman",
-        role: "Head of Strategy",
-        imagePath: "/images/team/leaders/Salman.webp",
-    },
-    {
-        name: "Sinan",
-        role: "Operations Lead",
-        imagePath: "/images/team/leaders/Sinan.webp",
-    },
-    {
-        name: "Vaishnav",
-        role: "Head of Product",
-        imagePath: "/images/team/leaders/Vaishnav.webp",
-    },
-    {
-        name: "Saleel",
-        role: "Marketing Strategist",
-        imagePath: "/images/team/leaders/Saleel.webp",
-        bgColor: "bg-team-olive",
-    },
-    {
-        name: "Nikhil",
-        role: "Tech Lead",
-        imagePath: "https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?q=80&w=800&auto=format&fit=crop",
-    },
-];
-
-export const coreTeam: TeamMember[] = [
-    {
-        name: "Maya Singh",
-        role: "UI Designer",
-        imagePath:
-            "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop",
-    },
-    {
-        name: "Ethan Brooks",
-        role: "Frontend Developer",
-        imagePath:
-            "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop",
-    },
-    {
-        name: "Ava Martinez",
-        role: "Backend Developer",
-        imagePath:
-            "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop",
-    },
-    {
-        name: "Liam Foster",
-        role: "SEO Specialist",
-        imagePath:
-            "https://images.unsplash.com/photo-1502767089025-6572583495b4?q=80&w=800&auto=format&fit=crop",
-    },
-    {
-        name: "Chloe Bennett",
-        role: "Copywriter",
-        imagePath:
-            "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=800&auto=format&fit=crop",
-    },
-    {
-        name: "Owen Price",
+        id: "02",
+        name: "Lisa Wong",
         role: "Project Manager",
-        imagePath:
-            "https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?q=80&w=800&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2670&auto=format&fit=crop",
+        bio: "Keeping projects on track and teams aligned.",
+        color: "bg-secondary"
     },
     {
-        name: "Sophia Wallace",
-        role: "Motion Designer",
-        imagePath:
-            "https://images.unsplash.com/photo-1524502397800-2eeaad7c3fe5?q=80&w=800&auto=format&fit=crop",
+        id: "03",
+        name: "Robert Fox",
+        role: "Content Strategist",
+        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=2544&auto=format&fit=crop",
+        bio: "Telling compelling stories that resonate with audiences.",
+        color: "bg-team-green"
     },
     {
-        name: "Jackson Lee",
+        id: "04",
+        name: "Maria Garcia",
         role: "Social Media Manager",
-        imagePath:
-            "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=80&w=800&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2544&auto=format&fit=crop",
+        bio: "Building communities and driving engagement.",
+        color: "bg-team-blue"
     },
+    {
+        id: "05",
+        name: "William Chen",
+        role: "Motion Graphics",
+        image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=2544&auto=format&fit=crop",
+        bio: "Bringing brands to life through movement.",
+        color: "bg-team-olive"
+    }
 ];

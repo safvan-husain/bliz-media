@@ -1,0 +1,99 @@
+---
+import type { TeamMember } from "../data/team";
+
+interface Props {
+    members: TeamMember[];
+}
+
+const { members } = Astro.props;
+---
+
+<div class="pb-12 px-6">
+    <div class="max-w-[var(--max-width-container)] mx-auto flex flex-col gap-6">
+        {
+            members.map((member) => (
+                <div class="group relative h-[420px] rounded-[2rem] overflow-hidden shadow-2xl transition-all duration-700 hover:scale-[1.01] block isolate">
+                    <div class="absolute inset-0 bg-zinc-900">
+                        <img
+                            src={member.image}
+                            alt={member.name}
+                            class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110 grayscale group-hover:grayscale-0"
+                            loading="lazy"
+                        />
+                    </div>
+
+                    <div
+                        class={`absolute inset-0 ${member.color || "bg-secondary"} opacity-20 mix-blend-overlay transition-all duration-700 group-hover:opacity-40`}
+                    />
+
+                    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90 opacity-90" />
+
+                    <div class="absolute inset-0 flex flex-col items-center justify-end p-8 text-center text-white z-10 pb-16">
+                        <span class="inline-block px-3 py-1 mb-3 text-xs font-medium tracking-wider text-white/80 border border-white/20 rounded-full uppercase transition-all duration-500 group-hover:-translate-y-2">
+                            {member.role}
+                        </span>
+                        <h3 class="text-3xl font-bold tracking-tight mb-2 transition-all duration-700 group-hover:scale-105 group-hover:-translate-y-2">
+                            {member.name}
+                        </h3>
+                        <p class="max-w-xs text-sm font-medium text-white/70 leading-relaxed transition-all duration-700 delay-75 group-hover:-translate-y-2 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0">
+                            {member.bio}
+                        </p>
+                    </div>
+
+                    <div class="absolute inset-0 border-[1px] border-white/10 group-hover:border-white/30 transition-all duration-1000 rounded-[2rem] pointer-events-none scale-95 group-hover:scale-100" />
+                </div>
+            ))
+        }
+
+        <a
+            href="/contact"
+            class="group relative h-[420px] rounded-[2rem] overflow-hidden shadow-2xl transition-all duration-700 hover:scale-[1.01] block isolate bg-[#0c1b33] border border-white/10"
+        >
+            <div
+                class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-50"
+            >
+            </div>
+            <div
+                class="absolute -bottom-24 -right-24 w-64 h-64 bg-primary/20 rounded-full blur-3xl group-hover:bg-primary/30 transition-all duration-700"
+            >
+            </div>
+
+            <div
+                class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center text-white z-10"
+            >
+                <h3
+                    class="text-4xl font-black tracking-tighter mb-8 transition-all duration-700 group-hover:scale-105"
+                >
+                    Join Our
+                    <br /> Team
+                </h3>
+
+                <div
+                    class="bg-white text-secondary px-12 py-6 rounded-full font-black tracking-[0.2em] text-sm flex items-center gap-4 border border-transparent transition-all duration-500 hover:bg-primary hover:text-white hover:scale-110 active:scale-95 group-hover:-translate-y-2"
+                >
+                    APPLY NOW
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="3"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="transition-transform duration-500 group-hover:translate-x-1"
+                    >
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </div>
+            </div>
+
+            <div
+                class="absolute inset-0 border-[1px] border-white/10 group-hover:border-white/30 transition-all duration-1000 rounded-[2rem] pointer-events-none scale-95 group-hover:scale-100"
+            >
+            </div>
+        </a>
+    </div>
+</div>

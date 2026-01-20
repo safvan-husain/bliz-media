@@ -2,11 +2,26 @@
 import Layout from "../layouts/Layout.astro";
 import { AboutUsHero } from "../components/heroes/AboutUsHero";
 import Achievements from "../components/Achievements.astro";
+import TeamSection from "../components/TeamSection.astro";
+import OtherTeamMembers from "../components/OtherTeamMembers.astro";
 ---
 
 <Layout title="About Us - Bliz Media">
-  <AboutUsHero client:load />
-  <Achievements />
+  <!-- Snap Container Wrapper if needed, but we target HTML/Body via global styles below -->
+
+  <div class="snap-start min-h-screen w-full overflow-hidden">
+    <AboutUsHero client:load />
+    <div class="snap-start w-full flex items-center justify-center bg-slate-50">
+      <Achievements />
+    </div>
+  </div>
+
+  <TeamSection />
+
+  <div class="snap-start min-h-screen w-full bg-zinc-50">
+    <OtherTeamMembers />
+  </div>
+
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const observer = new IntersectionObserver(
@@ -27,3 +42,18 @@ import Achievements from "../components/Achievements.astro";
     });
   </script>
 </Layout>
+
+<style is:global>
+  html {
+    scroll-snap-type: y proximity;
+    scroll-behavior: smooth;
+  }
+
+  /* Ensure consistent heights for snapping */
+  main,
+  body {
+    height: 100%;
+  }
+
+  /* Optional: Hide scrollbar for cleaner look if desired, but user didn't ask */
+</style>
