@@ -9,22 +9,42 @@ Marketing and web development agency website built with Astro, React islands, an
 - Tailwind CSS 4 (`@tailwindcss/vite`)
 - TypeScript
 - Motion/animation libraries (`framer-motion`, `motion`, `tsparticles`, `three`, `matter-js`)
+- Docker + Nginx (production container)
 
-## Run Locally
+## Local Development
+
+1. Install dependencies:
 
 ```bash
 npm install
+```
+
+2. Start dev server:
+
+```bash
 npm run dev
 ```
 
-Default dev URL: `http://localhost:4321`
+App runs on `http://localhost:4321`.
 
 ## Scripts
 
-- `npm run dev` - Start Astro dev server
-- `npm run build` - Build production output to `dist/`
-- `npm run preview` - Preview the built site
-- `npm run astro` - Run Astro CLI commands
+| Command | Purpose |
+| :-- | :-- |
+| `npm run dev` | Run Astro dev server |
+| `npm run build` | Build production output to `dist/` |
+| `npm run preview` | Preview production build locally |
+| `npm run astro -- --help` | Show Astro CLI help |
+
+## Docker
+
+Run with Docker Compose:
+
+```bash
+docker compose up --build
+```
+
+This builds the Astro project and serves `dist/` with Nginx on port `4321`.
 
 ## Project Structure
 
@@ -42,9 +62,9 @@ Default dev URL: `http://localhost:4321`
 └── package.json
 ```
 
-## Routes
+## Key Routes
 
-- `/` Home
+- `/`
 - `/about`
 - `/contact`
 - `/services`
@@ -54,24 +74,27 @@ Default dev URL: `http://localhost:4321`
 - `/blogs`
 - `/blogs/[slug]`
 
-## Content and Styling Conventions
+## Content Management
 
-- Keep reusable UI in `src/components`.
-- Keep editable content in `src/data` as object/array lists.
-- Use Tailwind utility classes for styling.
-- Use color tokens defined in `src/styles/global.css` instead of hardcoded colors.
-- Single-theme project only (no dark mode support).
+To update site content, edit data files in `src/data/`:
 
-## Deployment
+- `src/data/services.ts`
+- `src/data/projects.ts`
+- `src/data/blogs.ts`
+- `src/data/team.ts`
 
-Build the project:
+This keeps UI components separate from data.
+
+## Styling Notes
+
+- Use Tailwind utility classes for component styling.
+- Reuse color/theme variables from `src/styles/global.css`.
+- This project uses a single light theme (no dark mode).
+
+## Build Output
+
+Production assets are generated in `dist/` via:
 
 ```bash
 npm run build
-```
-
-Preview production build locally:
-
-```bash
-npm run preview
 ```
