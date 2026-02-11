@@ -1,46 +1,77 @@
-# Astro Starter Kit: Basics
+# Bliz Media Landing Page
 
-```sh
-npm create astro@latest -- --template basics
+Marketing and web development agency website built with Astro, React islands, and Tailwind CSS.
+
+## Tech Stack
+
+- Astro 5
+- React 19 (`@astrojs/react`)
+- Tailwind CSS 4 (`@tailwindcss/vite`)
+- TypeScript
+- Motion/animation libraries (`framer-motion`, `motion`, `tsparticles`, `three`, `matter-js`)
+
+## Run Locally
+
+```bash
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Default dev URL: `http://localhost:4321`
 
-## 🚀 Project Structure
+## Scripts
 
-Inside of your Astro project, you'll see the following folders and files:
+- `npm run dev` - Start Astro dev server
+- `npm run build` - Build production output to `dist/`
+- `npm run preview` - Preview the built site
+- `npm run astro` - Run Astro CLI commands
+
+## Project Structure
 
 ```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
+.
+├── public/                     # Static assets (images, icons, logos)
+├── src/
+│   ├── components/             # Reusable UI sections and React/Astro components
+│   ├── data/                   # Content/data sources (services, projects, blogs, team)
+│   ├── hooks/                  # Reusable client-side hooks
+│   ├── layouts/                # Shared page layouts
+│   ├── pages/                  # Route files
+│   └── styles/global.css       # Tailwind import + global theme tokens
+├── astro.config.mjs
 └── package.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Routes
 
-## 🧞 Commands
+- `/` Home
+- `/about`
+- `/contact`
+- `/services`
+- `/services/[slug]`
+- `/projects`
+- `/project/[slug]`
+- `/blogs`
+- `/blogs/[slug]`
 
-All commands are run from the root of the project, from a terminal:
+## Content and Styling Conventions
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- Keep reusable UI in `src/components`.
+- Keep editable content in `src/data` as object/array lists.
+- Use Tailwind utility classes for styling.
+- Use color tokens defined in `src/styles/global.css` instead of hardcoded colors.
+- Single-theme project only (no dark mode support).
 
-## 👀 Want to learn more?
+## Deployment
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Build the project:
+
+```bash
+npm run build
+```
+
+Preview production build locally:
+
+```bash
+npm run preview
+```
