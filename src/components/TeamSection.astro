@@ -55,40 +55,181 @@ const sections = [
 ];
 ---
 
-{sections.map(({ title, members, colorClass }) => (
-    <section class="h-screen w-full snap-start shrink-0 flex flex-col items-center justify-center relative overflow-hidden bg-white px-4 md:px-0">
-        <!-- Background Ambience -->
-        <div class={cn("absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none", colorClass)}>
-            <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl bg-current mix-blend-multiply animate-blob"></div>
-            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl bg-current mix-blend-multiply animate-blob animation-delay-2000"></div>
-        </div>
+<div data-team-snap-root class="w-full">
+  {sections.map(({ title, members, colorClass }, index) => (
+      <section
+        data-team-snap-panel
+        data-team-snap-index={index}
+        class="h-screen w-full snap-start shrink-0 flex flex-col items-center justify-center relative overflow-hidden bg-white px-4 md:px-0"
+      >
+          <!-- Background Ambience -->
+          <div class={cn("absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none", colorClass)}>
+              <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl bg-current mix-blend-multiply animate-blob"></div>
+              <div class="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl bg-current mix-blend-multiply animate-blob animation-delay-2000"></div>
+          </div>
 
-        <!-- Title Section -->
-        <div class="absolute bottom-44 left-8 md:bottom-1/2 md:translate-y-1/2 md:left-20 z-10 pointer-events-none">
-            <h2 class="text-6xl md:text-8xl font-bold text-secondary tracking-tighter leading-[0.85]">
-                {title.split(' ').map((word) => <span class="block">{word}</span>)}
-            </h2>
-        </div>
+          <!-- Title Section -->
+          <div class="absolute bottom-44 left-8 md:bottom-1/2 md:translate-y-1/2 md:left-20 z-10 pointer-events-none">
+              <h2 class="text-6xl md:text-8xl font-bold text-secondary tracking-tighter leading-[0.85]">
+                  {title.split(' ').map((word) => <span class="block">{word}</span>)}
+              </h2>
+          </div>
 
-        <!-- Hanging Team Members -->
-        <div class="absolute top-0 right-4 md:right-24 flex flex-row gap-6 md:gap-10 z-20">
-            {members.map((member, index) => (
-                <div class="flex flex-col items-center gap-4 group">
-                    <div class="relative w-[240px] md:w-[380px] h-[350px] md:h-[720px] rounded-b-[3rem] rounded-t-none overflow-hidden bg-gray-900 shadow-2xl transition-all duration-500 hover:h-[380px] md:hover:h-[750px]">
-                        <img
-                            src={member.image}
-                            alt={member.name}
-                            class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0 opacity-90 group-hover:opacity-100"
-                        />
-                    </div>
-                    <div class="text-center transition-all duration-300 group-hover:translate-y-1">
-                        <h3 class="text-2xl font-bold text-secondary mb-1">{member.name}</h3>
-                        <p class="text-xs font-bold tracking-widest text-gray-500 uppercase">
-                            {member.role}
-                        </p>
-                    </div>
-                </div>
-            ))}
-        </div>
-    </section>
-))}
+          <!-- Hanging Team Members -->
+          <div class="absolute top-0 right-4 md:right-24 flex flex-row gap-6 md:gap-10 z-20">
+              {members.map((member) => (
+                  <div class="flex flex-col items-center gap-4 group">
+                      <div class="relative w-[240px] md:w-[380px] h-[350px] md:h-[720px] rounded-b-[3rem] rounded-t-none overflow-hidden bg-gray-900 shadow-2xl transition-all duration-500 hover:h-[380px] md:hover:h-[750px]">
+                          <img
+                              src={member.image}
+                              alt={member.name}
+                              class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0 opacity-90 group-hover:opacity-100"
+                          />
+                      </div>
+                      <div class="text-center transition-all duration-300 group-hover:translate-y-1">
+                          <h3 class="text-2xl font-bold text-secondary mb-1">{member.name}</h3>
+                          <p class="text-xs font-bold tracking-widest text-gray-500 uppercase">
+                              {member.role}
+                          </p>
+                      </div>
+                  </div>
+              ))}
+          </div>
+      </section>
+  ))}
+</div>
+
+<script>
+  const root = document.querySelector("[data-team-snap-root]");
+  if (root) {
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+
+    const panels = Array.from(root.querySelectorAll("[data-team-snap-panel]"));
+    const yTolerance = 24;
+
+    let lastY = window.scrollY;
+    let lastDirection = "down";
+    let isSnapping = false;
+    let scrollEndTimer = 0;
+    let scrollSessionActive = false;
+    let alignedIndexAtScrollStart = null;
+
+    const isAnyPanelInView = () =>
+      panels.some((panel) => {
+        const rect = panel.getBoundingClientRect();
+        return rect.bottom > 0 && rect.top < window.innerHeight;
+      });
+
+    const getPanelStarts = () =>
+      panels.map((panel) => panel.getBoundingClientRect().top + window.scrollY);
+
+    const getCurrentPanelIndex = (panelStarts, currentY) => {
+      let currentIndex = 0;
+      for (let i = 0; i < panelStarts.length; i++) {
+        if (panelStarts[i] <= currentY + yTolerance) currentIndex = i;
+        else break;
+      }
+      return currentIndex;
+    };
+
+    const scrollToStart = (top) => {
+      isSnapping = true;
+      window.scrollTo({
+        top,
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+      });
+      window.setTimeout(() => {
+        isSnapping = false;
+      }, prefersReducedMotion ? 0 : 450);
+    };
+
+	    const maybeSnap = () => {
+	      if (isSnapping) return;
+	      if (!panels.length) return;
+	      if (!isAnyPanelInView()) return;
+
+	      const currentY = window.scrollY;
+	      const panelStarts = getPanelStarts();
+	      const currentIndex = getCurrentPanelIndex(panelStarts, currentY);
+	      const isLeavingTeamSection =
+	        (currentIndex === 0 && lastDirection === "up") ||
+	        (currentIndex === panels.length - 1 && lastDirection === "down");
+	      const currentStart = panelStarts[currentIndex] ?? 0;
+	      const currentPanel = panels[currentIndex];
+	      const currentPanelHeight = currentPanel?.getBoundingClientRect().height ?? window.innerHeight;
+
+	      const alignedIndex = alignedIndexAtScrollStart;
+	      scrollSessionActive = false;
+	      alignedIndexAtScrollStart = null;
+
+	      if (isLeavingTeamSection) return;
+
+	      if (alignedIndex !== null && currentIndex === alignedIndex) {
+	        const targetIndex =
+	          lastDirection === "down"
+	            ? Math.min(alignedIndex + 1, panels.length - 1)
+	            : Math.max(alignedIndex - 1, 0);
+        const targetTop = panelStarts[targetIndex] ?? currentStart;
+        if (Math.abs(currentY - targetTop) > yTolerance) scrollToStart(targetTop);
+        return;
+      }
+
+      if (Math.abs(currentY - currentStart) <= yTolerance) return;
+
+      const progress = Math.max(
+        0,
+        Math.min(1, (currentY - currentStart) / Math.max(1, currentPanelHeight)),
+      );
+
+      const isScrollingDown = lastDirection === "down";
+      const prevIndex = Math.max(currentIndex - 1, 0);
+      const nextIndex = Math.min(currentIndex + 1, panels.length - 1);
+      const targetIndex = isScrollingDown
+        ? progress >= 0.5
+          ? nextIndex
+          : currentIndex
+        : progress <= 0.5
+          ? prevIndex
+          : currentIndex;
+
+      const targetTop = panelStarts[targetIndex] ?? currentStart;
+      scrollToStart(targetTop);
+    };
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (isSnapping) {
+          lastY = window.scrollY;
+          window.clearTimeout(scrollEndTimer);
+          return;
+        }
+
+        if (!isAnyPanelInView()) {
+          lastY = window.scrollY;
+          return;
+        }
+
+        const currentY = window.scrollY;
+        if (!scrollSessionActive) {
+          scrollSessionActive = true;
+          const panelStarts = getPanelStarts();
+          const currentIndex = getCurrentPanelIndex(panelStarts, currentY);
+          const currentStart = panelStarts[currentIndex] ?? 0;
+          alignedIndexAtScrollStart =
+            Math.abs(currentY - currentStart) <= yTolerance ? currentIndex : null;
+        }
+
+        if (currentY > lastY) lastDirection = "down";
+        else if (currentY < lastY) lastDirection = "up";
+        lastY = currentY;
+
+        window.clearTimeout(scrollEndTimer);
+        scrollEndTimer = window.setTimeout(maybeSnap, 110);
+      },
+      { passive: true },
+    );
+  }
+</script>

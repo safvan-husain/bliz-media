@@ -1,214 +1,245 @@
 ---
 const contactInfo = {
-  email: "info@blizmedia.com",
-  phone: "+971 56 875 2317",
-  address:
-    "One central, Dubai World Trade Centre - Sheikh Zayed Rd - Trade Center Second - Dubai - UAE",
-  whatsapp: "https://wa.me/971568752317",
-  addressHref: "https://maps.app.goo.gl/FbovoMZndBviokjR8"
+    email: "info@blizmedia.com",
+    phone: "+971 56 875 2317",
+    address:
+        "One central, Dubai World Trade Centre - Sheikh Zayed Rd - Trade Center Second - Dubai - UAE",
+    whatsapp: "https://wa.me/971568752317",
+    addressHref: "https://maps.app.goo.gl/FbovoMZndBviokjR8",
 };
 ---
 
 <section id="contact" class="py-24 bg-neutral-50 overflow-hidden">
-  <div class="container mx-auto px-4 md:px-0">
-    <div class="max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <!-- Left Side: Form -->
-        <div class="order-2 lg:order-1">
-          <div class="mb-10">
-            <span
-              class="text-primary font-bold tracking-widest uppercase text-sm mb-4 block"
-              >Get In Touch</span
-            >
-            <h2
-              class="text-4xl md:text-5xl font-bold text-secondary mb-6 leading-tight"
-            >
-              Ready to <span class="text-primary">Elevate</span> Your Brand?
-            </h2>
-            <p class="text-gray-600 text-lg max-w-lg">
-              We're here to turn your vision into reality. Reach out and let's
-              start something extraordinary together.
-            </p>
-          </div>
+    <div class="container mx-auto px-4 md:px-0">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Left Side: Form -->
+                <div class="order-2 lg:order-1">
+                    <div class="mb-10">
+                        <span
+                            class="text-primary font-bold tracking-widest uppercase text-sm mb-4 block"
+                            >Get In Touch</span
+                        >
+                        <h2
+                            class="text-4xl md:text-5xl font-bold text-secondary mb-6 leading-tight"
+                        >
+                            Ready to <span class="text-primary">Elevate</span> Your
+                            Brand?
+                        </h2>
+                        <p class="text-gray-600 text-lg max-w-lg">
+                            We're here to turn your vision into reality. Reach
+                            out and let's start something extraordinary
+                            together.
+                        </p>
+                    </div>
 
-          <form class="space-y-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div class="space-y-2">
-                <label for="name" class="text-sm font-medium text-secondary"
-                  >Full Name</label
-                >
-                <input
-                  type="text"
-                  id="name"
-                  placeholder="John Doe"
-                  class="w-full px-4 py-4 bg-muted border-none rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all duration-300"
-                />
-              </div>
-              <div class="space-y-2">
-                <label for="email" class="text-sm font-medium text-secondary"
-                  >Email Address</label
-                >
-                <input
-                  type="email"
-                  id="email"
-                  placeholder="john@example.com"
-                  class="w-full px-4 py-4 bg-muted border-none rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all duration-300"
-                />
-              </div>
-            </div>
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label
+                                    for="name"
+                                    class="text-sm font-medium text-secondary"
+                                    >Full Name</label
+                                >
+                                <input
+                                    type="text"
+                                    id="name"
+                                    placeholder="John Doe"
+                                    class="w-full px-4 py-4 bg-muted border-none rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all duration-300"
+                                />
+                            </div>
+                            <div class="space-y-2">
+                                <label
+                                    for="email"
+                                    class="text-sm font-medium text-secondary"
+                                    >Email Address</label
+                                >
+                                <input
+                                    type="email"
+                                    id="email"
+                                    placeholder="john@example.com"
+                                    class="w-full px-4 py-4 bg-muted border-none rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all duration-300"
+                                />
+                            </div>
+                        </div>
 
-            <div class="space-y-2">
-              <label for="subject" class="text-sm font-medium text-secondary"
-                >Subject</label
-              >
-              <select
-                id="subject"
-                class="w-full px-4 py-4 bg-muted border-none rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all duration-300"
-              >
-                <option>Web Development</option>
-                <option>Digital Marketing</option>
-                <option>Branding</option>
-                <option>Design</option>
-                <option>Production</option>
-                <option>Other</option>
-              </select>
-            </div>
+                        <div class="space-y-2">
+                            <label
+                                for="subject"
+                                class="text-sm font-medium text-secondary"
+                                >Subject</label
+                            >
+                            <select
+                                id="subject"
+                                class="w-full px-4 py-4 bg-muted border-none rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all duration-300"
+                            >
+                                <option>Web Development</option>
+                                <option>Digital Marketing</option>
+                                <option>Branding</option>
+                                <option>Design</option>
+                                <option>Production</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
 
-            <div class="space-y-2">
-              <label for="message" class="text-sm font-medium text-secondary"
-                >Your Message</label
-              >
-              <textarea
-                id="message"
-                rows="4"
-                placeholder="Tell us about your project..."
-                class="w-full px-4 py-4 bg-muted border-none rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all duration-300 resize-none"
-              ></textarea>
-            </div>
+                        <div class="space-y-2">
+                            <label
+                                for="message"
+                                class="text-sm font-medium text-secondary"
+                                >Your Message</label
+                            >
+                            <textarea
+                                id="message"
+                                rows="4"
+                                placeholder="Tell us about your project..."
+                                class="w-full px-4 py-4 bg-muted border-none rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all duration-300 resize-none"
+                            ></textarea>
+                        </div>
 
-            <button
-              type="submit"
-              class="group relative w-full md:w-auto px-8 py-4 bg-secondary text-white font-bold rounded-xl overflow-hidden transition-all duration-500 hover:bg-primary shadow-xl hover:shadow-primary/20"
-            >
-              <span
-                class="relative z-10 flex items-center justify-center gap-2"
-              >
-                Send Message
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                </svg>
-              </span>
-            </button>
-          </form>
-        </div>
-
-        <!-- Right Side: Image & Context -->
-        <div class="order-1 lg:order-2 relative group">
-          <div
-            class="absolute -inset-4 transition-all duration-500 opacity-0 lg:opacity-100"
-          >
-          </div>
-          <div
-            class="relative rounded-xl overflow-hidden shadow-2xl h-[500px] lg:h-[700px]"
-          >
-            <!-- Placeholder for high-end image -->
-            <img
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200"
-              alt="Bliz Media Office"
-              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-
-            <!-- Glassmorphism Overlay Card -->
-            <div
-              class="absolute bottom-6 left-6 right-6 backdrop-blur-md bg-white/10 border border-white/20 p-8 rounded-2xl text-white"
-            >
-              <h3 class="text-2xl font-bold mb-4">Direct Communication</h3>
-              <div class="space-y-4">
-                <a
-                  href={contactInfo.whatsapp}
-                  target="_blank"
-                  class="flex items-center gap-4 group/item"
-                >
-                  <div
-                    class="w-10 h-10 bg-accent/20 rounded-full flex items-center justify-center group-hover/item:bg-accent transition-colors"
-                  >
-                    <svg
-                      class="w-5 h-5 text-accent group-hover/item:text-white"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                      ><path
-                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.438 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.937 3.659 1.431 5.63 1.433h.005c6.554 0 11.89-5.335 11.493-11.893a11.821 11.821 0 00-3.415-8.417"
-                      ></path></svg
-                    >
-                  </div>
-                  <div>
-                    <span class="block text-xs text-white/60">WhatsApp</span>
-                    <span class="block font-medium">Quick Chat</span>
-                  </div>
-                </a>
-                <div class="flex items-center gap-4">
-                  <div
-                    class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center"
-                  >
-                    <svg
-                      class="w-5 h-5 text-primary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      ><path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                      ></path></svg
-                    >
-                  </div>
-                  <div>
-                    <span class="block text-xs text-white/60">Email</span>
-                    <span class="block font-medium">{contactInfo.email}</span>
-                  </div>
+                        <button
+                            type="submit"
+                            class="group relative w-full md:w-auto px-8 py-4 bg-secondary text-white font-bold rounded-xl overflow-hidden transition-all duration-500 hover:bg-primary shadow-xl hover:shadow-primary/20"
+                        >
+                            <span
+                                class="relative z-10 flex items-center justify-center gap-2"
+                            >
+                                Send Message
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </span>
+                        </button>
+                    </form>
                 </div>
-                <div class="flex items-center gap-4">
-                  <div
-                    class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center"
-                  >
-                    <svg
-                      class="w-5 h-5 text-primary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      ><path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                      ></path><path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg
+
+                <!-- Right Side: Image & Context -->
+                <div class="order-1 lg:order-2 relative group">
+                    <div
+                        class="absolute -inset-4 transition-all duration-500 opacity-0 lg:opacity-100"
                     >
-                  </div>
-                  <div>
-                    <span class="block text-xs text-white/60">Location</span>
-                    <a href="https://maps.app.goo.gl/FbovoMZndBviokjR8" target="_blank" class="block font-medium text-sm max-w-[400px]">{contactInfo.address}</a>
-                  </div>
+                    </div>
+                    <div
+                        class="relative rounded-xl overflow-hidden shadow-2xl h-[500px] lg:h-[700px]"
+                    >
+                        <!-- Placeholder for high-end image -->
+                        <img
+                            src="/images/contact-form-image.jpg"
+                            alt="Bliz Media Office"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+
+                        <!-- Glassmorphism Overlay Card -->
+                        <div
+                            class="absolute bottom-6 left-6 right-6 backdrop-blur-md bg-white/10 border border-white/20 p-8 rounded-2xl text-white"
+                        >
+                            <h3 class="text-2xl font-bold mb-4">
+                                Direct Communication
+                            </h3>
+                            <div class="space-y-4">
+                                <a
+                                    href={contactInfo.whatsapp}
+                                    target="_blank"
+                                    class="flex items-center gap-4 group/item"
+                                >
+                                    <div
+                                        class="w-10 h-10 bg-accent/20 rounded-full flex items-center justify-center group-hover/item:bg-accent transition-colors"
+                                    >
+                                        <svg
+                                            class="w-5 h-5 text-accent group-hover/item:text-white"
+                                            fill="currentColor"
+                                            viewBox="0 0 24 24"
+                                            ><path
+                                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.438 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.937 3.659 1.431 5.63 1.433h.005c6.554 0 11.89-5.335 11.493-11.893a11.821 11.821 0 00-3.415-8.417"
+                                            ></path></svg
+                                        >
+                                    </div>
+                                    <div>
+                                        <span
+                                            class="block text-xs text-white/60"
+                                            >WhatsApp</span
+                                        >
+                                        <span class="block font-medium"
+                                            >Quick Chat</span
+                                        >
+                                    </div>
+                                </a>
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center"
+                                    >
+                                        <svg
+                                            class="w-5 h-5 text-primary"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                            ><path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                            ></path></svg
+                                        >
+                                    </div>
+                                    <div>
+                                        <span
+                                            class="block text-xs text-white/60"
+                                            >Email</span
+                                        >
+                                        <span class="block font-medium"
+                                            >{contactInfo.email}</span
+                                        >
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center"
+                                    >
+                                        <svg
+                                            class="w-5 h-5 text-primary"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                            ><path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                                            ></path><path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                                            ></path></svg
+                                        >
+                                    </div>
+                                    <div>
+                                        <span
+                                            class="block text-xs text-white/60"
+                                            >Location</span
+                                        >
+                                        <a
+                                            href="https://maps.app.goo.gl/FbovoMZndBviokjR8"
+                                            target="_blank"
+                                            class="block font-medium text-sm max-w-[400px]"
+                                            >{contactInfo.address}</a
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>

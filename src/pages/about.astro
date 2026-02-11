@@ -56,4 +56,9 @@ import OtherTeamMembers from "../components/OtherTeamMembers.astro";
   }
 
   /* Optional: Hide scrollbar for cleaner look if desired, but user didn't ask */
+
+  /* Allow snapping to the footer so it isn't "pulled back" to the last snap point */
+  #site-footer {
+    scroll-snap-align: start;
+  }
 </style>
