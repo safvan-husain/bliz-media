@@ -1,6 +1,7 @@
 ---
 import BrandPhysics from "./BrandPhysics";
 import InfiniteTestimonials from "./InfiniteTestimonials.astro";
+import { brands } from "../data/brands";
 
 export interface Author {
     name: string;
@@ -18,27 +19,23 @@ interface Props {
 }
 
 const { testimonials = [] } = Astro.props as Props;
-
-const brands = [
-    { name: "Google", id: "google", color: "bg-blue-500" },
-    { name: "Meta", id: "meta", color: "bg-blue-600" },
-    { name: "Amazon", id: "amazon", color: "bg-orange-500" },
-    { name: "Microsoft", id: "microsoft", color: "bg-emerald-500" },
-    { name: "Apple", id: "apple", color: "bg-zinc-900" },
-    { name: "OpenAI", id: "openai", color: "bg-zinc-800" },
-    { name: "Anthropic", id: "anthropic", color: "bg-amber-500" },
-    { name: "Mistral", id: "mistral", color: "bg-fuchsia-500" },
-    { name: "NVIDIA", id: "nvidia", color: "bg-lime-500" },
-    { name: "Stripe", id: "stripe", color: "bg-indigo-500" },
-    { name: "Vercel", id: "vercel", color: "bg-black" },
-    { name: "Supabase", id: "supabase", color: "bg-green-500" },
-];
 ---
 
 <section id="brands" class="overflow-hidden bg-gray-50 py-24">
-    <div class="mx-auto max-w-[var(--max-width-container)] px-4 mb-12 flex flex-col items-center text-center gap-4">
-        <h2 class="text-3xl font-semibold leading-tight sm:text-5xl sm:leading-tight text-black">What Our Clients Say</h2>
-        <p class="text-md max-w-[600px] font-medium text-[var(--color-muted-foreground)] sm:text-xl">Real feedback from clients who’ve partnered with us to build impactful digital solutions.</p>
+    <div
+        class="mx-auto max-w-[var(--max-width-container)] px-4 mb-12 flex flex-col items-center text-center gap-4"
+    >
+        <h2
+            class="text-3xl font-semibold leading-tight sm:text-5xl sm:leading-tight text-black"
+        >
+            What Our Clients Say
+        </h2>
+        <p
+            class="text-md max-w-[600px] font-medium text-[var(--color-muted-foreground)] sm:text-xl"
+        >
+            Real feedback from clients who’ve partnered with us to build
+            impactful digital solutions.
+        </p>
     </div>
 
     <div class="w-full mb-24">
@@ -53,14 +50,16 @@ const brands = [
                 <h2
                     class="flex flex-col text-4xl font-bold tracking-tight text-black mb-6 md:text-5xl mb-1"
                 >
-                    Trusted by Growing <span
-                        class="text-muted-foreground pt-2">Brands & Businesses</span
+                    Trusted by Growing <span class="text-muted-foreground pt-2"
+                        >Brands & Businesses</span
                     >
                 </h2>
                 <p
                     class="text-xl text-muted-foreground leading-relaxed mb-8 max-w-xl"
                 >
-                    We’ve partnered with startups, agencies, and businesses across industries to design, build, and scale impactful digital experiences.
+                    We’ve partnered with startups, agencies, and businesses
+                    across industries to design, build, and scale impactful
+                    digital experiences.
                 </p>
                 <div class="flex flex-wrap gap-4">
                     <div
