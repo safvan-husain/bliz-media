@@ -17,6 +17,7 @@ export const projects: Project[] = [
     year: "2024",
     service: "Web Development",
     slug: "transking",
+    externalUrl: "https://transkinglogistic.com",
     details: `
       <div class="space-y-6">
         <h2 class="text-3xl font-bold">Transking</h2>
