@@ -33,7 +33,16 @@ const contactInfo = {
                         </p>
                     </div>
 
-                    <form class="space-y-6">
+                    <form
+                        class="space-y-6"
+                        action="https://formsubmit.io/send/info@blizmedia.com"
+                        method="POST"
+                    >
+                        <input
+                            name="_redirect"
+                            type="hidden"
+                            value="https://blizmedia.com"
+                        />
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="space-y-2">
                                 <label
@@ -42,6 +51,7 @@ const contactInfo = {
                                     >Full Name</label
                                 >
                                 <input
+                                    name="name"
                                     type="text"
                                     id="name"
                                     placeholder="John Doe"
@@ -55,6 +65,7 @@ const contactInfo = {
                                     >Email Address</label
                                 >
                                 <input
+                                    name="email"
                                     type="email"
                                     id="email"
                                     placeholder="john@example.com"
@@ -70,6 +81,7 @@ const contactInfo = {
                                 >Subject</label
                             >
                             <select
+                                name="subject"
                                 id="subject"
                                 class="w-full px-4 py-4 bg-muted border-none rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all duration-300"
                             >
@@ -89,12 +101,22 @@ const contactInfo = {
                                 >Your Message</label
                             >
                             <textarea
+                                name="message"
                                 id="message"
                                 rows="4"
                                 placeholder="Tell us about your project..."
                                 class="w-full px-4 py-4 bg-muted border-none rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all duration-300 resize-none"
                             ></textarea>
                         </div>
+
+                        <input
+                            name="_formsubmit_id"
+                            type="text"
+                            style="display:none"
+                            tabindex="-1"
+                            autocomplete="off"
+                            aria-hidden="true"
+                        />
 
                         <button
                             type="submit"

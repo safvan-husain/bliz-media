@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { Send, Rocket } from 'lucide-react';
+import { Send } from 'lucide-react';
 
 const SERVICES = [
     { value: 'web-development', label: 'Web Development' },
@@ -23,25 +23,36 @@ export const ContactForm = () => {
     }, []);
 
     return (
-        <form className="space-y-6">
+        <form
+            className="space-y-6"
+            action="https://formsubmit.io/send/info@blizmedia.com"
+            method="POST"
+        >
+            <input
+                name="_redirect"
+                type="hidden"
+                value="https://blizmedia.com"
+            />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-medium text-secondary">Full Name</label>
                     <input
+                        name="name"
                         type="text"
                         id="name"
                         placeholder="John Doe"
-                        className="w-full px-4 py-4 bg-zinc-50 border-none rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all duration-300"
+                        className="w-full px-4 py-4 bg-muted border-none rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all duration-300"
                         required
                     />
                 </div>
                 <div className="space-y-2">
                     <label htmlFor="email" className="text-sm font-medium text-secondary">Email Address</label>
                     <input
+                        name="email"
                         type="email"
                         id="email"
                         placeholder="john@example.com"
-                        className="w-full px-4 py-4 bg-zinc-50 border-none rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all duration-300"
+                        className="w-full px-4 py-4 bg-muted border-none rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all duration-300"
                         required
                     />
                 </div>
@@ -50,10 +61,11 @@ export const ContactForm = () => {
             <div className="space-y-2">
                 <label htmlFor="subject" className="text-sm font-medium text-secondary">Interested In</label>
                 <select
+                    name="subject"
                     id="subject"
                     value={selectedService}
                     onChange={(e) => setSelectedService(e.target.value)}
-                    className="w-full px-4 py-4 bg-zinc-50 border-none rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all duration-300 appearance-none cursor-pointer"
+                    className="w-full px-4 py-4 bg-muted border-none rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all duration-300 appearance-none cursor-pointer"
                 >
                     {SERVICES.map((service) => (
                         <option key={service.value} value={service.value}>
@@ -66,13 +78,23 @@ export const ContactForm = () => {
             <div className="space-y-2">
                 <label htmlFor="message" className="text-sm font-medium text-secondary">Your Message</label>
                 <textarea
+                    name="message"
                     id="message"
                     rows={4}
                     placeholder="Tell us about your project..."
-                    className="w-full px-4 py-4 bg-zinc-50 border-none rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all duration-300 resize-none"
+                    className="w-full px-4 py-4 bg-muted border-none rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all duration-300 resize-none"
                     required
                 ></textarea>
             </div>
+
+            <input
+                name="_formsubmit_id"
+                type="text"
+                className="hidden"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+            />
 
             <button
                 type="submit"
