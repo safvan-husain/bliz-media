@@ -1,0 +1,33 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Thank You | Bliz Media">
+    <main class="min-h-screen bg-white pt-36 pb-24 px-4">
+        <section class="mx-auto max-w-3xl rounded-2xl bg-muted p-8 md:p-12 text-center shadow-sm">
+            <p class="text-primary font-semibold uppercase tracking-widest text-sm">
+                Message Sent
+            </p>
+            <h1 class="mt-4 text-3xl md:text-5xl font-bold text-secondary">
+                Thank you. We will get back to you soon.
+            </h1>
+            <p class="mt-6 text-muted-foreground text-lg">
+                Your inquiry has been received. Our team will review your details and contact you shortly.
+            </p>
+            <div class="mt-10 flex items-center justify-center gap-4">
+                <a
+                    href="/"
+                    class="inline-flex items-center rounded-xl bg-secondary px-6 py-3 font-semibold text-white transition-colors duration-300 hover:bg-primary"
+                >
+                    Back to Home
+                </a>
+                <a
+                    href="/contact"
+                    class="inline-flex items-center rounded-xl bg-white px-6 py-3 font-semibold text-secondary ring-1 ring-secondary/20 transition-colors duration-300 hover:bg-muted"
+                >
+                    Contact Page
+                </a>
+            </div>
+        </section>
+    </main>
+</Layout>

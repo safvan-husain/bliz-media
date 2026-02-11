@@ -30,7 +30,7 @@ export const ContactForm = () => {
       <input
         type="hidden"
         name="_next"
-        value="https://blizmedia.com/thanks.html"
+        value="http://blizmedia.com/acknowledge"
       />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
