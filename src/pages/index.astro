@@ -4,7 +4,7 @@ import Hero from "../components/Hero.astro";
 import FeaturedProjects from "../components/FeaturedProjects.astro";
 import Services from "../components/Services.astro";
 import BrandSection, {
-  type Testimonial,
+    type Testimonial,
 } from "../components/BrandSection.astro";
 import Contact from "../components/Contact.astro";
 import Achievements from "../components/Achievements.astro";
@@ -13,127 +13,122 @@ import LetsWork from "../components/LetsWork";
 import ImageCarousel from "../components/ImageCarousel.astro";
 
 const testimonials: Testimonial[] = [
-  {
-    author: {
-      name: "Shamil Abdulla",
-      avatar:
-        "https://lh3.googleusercontent.com/a/ACg8ocI0FeNHnPv051yG0uz9Z3KyPnFXgquazvGRhpIdfFAINH5s=w72-h72-p-rp-mo-br100",
+    {
+        author: {
+            name: "Shamil Abdulla",
+            avatar: "https://lh3.googleusercontent.com/a/ACg8ocI0FeNHnPv051yG0uz9Z3KyPnFXgquazvGRhpIdfFAINH5s=w72-h72-p-rp-mo-br100",
+        },
+        text: "Bliz Media did an amazing job designing our logo and branding. We’re from Sharjah, and they really listened to what we wanted. The process was simple and smooth, and the logo turned out even better than we expected. Their team, especially the creative head Hujjath, was really nice and helpful throughout. It feels like the logo truly represents our business now. I’d recommend Bliz Media to anyone looking for quality branding and logo design in the UAE.",
+        href: "https://maps.app.goo.gl/eCHhPX143XAKxZBN6",
     },
-    text: "Bliz Media did an amazing job designing our logo and branding. We’re from Sharjah, and they really listened to what we wanted. The process was simple and smooth, and the logo turned out even better than we expected. Their team, especially the creative head Hujjath, was really nice and helpful throughout. It feels like the logo truly represents our business now. I’d recommend Bliz Media to anyone looking for quality branding and logo design in the UAE.",
-    href: "https://maps.app.goo.gl/eCHhPX143XAKxZBN6",
-  },
-  {
-    author: {
-      name: "Muhammed Ansar",
-      avatar:
-        "https://lh3.googleusercontent.com/a-/ALV-UjVveNkqg02yQ9vHntp9C4g8jUq2QGFInF6UzKyxra6mFXcs3qs=w72-h72-p-rp-mo-br100",
+    {
+        author: {
+            name: "Muhammed Ansar",
+            avatar: "https://lh3.googleusercontent.com/a-/ALV-UjVveNkqg02yQ9vHntp9C4g8jUq2QGFInF6UzKyxra6mFXcs3qs=w72-h72-p-rp-mo-br100",
+        },
+        text: "We’re based in Qatar and worked with Bliz Media in Dubai for our website development. The whole process was smooth, and the team delivered exactly what we had in mind — clean design, mobile-friendly, and SEO-ready. Their support was excellent throughout. Recommend them if you’re looking for quality website development and SEO services in the GCC.",
+        href: "https://maps.app.goo.gl/byMgTFLundgKc4iL8",
     },
-    text: "We’re based in Qatar and worked with Bliz Media in Dubai for our website development. The whole process was smooth, and the team delivered exactly what we had in mind — clean design, mobile-friendly, and SEO-ready. Their support was excellent throughout. Recommend them if you’re looking for quality website development and SEO services in the GCC.",
-    href: "https://maps.app.goo.gl/byMgTFLundgKc4iL8",
-  },
-  {
-    author: {
-      name: "Firdous",
-      avatar:
-        "https://lh3.googleusercontent.com/a/ACg8ocLEccQNY_CxoezVgdxoJq_xKp_Gd59Ned0bzcNSIFISXNiL8A=w72-h72-p-rp-mo-br100",
+    {
+        author: {
+            name: "Firdous",
+            avatar: "https://lh3.googleusercontent.com/a/ACg8ocLEccQNY_CxoezVgdxoJq_xKp_Gd59Ned0bzcNSIFISXNiL8A=w72-h72-p-rp-mo-br100",
+        },
+        text: "Thank you very much team bliz for providing better marketing services in Dubai",
+        href: "https://maps.app.goo.gl/m6cfoQ3cP6JLcBFbA",
     },
-    text: "Thank you very much team bliz for providing better marketing services in Dubai",
-    href: "https://maps.app.goo.gl/m6cfoQ3cP6JLcBFbA",
-  },
-  {
-    author: {
-      name: "Thameem Ak",
-      avatar:
-        "https://lh3.googleusercontent.com/a-/ALV-UjVUKuN9w3RUHyLejcBXx6J6giCzEsaNWUVxscpCcyxLRow7dW6z=w72-h72-p-rp-mo-br100",
+    {
+        author: {
+            name: "Thameem Ak",
+            avatar: "https://lh3.googleusercontent.com/a-/ALV-UjVUKuN9w3RUHyLejcBXx6J6giCzEsaNWUVxscpCcyxLRow7dW6z=w72-h72-p-rp-mo-br100",
+        },
+        text: "Bliz Design offers sleek and modern solutions for your design needs, with a focus on innovation and creativity.",
+        href: "https://maps.app.goo.gl/Y1fWC6TGQNaFAPa39",
     },
-    text: "Bliz Design offers sleek and modern solutions for your design needs, with a focus on innovation and creativity.",
-    href: "https://maps.app.goo.gl/Y1fWC6TGQNaFAPa39",
-  },
-  {
-    author: {
-      name: "Al yaseen",
-      avatar:
-        "https://lh3.googleusercontent.com/a-/ALV-UjVQVpkLzYsvoIGO-IkJz-h_UtMIYcxOwsxhopxpZKZDRTUJH-n9=w72-h72-p-rp-mo-br100",
+    {
+        author: {
+            name: "Al yaseen",
+            avatar: "https://lh3.googleusercontent.com/a-/ALV-UjVQVpkLzYsvoIGO-IkJz-h_UtMIYcxOwsxhopxpZKZDRTUJH-n9=w72-h72-p-rp-mo-br100",
+        },
+        text: "Creative and professional. Bliz design delivers top-notch results everytime",
+        href: "https://maps.app.goo.gl/X6AtAhTLzt1hwSMX8",
     },
-    text: "Creative and professional. Bliz design delivers top-notch results everytime",
-    href: "https://maps.app.goo.gl/X6AtAhTLzt1hwSMX8",
-  },
-  {
-    author: {
-      name: "Reem",
-      avatar:
-        "https://lh3.googleusercontent.com/a/ACg8ocIYuMew89YFp7eIvn4PjYWCwq9Zu2WIqG2emKSnrGVcAhlHfg=w72-h72-p-rp-mo-br100",
+    {
+        author: {
+            name: "Reem",
+            avatar: "https://lh3.googleusercontent.com/a/ACg8ocIYuMew89YFp7eIvn4PjYWCwq9Zu2WIqG2emKSnrGVcAhlHfg=w72-h72-p-rp-mo-br100",
+        },
+        text: "شكراً جزيلاً لك، السيد أنور، على توفير حلول أفضل لأعمالنا ل فريق تسويق في الإمارات العربية المتحدة.",
+        href: "https://maps.app.goo.gl/AHkVrFu31uTuWCkYA",
     },
-    text: "شكراً جزيلاً لك، السيد أنور، على توفير حلول أفضل لأعمالنا ل فريق تسويق في الإمارات العربية المتحدة.",
-    href: "https://maps.app.goo.gl/AHkVrFu31uTuWCkYA",
-  },
 ];
 ---
 
 <Layout title="Bliz Media - Web Development & Digital Marketing">
-  <Hero />
-  <div
-    class="opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
-    data-animate-on-scroll
-  >
-    <FeaturedProjects />
-  </div>
-  <div
-    class="opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
-    data-animate-on-scroll
-  >
-    <Achievements />
-  </div>
-  <div
-    class="opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
-    data-animate-on-scroll
-  >
-    <Services />
-  </div>
-  <div
-    class="opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
-    data-animate-on-scroll
-  >
-    <BrandSection testimonials={testimonials} />
-  </div>
-  <div
-    class="opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
-    data-animate-on-scroll
-  >
-    <InstagramSection />
-  </div>
-  <div
-    class="opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
-    data-animate-on-scroll
-  >
-    <Contact />
-  </div>
+    <Hero />
+    <div
+        class="opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
+        data-animate-on-scroll
+    >
+        <FeaturedProjects />
+    </div>
+    <div
+        class="opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
+        data-animate-on-scroll
+    >
+        <Achievements />
+    </div>
+    <div
+        class="opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
+        data-animate-on-scroll
+    >
+        <Services />
+    </div>
+    <div
+        class="opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
+        data-animate-on-scroll
+    >
+        <BrandSection testimonials={testimonials} />
+    </div>
+    <div
+        class="opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
+        data-animate-on-scroll
+    >
+        <InstagramSection />
+    </div>
+    <div
+        id="contact"
+        class="opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
+        data-animate-on-scroll
+    >
+        <Contact />
+    </div>
 
-  <div
-    class="opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
-    data-animate-on-scroll
-  >
-    <ImageCarousel />
-  </div>
+    <div
+        class="opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
+        data-animate-on-scroll
+    >
+        <ImageCarousel />
+    </div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-              setTimeout(() => {
-                entry.target.classList.add("animate-in");
-              }, index * 100); // Stagger by 100ms
-            }
-          });
-        },
-        { threshold: 0.1 },
-      );
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry, index) => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                entry.target.classList.add("animate-in");
+                            }, index * 100); // Stagger by 100ms
+                        }
+                    });
+                },
+                { threshold: 0.1 },
+            );
 
-      document
-        .querySelectorAll("[data-animate-on-scroll]")
-        .forEach((el) => observer.observe(el));
-    });
-  </script>
+            document
+                .querySelectorAll("[data-animate-on-scroll]")
+                .forEach((el) => observer.observe(el));
+        });
+    </script>
 </Layout>
