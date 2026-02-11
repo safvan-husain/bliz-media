@@ -34,9 +34,8 @@ import { projects } from "../data/projects";
 
         <div class="grid grid-cols-1 gap-4 md:grid-cols-4 md:auto-rows-[250px]">
             {
-                projects.map((project, index) => (
-                    <a
-                        href={`/project/${project.slug}`}
+                projects.map((project) => (
+                    <article
                         class={`group relative overflow-hidden rounded-3xl ${project.class} block opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0`}
                         data-animate-on-scroll
                     >
@@ -59,8 +58,28 @@ import { projects } from "../data/projects";
                             <h3 class="text-xl font-semibold text-white md:text-2xl">
                                 {project.name}
                             </h3>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <a
+                                    href={`/project/${project.slug}`}
+                                    class="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/20"
+                                >
+                                    View Details
+                                </a>
+                                {
+                                    project.externalUrl && /^https?:\/\//i.test(project.externalUrl) ? (
+                                        <a
+                                            href={project.externalUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/20"
+                                        >
+                                            View Website
+                                        </a>
+                                    ) : null
+                                }
+                            </div>
                         </div>
-                    </a>
+                    </article>
                 ))
             }
         </div>

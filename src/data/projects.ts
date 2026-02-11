@@ -6,6 +6,7 @@ export interface Project {
   service: string;
   slug: string;
   details: string;
+  externalUrl?: string;
 }
 
 export const projects: Project[] = [
