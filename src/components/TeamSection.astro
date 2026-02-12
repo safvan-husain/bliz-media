@@ -1,57 +1,37 @@
 ---
-const teamData = {
-  technologists: [
-      {
-          name: "Michael Chang",
-          role: "CTO",
-          image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2670&auto=format&fit=crop",
-          bio: "Full-stack architect building scalable digital ecosystems."
-      },
-      {
-          name: "Priya Patel",
-          role: "Lead Developer",
-          image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=2670&auto=format&fit=crop",
-          bio: "Creative coder pushing the boundaries of web performance."
-      }
-  ],
-    founders: [
-        {
-            name: "Alex Morgan",
-            role: "Co-Founder & CEO",
-            image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=2544&auto=format&fit=crop",
-            bio: "Visionary leader with 10+ years in digital transformation."
-        },
-        {
-            name: "Sarah Chen",
-            role: "Co-Founder & CCO",
-            image: "https://images.unsplash.com/photo-1573496359-136d475583dc?q=80&w=2669&auto=format&fit=crop",
-            bio: "Award-winning creative director shaping global brand identities."
-        }
-    ],
-    marketers: [
-        {
-            name: "David Kim",
-            role: "Head of Growth",
-            image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=2544&auto=format&fit=crop",
-            bio: "Data-driven strategist scaling brands to new heights."
-        },
-        {
-            name: "Emma Wilson",
-            role: "Brand Strategist",
-            image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=2661&auto=format&fit=crop",
-            bio: "Expert in storytelling and audience engagement."
-        }
-    ],
-
-};
-
 import { cn } from "../lib/utils";
+import type { TeamMember } from "../data/team";
+import { founders, leaders } from "../data/team";
+
+const chunk = <T,>(items: T[], size: number) =>
+  items.reduce<T[][]>((acc, item, index) => {
+    if (index % size === 0) acc.push([item]);
+    else acc[acc.length - 1]?.push(item);
+    return acc;
+  }, []);
+
+const isRegionalManager = (member: TeamMember) =>
+  member.role.toLowerCase().includes("regional manager");
+
+const regionalManagers = leaders.filter(isRegionalManager);
+const otherLeaders = leaders.filter((member) => !isRegionalManager(member));
 
 const sections = [
-
-  { title: "Tech Innovators", members: teamData.technologists, colorClass: "text-team-green" },
-    { title: "The Visionaries", members: teamData.founders, colorClass: "text-primary" },
-    { title: "Growth Architects", members: teamData.marketers, colorClass: "text-team-blue" },
+  { title: "Founders", members: founders, colorClass: "text-primary" },
+  ...(regionalManagers.length
+    ? [
+        {
+          title: "Regional Managers",
+          members: regionalManagers,
+          colorClass: "text-team-green",
+        },
+      ]
+    : []),
+  ...chunk(otherLeaders, 2).map((members) => ({
+    title: "Leaders",
+    members,
+    colorClass: "text-team-blue",
+  })),
 ];
 ---
 
@@ -79,11 +59,11 @@ const sections = [
           <div class="absolute top-0 right-4 md:right-24 flex flex-row gap-6 md:gap-10 z-20">
               {members.map((member) => (
                   <div class="flex flex-col items-center gap-4 group">
-                      <div class="relative w-[240px] md:w-[380px] h-[350px] md:h-[720px] rounded-b-[3rem] rounded-t-none overflow-hidden bg-gray-900 shadow-2xl transition-all duration-500 hover:h-[380px] md:hover:h-[750px]">
+                      <div class="relative w-[240px] md:w-[380px] h-[350px] md:h-[720px] rounded-b-[3rem] rounded-t-none overflow-hidden bg-gray-300 shadow-2xl transition-all duration-500 hover:h-[380px] md:hover:h-[750px]">
                           <img
                               src={member.image}
                               alt={member.name}
-                              class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0 opacity-90 group-hover:opacity-100"
+                              class="w-full h-full object-contain object-bottom grayscale transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0 opacity-90 group-hover:opacity-100"
                           />
                       </div>
                       <div class="text-center transition-all duration-300 group-hover:translate-y-1">

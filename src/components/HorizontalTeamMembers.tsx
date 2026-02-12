@@ -23,7 +23,7 @@ export default function HorizontalTeamMembers({
         <span className="text-primary font-bold tracking-[0.2em] text-sm uppercase mb-4 block">
           Our People
         </span>
-        <h2 className="text-4xl md:text-6xl font-black tracking-tight text-[#0c1b33] leading-[0.85]">
+        <h2 className="text-4xl md:text-6xl font-black tracking-tight text-secondary leading-[0.85]">
           MEET THE TEAM
         </h2>
       </div>
@@ -87,7 +87,7 @@ function JoinTeamCard() {
   return (
     <a
       href="/contact"
-      className="group relative w-[80vw] md:w-[400px] h-[50vh] md:h-[500px] rounded-[2rem] overflow-hidden shadow-2xl transition-all duration-700 hover:scale-[1.01] flex-shrink-0 cursor-pointer block isolate transform-gpu [backface-visibility:hidden] bg-[#0c1b33] border border-white/10"
+      className="group relative w-[80vw] md:w-[400px] h-[50vh] md:h-[500px] rounded-[2rem] overflow-hidden shadow-2xl transition-all duration-700 hover:scale-[1.01] flex-shrink-0 cursor-pointer block isolate transform-gpu [backface-visibility:hidden] bg-secondary border border-white/10"
     >
       {/* Subtle Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-50 rounded-[2rem]" />
@@ -102,7 +102,7 @@ function JoinTeamCard() {
           <br /> Team
         </h3>
 
-        <div className="bg-white text-[#0c1b33] px-10 py-5 rounded-full font-black tracking-[0.2em] text-xs flex items-center gap-4 border border-transparent transition-all duration-500 hover:bg-primary hover:text-white hover:scale-110 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] active:scale-95 group-hover:-translate-y-2">
+        <div className="bg-white text-secondary px-10 py-5 rounded-full font-black tracking-[0.2em] text-xs flex items-center gap-4 border border-transparent transition-all duration-500 hover:bg-primary hover:text-white hover:scale-110 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] active:scale-95 group-hover:-translate-y-2">
           APPLY NOW
           <svg
             xmlns="http://www.w3.org/2000/svg"
