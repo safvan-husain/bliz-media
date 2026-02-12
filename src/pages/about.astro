@@ -2,76 +2,13 @@
 import Layout from "../layouts/Layout.astro";
 import { AboutUsHero } from "../components/heroes/AboutUsHero";
 import Achievements from "../components/Achievements.astro";
-import TeamSection from "../components/TeamSection.astro";
-import TeamSectionMobile from "../components/TeamSectionMobile.astro";
-import OtherTeamMembers from "../components/OtherTeamMembers.astro";
+import Team from "../components/Team.astro";
 ---
 
 <Layout title="About Us - Bliz Media">
-  <!-- Snap Container Wrapper if needed, but we target HTML/Body via global styles below -->
+  <AboutUsHero client:load />
 
-  <div class="snap-start min-h-screen w-full overflow-hidden">
-    <AboutUsHero client:load />
-    <div class="snap-start w-full flex items-center justify-center bg-slate-50">
-      <Achievements />
-    </div>
-  </div>
+  <Achievements />
 
-  <div class="lg:hidden">
-    <TeamSectionMobile />
-  </div>
-
-  <div class="hidden lg:block">
-    <TeamSection />
-  </div>
-
-  <div class="snap-start min-h-screen w-full bg-zinc-50">
-    <OtherTeamMembers />
-  </div>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-              setTimeout(() => {
-                entry.target.classList.add("animate-in");
-              }, index * 100);
-            }
-          });
-        },
-        { threshold: 0.1 },
-      );
-      document
-        .querySelectorAll("[data-animate-on-scroll]")
-        .forEach((el) => observer.observe(el));
-    });
-  </script>
+  <Team />
 </Layout>
-
-<style is:global>
-  html {
-    scroll-snap-type: none;
-    scroll-behavior: smooth;
-  }
-
-  @media (min-width: 1024px) {
-    html {
-      scroll-snap-type: y proximity;
-    }
-  }
-
-  /* Ensure consistent heights for snapping */
-  main,
-  body {
-    height: 100%;
-  }
-
-  /* Optional: Hide scrollbar for cleaner look if desired, but user didn't ask */
-
-  /* Allow snapping to the footer so it isn't "pulled back" to the last snap point */
-  #site-footer {
-    scroll-snap-align: start;
-  }
-</style>
