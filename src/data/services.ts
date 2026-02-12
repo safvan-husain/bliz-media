@@ -14,8 +14,18 @@ export interface FloatingIconSectionContent {
 }
 
 export type ServiceContentBlock =
-  | { type: 'html'; content: string }
-  | { type: 'component'; component: 'Technologies' | 'Pricing' | 'WebDevelopmentContent' | 'BrandingContent' | 'DigitalMarketingContent' | 'DesignContent' | 'ProductionContent' };
+  | { type: "html"; content: string }
+  | {
+      type: "component";
+      component:
+        | "Technologies"
+        | "Pricing"
+        | "WebDevelopmentContent"
+        | "BrandingContent"
+        | "DigitalMarketingContent"
+        | "DesignContent"
+        | "ProductionContent";
+    };
 
 export interface Service {
   id: string;
@@ -40,26 +50,26 @@ export const services: Service[] = [
     image: "/images/service-card-imags/branding.png",
     excerpt: "Build a strong, consistent brand that connects and converts",
     color: "bg-branding",
-    tags: ["Branding"],
+    tags: ["Brand Strategy", "Visual Identity"],
     heroImages: [
-      'https://images.unsplash.com/photo-1755004609214-c252674df1ca?q=80&w=400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1750218537952-0ae056c7f53a?q=80&w=400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1755038995605-038a7345658f?q=80&w=400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1546238232-20216dec9f72?q=80&w=400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1753724223372-9a1df8eb5212?q=80&w=400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1754079132860-5b37dab49daa?q=80&w=400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1754079132962-2f6c62f14d33?q=80&w=400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1754764987594-2236e7736115?q=80&w=400&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1755048796967-75a82d214846?q=80&w=400&auto=format&fit=crop',
+      "https://images.unsplash.com/photo-1755004609214-c252674df1ca?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1750218537952-0ae056c7f53a?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1755038995605-038a7345658f?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1546238232-20216dec9f72?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1753724223372-9a1df8eb5212?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1754079132860-5b37dab49daa?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1754079132962-2f6c62f14d33?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1754764987594-2236e7736115?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1755048796967-75a82d214846?q=80&w=400&auto=format&fit=crop",
     ],
     contentBlocks: [
       {
-        type: 'component',
-        component: 'BrandingContent'
-      }
+        type: "component",
+        component: "BrandingContent",
+      },
     ],
   },
   {
@@ -69,12 +79,12 @@ export const services: Service[] = [
     image: "/images/service-card-imags/digital-marketing.png",
     excerpt: "Strategic marketing designed to attract, engage, and convert",
     color: "bg-secondary",
-    tags: ["Digital Marketing"],
+    tags: ["Growth", "Lead Generation"],
     contentBlocks: [
       {
-        type: 'component',
-        component: 'DigitalMarketingContent'
-      }
+        type: "component",
+        component: "DigitalMarketingContent",
+      },
     ],
   },
   {
@@ -84,13 +94,13 @@ export const services: Service[] = [
     image: "/images/service-card-imags/design.png",
     excerpt: "Design That Looks Good and Works Better",
     color: "bg-profile",
-    tags: ["Design"],
+    tags: ["UI/UX", "Creative"],
     cardImage: "/images/service-card-imags/design.png",
     contentBlocks: [
       {
-        type: 'component',
-        component: 'DesignContent'
-      }
+        type: "component",
+        component: "DesignContent",
+      },
     ],
   },
   {
@@ -100,20 +110,20 @@ export const services: Service[] = [
     image: "/images/service-card-imags/development.png",
     excerpt: "High-performance websites built to scale your business",
     color: "bg-website",
-    tags: ["Web Development"],
+    tags: ["Custom", "Scalable"],
     contentBlocks: [
       {
-        type: 'component',
-        component: 'WebDevelopmentContent'
+        type: "component",
+        component: "WebDevelopmentContent",
       },
       {
-        type: 'component',
-        component: 'Technologies'
+        type: "component",
+        component: "Technologies",
       },
       {
-        type: 'component',
-        component: 'Pricing'
-      }
+        type: "component",
+        component: "Pricing",
+      },
     ],
     plans: [
       {
@@ -128,10 +138,10 @@ export const services: Service[] = [
           "WhatsApp chat icon integration",
           "Basic security setup",
           "Fast loading performance",
-          ""
+          "",
         ],
         deployment: "Website deployment included",
-        hosting: "1 year FREE hosting included"
+        hosting: "1 year FREE hosting included",
       },
       {
         name: "PLAN 3",
@@ -144,7 +154,7 @@ export const services: Service[] = [
           "Authentication and user roles",
           "API integrations",
           "WhatsApp chat icon integration",
-          "Scalable architecture"
+          "Scalable architecture",
         ],
         deployment: "Website deployment included",
         hosting: "Hosting not included",
@@ -162,10 +172,10 @@ export const services: Service[] = [
           "WhatsApp chat icon integration",
           "Secure payment gateway integration Razorpay Stripe PayPal",
           "",
-          ""
+          "",
         ],
         deployment: "Website deployment included",
-        hosting: "Hosting not included"
+        hosting: "Hosting not included",
       },
     ],
     floatingIconSectionContent: {
@@ -181,7 +191,7 @@ export const services: Service[] = [
       ],
       title: "Technologies",
       subtitle: "We use the latest technologies to build your website",
-    }
+    },
   },
   {
     id: "05",
@@ -190,13 +200,13 @@ export const services: Service[] = [
     image: "/images/service-card-imags/production.png",
     excerpt: "High-quality visual content designed to engage and inspire",
     color: "bg-video",
-    tags: ["Production"],
+    tags: ["Content creation", "Post Production"],
     cardImage: "/images/service-card-imags/production.png",
     contentBlocks: [
       {
-        type: 'component',
-        component: 'ProductionContent'
-      }
+        type: "component",
+        component: "ProductionContent",
+      },
     ],
   },
 ];
