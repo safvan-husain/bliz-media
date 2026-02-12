@@ -3,35 +3,70 @@ import { cn } from "../lib/utils";
 import type { TeamMember } from "../data/team";
 import { founders, leaders } from "../data/team";
 
-const chunk = <T,>(items: T[], size: number) =>
-  items.reduce<T[][]>((acc, item, index) => {
-    if (index % size === 0) acc.push([item]);
-    else acc[acc.length - 1]?.push(item);
-    return acc;
-  }, []);
-
 const isRegionalManager = (member: TeamMember) =>
   member.role.toLowerCase().includes("regional manager");
+
+const isProductionOrTech = (member: TeamMember) => {
+  const role = member.role.toLowerCase();
+  return role.includes("production") || role.includes("tech");
+};
+
+const isSeoOrPerformanceMarketing = (member: TeamMember) => {
+  const role = member.role.toLowerCase();
+  return role.includes("seo") || role.includes("performance marketing");
+};
 
 const regionalManagers = leaders.filter(isRegionalManager);
 const otherLeaders = leaders.filter((member) => !isRegionalManager(member));
 
+const productionAndTech = otherLeaders.filter(isProductionOrTech);
+const seoAndPerformanceMarketing = otherLeaders.filter(isSeoOrPerformanceMarketing);
+const remainingLeaders = otherLeaders.filter(
+  (member) => !isProductionOrTech(member) && !isSeoOrPerformanceMarketing(member),
+);
+
 const sections = [
-  { title: "Founders", members: founders, colorClass: "text-primary" },
+  {
+    title: "Meet the minds behind the mission",
+    members: founders,
+    colorClass: "text-primary",
+  },
   ...(regionalManagers.length
     ? [
         {
-          title: "Regional Managers",
+          title: "Meet Our Global Leadership",
           members: regionalManagers,
           colorClass: "text-team-green",
         },
       ]
     : []),
-  ...chunk(otherLeaders, 2).map((members) => ({
-    title: "Leaders",
-    members,
-    colorClass: "text-team-blue",
-  })),
+  ...(productionAndTech.length
+    ? [
+        {
+          title: "Meet Our Production & Tech Leads",
+          members: productionAndTech,
+          colorClass: "text-team-olive",
+        },
+      ]
+    : []),
+  ...(seoAndPerformanceMarketing.length
+    ? [
+        {
+          title: "Meet Our SEO & Performance Marketing Leads",
+          members: seoAndPerformanceMarketing,
+          colorClass: "text-team-blue",
+        },
+      ]
+    : []),
+  ...(remainingLeaders.length
+    ? [
+        {
+          title: "Leadership Team",
+          members: remainingLeaders,
+          colorClass: "text-team-blue",
+        },
+      ]
+    : []),
 ];
 ---
 
@@ -49,9 +84,9 @@ const sections = [
           </div>
 
           <!-- Title Section -->
-          <div class="absolute bottom-44 left-8 md:bottom-1/2 md:translate-y-1/2 md:left-20 z-10 pointer-events-none">
-              <h2 class="text-6xl md:text-8xl font-bold text-secondary tracking-tighter leading-[0.85]">
-                  {title.split(' ').map((word) => <span class="block">{word}</span>)}
+          <div class="absolute bottom-44 left-8 md:bottom-1/2 md:translate-y-1/2 md:left-20 z-10 pointer-events-none pr-14">
+              <h2 class="text-5xl md:text-7xl font-bold text-secondary tracking-tighter leading-[0.95] max-w-[10ch] lg:max-w-[12ch]">
+                  {title}
               </h2>
           </div>
 
@@ -59,7 +94,7 @@ const sections = [
           <div class="absolute top-0 right-4 md:right-24 flex flex-row gap-6 md:gap-10 z-20">
               {members.map((member) => (
                   <div class="flex flex-col items-center gap-4 group">
-                      <div class="relative w-[240px] md:w-[380px] h-[350px] md:h-[720px] rounded-b-[3rem] rounded-t-none overflow-hidden bg-gray-300 shadow-2xl transition-all duration-500 hover:h-[380px] md:hover:h-[750px]">
+                      <div class="relative w-[240px] md:w-[380px] h-[350px] md:h-[720px] rounded-b-[3rem] rounded-t-none overflow-hidden bg-gray-200 shadow-2xl transition-all duration-500 hover:h-[380px] md:hover:h-[750px]">
                           <img
                               src={member.image}
                               alt={member.name}
@@ -68,7 +103,7 @@ const sections = [
                       </div>
                       <div class="text-center transition-all duration-300 group-hover:translate-y-1">
                           <h3 class="text-2xl font-bold text-secondary mb-1">{member.name}</h3>
-                          <p class="text-xs font-bold tracking-widest text-gray-500 uppercase">
+                          <p class="text-xs font-bold tracking-widest text-muted-foreground uppercase">
                               {member.role}
                           </p>
                       </div>

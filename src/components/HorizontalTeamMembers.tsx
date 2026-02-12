@@ -20,11 +20,11 @@ export default function HorizontalTeamMembers({
   return (
     <section ref={targetRef} className="relative h-[300vh] bg-zinc-50">
       <div className="max-w-2xl text-center md:text-start mx-auto pt-24">
-        <span className="text-primary font-bold tracking-[0.2em] text-sm uppercase mb-4 block">
+        <span className="text-primary font-bold tracking-[0.2em] text-sm mb-4 block">
           Our People
         </span>
         <h2 className="text-4xl md:text-6xl font-black tracking-tight text-secondary leading-[0.85]">
-          MEET THE TEAM
+          Meet The Team
         </h2>
       </div>
       <div className="sticky top-8 h-screen flex items-center overflow-hidden">
@@ -64,7 +64,7 @@ function TeamMemberCard({ member }: { member: TeamMember }) {
 
       {/* Content */}
       <div className="absolute inset-0 flex flex-col items-center justify-end p-8 text-center text-white z-10 pb-16">
-        <span className="inline-block px-3 py-1 mb-3 text-xs font-medium tracking-wider text-white/80 border border-white/20 rounded-full uppercase transform transition-all duration-500 group-hover:-translate-y-2">
+        <span className="inline-block px-3 py-1 mb-3 text-xs font-medium tracking-wider text-white/80 border border-white/20 rounded-full transform transition-all duration-500 group-hover:-translate-y-2">
           {member.role}
         </span>
 
