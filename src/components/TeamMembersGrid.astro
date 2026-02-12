@@ -1,0 +1,40 @@
+---
+import type { TeamMember } from "../data/team";
+
+interface Props {
+  members: TeamMember[];
+}
+
+const { members } = Astro.props;
+---
+
+<div class="px-6 pb-12">
+  <div class="max-w-[var(--max-width-container)] mx-auto">
+    <div class="grid grid-cols-3 gap-4">
+      {
+        members.map((member) => (
+          <div class="group relative rounded-2xl overflow-hidden border border-border bg-card shadow-sm">
+            <div class="relative aspect-[3/4] bg-secondary">
+              <img
+                src={member.image}
+                alt={member.name}
+                loading="lazy"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+            </div>
+            <div class="p-3">
+              <p class="text-[10px] font-bold tracking-[0.2em] uppercase text-primary truncate">
+                {member.role}
+              </p>
+              <p class="text-sm font-black text-secondary truncate">
+                {member.name}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>
+

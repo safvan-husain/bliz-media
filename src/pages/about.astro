@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import { AboutUsHero } from "../components/heroes/AboutUsHero";
 import Achievements from "../components/Achievements.astro";
 import TeamSection from "../components/TeamSection.astro";
+import TeamSectionMobile from "../components/TeamSectionMobile.astro";
 import OtherTeamMembers from "../components/OtherTeamMembers.astro";
 ---
 
@@ -16,7 +17,13 @@ import OtherTeamMembers from "../components/OtherTeamMembers.astro";
     </div>
   </div>
 
-  <TeamSection />
+  <div class="lg:hidden">
+    <TeamSectionMobile />
+  </div>
+
+  <div class="hidden lg:block">
+    <TeamSection />
+  </div>
 
   <div class="snap-start min-h-screen w-full bg-zinc-50">
     <OtherTeamMembers />
@@ -45,8 +52,14 @@ import OtherTeamMembers from "../components/OtherTeamMembers.astro";
 
 <style is:global>
   html {
-    scroll-snap-type: y proximity;
+    scroll-snap-type: none;
     scroll-behavior: smooth;
+  }
+
+  @media (min-width: 1024px) {
+    html {
+      scroll-snap-type: y proximity;
+    }
   }
 
   /* Ensure consistent heights for snapping */

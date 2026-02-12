@@ -1,7 +1,7 @@
 ---
 import { otherTeamMembers } from "../data/team";
 import HorizontalTeamMembers from "./HorizontalTeamMembers";
-import TeamMembersList from "./TeamMembersList.astro";
+import TeamMembersGrid from "./TeamMembersGrid.astro";
 ---
 
 <section id="other-team" class="relative bg-zinc-50">
@@ -12,7 +12,7 @@ import TeamMembersList from "./TeamMembersList.astro";
     </div>
 
     <div
-        class="md:hidden max-w-[var(--max-width-container)] mx-auto px-6 relative z-10 pt-32 pb-16"
+        class="lg:hidden max-w-[var(--max-width-container)] mx-auto px-6 relative z-10 pt-32 pb-10"
     >
         <div
             class="flex flex-col md:flex-row justify-between items-center gap-12"
@@ -23,14 +23,14 @@ import TeamMembersList from "./TeamMembersList.astro";
                     >Our People</span
                 >
                 <h2
-                    class="text-4xl md:text-6xl font-black tracking-tight text-[#0c1b33] leading-[0.85]"
+                    class="text-4xl md:text-6xl font-black tracking-tight text-secondary leading-[0.85]"
                 >
                     MEET THE TEAM
                 </h2>
             </div>
             <div class="max-w-sm pb-2">
                 <p
-                    class="text-lg text-center md:text-end font-medium text-[#0c1b33]/60 leading-relaxed"
+                    class="text-lg text-center md:text-end font-medium text-secondary/60 leading-relaxed"
                 >
                     The creative minds behind our success stories.
                 </p>
@@ -38,13 +38,13 @@ import TeamMembersList from "./TeamMembersList.astro";
         </div>
     </div>
 
-    <div class="md:hidden">
-        <TeamMembersList members={otherTeamMembers} />
+    <div class="lg:hidden">
+        <TeamMembersGrid members={otherTeamMembers} />
     </div>
 
-    <div class="hidden md:block">
+    <div class="hidden lg:block">
         <HorizontalTeamMembers
-            client:media="(min-width: 768px)"
+            client:media="(min-width: 1024px)"
             members={otherTeamMembers}
         />
     </div>

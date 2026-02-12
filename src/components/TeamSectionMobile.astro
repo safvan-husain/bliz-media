@@ -1,0 +1,78 @@
+---
+import type { TeamMember } from "../data/team";
+import { founders, leaders } from "../data/team";
+
+const isRegionalManager = (member: TeamMember) =>
+    member.role.toLowerCase().includes("regional manager");
+
+const regionalManagers = leaders.filter(isRegionalManager);
+const otherLeaders = leaders.filter((member) => !isRegionalManager(member));
+
+const sections: { title: string; members: TeamMember[] }[] = [
+    { title: "Founders", members: founders },
+    ...(regionalManagers.length
+        ? [{ title: "Regional Managers", members: regionalManagers }]
+        : []),
+    { title: "Leaders", members: otherLeaders },
+];
+---
+
+<section class="w-full bg-white py-16">
+    <div class="max-w-[var(--max-width-container)] mx-auto px-6">
+        <div class="flex flex-col gap-3 mb-10">
+            <span
+                class="text-primary font-bold tracking-[0.2em] text-sm uppercase"
+            >
+                Our People
+            </span>
+            <h2
+                class="text-4xl sm:text-5xl font-black tracking-tight text-secondary leading-[0.95]"
+            >
+                Meet The Team
+            </h2>
+            <p class="text-secondary/60 font-medium max-w-2xl">
+                The people behind the work — strategy, craft, and execution.
+            </p>
+        </div>
+
+        <div class="flex flex-col gap-12">
+            {
+                sections.map(({ title, members }) => (
+                    <div>
+                        <h3 class="text-xl font-black tracking-tight text-secondary mb-5">
+                            {title}
+                        </h3>
+                        <div class="grid grid-cols-2 gap-4 sm:gap-6">
+                            {members.map((member) => (
+                                <div class="group relative rounded-3xl overflow-hidden border border-border bg-card shadow-sm transition-transform duration-500 hover:-translate-y-0.5">
+                                    <div class="relative h-[260px] sm:h-[340px] bg-gray-200">
+                                        <img
+                                            src={member.image}
+                                            alt={member.name}
+                                            loading="lazy"
+                                            class="w-full h-full object-contain object-bottom transition-transform duration-700 group-hover:scale-[1.03]"
+                                        />
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-transparent" />
+                                    </div>
+                                    <div class="p-5">
+                                        <div class="flex flex-col gap-1">
+                                            <p class="text-xs font-bold tracking-[0.2em] uppercase text-primary">
+                                                {member.role}
+                                            </p>
+                                            <p class="text-lg font-black text-secondary">
+                                                {member.name}
+                                            </p>
+                                            <p class="text-sm text-secondary/60 font-medium hidden sm:block">
+                                                {member.bio}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
