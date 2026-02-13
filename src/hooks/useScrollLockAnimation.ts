@@ -31,6 +31,8 @@ interface DetentLock {
     source: DetentSource;
 }
 
+type WheelDeltaResponse = "linear" | "saturate";
+
 export interface ScrollPausePoint {
     /**
      * Progress value (0..1) where the hook should pause.
@@ -75,13 +77,38 @@ interface UseScrollLockAnimationConfig {
      * Default: 450ms
      */
     pauseHoldMs?: number;
+
+    /**
+     * How wheel delta maps to animation progress.
+     * - "linear": direct mapping (previous behavior)
+     * - "saturate": boosts small deltas and caps large deltas so that after a threshold,
+     *   faster scrolling doesn't make the animation go faster.
+     * Default: "linear"
+     */
+    wheelDeltaResponse?: WheelDeltaResponse;
+
+    /**
+     * Maximum wheel delta (px) used when `wheelDeltaResponse` is "saturate".
+     * Default: 120
+     */
+    wheelDeltaClampPx?: number;
+
+    /**
+     * Curve (px) used when `wheelDeltaResponse` is "saturate".
+     * Lower values make light scrolling feel stronger; higher values are more linear.
+     * Default: 25
+     */
+    wheelDeltaCurvePx?: number;
 }
 
 export function useScrollLockAnimation({
     scrollLength = 1000,
     mobileMultiplier = 2,
     pausePoints: pausePointsInput = [],
-    pauseHoldMs = 450
+    pauseHoldMs = 450,
+    wheelDeltaResponse = "linear",
+    wheelDeltaClampPx = 120,
+    wheelDeltaCurvePx = 25
 }: UseScrollLockAnimationConfig = {}) {
     const sectionRef = useRef<HTMLDivElement>(null);
     const isLockedRef = useRef(false);
@@ -203,6 +230,22 @@ export function useScrollLockAnimation({
         if (e.deltaMode === 2) return e.deltaY * window.innerHeight; // DOM_DELTA_PAGE
         return e.deltaY; // DOM_DELTA_PIXEL
     }, []);
+
+    const applyWheelDeltaResponse = useCallback((deltaPx: number) => {
+        if (wheelDeltaResponse === "linear") return deltaPx;
+
+        const magnitude = Math.abs(deltaPx);
+        if (magnitude === 0) return 0;
+
+        // Exponential saturating curve:
+        // - boosts small deltas (trackpads / gentle scroll)
+        // - caps large deltas so that beyond a threshold, animation speed feels consistent
+        const curve = Math.max(1, wheelDeltaCurvePx);
+        const clamp = Math.max(1, wheelDeltaClampPx);
+        const easedMagnitude = clamp * (1 - Math.exp(-magnitude / curve));
+
+        return Math.sign(deltaPx) * Math.min(easedMagnitude, clamp);
+    }, [wheelDeltaClampPx, wheelDeltaCurvePx, wheelDeltaResponse]);
 
     useEffect(() => {
         const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -444,8 +487,9 @@ export function useScrollLockAnimation({
 
         if (isPaused()) return;
 
-        const next = Math.min(Math.max(current + delta * sensitivity, 0), 1);
-        const pausePoint = getCrossedPausePoint(current, next, delta);
+        const effectiveDelta = applyWheelDeltaResponse(delta);
+        const next = Math.min(Math.max(current + effectiveDelta * sensitivity, 0), 1);
+        const pausePoint = getCrossedPausePoint(current, next, effectiveDelta);
         if (pausePoint) {
             progress.set(pausePoint.at);
             if (pausePoint.holdMs === 0) {
@@ -476,6 +520,7 @@ export function useScrollLockAnimation({
             return;
         }
     }, [
+        applyWheelDeltaResponse,
         getCrossedPausePoint,
         isPaused,
         lockScroll,

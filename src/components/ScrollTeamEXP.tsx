@@ -130,6 +130,9 @@ export default function ScrollTeamEXP() {
     scrollLength: 3200,
     pauseHoldMs: 0,
     pausePoints: TEAM_SCROLL_PAUSE_POINTS,
+    wheelDeltaResponse: "saturate",
+    wheelDeltaClampPx: 120,
+    wheelDeltaCurvePx: 25,
   });
 
   const smoothProgress = useSpring(progress, {
