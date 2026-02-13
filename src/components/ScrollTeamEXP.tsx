@@ -241,9 +241,13 @@ export default function ScrollTeamEXP() {
   const [currentTitle, setCurrentTitle] = useState<string>(
     TEAM_SEGMENTS.founders.title,
   );
+  const [isTeamStage, setIsTeamStage] = useState(false);
 
   useEffect(() => {
     const unsubscribe = smoothProgress.on("change", (value) => {
+      const nextIsTeamStage = value >= TEAM_SEGMENTS.team.start;
+      setIsTeamStage(nextIsTeamStage);
+
       if (value >= TEAM_SEGMENTS.team.start) {
         setCurrentTitle(TEAM_SEGMENTS.team.title);
       } else if (value >= TEAM_SEGMENTS.seoPerformance.start) {
@@ -326,7 +330,7 @@ export default function ScrollTeamEXP() {
         </div>
 
         <div className="relative mx-auto px-6 h-full w-full flex flex-col md:flex-row md:items-center lg:gap-20">
-          <div className="z-30 absolute left-6 md:left-20 bottom-12 md:bottom-40 max-w-2xl pointer-events-none">
+          <div className="z-30 absolute left-6 md:left-20 bottom-[30%] md:bottom-40 max-w-2xl pointer-events-none">
             <p className="text-5xl font-black leading-[0.95] tracking-tighter md:text-6xl lg:text-7xl text-white">
               {currentTitle}
             </p>
@@ -334,7 +338,7 @@ export default function ScrollTeamEXP() {
 
           <div className="flex-1 relative w-full h-full min-h-0">
             <div className="absolute right-6 md:right-10 lg:right-16 top-0 w-auto flex items-start justify-end z-20">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 justify-items-end items-start">
+              <div className="grid grid-cols-2 gap-4 sm:gap-6 justify-items-end items-start">
                 {spotlightFounders.map((member, index) => (
                   <motion.div
                     key={member.id}
@@ -356,7 +360,7 @@ export default function ScrollTeamEXP() {
             </div>
 
             <div className="absolute right-6 md:right-10 lg:right-16 top-0 w-auto flex items-start justify-end z-30">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 justify-items-end items-start">
+              <div className="grid grid-cols-2 gap-4 sm:gap-6 justify-items-end items-start">
                 {spotlightGlobalLeadership.map((member, index) => (
                   <motion.div
                     key={member.id}
@@ -378,7 +382,7 @@ export default function ScrollTeamEXP() {
             </div>
 
             <div className="absolute right-6 md:right-10 lg:right-16 top-0 w-auto flex items-start justify-end z-40">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 justify-items-end items-start">
+              <div className="grid grid-cols-2 gap-4 sm:gap-6 justify-items-end items-start">
                 {spotlightProductionTech.map((member, index) => (
                   <motion.div
                     key={member.id}
@@ -400,7 +404,7 @@ export default function ScrollTeamEXP() {
             </div>
 
             <div className="absolute right-6 md:right-10 lg:right-16 top-0 w-auto flex items-start justify-end z-50">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 justify-items-end items-start">
+              <div className="grid grid-cols-2 gap-4 sm:gap-6 justify-items-end items-start">
                 {spotlightSeoPerformance.map((member, index) => (
                   <motion.div
                     key={member.id}
@@ -426,7 +430,7 @@ export default function ScrollTeamEXP() {
                 y: teamEntryY,
                 opacity: teamEntryOpacity,
               }}
-              className="absolute inset-0 w-full h-full flex flex-col justify-center items-start z-[60]"
+              className="hidden md:flex absolute inset-0 w-full h-full flex-col justify-center items-start z-[60]"
             >
               <div className="relative w-full overflow-visible">
                 <motion.div
@@ -439,6 +443,18 @@ export default function ScrollTeamEXP() {
                 </motion.div>
               </div>
             </motion.div>
+
+            {isTeamStage && (
+              <div className="md:hidden absolute inset-0 w-full h-full z-[60] px-6 pt-10">
+                <div className="mt-4 max-h-[55vh] overflow-y-auto pr-2">
+                  <div className="grid grid-cols-3 gap-3">
+                    {restOfTeam.map((member) => (
+                      <TeamGridCard key={member.id} member={member} />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -470,10 +486,32 @@ function TeamCarouselCard({ member }: { member: TeamMember }) {
   );
 }
 
+function TeamGridCard({ member }: { member: TeamMember }) {
+  return (
+    <div className="group flex flex-col gap-2">
+      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-white/5 border border-white/10 shadow-lg">
+        <img
+          src={member.image}
+          alt={member.name}
+          className="h-full w-full object-cover object-top"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/0 to-transparent" />
+      </div>
+      <div className="text-[11px] font-extrabold tracking-tight text-white leading-tight line-clamp-1">
+        {member.name}
+      </div>
+      <div className="text-[9px] font-bold uppercase tracking-[0.18em] text-white/50 line-clamp-1">
+        {member.role}
+      </div>
+    </div>
+  );
+}
+
 function TeamSpotlightCard({ member }: { member: TeamMember }) {
   return (
-    <div className="flex flex-col items-center text-center group w-full max-w-[400px]">
-      <div className="relative aspect-[1/1.2] max-w-[300px] sm:max-w-none overflow-hidden bg-gray-200 rounded-b-[150px] border-[6px] border-white/30 shadow-2xl transition-all duration-500 hover:scale-105 hover:border-white">
+    <div className="flex flex-col items-center text-center group w-[150px] sm:w-[260px] lg:w-[300px]">
+      <div className="relative aspect-[1/1.2] w-full overflow-hidden bg-gray-200 rounded-b-[150px] border-[6px] border-white/30 shadow-2xl transition-all duration-500 hover:scale-105 hover:border-white">
         <img
           src={member.image}
           alt={member.name}
@@ -483,10 +521,10 @@ function TeamSpotlightCard({ member }: { member: TeamMember }) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
       </div>
       <div className="mt-8">
-        <h3 className="text-3xl font-black tracking-tight text-white">
+        <h3 className="text-xl sm:text-3xl font-black tracking-tight text-white">
           {member.name}
         </h3>
-        <p className="text-sm font-extrabold uppercase tracking-[0.2em] text-white/50">
+        <p className="text-[10px] sm:text-sm font-extrabold uppercase tracking-[0.2em] text-white/50">
           {member.role}
         </p>
       </div>
