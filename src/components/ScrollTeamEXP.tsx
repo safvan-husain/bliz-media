@@ -510,21 +510,21 @@ function TeamGridCard({ member }: { member: TeamMember }) {
 
 function TeamSpotlightCard({ member }: { member: TeamMember }) {
   return (
-    <div className="flex flex-col items-center text-center group w-[150px] sm:w-[260px] lg:w-[300px]">
-      <div className="relative aspect-[1/1.2] w-full overflow-hidden bg-gray-200 rounded-b-[150px] border-[6px] border-white/30 shadow-2xl transition-all duration-500 hover:scale-105 hover:border-white">
+    <div className="flex flex-col items-center text-center group w-[170px] sm:w-[280px] lg:w-[340px]">
+      <div className="relative aspect-[1/1.45] sm:aspect-[1/1.2] w-full overflow-hidden bg-gray-200 rounded-b-[150px] border-[6px] border-white/30 shadow-2xl transition-all duration-500 hover:scale-105 hover:border-white">
         <img
           src={member.image}
           alt={member.name}
-          className="h-full w-full object-cover object-top mix-blend-luminosity brightness-110 contrast-110 transition-all duration-700 group-hover:mix-blend-normal group-hover:scale-110"
+          className="h-full w-full object-cover object-bottom sm:object-top mix-blend-luminosity brightness-110 contrast-110 transition-all duration-700 group-hover:mix-blend-normal group-hover:scale-110"
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
       </div>
       <div className="mt-8">
-        <h3 className="text-xl sm:text-3xl font-black tracking-tight text-white">
+        <h3 className="text-xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white">
           {member.name}
         </h3>
-        <p className="text-[10px] sm:text-sm font-extrabold uppercase tracking-[0.2em] text-white/50">
+        <p className="text-[10px] sm:text-sm lg:text-base font-extrabold uppercase tracking-[0.2em] text-white/50">
           {member.role}
         </p>
       </div>
