@@ -66,10 +66,10 @@ const TEAM_SEGMENTS = {
 } as const;
 
 const TEAM_SCROLL_PAUSE_POINTS = [
-  { at: TEAM_SEGMENTS.founders.holdEnd, holdMs: 0 },
-  { at: TEAM_SEGMENTS.globalLeadership.holdEnd, holdMs: 0 },
-  { at: TEAM_SEGMENTS.productionTech.holdEnd, holdMs: 0 },
-  { at: TEAM_SEGMENTS.seoPerformance.holdEnd, holdMs: 0 },
+  { at: TEAM_SEGMENTS.founders.holdEnd, holdMs: 0, direction: "both" },
+  { at: TEAM_SEGMENTS.globalLeadership.holdEnd, holdMs: 0, direction: "both" },
+  { at: TEAM_SEGMENTS.productionTech.holdEnd, holdMs: 0, direction: "both" },
+  { at: TEAM_SEGMENTS.seoPerformance.holdEnd, holdMs: 0, direction: "both" },
 ];
 
 function useSpotlightPairMotion({
