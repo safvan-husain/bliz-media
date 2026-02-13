@@ -13,7 +13,10 @@ import {
   otherTeamMembers,
   type TeamMember,
 } from "../data/team";
-import { useScrollLockAnimation } from "../hooks/useScrollLockAnimation";
+import {
+  useScrollLockAnimation,
+  type ScrollPausePoint,
+} from "../hooks/useScrollLockAnimation";
 
 const isRegionalManager = (member: TeamMember) =>
   member.role.toLowerCase().includes("regional manager");
@@ -65,7 +68,7 @@ const TEAM_SEGMENTS = {
   },
 } as const;
 
-const TEAM_SCROLL_PAUSE_POINTS = [
+const TEAM_SCROLL_PAUSE_POINTS: ScrollPausePoint[] = [
   { at: TEAM_SEGMENTS.founders.holdEnd, holdMs: 0, direction: "both" },
   { at: TEAM_SEGMENTS.globalLeadership.holdEnd, holdMs: 0, direction: "both" },
   { at: TEAM_SEGMENTS.productionTech.holdEnd, holdMs: 0, direction: "both" },
