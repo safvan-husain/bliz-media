@@ -330,14 +330,14 @@ export default function ScrollTeamEXP() {
         </div>
 
         <div className="relative mx-auto px-6 h-full w-full flex flex-col md:flex-row md:items-center lg:gap-20">
-          <div className="z-30 absolute left-6 md:left-20 bottom-[30%] md:bottom-40 max-w-2xl pointer-events-none">
+          <div className="z-30 absolute left-6 md:left-20 bottom-[20%] sm:bottom-40 max-w-2xl pointer-events-none">
             <p className="text-5xl font-black leading-[0.95] tracking-tighter md:text-6xl lg:text-7xl text-white">
               {currentTitle}
             </p>
           </div>
 
           <div className="flex-1 relative w-full h-full min-h-0">
-            <div className="absolute right-6 md:right-10 lg:right-16 top-0 w-auto flex items-start justify-end z-20">
+            <div className="absolute -right-3 md:right-10 lg:right-16 top-0 w-auto flex items-start justify-end z-20">
               <div className="grid grid-cols-2 gap-4 sm:gap-6 justify-items-end items-start">
                 {spotlightFounders.map((member, index) => (
                   <motion.div
@@ -359,7 +359,7 @@ export default function ScrollTeamEXP() {
               </div>
             </div>
 
-            <div className="absolute right-6 md:right-10 lg:right-16 top-0 w-auto flex items-start justify-end z-30">
+            <div className="absolute -right-3 md:right-10 lg:right-16 top-0 w-auto flex items-start justify-end z-30">
               <div className="grid grid-cols-2 gap-4 sm:gap-6 justify-items-end items-start">
                 {spotlightGlobalLeadership.map((member, index) => (
                   <motion.div
@@ -381,7 +381,7 @@ export default function ScrollTeamEXP() {
               </div>
             </div>
 
-            <div className="absolute right-6 md:right-10 lg:right-16 top-0 w-auto flex items-start justify-end z-40">
+            <div className="absolute -right-3 md:right-10 lg:right-16 top-0 w-auto flex items-start justify-end z-40">
               <div className="grid grid-cols-2 gap-4 sm:gap-6 justify-items-end items-start">
                 {spotlightProductionTech.map((member, index) => (
                   <motion.div
@@ -403,7 +403,7 @@ export default function ScrollTeamEXP() {
               </div>
             </div>
 
-            <div className="absolute right-6 md:right-10 lg:right-16 top-0 w-auto flex items-start justify-end z-50">
+            <div className="absolute -right-3 md:right-10 lg:right-16 top-0 w-auto flex items-start justify-end z-50">
               <div className="grid grid-cols-2 gap-4 sm:gap-6 justify-items-end items-start">
                 {spotlightSeoPerformance.map((member, index) => (
                   <motion.div
@@ -510,12 +510,12 @@ function TeamGridCard({ member }: { member: TeamMember }) {
 
 function TeamSpotlightCard({ member }: { member: TeamMember }) {
   return (
-    <div className="flex flex-col items-center text-center group w-[170px] sm:w-[280px] lg:w-[340px]">
-      <div className="relative aspect-[1/1.45] sm:aspect-[1/1.2] w-full overflow-hidden bg-gray-200 rounded-b-[150px] border-[6px] border-white/30 shadow-2xl transition-all duration-500 hover:scale-105 hover:border-white">
+    <div className="flex flex-col items-center text-center group w-[150px]  w-[378px]:w-[180px]  sm:w-[280px] lg:w-[340px]">
+      <div className="relative aspect-[1/2] sm:aspect-[1/1.5] w-full overflow-hidden bg-gray-200 rounded-b-[150px] border-[6px] border-white/30 shadow-2xl transition-all duration-500 hover:scale-105 hover:border-white">
         <img
           src={member.image}
           alt={member.name}
-          className="h-full w-full object-cover object-bottom sm:object-top mix-blend-luminosity brightness-110 contrast-110 transition-all duration-700 group-hover:mix-blend-normal group-hover:scale-110"
+          className="absolute bottom-0 w-full object-cover object-bottom sm:object-top mix-blend-luminosity brightness-110 contrast-110 transition-all duration-700 group-hover:mix-blend-normal group-hover:scale-110"
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
