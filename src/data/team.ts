@@ -18,8 +18,8 @@ export const founders: TeamMember[] = [
     },
     {
         id: "founder-02",
-        name: "Ajnas",
-        role: "VP",
+        name: "Ajnas VP",
+        role: "Founder",
         image: "/images/team/founders/ajnas-vp.png",
         bio: "Leading teams and operations to deliver consistent results.",
         color: "bg-team-blue",

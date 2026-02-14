@@ -55,7 +55,7 @@ const sections = [
 <div class="w-full bg-gray-900 py-16">
   {
     sections.map((section) => (
-      <div class="w-full px-6 mb-20">
+      <div class="w-full px-6 mb-20 min-h-[60vh] flex flex-col justify-center">
         {/* Section title */}
         {section.title && (
           <h2 class="text-3xl sm:text-4xl font-black leading-tight tracking-tighter text-white mb-8">
@@ -84,7 +84,7 @@ const sections = [
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/0 to-transparent" />
 
                 {/* Name and role overlay */}
-                <div class="absolute bottom-0 left-0 right-0 p-3">
+                <div class={`${section.id === "team" ? "" : "hidden"} absolute bottom-0 left-0 right-0 p-3`}>
                   <div class="text-sm font-extrabold tracking-tight text-white leading-tight">
                     {member.name}
                   </div>
@@ -93,6 +93,15 @@ const sections = [
                   </div>
                 </div>
               </div>
+               {/* Name and role overlay */}
+                <div class={`${section.id === "team" ? "hidden" : "flex flex-col gap-1"}`}>
+                  <div class="text-sm font-extrabold tracking-tight text-white leading-tight">
+                    {member.name}
+                  </div>
+                  <div class="text-xs font-bold tracking-wider text-white/70">
+                    {member.role}
+                  </div>
+                </div>
             </div>
           ))}
         </div>
