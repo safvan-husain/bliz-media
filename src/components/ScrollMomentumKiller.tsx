@@ -15,6 +15,7 @@ export default function ScrollMomentumKiller({
     const sectionRef = useRef<HTMLDivElement>(null);
     const isKillingRef = useRef(false);
     const lastScrollTimeRef = useRef(0);
+    const lastScrollYRef = useRef(0);
 
     useEffect(() => {
         const section = sectionRef.current;
@@ -22,6 +23,9 @@ export default function ScrollMomentumKiller({
 
         let rafId: number | null = null;
         let killTimeoutId: NodeJS.Timeout | null = null;
+
+        // Initialize scroll position
+        lastScrollYRef.current = window.scrollY;
 
         const killScrollMomentum = () => {
             if (isKillingRef.current) return;
@@ -44,11 +48,12 @@ export default function ScrollMomentumKiller({
                 document.documentElement.style.overflow = originalOverflow;
                 document.documentElement.style.scrollBehavior = originalScrollBehavior;
 
-                // Allow scroll again after a short delay
+                // Auto-deactivate after 1 second to prevent permanent lock
+                // This gives ScrollTeamEXP time to engage its scroll lock
                 if (killTimeoutId) clearTimeout(killTimeoutId);
                 killTimeoutId = setTimeout(() => {
                     isKillingRef.current = false;
-                }, 100);
+                }, 1000);
             }, 50);
         };
 
@@ -57,24 +62,36 @@ export default function ScrollMomentumKiller({
 
             const rect = section.getBoundingClientRect();
             const viewportHeight = window.innerHeight;
-            const distanceFromTop = rect.top;
 
-            // Check if we're approaching the section from above
-            const isApproaching = distanceFromTop > 0 && distanceFromTop <= viewportHeight + triggerOffset;
+            // Calculate scroll direction
+            const currentScrollY = window.scrollY;
+            const scrollDirection = currentScrollY > lastScrollYRef.current ? 'down' : 'up';
+            lastScrollYRef.current = currentScrollY;
+
+            // Only kill momentum when scrolling DOWN and approaching from ABOVE
+            // - distanceFromTop > 0: Section is still below viewport (we haven't reached it yet)
+            // - distanceFromTop < triggerOffset: We're close enough to trigger
+            const distanceFromTop = rect.top;
+            const isApproachingFromAbove = distanceFromTop > 0 && distanceFromTop <= triggerOffset;
+
+            // Don't kill momentum if:
+            // 1. Scrolling up (user is leaving/exiting)
+            // 2. Section is already behind us (distanceFromTop < 0, we're past it going to footer)
+            if (scrollDirection !== 'down' || !isApproachingFromAbove) {
+                return;
+            }
 
             // Calculate scroll velocity
             const now = Date.now();
             const timeDelta = now - lastScrollTimeRef.current;
             lastScrollTimeRef.current = now;
 
-            // If approaching and scrolling (timeDelta indicates recent scroll)
-            if (isApproaching && timeDelta < 100) {
-                // Check if we're in the trigger zone (close to section)
-                if (distanceFromTop <= triggerOffset) {
-                    killScrollMomentum();
-                }
+            // If scrolling down into the section with recent momentum
+            if (timeDelta < 100) {
+                killScrollMomentum();
             }
         };
+
 
         const handleScroll = () => {
             if (rafId) cancelAnimationFrame(rafId);
