@@ -1,7 +1,10 @@
 ---
+import ScrollMomentumKiller from "./ScrollMomentumKiller";
 import ScrollTeamEXP from "./ScrollTeamEXP";
 ---
 
-<div id="team" class="w-full">
-  <ScrollTeamEXP client:load />
-</div>
+<ScrollMomentumKiller client:load triggerOffset={300}>
+  <div id="team" class="w-full">
+    <ScrollTeamEXP client:load />
+  </div>
+</ScrollMomentumKiller>
