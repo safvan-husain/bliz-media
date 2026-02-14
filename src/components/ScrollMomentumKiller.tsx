@@ -4,13 +4,13 @@ import { useEffect, useRef, type ReactNode } from "react";
 
 interface ScrollMomentumKillerProps {
     children: ReactNode;
-    /** Offset in pixels before the section to start killing momentum (default: 200) */
+    /** Offset in pixels before the section to start killing momentum (default: 700) */
     triggerOffset?: number;
 }
 
 export default function ScrollMomentumKiller({
     children,
-    triggerOffset = 200,
+    triggerOffset = 700,
 }: ScrollMomentumKillerProps) {
     const sectionRef = useRef<HTMLDivElement>(null);
     const isKillingRef = useRef(false);
@@ -87,7 +87,8 @@ export default function ScrollMomentumKiller({
             lastScrollTimeRef.current = now;
 
             // If scrolling down into the section with recent momentum
-            if (timeDelta < 100) {
+            // Increased to 500ms to catch mobile fast scrolling
+            if (timeDelta < 500) {
                 killScrollMomentum();
             }
         };
