@@ -129,7 +129,7 @@ const sections = [
     let isSnapping = false;
     let scrollEndTimer = 0;
     let scrollSessionActive = false;
-    let alignedIndexAtScrollStart = null;
+    let alignedIndexAtScrollStart: number | null = null;
 
     const isAnyPanelInView = () =>
       panels.some((panel) => {
@@ -140,7 +140,7 @@ const sections = [
     const getPanelStarts = () =>
       panels.map((panel) => panel.getBoundingClientRect().top + window.scrollY);
 
-    const getCurrentPanelIndex = (panelStarts, currentY) => {
+    const getCurrentPanelIndex = (panelStarts: number[], currentY: number) => {
       let currentIndex = 0;
       for (let i = 0; i < panelStarts.length; i++) {
         if (panelStarts[i] <= currentY + yTolerance) currentIndex = i;
@@ -149,7 +149,7 @@ const sections = [
       return currentIndex;
     };
 
-    const scrollToStart = (top) => {
+    const scrollToStart = (top: number) => {
       isSnapping = true;
       window.scrollTo({
         top,
