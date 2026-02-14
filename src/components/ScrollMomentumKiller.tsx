@@ -4,24 +4,23 @@ import { useEffect, useRef, type ReactNode } from "react";
 
 interface ScrollMomentumKillerProps {
     children: ReactNode;
-    /** Offset in pixels before the section to start killing momentum (default: 700) */
+    /** Offset in pixels before the section to start killing momentum (default: 500) */
     triggerOffset?: number;
 }
 
 export default function ScrollMomentumKiller({
     children,
-    triggerOffset = 700,
+    triggerOffset = 500,
 }: ScrollMomentumKillerProps) {
     const sectionRef = useRef<HTMLDivElement>(null);
     const isKillingRef = useRef(false);
-    const lastScrollTimeRef = useRef(0);
     const lastScrollYRef = useRef(0);
+    const hasTriggeredRef = useRef(false);
 
     useEffect(() => {
         const section = sectionRef.current;
         if (!section) return;
 
-        let rafId: number | null = null;
         let killTimeoutId: NodeJS.Timeout | null = null;
 
         // Initialize scroll position
@@ -30,7 +29,9 @@ export default function ScrollMomentumKiller({
         const killScrollMomentum = () => {
             if (isKillingRef.current) return;
 
+            console.log("🛑 Killing scroll momentum");
             isKillingRef.current = true;
+            hasTriggeredRef.current = true;
 
             // Override scroll behavior temporarily
             const originalOverflow = document.documentElement.style.overflow;
@@ -53,77 +54,56 @@ export default function ScrollMomentumKiller({
                 if (killTimeoutId) clearTimeout(killTimeoutId);
                 killTimeoutId = setTimeout(() => {
                     isKillingRef.current = false;
+                    console.log("✅ Momentum killer deactivated");
                 }, 1000);
             }, 50);
         };
 
-        const checkPosition = () => {
-            if (isKillingRef.current) return;
-
-            const rect = section.getBoundingClientRect();
-            const viewportHeight = window.innerHeight;
-
-            // Calculate scroll direction
+        // Track scroll direction
+        const handleScroll = () => {
             const currentScrollY = window.scrollY;
             const scrollDirection = currentScrollY > lastScrollYRef.current ? 'down' : 'up';
             lastScrollYRef.current = currentScrollY;
 
-            // Only kill momentum when scrolling DOWN and approaching from ABOVE
-            // - distanceFromTop > 0: Section is still below viewport (we haven't reached it yet)
-            // - distanceFromTop < triggerOffset: We're close enough to trigger
-            const distanceFromTop = rect.top;
-            const isApproachingFromAbove = distanceFromTop > 0 && distanceFromTop <= triggerOffset;
-
-            // Don't kill momentum if:
-            // 1. Scrolling up (user is leaving/exiting)
-            // 2. Section is already behind us (distanceFromTop < 0, we're past it going to footer)
-            if (scrollDirection !== 'down' || !isApproachingFromAbove) {
-                return;
-            }
-
-            // Calculate scroll velocity
-            const now = Date.now();
-            const timeDelta = now - lastScrollTimeRef.current;
-            lastScrollTimeRef.current = now;
-
-            // If scrolling down into the section with recent momentum
-            // Increased to 500ms to catch mobile fast scrolling
-            if (timeDelta < 500) {
-                killScrollMomentum();
+            // Reset trigger flag when scrolling up (leaving section)
+            if (scrollDirection === 'up') {
+                hasTriggeredRef.current = false;
             }
         };
 
+        // IntersectionObserver with rootMargin to detect approach
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    const currentScrollY = window.scrollY;
+                    const scrollDirection = currentScrollY > lastScrollYRef.current ? 'down' : 'up';
 
-        const handleScroll = () => {
-            if (rafId) cancelAnimationFrame(rafId);
-            rafId = requestAnimationFrame(checkPosition);
-        };
-
-        const handleWheel = (e: WheelEvent) => {
-            if (isKillingRef.current) {
-                e.preventDefault();
-                e.stopPropagation();
+                    // Only trigger when:
+                    // 1. Section is intersecting (entering the detection zone)
+                    // 2. Scrolling down
+                    // 3. Haven't already triggered (prevent re-triggering)
+                    if (entry.isIntersecting && scrollDirection === 'down' && !hasTriggeredRef.current) {
+                        console.log("👁️ Section detected approaching while scrolling down");
+                        killScrollMomentum();
+                    }
+                });
+            },
+            {
+                // rootMargin creates a detection zone ABOVE the viewport
+                // Format: "top right bottom left"
+                // Positive top value = detect when element is still BELOW viewport
+                rootMargin: `${triggerOffset}px 0px 0px 0px`,
+                threshold: 0,
             }
-        };
+        );
 
-        const handleTouchMove = (e: TouchEvent) => {
-            if (isKillingRef.current) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
-        };
-
-        // Add listeners
+        observer.observe(section);
         window.addEventListener("scroll", handleScroll, { passive: true });
-        window.addEventListener("wheel", handleWheel, { passive: false });
-        window.addEventListener("touchmove", handleTouchMove, { passive: false });
 
         return () => {
-            if (rafId) cancelAnimationFrame(rafId);
             if (killTimeoutId) clearTimeout(killTimeoutId);
+            observer.disconnect();
             window.removeEventListener("scroll", handleScroll);
-            window.removeEventListener("wheel", handleWheel);
-            window.removeEventListener("touchmove", handleTouchMove);
         };
     }, [triggerOffset]);
 
