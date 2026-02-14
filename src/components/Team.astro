@@ -1,10 +1,14 @@
 ---
-import ScrollMomentumKiller from "./ScrollMomentumKiller";
 import ScrollTeamEXP from "./ScrollTeamEXP";
+import TeamMobile from "./TeamMobile.astro";
 ---
 
-<ScrollMomentumKiller client:load triggerOffset={500}>
-  <div id="team" class="w-full">
-    <ScrollTeamEXP client:load />
-  </div>
-</ScrollMomentumKiller>
+<!-- Desktop: ScrollTeamEXP with animation -->
+<div id="team" class="w-full hidden lg:block">
+  <ScrollTeamEXP client:load />
+</div>
+
+<!-- Mobile: Static scroll-snap version -->
+<div id="team-mobile" class="w-full lg:hidden">
+  <TeamMobile />
+</div>

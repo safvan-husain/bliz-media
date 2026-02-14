@@ -6,9 +6,9 @@ import Team from "../components/Team.astro";
 ---
 
 <Layout title="About Us - Bliz Media">
-  <AboutUsHero client:load />
-
+  <div class="overflow-x-hidden">
+    <AboutUsHero client:load />
+  </div>
   <Achievements />
-
   <Team />
 </Layout>

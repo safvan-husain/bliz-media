@@ -1,0 +1,102 @@
+---
+import {
+  founders,
+  leaders,
+  otherTeamMembers,
+  type TeamMember,
+} from "../data/team";
+
+const isRegionalManager = (member: TeamMember) =>
+  member.role.toLowerCase().includes("regional manager");
+
+const isProductionOrTech = (member: TeamMember) => {
+  const role = member.role.toLowerCase();
+  return role.includes("production") || role.includes("tech");
+};
+
+const isSeoOrPerformanceMarketing = (member: TeamMember) => {
+  const role = member.role.toLowerCase();
+  return role.includes("seo") || role.includes("performance marketing");
+};
+
+const regionalManagers = leaders.filter(isRegionalManager);
+const productionAndTech = leaders.filter(isProductionOrTech);
+const seoAndPerformanceMarketing = leaders.filter(isSeoOrPerformanceMarketing);
+
+const sections = [
+  {
+    id: "founders",
+    title: "Meet the minds behind the mission",
+    members: founders,
+  },
+  {
+    id: "global-leadership",
+    title: "Meet Our Global Leadership",
+    members: regionalManagers,
+  },
+  {
+    id: "production-tech",
+    title: "Meet Our Production & Tech Leads",
+    members: productionAndTech,
+  },
+  {
+    id: "seo-performance",
+    title: "Meet Our SEO & Performance Marketing Leads",
+    members: seoAndPerformanceMarketing,
+  },
+  {
+    id: "team",
+    title: "Meet The Rest of Our Team",
+    members: otherTeamMembers,
+  },
+];
+---
+
+<div class="w-full bg-gray-900 py-16">
+  {
+    sections.map((section) => (
+      <div class="w-full px-6 mb-20">
+        {/* Section title */}
+        {section.title && (
+          <h2 class="text-3xl sm:text-4xl font-black leading-tight tracking-tighter text-white mb-8">
+            {section.title}
+          </h2>
+        )}
+
+        {/* Team members grid */}
+        <div
+          class:list={[
+            "w-full",
+            section.id === "team"
+              ? "grid grid-cols-2 sm:grid-cols-3 gap-4"
+              : "grid grid-cols-2 gap-4 sm:max-w-md sm:mx-auto",
+          ]}
+        >
+          {section.members.map((member) => (
+            <div class="group flex flex-col gap-2">
+              <div class="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-gray-200 border border-white/10 shadow-lg">
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  class="h-full w-full object-cover object-top"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/0 to-transparent" />
+
+                {/* Name and role overlay */}
+                <div class="absolute bottom-0 left-0 right-0 p-3">
+                  <div class="text-sm font-extrabold tracking-tight text-white leading-tight">
+                    {member.name}
+                  </div>
+                  <div class="text-xs font-bold uppercase tracking-wider text-white/70 line-clamp-1">
+                    {member.role}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))
+  }
+</div>
