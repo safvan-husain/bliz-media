@@ -34,35 +34,35 @@ const isSeoOrPerformanceMarketing = (member: TeamMember) => {
 const TEAM_SEGMENTS = {
   founders: {
     start: 0,
-    inEnd: 0.08,
-    holdEnd: 0.16,
-    outEnd: 0.2,
+    inEnd: 0.04,
+    holdEnd: 0.07,
+    outEnd: 0.10,
     title: "Meet the minds behind the mission",
   },
   globalLeadership: {
-    start: 0.2,
-    inEnd: 0.28,
-    holdEnd: 0.34,
-    outEnd: 0.4,
+    start: 0.10,
+    inEnd: 0.14,
+    holdEnd: 0.17,
+    outEnd: 0.20,
     title: "Meet Our Global Leadership",
   },
   productionTech: {
-    start: 0.4,
-    inEnd: 0.48,
-    holdEnd: 0.54,
-    outEnd: 0.6,
-    title: "Meet Our Production & Tech Leads",
+    start: 0.20,
+    inEnd: 0.24,
+    holdEnd: 0.27,
+    outEnd: 0.30,
+    title: "Meet Our Department Heads",
   },
   seoPerformance: {
-    start: 0.6,
-    inEnd: 0.68,
-    holdEnd: 0.74,
-    outEnd: 0.8,
-    title: "Meet Our SEO & Performance Marketing Leads",
+    start: 0.30,
+    inEnd: 0.34,
+    holdEnd: 0.37,
+    outEnd: 0.40,
+    title: "Meet Our Department Heads",
   },
   team: {
-    start: 0.8,
-    inEnd: 0.86,
+    start: 0.40,
+    inEnd: 0.44,
     outEnd: 1,
     title: "", //keep it empty.
   },
@@ -130,7 +130,7 @@ function uniqueById(members: TeamMember[]) {
 
 export default function ScrollTeamEXP() {
   const { sectionRef, progress, isLocked } = useScrollLockAnimation({
-    scrollLength: 3200,
+    scrollLength: 6720,
     pauseHoldMs: 0,
     pausePoints: TEAM_SCROLL_PAUSE_POINTS,
     wheelDeltaResponse: "saturate",
@@ -312,7 +312,7 @@ export default function ScrollTeamEXP() {
   const teamX = useTransform(
     smoothProgress,
     [TEAM_SEGMENTS.team.inEnd, TEAM_SEGMENTS.team.outEnd],
-    ["0%", "-70%"],
+    ["0%", "-100%"],
   );
 
   return (
@@ -334,7 +334,7 @@ export default function ScrollTeamEXP() {
 
         <div className="relative mx-auto px-6 h-full w-full flex flex-col md:flex-row md:items-center lg:gap-20">
           <div className="z-30 absolute left-6 md:left-20 bottom-[20%] sm:bottom-40 max-w-2xl pointer-events-none">
-            <p className="text-5xl font-black leading-[0.95] tracking-tighter md:text-6xl lg:text-7xl text-white">
+            <p className="text-5xl font-black leading-[0.95] max-w-[30vw] tracking-tighter md:text-6xl lg:text-7xl text-white">
               {currentTitle}
             </p>
           </div>
@@ -436,10 +436,20 @@ export default function ScrollTeamEXP() {
               className="hidden md:flex absolute inset-0 w-full h-full flex-col justify-center items-start z-[60]"
             >
               <div className="relative w-full overflow-visible">
+                <div className="pl-[320px] lg:pl-[350px] mb-10">
+                  <h3 className="text-primary font-bold uppercase tracking-[0.3em] text-sm">
+                    Meet the rest of the team
+                  </h3>
+                </div>
+
                 <motion.div
                   style={{ x: teamX }}
                   className="flex gap-10 lg:gap-14 w-max pr-[30vw]"
                 >
+                  <div className="w-[320px] lg:w-[350px] flex-shrink-0" aria-hidden="true" />
+                  <div className="w-[320px] lg:w-[350px] flex-shrink-0" aria-hidden="true" />
+                  <div className="w-[320px] lg:w-[350px] flex-shrink-0" aria-hidden="true" />
+                  <div className="w-[320px] lg:w-[350px] flex-shrink-0" aria-hidden="true" />
                   {restOfTeam.map((member) => (
                     <TeamCarouselCard key={member.id} member={member} />
                   ))}
