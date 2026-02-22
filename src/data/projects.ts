@@ -1,7 +1,7 @@
 export interface Project {
   name: string;
   image: string;
-  class: string;
+  priority: number;
   year: string;
   service: string;
   slug: string;
@@ -13,7 +13,7 @@ export const projects: Project[] = [
   {
     name: "Transking",
     image: "/images/projects/Transking.webp",
-    class: "md:col-span-2 md:row-span-2",
+    priority: 20,
     year: "2024",
     service: "Web Development",
     slug: "transking",
@@ -40,7 +40,7 @@ export const projects: Project[] = [
   {
     name: "Travel Go",
     image: "/images/projects/TravelGo.webp",
-    class: "md:col-span-2 md:row-span-2",
+    priority: 30,
     year: "2023",
     service: "Design",
     slug: "travel-go",
@@ -66,7 +66,7 @@ export const projects: Project[] = [
   {
     name: "Berton",
     image: "/images/projects/BertonMockup.webp",
-    class: "md:col-span-3 md:row-span-2",
+    priority: 40,
     year: "2023",
     service: "Design",
     slug: "berton",
@@ -91,7 +91,7 @@ export const projects: Project[] = [
   {
     name: "Transking SEO",
     image: "/images/projects/TranskingSEO.webp",
-    class: "md:col-span-1 md:row-span-1",
+    priority: 35,
     year: "2024",
     service: "Digital Marketing",
     slug: "transking-seo",
@@ -112,35 +112,11 @@ export const projects: Project[] = [
       </div>
     `,
   },
-  {
-    name: "Ainam Perfume",
-    image: "/images/projects/Ainam Perfume.webp",
-    class: "md:col-span-1 md:row-span-1",
-    year: "2024",
-    service: "Web Development",
-    slug: "ainam-perfume",
-    details: `
-      <div class="space-y-6">
-        <h2 class="text-3xl font-bold">Ainam Perfume</h2>
-        <p class="text-gray-600">
-          An elegant e-commerce platform designed for Ainam Perfume, showcasing
-          their luxury fragrance collection. The site features a sophisticated
-          design and a smooth shopping experience.
-        </p>
-        <h3 class="text-xl font-semibold">Platform Features</h3>
-        <ul class="list-disc pl-5 text-gray-600 space-y-2">
-          <li>Custom scent profile quiz</li>
-          <li>High-resolution product imagery</li>
-          <li>Secure checkout process</li>
-          <li>Integrated inventory management</li>
-        </ul>
-      </div>
-    `,
-  },
+
   {
     name: "Xense",
     image: "/images/projects/XenseMockup.webp",
-    class: "md:col-span-2 md:row-span-1",
+    priority: 60,
     year: "2024",
     service: "Web Development",
     slug: "xense",
@@ -164,7 +140,7 @@ export const projects: Project[] = [
   {
     name: "Nicenoir",
     image: "/images/projects/Nicenoir.webp",
-    class: "md:col-span-1 md:row-span-1",
+    priority: 35,
     year: "2024",
     service: "Branding",
     slug: "nicenoir",
@@ -188,7 +164,7 @@ export const projects: Project[] = [
   {
     name: "Tip Top",
     image: "/images/projects/TIPTOP.webp",
-    class: "md:col-span-1 md:row-span-1",
+    priority: 35,
     year: "2023",
     service: "Digital Marketing",
     slug: "tip-top",
@@ -213,7 +189,7 @@ export const projects: Project[] = [
   {
     name: "Live Adventure Tours",
     image: "/images/projects/live-adventure.jpeg",
-    class: "md:col-span-2 md:row-span-2",
+    priority: 80,
     year: "2024",
     service: "Web Development",
     slug: "live-adventure-tours",
@@ -372,7 +348,7 @@ export const projects: Project[] = [
   {
     name: "Aircrew Tours & Travels",
     image: "/images/projects/aircrew.jpeg",
-    class: "md:col-span-2 md:row-span-2",
+    priority: 100,
     year: "2024",
     service: "Web Development",
     slug: "aircrew-tours-travels",
@@ -510,7 +486,7 @@ export const projects: Project[] = [
   {
     name: "Al Katheeb Interiors",
     image: "/images/projects/katheeb.jpeg",
-    class: "md:col-span-1 md:row-span-1",
+    priority: 35,
     year: "2024",
     service: "Web Development",
     slug: "al-katheeb-interiors",
@@ -643,7 +619,7 @@ export const projects: Project[] = [
   {
     name: "Al Qadisiah Roads Maintenance",
     image: "/images/projects/qadisiah.jpeg",
-    class: "md:col-span-3 md:row-span-2",
+    priority: 100,
     year: "2024",
     service: "Web Development",
     slug: "al-qadisiah-roads-maintenance",
@@ -808,7 +784,7 @@ export const projects: Project[] = [
   {
     name: "Tomrich Watches",
     image: "/images/projects/tomrich-watches.jpeg",
-    class: "md:col-span-1 md:row-span-1",
+    priority: 35,
     year: "2024",
     service: "Web Development",
     slug: "tomrich-watches",
@@ -978,7 +954,7 @@ export const projects: Project[] = [
   {
     name: "Yashabab Restaurant",
     image: "/images/projects/yashbab.jpeg",
-    class: "md:col-span-1 md:row-span-1",
+    priority: 90,
     year: "2024",
     service: "Web Development",
     slug: "yashabab-restaurant",
@@ -1108,7 +1084,7 @@ export const projects: Project[] = [
   {
     name: "Berton Perfumes",
     image: "/images/projects/berton-perfume.jpeg",
-    class: "md:col-span-2 md:row-span-1",
+    priority: 40,
     year: "2024",
     service: "Web Development",
     slug: "berton-perfumes",
@@ -1274,7 +1250,7 @@ export const projects: Project[] = [
   {
     name: "Sheza Star",
     image: "/images/projects/shezastar.jpeg",
-    class: "md:col-span-1 md:row-span-1",
+    priority: 95,
     year: "2024",
     service: "Web Development",
     slug: "sheza-star",
@@ -1456,7 +1432,7 @@ export const projects: Project[] = [
   {
     name: "Berton Golden",
     image: "/images/projects/berton-golden.jpeg",
-    class: "md:col-span-1 md:row-span-1",
+    priority: 70,
     year: "2024",
     service: "Branding",
     slug: "berton-golden",
@@ -1591,6 +1567,31 @@ export const projects: Project[] = [
           showcase websites that support strategic multi-domain brand expansion.
         </p>
       </section>
+    `,
+  },
+  {
+    name: "Ainam Perfume",
+    image: "/images/projects/Ainam Perfume.webp",
+    priority: 35,
+    year: "2024",
+    service: "Web Development",
+    slug: "ainam-perfume",
+    details: `
+      <div class="space-y-6">
+        <h2 class="text-3xl font-bold">Ainam Perfume</h2>
+        <p class="text-gray-600">
+          An elegant e-commerce platform designed for Ainam Perfume, showcasing
+          their luxury fragrance collection. The site features a sophisticated
+          design and a smooth shopping experience.
+        </p>
+        <h3 class="text-xl font-semibold">Platform Features</h3>
+        <ul class="list-disc pl-5 text-gray-600 space-y-2">
+          <li>Custom scent profile quiz</li>
+          <li>High-resolution product imagery</li>
+          <li>Secure checkout process</li>
+          <li>Integrated inventory management</li>
+        </ul>
+      </div>
     `,
   },
 ];

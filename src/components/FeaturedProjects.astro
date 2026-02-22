@@ -1,5 +1,33 @@
 ---
 import { projects } from "../data/projects";
+import { planProjectLayout } from "../lib/project-layout";
+
+interface Props {
+    limit?: number;
+}
+
+const { limit }: Props = Astro.props;
+
+const projectsByPriority = projects
+    .map((project, index) => ({ project, index }))
+    .sort((a, b) => {
+        const priorityGap = b.project.priority - a.project.priority;
+
+        if (priorityGap !== 0) {
+            return priorityGap;
+        }
+
+        return a.index - b.index;
+    })
+    .map((entry) => entry.project);
+
+const hasLimit = typeof limit === "number" && Number.isFinite(limit) && limit > 0;
+
+const visibleProjects = hasLimit
+    ? projectsByPriority.slice(0, Math.floor(limit))
+    : projectsByPriority;
+
+const plannedProjects = planProjectLayout(visibleProjects);
 ---
 
 <section class="py-20 md:py-32 bg-white">
@@ -32,11 +60,11 @@ import { projects } from "../data/projects";
             </a>
         </div>
 
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-4 md:auto-rows-[250px]">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-4 md:auto-rows-[250px] md:grid-flow-row-dense">
             {
-                projects.map((project) => (
+                plannedProjects.map((project) => (
                     <article
-                        class={`group relative overflow-hidden rounded-3xl ${project.class} block opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0`}
+                        class={`group relative overflow-hidden rounded-3xl ${project.layoutClass} block opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0`}
                         data-animate-on-scroll
                     >
                         <img
