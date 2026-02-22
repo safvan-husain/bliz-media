@@ -1,0 +1,110 @@
+YASHABAB RESTAURANT — Restaurant Website
+
+Website URL: https://yashabab.ae/
+Industry: Restaurant & Hospitality
+Project Type: Static Website Development (HTML, CSS)
+
+⸻
+
+Project Overview
+
+Yashabab Restaurant is a modern Arabic restaurant website developed to showcase the brand’s legacy, cuisine, and dining experience in a visually engaging format.
+
+The objective of this project was to build a clean, attractive, and fast-loading restaurant website that highlights the restaurant’s identity, menu offerings, and corporate/event booking services while maintaining simplicity and performance.
+
+The website was built using a static HTML structure to ensure reliability, speed, and easy deployment.
+
+⸻
+
+Website Design & Visual Identity
+
+The design reflects a bold and premium Arabic dining experience.
+
+Design highlights include:
+	•	Large hero section with high-quality food imagery
+	•	Strong typography emphasizing brand identity
+	•	Dark-themed layout with warm accent colors
+	•	Clear call-to-action buttons (View Menu, Contact, Booking)
+	•	Clean navigation structure
+	•	Corporate and event booking section integration
+
+The layout was crafted to create a visually immersive first impression while guiding users toward viewing the menu or making inquiries.
+
+⸻
+
+Menu Integration
+
+Instead of building a complex dynamic menu system, the restaurant menu is accessible via an external Drive link.
+
+This approach allows:
+	•	Easy menu updates without modifying the website structure
+	•	Cost-efficient management
+	•	Quick changes to pricing or items
+	•	Simple content control for the restaurant team
+
+The integration ensures users can easily access the full menu while maintaining a lightweight website architecture.
+
+⸻
+
+Performance & Optimization
+
+Since the website is built using pure HTML and CSS, it delivers:
+	•	Extremely fast loading speed
+	•	Lightweight structure
+	•	Minimal server processing
+	•	Reliable performance across devices
+	•	Smooth scrolling and navigation
+
+The static architecture ensures high performance and low maintenance requirements.
+
+⸻
+
+Tech Stack & Development
+
+Technology Stack:
+	•	HTML5
+	•	CSS3
+	•	Responsive layout implementation
+	•	Basic JavaScript for UI enhancements (if applicable)
+	•	External menu integration via Drive link
+
+The website uses clean and semantic HTML structure for maintainability and structured content presentation.
+
+⸻
+
+Responsive Development
+
+The website is fully responsive and optimized for:
+	•	Desktop
+	•	Tablet
+	•	Mobile
+
+All sections, including hero banners, navigation menus, and call-to-action buttons, adapt seamlessly across different screen sizes. Special attention was given to mobile viewing, as most restaurant traffic comes from smartphones.
+
+⸻
+
+Key Functional Features
+	•	Modern Arabic restaurant presentation
+	•	Structured service and booking sections
+	•	External menu access via Drive link
+	•	Corporate and event booking information
+	•	Lightweight static architecture
+	•	Fast loading performance
+	•	Fully responsive layout
+	•	Clean and professional UI
+
+⸻
+
+Result
+
+The final result is a visually appealing, fast, and cost-effective restaurant website that effectively communicates brand identity and menu offerings.
+
+The platform provides:
+	•	Strong visual first impression
+	•	Easy access to menu
+	•	Clear service presentation
+	•	Reliable performance with minimal technical complexity
+
+This project demonstrates our ability to deliver attractive and performance-focused static restaurant websites tailored for hospitality businesses.
+
+⸻

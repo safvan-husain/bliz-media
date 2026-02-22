@@ -1,0 +1,123 @@
+BERTON GOLDEN — Premium Fragrance Showcase Website
+
+Website URL: https://bertongolden.com/
+Industry: Fragrance & Perfume Brand
+Project Type: Static One-Page Brand Showcase Website (HTML, CSS)
+
+⸻
+
+Project Overview
+
+Berton Golden is a premium fragrance brand showcase website developed as a dedicated one-page platform to present the brand’s signature perfume collection.
+
+Unlike the main Berton Perfumes eCommerce platform, this website was intentionally built as a static brand presentation site under a separate domain. The client required two independent digital identities — one focused on online selling and the other focused purely on brand positioning and product showcase.
+
+The objective of this project was to create a visually immersive, elegant, and high-end landing experience that communicates sophistication and luxury.
+
+⸻
+
+Brand Strategy & Dual Website Approach
+
+The client requested two separate websites under two domains:
+	•	Berton Perfumes — eCommerce platform
+	•	Berton Golden — premium brand showcase
+
+This separation allows:
+	•	Distinct brand positioning
+	•	Independent marketing campaigns
+	•	Different audience targeting
+	•	Focused storytelling for the Golden line
+	•	Clean and distraction-free product presentation
+
+The Berton Golden site functions as a digital luxury brochure.
+
+⸻
+
+Website Design & Visual Identity
+
+The design emphasizes luxury, elegance, and timeless fragrance identity.
+
+Design highlights include:
+	•	Bold hero section with high-quality product visuals
+	•	Dark luxury-themed background
+	•	Large typography for strong brand impact
+	•	Minimal and focused layout
+	•	Smooth scrolling one-page structure
+	•	Clean call-to-action buttons
+
+The layout is intentionally minimal to maintain premium aesthetics and avoid unnecessary complexity.
+
+The website communicates:
+	•	Timeless fragrance positioning
+	•	Sophistication and sensuality
+	•	Luxury branding
+	•	Focused product storytelling
+
+⸻
+
+Tech Stack & Development
+
+Technology Stack:
+	•	HTML5
+	•	CSS3
+	•	Responsive layout implementation
+	•	Basic JavaScript for smooth scrolling or UI interactions
+
+The site was built as a static one-page architecture to ensure:
+	•	Fast loading performance
+	•	Lightweight structure
+	•	Easy hosting
+	•	High reliability
+	•	Minimal maintenance requirements
+
+⸻
+
+Performance & Optimization
+
+Because the website is fully static, it delivers:
+	•	Extremely fast load times
+	•	Optimized image handling
+	•	Smooth navigation
+	•	High performance across devices
+	•	Stable hosting environment
+
+The clean structure ensures optimal user experience without backend dependency.
+
+⸻
+
+Responsive Development
+
+The website is fully responsive and optimized for:
+	•	Desktop
+	•	Tablet
+	•	Mobile
+
+The one-page structure adapts seamlessly across screen sizes, maintaining visual impact and brand consistency.
+
+Mobile viewing was prioritized to support social media traffic and digital marketing campaigns.
+
+⸻
+
+Key Functional Features
+	•	Premium one-page brand layout
+	•	High-impact hero section
+	•	Product showcase presentation
+	•	Smooth scrolling navigation
+	•	Lightweight static architecture
+	•	Fast loading performance
+	•	Fully responsive design
+	•	Separate brand domain structure
+
+⸻
+
+Result
+
+The final result is a visually immersive, elegant, and performance-focused brand showcase website that strengthens the Berton Golden identity.
+
+The platform delivers:
+	•	Strong luxury positioning
+	•	Clean and distraction-free product presentation
+	•	Fast and reliable performance
+	•	Clear separation from the eCommerce platform
+
+This project demonstrates our ability to build brand-focused static showcase websites that support strategic multi-domain brand expansion.
