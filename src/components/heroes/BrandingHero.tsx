@@ -2,6 +2,7 @@
 
 import React from "react"
 import { ArcGalleryHero } from "../ui/arc-gallery-hero-component"
+import { createServiceWhatsAppLink } from "@/lib/whatsapp"
 
 interface BrandingHeroProps {
     title: string
@@ -31,7 +32,7 @@ export function BrandingHero({ title, description, images }: BrandingHeroProps) 
             description={description}
             images={images && images.length > 0 ? images : defaultImages}
             ctaText="START YOUR PROJECT"
-            onCtaClick={() => (window.location.href = "/quote")}
+            onCtaClick={() => (window.location.href = createServiceWhatsAppLink(title))}
             secondaryCtaText="SEE OUR WORK"
             onSecondaryCtaClick={() => (window.location.href = `/projects?filter=${title}`)}
             theme="light"

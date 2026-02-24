@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { ShaderAnimation } from "@/components/ui/shader-animation";
+import { createServiceWhatsAppLink } from "@/lib/whatsapp";
 
 interface ProductionHeroProps {
     title: string;
@@ -24,7 +25,7 @@ export function ProductionHero({ title, description }: ProductionHeroProps) {
 
                 <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6">
                     <a
-                        href="/quote"
+                        href={createServiceWhatsAppLink(title)}
                         className="w-full sm:w-auto inline-flex items-center justify-center gap-4 bg-black text-white px-10 py-5 rounded-full font-black tracking-[0.2em] text-xs transition-all duration-500 hover:bg-black/90 hover:scale-110 hover:shadow-[0_0_30px_rgba(0,0,0,0.4)] active:scale-95 group"
                     >
                         START YOUR PROJECT
@@ -69,4 +70,3 @@ export function ProductionHero({ title, description }: ProductionHeroProps) {
         </div>
     );
 }
-

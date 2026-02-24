@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { motion, useTransform, useSpring, useMotionValue } from "framer-motion";
+import { createServiceWhatsAppLink } from "@/lib/whatsapp";
 
 // --- Types ---
 export type AnimationPhase = "scatter" | "line" | "circle" | "bottom-strip";
@@ -299,7 +300,7 @@ export default function IntroAnimation() {
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                         <a
-                            href="/quote"
+                            href={createServiceWhatsAppLink("Production")}
                             className="w-full sm:w-auto inline-flex items-center justify-center gap-4 bg-black text-white px-10 py-5 rounded-full font-black tracking-[0.2em] text-xs transition-all duration-500 hover:bg-red-600 hover:scale-110 hover:shadow-[0_0_30px_rgba(255,61,61,0.4)] active:scale-95 group uppercase"
                         >
                             START YOUR PROJECT

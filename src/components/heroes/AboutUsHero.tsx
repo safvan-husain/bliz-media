@@ -1,6 +1,7 @@
 "use client";
 
 import { SparklesCore } from "../ui/sparkles";
+import { createServiceWhatsAppLink } from "@/lib/whatsapp";
 
 // Data Section - Keeping data separate from UI as per guidelines
 const aboutHeroData = {
@@ -9,7 +10,7 @@ const aboutHeroData = {
     "We are a team of creative designers, developers, and strategists dedicated to helping brands thrive in the digital era.",
   primaryButton: {
     text: "START YOUR PROJECT",
-    link: "/quote",
+    link: createServiceWhatsAppLink("digital marketing, web development, or branding"),
   },
   secondaryButton: {
     text: "SEE OUR WORK",

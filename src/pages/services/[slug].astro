@@ -16,6 +16,7 @@ import { BrandingContent } from "../../components/services/BrandingContent";
 import { ProductionContent } from "../../components/services/ProductionContent";
 import { DesignContent } from "../../components/services/DesignContent";
 import { WebDevelopmentCta } from "../../components/services/WebDevelopmentCta";
+import { createServiceWhatsAppLink } from "../../lib/whatsapp";
 
 export async function getStaticPaths() {
     return services.map((service) => ({
@@ -70,7 +71,7 @@ const { service } = Astro.props;
 
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4">
                         <a
-                            href="/quote"
+                            href={createServiceWhatsAppLink(service.title)}
                             class="w-full sm:w-auto inline-flex items-center justify-center gap-4 bg-primary text-white px-10 py-5 rounded-full font-black tracking-[0.2em] text-xs transition-all duration-500 hover:bg-black hover:text-white hover:scale-110 hover:shadow-[0_0_30px_rgba(255,61,61,0.4)] active:scale-95 group"
                         >
                             START YOUR PROJECT

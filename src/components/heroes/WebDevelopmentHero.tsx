@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { FloatingIconsHero } from '../ui/floating-icons-hero-section';
 import { services } from '../../data/services';
+import { createServiceWhatsAppLink } from '@/lib/whatsapp';
 
 
 
@@ -73,7 +74,7 @@ export function WebDevelopmentHero({ title, description }: WebDevelopmentHeroPro
             title={title}
             subtitle={description || "We design and develop fast, secure, and scalable websites tailored to your business goals — from simple static sites to advanced custom web applications and e-commerce platforms"}
             ctaText="START YOUR PROJECT"
-            ctaHref="/quote"
+            ctaHref={createServiceWhatsAppLink(title)}
             secondaryCtaText="SEE OUR WORK"
             secondaryCtaHref={`/projects?filter=${title}`}
             icons={combinedIcons}

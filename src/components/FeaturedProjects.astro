@@ -1,6 +1,5 @@
 ---
 import { projects } from "../data/projects";
-import { planProjectLayout } from "../lib/project-layout";
 
 interface Props {
     limit?: number;
@@ -27,7 +26,6 @@ const visibleProjects = hasLimit
     ? projectsByPriority.slice(0, Math.floor(limit))
     : projectsByPriority;
 
-const plannedProjects = planProjectLayout(visibleProjects);
 ---
 
 <section class="py-20 md:py-32 bg-white">
@@ -60,11 +58,11 @@ const plannedProjects = planProjectLayout(visibleProjects);
             </a>
         </div>
 
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-4 md:auto-rows-[250px] md:grid-flow-row-dense">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
             {
-                plannedProjects.map((project) => (
+                visibleProjects.map((project) => (
                     <article
-                        class={`group relative overflow-hidden rounded-3xl ${project.layoutClass} block opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0`}
+                        class="group relative block h-72 overflow-hidden rounded-3xl opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
                         data-animate-on-scroll
                     >
                         <img

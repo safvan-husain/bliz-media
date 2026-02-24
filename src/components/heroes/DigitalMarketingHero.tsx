@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { createServiceWhatsAppLink } from "@/lib/whatsapp";
 
 function FloatingPaths({ position }: { position: number }) {
     const paths = Array.from({ length: 36 }, (_, i) => ({
@@ -109,7 +110,7 @@ export function DigitalMarketingHero({
                             overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 w-full sm:w-auto"
                         >
                             <Button
-                                onClick={() => (window.location.href = "/quote")}
+                                onClick={() => (window.location.href = createServiceWhatsAppLink(title))}
                                 variant="ghost"
                                 className="w-full sm:w-auto rounded-full px-10 py-7 text-xs font-black tracking-[0.2em] backdrop-blur-md 
                                 bg-white/95 hover:bg-white/100 
