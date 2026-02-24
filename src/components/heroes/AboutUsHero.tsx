@@ -10,7 +10,9 @@ const aboutHeroData = {
     "We are a team of creative designers, developers, and strategists dedicated to helping brands thrive in the digital era.",
   primaryButton: {
     text: "START YOUR PROJECT",
-    link: createServiceWhatsAppLink("digital marketing, web development, or branding"),
+    link: createServiceWhatsAppLink(
+      "digital marketing, web development, or branding",
+    ),
   },
   secondaryButton: {
     text: "SEE OUR WORK",
@@ -28,7 +30,7 @@ export function AboutUsHero({ title, description }: AboutUsHeroProps) {
   const displayDescription = description || aboutHeroData.subtitle;
 
   return (
-    <div className="min-h-[70vh] w-full bg-background flex md:pt-38 flex-col items-center justify-center overflow-hidden relative">
+    <div className="min-h-[60vh] md:min-h-[70vh] w-full bg-background pt-44 flex-col items-center justify-center overflow-hidden relative">
       {/* Mobile Sparkles - Full Screen */}
       <div className="absolute inset-0 w-full h-full md:hidden">
         <SparklesCore
