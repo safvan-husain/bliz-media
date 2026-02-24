@@ -1,0 +1,122 @@
+TRANS KING LOGISTIC — Enterprise Logistics & Heavy Equipment Website
+
+Website URL: https://transkinglogistic.com/
+Industry: Logistics, Heavy Transport & Equipment Rental
+Project Type: WordPress Corporate Enterprise Website
+
+⸻
+
+Project Overview
+
+Trans King Logistic is a certified logistics and heavy transport company providing land transportation, oversized cargo handling, heavy and light equipment rental, and energy solutions across the MENA region.
+
+The objective of this project was to develop a powerful enterprise-level corporate website that reflects Trans King’s operational scale, fleet strength, regional presence, and engineering-driven logistics approach.
+
+The platform was built using WordPress to ensure scalability, structured content management, and long-term flexibility for a growing multi-country operation.
+
+⸻
+
+Website Design & Enterprise Positioning
+
+The design emphasizes strength, operational scale, and industry authority.
+
+Key design elements include:
+	•	Bold industrial visuals
+	•	Strong corporate messaging
+	•	Structured service segmentation
+	•	Fleet and capability highlights
+	•	Clear statistics and operational scale presentation
+	•	Professional navigation and layout
+
+The layout reinforces credibility and positions Trans King as a major logistics operator in the Middle East.
+
+⸻
+
+Core Services Presented
+
+The website clearly outlines Trans King’s comprehensive service portfolio:
+	•	Land Transportation Services
+	•	Oversized and Heavy Cargo Handling
+	•	Heavy and Light Equipment Rental
+	•	Energy Solutions
+	•	Engineering & Project Management Approach
+
+The site also highlights:
+	•	Largest fleet of trailers and cranes in the region
+	•	Operations across 4 countries
+	•	Service coverage across the MENA region
+	•	Serving 1000+ enterprises daily
+	•	ADNOC Approved Vendor status
+	•	CICPA & CNIA compliance certifications
+
+These elements strengthen trust and demonstrate regulatory compliance and large-scale operational capability.
+
+⸻
+
+WordPress Development & CMS Integration
+
+The website was developed using WordPress to allow flexible enterprise-level content management.
+
+Backend capabilities include:
+	•	Editable service pages
+	•	Fleet and project content updates
+	•	Media and document uploads
+	•	Certification display management
+	•	Multi-page content hierarchy
+	•	Contact and inquiry form management
+	•	SEO-friendly page structure
+
+The CMS enables internal teams to update operational highlights, certifications, and service expansions without requiring redevelopment.
+
+⸻
+
+Performance & Optimization
+
+The platform was optimized to ensure:
+	•	Fast loading speed
+	•	Structured content hierarchy
+	•	Optimized media handling
+	•	Responsive performance
+	•	SEO-friendly configuration
+
+The website maintains performance while presenting large-scale operational content.
+
+⸻
+
+Responsive Development
+
+The website is fully responsive and optimized for:
+	•	Desktop
+	•	Tablet
+	•	Mobile
+
+All service sections, fleet displays, and corporate information blocks adapt seamlessly across screen sizes while maintaining professional presentation.
+
+Mobile responsiveness ensures accessibility for field operators, partners, and enterprise decision-makers.
+
+⸻
+
+Key Functional Features
+	•	Enterprise logistics service presentation
+	•	Fleet and capability showcase
+	•	Certification and compliance highlights
+	•	WordPress CMS integration
+	•	Editable backend content management
+	•	Multi-country operational positioning
+	•	Contact and inquiry integration
+	•	SEO-optimized structure
+	•	Fully responsive design
+
+⸻
+
+Result
+
+The final result is a strong, authoritative enterprise logistics website that reflects Trans King Logistic’s operational scale and industry credibility.
+
+The platform delivers:
+	•	High-level corporate positioning
+	•	Clear communication of services and certifications
+	•	Scalable backend management
+	•	Optimized and responsive performance
+
+This project demonstrates our capability to develop enterprise-grade WordPress websites tailored for large-scale logistics, heavy transport, and equipment rental companies.

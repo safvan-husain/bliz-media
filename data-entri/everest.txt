@@ -1,0 +1,114 @@
+EVEREST Consultancy Services — Integrated Consultancy Services Website
+
+Website URL: https://everestecs.com/
+Industry: Business & Professional Consultancy
+Project Type: Static Corporate Website (HTML, CSS)
+
+⸻
+
+Project Overview
+
+Everest ECS is a multi-disciplinary consultancy firm delivering integrated solutions across Real Estate, Business Strategy, Legal Services & Management, Tax & Audit Activities, and Insurance.
+
+The objective of this project was to develop a professional, corporate-focused website that clearly communicates the firm’s diverse service portfolio while maintaining clarity, credibility, and strong brand positioning.
+
+The platform was built using a static HTML structure to ensure speed, reliability, and cost-efficient deployment.
+
+⸻
+
+Website Design & Corporate Positioning
+
+The design approach emphasizes professionalism, trust, and strategic expertise.
+
+Key design elements include:
+	•	Clean and structured corporate layout
+	•	Clear service segmentation
+	•	Professional typography and spacing
+	•	Strong headline messaging
+	•	Informative content sections
+	•	Direct contact and inquiry call-to-actions
+
+The layout was carefully structured to communicate authority and multi-sector expertise while maintaining a modern business aesthetic.
+
+⸻
+
+Core Services Presented
+
+The website clearly highlights the firm’s integrated consultancy services, including:
+	•	Real Estate Advisory
+	•	Business Strategy Consulting
+	•	Legal Services & Corporate Management
+	•	Tax & Audit Activities
+	•	Insurance Solutions
+
+Each service category is presented in a structured format to ensure clarity and easy understanding for potential clients.
+
+The positioning focuses on helping organizations:
+	•	Grow sustainably
+	•	Maintain regulatory compliance
+	•	Improve operational performance
+	•	Manage risk effectively
+
+⸻
+
+Tech Stack & Development
+
+Technology Stack:
+	•	HTML5
+	•	CSS3
+	•	Responsive layout implementation
+	•	Basic JavaScript for UI enhancements 
+
+The website uses clean and semantic HTML structure to maintain organized content hierarchy and long-term maintainability.
+
+⸻
+
+Performance & Optimization
+
+Because the website is built using static HTML architecture, it delivers:
+	•	Fast loading speed
+	•	Lightweight structure
+	•	Minimal server dependency
+	•	Reliable performance
+	•	Stable hosting environment
+
+The static setup ensures consistent performance across browsers and devices.
+
+⸻
+
+Responsive Development
+
+The website is fully responsive and optimized for:
+	•	Desktop
+	•	Tablet
+	•	Mobile
+
+All service sections, navigation menus, and contact forms adapt seamlessly across screen sizes to maintain readability and usability.
+
+Special attention was given to mobile layout to support business decision-makers accessing the site on the go.
+
+⸻
+
+Key Functional Features
+	•	Multi-service corporate presentation
+	•	Structured service segmentation
+	•	Professional business-oriented layout
+	•	Contact and inquiry integration
+	•	Lightweight static architecture
+	•	Fast and reliable performance
+	•	Fully responsive design
+	•	Clean semantic code structure
+
+⸻
+
+Result
+
+The final result is a professional, structured, and performance-focused consultancy website that effectively communicates Everest ECS’s integrated service offerings.
+
+The platform delivers:
+	•	Strong corporate presence
+	•	Clear service communication
+	•	Reliable and fast performance
+	•	Cost-efficient static deployment
+
+This project demonstrates our ability to develop clean, authoritative corporate websites tailored for consultancy and professional service firms.

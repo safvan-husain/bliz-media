@@ -5,36 +5,144 @@ export interface Project {
   year: string;
   service: string;
   slug: string;
+  description?: string;
+  htmlDescription?: string;
   details: string;
   externalUrl?: string;
 }
 
 export const projects: Project[] = [
   {
-    name: "Transking",
-    image: "/images/projects/Transking.webp",
+    name: "Trans King Logistic",
+    image: "/images/projects/transking.jpeg",
     priority: 20,
     year: "2024",
     service: "Web Development",
     slug: "transking",
     externalUrl: "https://transkinglogistic.com",
-    details: `
-      <div class="space-y-6">
-        <h2 class="text-3xl font-bold">Transking</h2>
-        <p class="text-gray-600">
-          Transking is a comprehensive logistics and transportation management
-          system designed to streamline operations and enhance efficiency. Our
-          web development team built a robust platform that handles real-time
-          tracking, fleet management, and automated scheduling.
-        </p>
-        <h3 class="text-xl font-semibold">Key Features</h3>
-        <ul class="list-disc pl-5 text-gray-600 space-y-2">
-          <li>Real-time vehicle tracking using GPS integration</li>
-          <li>Automated route optimization</li>
-          <li>Driver performance monitoring</li>
-          <li>Customer portal for shipment tracking</li>
+    description:
+      "Enterprise logistics and heavy transport website for Trans King Logistic, built to present large-scale fleet capability, multi-country operations, and compliance-driven services across the MENA region.",
+    htmlDescription: `
+      <section>
+        <h2>TRANS KING LOGISTIC - Enterprise Logistics and Heavy Equipment Website</h2>
+        <p><strong>Website URL:</strong> https://transkinglogistic.com/</p>
+        <p><strong>Industry:</strong> Logistics, Heavy Transport and Equipment Rental</p>
+        <p><strong>Project Type:</strong> WordPress Corporate Enterprise Website</p>
+        <h3>Project Overview</h3>
+        <p>Trans King Logistic is a certified logistics and heavy transport company providing land transportation, oversized cargo handling, heavy and light equipment rental, and energy solutions across the MENA region.</p>
+        <p>The objective of this project was to develop a powerful enterprise-level corporate website that reflects Trans King's operational scale, fleet strength, regional presence, and engineering-driven logistics approach.</p>
+        <p>The platform was built using WordPress to ensure scalability, structured content management, and long-term flexibility for a growing multi-country operation.</p>
+        <h3>Website Design and Enterprise Positioning</h3>
+        <p>The design emphasizes strength, operational scale, and industry authority.</p>
+        <p>Key design elements include:</p>
+        <ul>
+          <li>Bold industrial visuals</li>
+          <li>Strong corporate messaging</li>
+          <li>Structured service segmentation</li>
+          <li>Fleet and capability highlights</li>
+          <li>Clear statistics and operational scale presentation</li>
+          <li>Professional navigation and layout</li>
         </ul>
-      </div>
+        <p>The layout reinforces credibility and positions Trans King as a major logistics operator in the Middle East.</p>
+        <h3>Core Services Presented</h3>
+        <p>The website clearly outlines Trans King's comprehensive service portfolio:</p>
+        <ul>
+          <li>Land Transportation Services</li>
+          <li>Oversized and Heavy Cargo Handling</li>
+          <li>Heavy and Light Equipment Rental</li>
+          <li>Energy Solutions</li>
+          <li>Engineering and Project Management Approach</li>
+        </ul>
+        <p>The site also highlights:</p>
+        <ul>
+          <li>Largest fleet of trailers and cranes in the region</li>
+          <li>Operations across 4 countries</li>
+          <li>Service coverage across the MENA region</li>
+          <li>Serving 1000+ enterprises daily</li>
+          <li>ADNOC Approved Vendor status</li>
+          <li>CICPA and CNIA compliance certifications</li>
+        </ul>
+        <p>These elements strengthen trust and demonstrate regulatory compliance and large-scale operational capability.</p>
+        <h3>WordPress Development and CMS Integration</h3>
+        <p>The website was developed using WordPress to allow flexible enterprise-level content management.</p>
+        <p>Backend capabilities include:</p>
+        <ul>
+          <li>Editable service pages</li>
+          <li>Fleet and project content updates</li>
+          <li>Media and document uploads</li>
+          <li>Certification display management</li>
+          <li>Multi-page content hierarchy</li>
+          <li>Contact and inquiry form management</li>
+          <li>SEO-friendly page structure</li>
+        </ul>
+        <p>The CMS enables internal teams to update operational highlights, certifications, and service expansions without requiring redevelopment.</p>
+        <h3>Performance and Optimization</h3>
+        <p>The platform was optimized to ensure:</p>
+        <ul>
+          <li>Fast loading speed</li>
+          <li>Structured content hierarchy</li>
+          <li>Optimized media handling</li>
+          <li>Responsive performance</li>
+          <li>SEO-friendly configuration</li>
+        </ul>
+        <p>The website maintains performance while presenting large-scale operational content.</p>
+        <h3>Responsive Development</h3>
+        <p>The website is fully responsive and optimized for:</p>
+        <ul>
+          <li>Desktop</li>
+          <li>Tablet</li>
+          <li>Mobile</li>
+        </ul>
+        <p>All service sections, fleet displays, and corporate information blocks adapt seamlessly across screen sizes while maintaining professional presentation.</p>
+        <p>Mobile responsiveness ensures accessibility for field operators, partners, and enterprise decision-makers.</p>
+        <h3>Key Functional Features</h3>
+        <ul>
+          <li>Enterprise logistics service presentation</li>
+          <li>Fleet and capability showcase</li>
+          <li>Certification and compliance highlights</li>
+          <li>WordPress CMS integration</li>
+          <li>Editable backend content management</li>
+          <li>Multi-country operational positioning</li>
+          <li>Contact and inquiry integration</li>
+          <li>SEO-optimized structure</li>
+          <li>Fully responsive design</li>
+        </ul>
+        <h3>Result</h3>
+        <p>The final result is a strong, authoritative enterprise logistics website that reflects Trans King Logistic's operational scale and industry credibility.</p>
+        <p>The platform delivers:</p>
+        <ul>
+          <li>High-level corporate positioning</li>
+          <li>Clear communication of services and certifications</li>
+          <li>Scalable backend management</li>
+          <li>Optimized and responsive performance</li>
+        </ul>
+        <p>This project demonstrates our capability to develop enterprise-grade WordPress websites tailored for large-scale logistics, heavy transport, and equipment rental companies.</p>
+      </section>
+    `,
+    details: `
+      <section>
+        <h2>Project Overview</h2>
+        <p>Trans King Logistic is a certified logistics and heavy transport company operating across the MENA region.</p>
+        <p>The website was built as an enterprise-level WordPress platform to communicate fleet strength, engineering-driven delivery, and regional operational scale.</p>
+        <h3>Core Services</h3>
+        <ul>
+          <li>Land transportation services</li>
+          <li>Oversized and heavy cargo handling</li>
+          <li>Heavy and light equipment rental</li>
+          <li>Energy solutions and project support</li>
+        </ul>
+        <h3>Business Positioning Highlights</h3>
+        <ul>
+          <li>Largest fleet of trailers and cranes in the region</li>
+          <li>Operations across 4 countries</li>
+          <li>1000+ enterprises served daily</li>
+          <li>ADNOC approved vendor with CICPA and CNIA compliance</li>
+        </ul>
+        <h3>Delivery & Optimization</h3>
+        <p>The website architecture prioritizes clean hierarchy, responsive performance, optimized media handling, and scalable content management through WordPress CMS.</p>
+        <h3>Result</h3>
+        <p>The final outcome is an authoritative logistics website that reinforces trust, communicates operational depth clearly, and supports ongoing backend updates without redevelopment.</p>
+      </section>
     `,
   },
   {
@@ -114,27 +222,964 @@ export const projects: Project[] = [
   },
 
   {
-    name: "Xense",
-    image: "/images/projects/XenseMockup.webp",
+    name: "Xense Fragrance",
+    image: "/images/projects/xense.jpeg",
     priority: 60,
     year: "2024",
     service: "Web Development",
     slug: "xense",
-    details: `
-      <div class="space-y-6">
-        <h2 class="text-3xl font-bold">Xense</h2>
-        <p class="text-gray-600">
-          Xense is a cutting-edge analytics dashboard that provides actionable
-          insights for businesses. Our development team focused on data
-          visualization and performance to handle large datasets.
-        </p>
-        <h3 class="text-xl font-semibold">Technical Stack</h3>
-        <ul class="list-disc pl-5 text-gray-600 space-y-2">
-          <li>React with D3.js for visualizations</li>
-          <li>Node.js backend for data processing</li>
-          <li>Real-time data updates via WebSockets</li>
+    externalUrl: "https://xensefragrance.com/",
+    description:
+      "Premium fragrance brand website built with WordPress and WooCommerce, combining luxury storytelling with structured catalog management and WhatsApp-first conversion.",
+    htmlDescription: `
+      <section>
+        <h2>XENSE FRAGRANCE - Premium Perfume Brand eCommerce Website</h2>
+        <p><strong>Website URL:</strong> https://xensefragrance.com/</p>
+        <p><strong>Industry:</strong> Fragrance and Perfume Retail</p>
+        <p><strong>Project Type:</strong> WordPress WooCommerce Website with WhatsApp Integration</p>
+        <h3>Project Overview</h3>
+        <p>Xense Fragrance is a premium perfume brand website developed to showcase and promote signature scents crafted with rare ingredients and long-lasting formulations.</p>
+        <p>The objective of this project was to create a luxurious and emotionally engaging digital storefront that reflects the brand philosophy:</p>
+        <p>"Perfume is more than just scent - it's your aura. Your signature."</p>
+        <p>The platform was built using WordPress and WooCommerce to support structured product management while integrating WhatsApp-based purchase communication for direct customer engagement.</p>
+        <h3>Brand Positioning and Design Approach</h3>
+        <p>The design emphasizes elegance, sophistication, and sensory appeal.</p>
+        <p>Key design elements include:</p>
+        <ul>
+          <li>Luxury-focused hero messaging</li>
+          <li>Dark and premium-themed visual styling</li>
+          <li>High-quality fragrance imagery</li>
+          <li>Emotion-driven content sections</li>
+          <li>Clear product showcase grids</li>
+          <li>Strong call-to-action buttons</li>
         </ul>
-      </div>
+        <p>The layout was crafted to create an immersive fragrance experience, encouraging visitors to explore scents and connect with the brand identity.</p>
+        <p>The messaging focuses on:</p>
+        <ul>
+          <li>Rare ingredient craftsmanship</li>
+          <li>Long-lasting impressions</li>
+          <li>Personal aura and identity</li>
+          <li>Everyday luxury elevation</li>
+        </ul>
+        <h3>WooCommerce Integration</h3>
+        <p>The website is powered by WooCommerce for structured product management.</p>
+        <p>WooCommerce capabilities include:</p>
+        <ul>
+          <li>Product listing management</li>
+          <li>Pricing configuration</li>
+          <li>Image galleries</li>
+          <li>Product description editing</li>
+          <li>Inventory tracking (if enabled)</li>
+          <li>Category management</li>
+        </ul>
+        <p>This allows the brand team to manage perfumes and product information easily through the WordPress dashboard.</p>
+        <h3>WhatsApp-Based Purchase Flow</h3>
+        <p>Instead of enabling full automated checkout, the purchasing process redirects customers to WhatsApp for order confirmation.</p>
+        <p>This approach allows:</p>
+        <ul>
+          <li>Direct communication with customers</li>
+          <li>Personalized order handling</li>
+          <li>Flexible payment coordination</li>
+          <li>Reduced payment gateway fees</li>
+          <li>Better customer relationship building</li>
+        </ul>
+        <p>This hybrid model combines WooCommerce product management with direct WhatsApp conversion handling.</p>
+        <h3>Tech Stack and Development</h3>
+        <p>Technology Stack:</p>
+        <ul>
+          <li>WordPress CMS</li>
+          <li>WooCommerce plugin</li>
+          <li>HTML5 and CSS3</li>
+          <li>Responsive theme framework</li>
+          <li>WhatsApp integration for order inquiries</li>
+        </ul>
+        <p>The architecture supports future payment gateway integration if required.</p>
+        <h3>Performance and Optimization</h3>
+        <p>The website was optimized to ensure:</p>
+        <ul>
+          <li>Fast loading speeds</li>
+          <li>Optimized product images</li>
+          <li>Clean page hierarchy</li>
+          <li>Mobile-first performance</li>
+          <li>SEO-friendly structure</li>
+        </ul>
+        <p>The configuration ensures smooth browsing across devices and browsers.</p>
+        <h3>Responsive Development</h3>
+        <p>The website is fully responsive and optimized for:</p>
+        <ul>
+          <li>Desktop</li>
+          <li>Tablet</li>
+          <li>Mobile</li>
+        </ul>
+        <p>All product grids, banners, and WhatsApp buttons adapt seamlessly across screen sizes. Mobile optimization was prioritized due to high fragrance brand traffic from social media.</p>
+        <h3>Key Functional Features</h3>
+        <ul>
+          <li>Luxury perfume brand presentation</li>
+          <li>WooCommerce product management system</li>
+          <li>WhatsApp order redirection</li>
+          <li>Editable backend CMS</li>
+          <li>Structured product catalog</li>
+          <li>SEO-friendly architecture</li>
+          <li>Fully responsive layout</li>
+          <li>Scalable checkout integration capability</li>
+        </ul>
+        <h3>Result</h3>
+        <p>The final result is a premium, brand-focused perfume website that combines emotional storytelling with structured product presentation.</p>
+        <p>The platform delivers:</p>
+        <ul>
+          <li>Strong luxury brand positioning</li>
+          <li>Organized product management</li>
+          <li>Direct and personalized sales communication</li>
+          <li>Optimized and responsive performance</li>
+        </ul>
+        <p>This project demonstrates our ability to build WooCommerce-powered fragrance brand websites that balance structured eCommerce capability with flexible WhatsApp-based conversion models.</p>
+      </section>
+    `,
+    details: `
+      <section>
+        <h2>Project Overview</h2>
+        <p>Xense Fragrance is a premium perfume brand storefront designed to blend luxury storytelling with conversion-ready product discovery.</p>
+        <p>The platform uses WordPress and WooCommerce for product control while keeping WhatsApp as the active purchase communication flow.</p>
+        <h3>Brand & Experience Direction</h3>
+        <ul>
+          <li>Luxury-focused messaging and visual storytelling</li>
+          <li>Premium product showcase grids and fragrance imagery</li>
+          <li>Emotion-driven positioning around identity and personal aura</li>
+        </ul>
+        <h3>Commerce Model</h3>
+        <ul>
+          <li>WooCommerce product catalog and pricing management</li>
+          <li>WhatsApp-based order confirmation flow</li>
+          <li>Future-ready architecture for direct payment gateway integration</li>
+        </ul>
+        <h3>Performance & Responsiveness</h3>
+        <p>The implementation focuses on clean hierarchy, optimized images, mobile-first behavior, and SEO-friendly structure for better discovery and smooth browsing across devices.</p>
+        <h3>Result</h3>
+        <p>The final website delivers a premium fragrance brand experience with structured backend control and flexible high-conversion customer engagement.</p>
+      </section>
+    `,
+  },
+  {
+    name: "Trans Master Logistics",
+    image: "/images/projects/transmaster.jpeg",
+    priority: 62,
+    year: "2024",
+    service: "Web Development",
+    slug: "trans-master-logistics",
+    externalUrl: "https://transmaster.ae/",
+    description:
+      "WordPress corporate website for cross-border and specialized transport services with clear focus on oversized cargo, bonded transport, reefer operations, and Jebel Ali freezone logistics.",
+    htmlDescription: `
+      <section>
+        <h2>TRANS MASTER LOGISTICS - Cross-Border and Specialized Transport Website</h2>
+        <p><strong>Website URL:</strong> https://transmaster.ae/</p>
+        <p><strong>Industry:</strong> Cross-Border Logistics and Specialized Transportation</p>
+        <p><strong>Project Type:</strong> WordPress Corporate Website</p>
+        <h3>Project Overview</h3>
+        <p>Trans Master Logistics is a specialized logistics company delivering cross-border transportation and advanced cargo solutions across the Middle East.</p>
+        <p>The objective of this project was to build a professional and structured corporate website that highlights the company's expertise in oversized cargo, bonded transportation, and temperature-controlled logistics while reinforcing its operational presence through the Jebel Ali Freezone branch.</p>
+        <p>The platform was developed using WordPress to provide scalable content management and flexible service expansion capabilities.</p>
+        <h3>Website Design and Corporate Positioning</h3>
+        <p>The design reflects precision, regulatory compliance, and operational strength.</p>
+        <p>Key design elements include:</p>
+        <ul>
+          <li>Strong industrial-themed hero sections</li>
+          <li>Structured service segmentation</li>
+          <li>Professional corporate color palette</li>
+          <li>Clear value-driven messaging</li>
+          <li>Organized content hierarchy</li>
+          <li>Prominent inquiry and contact sections</li>
+        </ul>
+        <p>The layout emphasizes trust and capability while guiding visitors toward service exploration and quotation requests.</p>
+        <h3>Expertise and Specialized Services Presented</h3>
+        <p>The website clearly highlights the company's specialized logistics services, including:</p>
+        <ul>
+          <li>Cross-border transportation for breakbulk cargo</li>
+          <li>Oversized cargo logistics management</li>
+          <li>Closed-box palletized cargo transport</li>
+          <li>Temperature-controlled reefer services</li>
+          <li>Bonded transportation services</li>
+          <li>TIR (Transports Internationaux Routiers) transport solutions</li>
+          <li>Freezone logistics operations via Jebel Ali branch</li>
+        </ul>
+        <p>The service presentation reinforces compliance, operational reliability, and regional logistics expertise.</p>
+        <h3>WordPress Development and CMS Integration</h3>
+        <p>The website was built using WordPress to ensure long-term scalability and content flexibility.</p>
+        <p>Backend capabilities include:</p>
+        <ul>
+          <li>Editable service pages</li>
+          <li>Content updates without coding</li>
+          <li>Media and fleet imagery management</li>
+          <li>Page hierarchy control</li>
+          <li>Contact form management</li>
+          <li>SEO-friendly URL structure</li>
+          <li>Expandable service architecture</li>
+        </ul>
+        <p>The CMS allows the internal team to update services, certifications, and operational details independently.</p>
+        <h3>Performance and Optimization</h3>
+        <p>The website was optimized to ensure:</p>
+        <ul>
+          <li>Fast loading speeds</li>
+          <li>Structured page hierarchy</li>
+          <li>Optimized images and media</li>
+          <li>Responsive performance</li>
+          <li>SEO-friendly configuration</li>
+        </ul>
+        <p>The configuration ensures reliable performance while presenting detailed operational content.</p>
+        <h3>Responsive Development</h3>
+        <p>The website is fully responsive and optimized for:</p>
+        <ul>
+          <li>Desktop</li>
+          <li>Tablet</li>
+          <li>Mobile</li>
+        </ul>
+        <p>All service sections, operational highlights, and inquiry forms adapt seamlessly across screen sizes while maintaining professional presentation.</p>
+        <p>Mobile responsiveness ensures accessibility for logistics coordinators and enterprise clients across the region.</p>
+        <h3>Key Functional Features</h3>
+        <ul>
+          <li>Specialized logistics service segmentation</li>
+          <li>Cross-border transport positioning</li>
+          <li>Freezone branch highlight</li>
+          <li>WordPress CMS integration</li>
+          <li>Editable backend content management</li>
+          <li>Contact and inquiry system</li>
+          <li>SEO-optimized architecture</li>
+          <li>Fully responsive design</li>
+        </ul>
+        <h3>Result</h3>
+        <p>The final result is a structured, authoritative logistics website that clearly communicates Trans Master's expertise in specialized and cross-border transportation services.</p>
+        <p>The platform delivers:</p>
+        <ul>
+          <li>Strong regional logistics positioning</li>
+          <li>Clear service communication</li>
+          <li>Scalable backend management</li>
+          <li>Optimized and responsive performance</li>
+        </ul>
+        <p>This project demonstrates our capability to develop professional WordPress corporate websites tailored for specialized logistics and international transport companies.</p>
+      </section>
+    `,
+    details: `
+      <section>
+        <h2>Project Overview</h2>
+        <p>Trans Master Logistics required a structured website to communicate specialized cross-border transportation capabilities across the Middle East.</p>
+        <p>The build emphasizes compliance, operational strength, and service clarity while enabling scalable WordPress content management.</p>
+        <h3>Specialized Services Highlighted</h3>
+        <ul>
+          <li>Cross-border breakbulk transportation</li>
+          <li>Oversized cargo logistics management</li>
+          <li>Closed-box palletized cargo transport</li>
+          <li>Temperature-controlled reefer logistics</li>
+          <li>Bonded and TIR transport solutions</li>
+          <li>Jebel Ali freezone branch operations</li>
+        </ul>
+        <h3>Delivery Focus</h3>
+        <p>The website is optimized for responsive performance, SEO structure, clean page hierarchy, and editable backend workflows for long-term updates.</p>
+        <h3>Result</h3>
+        <p>The project delivered an authoritative logistics web presence that clearly communicates Trans Master expertise and supports scalable growth.</p>
+      </section>
+    `,
+  },
+  {
+    name: "Hufi World",
+    image: "/images/projects/hufi.jpeg",
+    priority: 64,
+    year: "2024",
+    service: "Web Development",
+    slug: "hufi-world",
+    externalUrl: "https://www.hufiworld.com/",
+    description:
+      "Structured corporate website for Hufi World to present dual service lines: marine operations and residential-commercial moving solutions with fast static-site performance.",
+    htmlDescription: `
+      <section>
+        <h2>HUFI WORLD - Marine and Moving Services Website</h2>
+        <p><strong>Website URL:</strong> https://www.hufiworld.com/</p>
+        <p><strong>Industry:</strong> Marine Services and Relocation Solutions</p>
+        <p><strong>Project Type:</strong> Static Corporate Website (HTML, CSS)</p>
+        <h3>Project Overview</h3>
+        <p>Hufi World is a multi-service company delivering trusted marine operations and professional moving solutions across the UAE and beyond.</p>
+        <p>The objective of this project was to build a structured and modern corporate website that clearly presents the company's dual-service model - Shipping and Marine services and Residential and Commercial Moving services - while maintaining performance, clarity, and professional branding.</p>
+        <p>The website was developed using a static HTML architecture to ensure speed, reliability, and cost-efficient deployment.</p>
+        <h3>Website Design and Service Positioning</h3>
+        <p>The design focuses on trust, efficiency, and operational capability.</p>
+        <p>Key design elements include:</p>
+        <ul>
+          <li>Clean and structured layout</li>
+          <li>Strong hero messaging highlighting full-service capabilities</li>
+          <li>Clear service segmentation</li>
+          <li>Industry-relevant imagery</li>
+          <li>Strong call-to-action placement</li>
+          <li>Simple and professional navigation</li>
+        </ul>
+        <p>The layout ensures visitors can quickly understand the company's service divisions and navigate toward relevant information.</p>
+        <h3>Core Service Divisions</h3>
+        <p>The website clearly presents two primary service categories:</p>
+        <p><strong>Shipping and Marine Services</strong></p>
+        <ul>
+          <li>Vessel operations support</li>
+          <li>Port clearance services</li>
+          <li>Sea freight coordination</li>
+          <li>Marine logistics management</li>
+          <li>UAE and international service coverage</li>
+        </ul>
+        <p>The marine division focuses on reliability, operational expertise, and regulatory compliance.</p>
+        <p><strong>Moving Services</strong></p>
+        <ul>
+          <li>Residential relocation</li>
+          <li>Office relocation</li>
+          <li>Packing and transportation</li>
+          <li>Safe handling of goods</li>
+          <li>Hassle-free and efficient execution</li>
+        </ul>
+        <p>The moving division emphasizes care, safety, and customer-focused service delivery.</p>
+        <h3>Tech Stack and Development</h3>
+        <p>Technology Stack:</p>
+        <ul>
+          <li>HTML5</li>
+          <li>CSS3</li>
+          <li>Responsive layout implementation</li>
+          <li>Basic JavaScript for UI elements</li>
+        </ul>
+        <p>The site was built using clean and semantic HTML structure to maintain organized content presentation and long-term maintainability.</p>
+        <p>Being a static site, it ensures high stability and minimal maintenance requirements.</p>
+        <h3>Performance and Optimization</h3>
+        <p>The static architecture delivers:</p>
+        <ul>
+          <li>Fast loading speed</li>
+          <li>Lightweight performance</li>
+          <li>Optimized image handling</li>
+          <li>Stable hosting environment</li>
+          <li>Smooth user navigation</li>
+        </ul>
+        <p>This ensures reliable browsing experience across devices and network conditions.</p>
+        <h3>Responsive Development</h3>
+        <p>The website is fully responsive and optimized for:</p>
+        <ul>
+          <li>Desktop</li>
+          <li>Tablet</li>
+          <li>Mobile</li>
+        </ul>
+        <p>All service sections, hero banners, and contact areas adapt seamlessly across screen sizes to maintain usability and visual consistency.</p>
+        <p>Mobile optimization was prioritized to support business inquiries and relocation requests from on-the-go users.</p>
+        <h3>Key Functional Features</h3>
+        <ul>
+          <li>Dual-service corporate structure</li>
+          <li>Clear service segmentation</li>
+          <li>Professional branding layout</li>
+          <li>Contact and inquiry integration</li>
+          <li>Lightweight static architecture</li>
+          <li>Fast and reliable performance</li>
+          <li>Fully responsive design</li>
+          <li>Clean and structured codebase</li>
+        </ul>
+        <h3>Result</h3>
+        <p>The final result is a professional, structured, and performance-driven corporate website that effectively communicates Hufi World's marine and moving service capabilities.</p>
+        <p>The platform delivers:</p>
+        <ul>
+          <li>Strong industry positioning</li>
+          <li>Clear service communication</li>
+          <li>Fast and stable performance</li>
+          <li>Cost-efficient static deployment</li>
+        </ul>
+        <p>This project demonstrates our ability to build structured multi-service corporate websites tailored for marine operations and relocation service providers.</p>
+      </section>
+    `,
+    details: `
+      <section>
+        <h2>Project Overview</h2>
+        <p>Hufi World needed a modern corporate website that clearly separates marine operations and moving services within one consistent brand experience.</p>
+        <p>The static architecture was selected for speed, reliability, and low operational overhead.</p>
+        <h3>Service Divisions</h3>
+        <ul>
+          <li>Shipping and marine services including vessel operations and sea freight coordination</li>
+          <li>Residential and commercial moving with packing, transport, and safe handling workflows</li>
+        </ul>
+        <h3>Implementation Notes</h3>
+        <p>The website follows semantic HTML, responsive layouts, and clear service hierarchy to improve usability across desktop and mobile.</p>
+        <h3>Result</h3>
+        <p>The final website provides clear service communication, stronger positioning, and dependable performance for inquiry-driven operations.</p>
+      </section>
+    `,
+  },
+  {
+    name: "Hufi Shipping Line LLC",
+    image: "/images/projects/hufi-shipping.jpeg",
+    priority: 66,
+    year: "2024",
+    service: "Web Development",
+    slug: "hufi-shipping-line",
+    externalUrl: "https://www.hufishipping.ae/",
+    description:
+      "Corporate maritime logistics website focused on secure shipping positioning, clear service segmentation, and quotation-first conversion journeys.",
+    htmlDescription: `
+      <section>
+        <h2>HUFI SHIPPING LINE LLC - Shipping and Logistics Website</h2>
+        <p><strong>Website URL:</strong> https://www.hufishipping.ae/</p>
+        <p><strong>Industry:</strong> Shipping and Maritime Logistics</p>
+        <p><strong>Project Type:</strong> Static Corporate Website (HTML, CSS)</p>
+        <h3>Project Overview</h3>
+        <p>Hufi Shipping Line LLC is a maritime shipping and logistics company delivering fast, secure, and efficient transportation solutions worldwide.</p>
+        <p>The objective of this project was to create a modern, professional, and performance-focused website that clearly communicates the company's logistics capabilities while reinforcing trust and reliability within the shipping industry.</p>
+        <p>The platform was built using a static HTML structure to ensure speed, stability, and cost-efficient deployment.</p>
+        <h3>Website Design and Brand Positioning</h3>
+        <p>The design emphasizes strength, reliability, and global connectivity.</p>
+        <p>Key design elements include:</p>
+        <ul>
+          <li>Large hero section featuring maritime shipping visuals</li>
+          <li>Strong headline messaging: "Fast and Secure Shipping and Logistics Solutions"</li>
+          <li>Professional color scheme aligned with the logistics industry</li>
+          <li>Clear service segmentation</li>
+          <li>Prominent call-to-action buttons (Explore Services, Get a Free Quote)</li>
+          <li>Clean navigation structure</li>
+        </ul>
+        <p>The layout was designed to communicate authority and efficiency while guiding users toward service exploration and quotation requests.</p>
+        <h3>Core Services Presentation</h3>
+        <p>The website highlights key logistics services such as:</p>
+        <ul>
+          <li>Maritime shipping solutions</li>
+          <li>Cargo handling</li>
+          <li>Global freight services</li>
+          <li>Logistics coordination</li>
+          <li>Secure transport management</li>
+        </ul>
+        <p>Each section is structured to present reliability, operational capability, and worldwide service coverage.</p>
+        <h3>Tech Stack and Development</h3>
+        <p>Technology Stack:</p>
+        <ul>
+          <li>HTML5</li>
+          <li>CSS3</li>
+          <li>Responsive layout implementation</li>
+          <li>Basic JavaScript for UI interactions</li>
+        </ul>
+        <p>The website follows clean semantic coding standards for maintainability and structured content presentation.</p>
+        <p>Being fully static, the platform ensures minimal server-side dependency and high reliability.</p>
+        <h3>Performance and Optimization</h3>
+        <p>The static HTML architecture delivers:</p>
+        <ul>
+          <li>Fast page loading speed</li>
+          <li>Lightweight structure</li>
+          <li>Optimized image rendering</li>
+          <li>Stable hosting environment</li>
+          <li>Smooth scrolling and transitions</li>
+        </ul>
+        <p>This ensures consistent performance across different devices and network conditions.</p>
+        <h3>Responsive Development</h3>
+        <p>The website is fully responsive and optimized for:</p>
+        <ul>
+          <li>Desktop</li>
+          <li>Tablet</li>
+          <li>Mobile</li>
+        </ul>
+        <p>The hero section, service blocks, navigation menu, and call-to-action buttons adapt seamlessly across screen sizes, maintaining clarity and usability.</p>
+        <p>Mobile optimization was prioritized to support decision-makers accessing the site remotely.</p>
+        <h3>Key Functional Features</h3>
+        <ul>
+          <li>Professional logistics-focused layout</li>
+          <li>Clear service segmentation</li>
+          <li>Quote request call-to-action</li>
+          <li>Structured content hierarchy</li>
+          <li>Lightweight static architecture</li>
+          <li>Fast and reliable performance</li>
+          <li>Fully responsive design</li>
+          <li>Clean and maintainable codebase</li>
+        </ul>
+        <h3>Result</h3>
+        <p>The final result is a modern, authoritative shipping and logistics website that strengthens Hufi Shipping Line LLC's digital presence.</p>
+        <p>The platform delivers:</p>
+        <ul>
+          <li>Strong industry positioning</li>
+          <li>Clear communication of services</li>
+          <li>Fast and stable performance</li>
+          <li>Cost-efficient static deployment</li>
+        </ul>
+        <p>This project demonstrates our capability to build professional, performance-driven corporate websites tailored for logistics and maritime service providers.</p>
+      </section>
+    `,
+    details: `
+      <section>
+        <h2>Project Overview</h2>
+        <p>Hufi Shipping Line LLC required a professional shipping website to establish trust and communicate global logistics capability.</p>
+        <p>The platform was implemented as a static corporate site for speed, stability, and cost-efficient deployment.</p>
+        <h3>Core Focus Areas</h3>
+        <ul>
+          <li>Maritime shipping and cargo handling services</li>
+          <li>Global freight and transport coordination</li>
+          <li>Clear quotation-focused calls to action</li>
+        </ul>
+        <h3>Performance & UX</h3>
+        <p>The website emphasizes fast loading, responsive layout behavior, clean navigation, and accessible content hierarchy for desktop and mobile decision-makers.</p>
+        <h3>Result</h3>
+        <p>The delivered platform strengthens industry positioning while improving service clarity and lead-ready user flow.</p>
+      </section>
+    `,
+  },
+  {
+    name: "Everest Consultancy Services",
+    image: "/images/projects/everest.jpeg",
+    priority: 68,
+    year: "2024",
+    service: "Web Development",
+    slug: "everest-consultancy-services",
+    externalUrl: "https://everestecs.com/",
+    description:
+      "Corporate consultancy website for Everest ECS to communicate integrated professional services with clear service segmentation and high-performance static delivery.",
+    htmlDescription: `
+      <section>
+        <h2>EVEREST Consultancy Services - Integrated Consultancy Services Website</h2>
+        <p><strong>Website URL:</strong> https://everestecs.com/</p>
+        <p><strong>Industry:</strong> Business and Professional Consultancy</p>
+        <p><strong>Project Type:</strong> Static Corporate Website (HTML, CSS)</p>
+        <h3>Project Overview</h3>
+        <p>Everest ECS is a multi-disciplinary consultancy firm delivering integrated solutions across Real Estate, Business Strategy, Legal Services and Management, Tax and Audit Activities, and Insurance.</p>
+        <p>The objective of this project was to develop a professional, corporate-focused website that clearly communicates the firm's diverse service portfolio while maintaining clarity, credibility, and strong brand positioning.</p>
+        <p>The platform was built using a static HTML structure to ensure speed, reliability, and cost-efficient deployment.</p>
+        <h3>Website Design and Corporate Positioning</h3>
+        <p>The design approach emphasizes professionalism, trust, and strategic expertise.</p>
+        <p>Key design elements include:</p>
+        <ul>
+          <li>Clean and structured corporate layout</li>
+          <li>Clear service segmentation</li>
+          <li>Professional typography and spacing</li>
+          <li>Strong headline messaging</li>
+          <li>Informative content sections</li>
+          <li>Direct contact and inquiry call-to-actions</li>
+        </ul>
+        <p>The layout was carefully structured to communicate authority and multi-sector expertise while maintaining a modern business aesthetic.</p>
+        <h3>Core Services Presented</h3>
+        <p>The website clearly highlights the firm's integrated consultancy services, including:</p>
+        <ul>
+          <li>Real Estate Advisory</li>
+          <li>Business Strategy Consulting</li>
+          <li>Legal Services and Corporate Management</li>
+          <li>Tax and Audit Activities</li>
+          <li>Insurance Solutions</li>
+        </ul>
+        <p>Each service category is presented in a structured format to ensure clarity and easy understanding for potential clients.</p>
+        <p>The positioning focuses on helping organizations:</p>
+        <ul>
+          <li>Grow sustainably</li>
+          <li>Maintain regulatory compliance</li>
+          <li>Improve operational performance</li>
+          <li>Manage risk effectively</li>
+        </ul>
+        <h3>Tech Stack and Development</h3>
+        <p>Technology Stack:</p>
+        <ul>
+          <li>HTML5</li>
+          <li>CSS3</li>
+          <li>Responsive layout implementation</li>
+          <li>Basic JavaScript for UI enhancements</li>
+        </ul>
+        <p>The website uses clean and semantic HTML structure to maintain organized content hierarchy and long-term maintainability.</p>
+        <h3>Performance and Optimization</h3>
+        <p>Because the website is built using static HTML architecture, it delivers:</p>
+        <ul>
+          <li>Fast loading speed</li>
+          <li>Lightweight structure</li>
+          <li>Minimal server dependency</li>
+          <li>Reliable performance</li>
+          <li>Stable hosting environment</li>
+        </ul>
+        <p>The static setup ensures consistent performance across browsers and devices.</p>
+        <h3>Responsive Development</h3>
+        <p>The website is fully responsive and optimized for:</p>
+        <ul>
+          <li>Desktop</li>
+          <li>Tablet</li>
+          <li>Mobile</li>
+        </ul>
+        <p>All service sections, navigation menus, and contact forms adapt seamlessly across screen sizes to maintain readability and usability.</p>
+        <p>Special attention was given to mobile layout to support business decision-makers accessing the site on the go.</p>
+        <h3>Key Functional Features</h3>
+        <ul>
+          <li>Multi-service corporate presentation</li>
+          <li>Structured service segmentation</li>
+          <li>Professional business-oriented layout</li>
+          <li>Contact and inquiry integration</li>
+          <li>Lightweight static architecture</li>
+          <li>Fast and reliable performance</li>
+          <li>Fully responsive design</li>
+          <li>Clean semantic code structure</li>
+        </ul>
+        <h3>Result</h3>
+        <p>The final result is a professional, structured, and performance-focused consultancy website that effectively communicates Everest ECS's integrated service offerings.</p>
+        <p>The platform delivers:</p>
+        <ul>
+          <li>Strong corporate presence</li>
+          <li>Clear service communication</li>
+          <li>Reliable and fast performance</li>
+          <li>Cost-efficient static deployment</li>
+        </ul>
+        <p>This project demonstrates our ability to develop clean, authoritative corporate websites tailored for consultancy and professional service firms.</p>
+      </section>
+    `,
+    details: `
+      <section>
+        <h2>Project Overview</h2>
+        <p>Everest ECS is a multi-disciplinary consultancy requiring a credible and structured digital presence for diverse professional services.</p>
+        <p>The static corporate implementation focuses on authority, readability, and cost-efficient long-term maintenance.</p>
+        <h3>Consultancy Services Presented</h3>
+        <ul>
+          <li>Real estate advisory</li>
+          <li>Business strategy consulting</li>
+          <li>Legal and corporate management services</li>
+          <li>Tax and audit activities</li>
+          <li>Insurance solutions</li>
+        </ul>
+        <h3>Delivery Characteristics</h3>
+        <p>The website uses clean semantic structure, responsive layout implementation, and direct inquiry pathways to support conversion and trust.</p>
+        <h3>Result</h3>
+        <p>The final platform establishes strong corporate positioning while keeping performance reliable across devices and browsers.</p>
+      </section>
+    `,
+  },
+  {
+    name: "Liva Business Hub",
+    image: "/images/projects/liva.jpeg",
+    priority: 70,
+    year: "2024",
+    service: "Web Development",
+    slug: "liva-business-hub",
+    externalUrl: "https://livabusiness.com/",
+    description:
+      "Conversion-focused business setup consultancy website built for Liva Business Hub to simplify complex licensing, visa, and compliance services for Dubai founders.",
+    htmlDescription: `
+      <section>
+        <h2>LIVA BUSINESS HUB - Dubai Business Setup Consultancy Website</h2>
+        <p><strong>Website URL:</strong> https://livabusiness.com/</p>
+        <p><strong>Industry:</strong> Business Setup and Corporate Services</p>
+        <p><strong>Project Type:</strong> Static Corporate Website (HTML, CSS)</p>
+        <h3>Project Overview</h3>
+        <p>Liva Business Hub is a Dubai-based business setup consultancy providing end-to-end company formation and corporate support services.</p>
+        <p>The objective of this project was to develop a professional, conversion-focused website that clearly communicates the company's expertise in trade licensing, visa processing, PRO services, and legal documentation support.</p>
+        <p>The platform was built using a static HTML architecture to ensure high performance, fast loading speed, and reliable deployment.</p>
+        <h3>Website Design and Brand Positioning</h3>
+        <p>The design emphasizes trust, efficiency, and regulatory expertise - essential qualities in the business setup industry.</p>
+        <p>Key design elements include:</p>
+        <ul>
+          <li>Strong headline messaging highlighting Dubai business setup expertise</li>
+          <li>Structured service sections for clarity</li>
+          <li>Professional corporate color scheme</li>
+          <li>Clear call-to-action buttons</li>
+          <li>Informative content blocks</li>
+          <li>Smooth user navigation</li>
+        </ul>
+        <p>The layout guides visitors from understanding the company's value proposition to initiating contact or consultation.</p>
+        <h3>Core Service Presentation</h3>
+        <p>The website clearly outlines the company's primary service offerings:</p>
+        <ul>
+          <li>End-to-end business formation solutions in Dubai</li>
+          <li>Fast and compliant trade licensing</li>
+          <li>Visa and immigration assistance</li>
+          <li>PRO services and government coordination</li>
+          <li>Document attestation and legal support</li>
+          <li>Transparent pricing structure</li>
+          <li>Dedicated expert guidance throughout the process</li>
+        </ul>
+        <p>Each section is structured to build credibility and simplify complex regulatory processes for clients.</p>
+        <h3>Tech Stack and Development</h3>
+        <p>Technology Stack:</p>
+        <ul>
+          <li>HTML5</li>
+          <li>CSS3</li>
+          <li>Responsive layout implementation</li>
+          <li>Basic JavaScript for UI enhancements</li>
+        </ul>
+        <p>The website follows clean semantic coding practices to ensure structured content hierarchy and maintainability.</p>
+        <p>As a static website, it provides stability and minimal server-side complexity.</p>
+        <h3>Performance and Optimization</h3>
+        <p>The static HTML architecture delivers:</p>
+        <ul>
+          <li>Fast loading performance</li>
+          <li>Lightweight structure</li>
+          <li>Optimized asset delivery</li>
+          <li>Smooth navigation</li>
+          <li>Reliable cross-browser compatibility</li>
+        </ul>
+        <p>The configuration ensures consistent performance across devices and internet speeds.</p>
+        <h3>Responsive Development</h3>
+        <p>The website is fully responsive and optimized for:</p>
+        <ul>
+          <li>Desktop</li>
+          <li>Tablet</li>
+          <li>Mobile</li>
+        </ul>
+        <p>All sections, including service highlights and inquiry forms, adapt seamlessly across screen sizes to maintain readability and usability.</p>
+        <p>Mobile responsiveness was prioritized to support entrepreneurs and investors browsing on mobile devices.</p>
+        <h3>Key Functional Features</h3>
+        <ul>
+          <li>Structured business setup service presentation</li>
+          <li>Strong value-driven messaging</li>
+          <li>Contact and inquiry integration</li>
+          <li>Lightweight static architecture</li>
+          <li>Fast and reliable performance</li>
+          <li>Fully responsive layout</li>
+          <li>Clean and professional UI</li>
+          <li>SEO-friendly page structure</li>
+        </ul>
+        <h3>Result</h3>
+        <p>The final result is a professional, trust-focused corporate website that positions Liva Business Hub as a reliable partner for company formation and compliance services in Dubai.</p>
+        <p>The platform delivers:</p>
+        <ul>
+          <li>Clear service communication</li>
+          <li>Strong corporate credibility</li>
+          <li>Optimized performance</li>
+          <li>Cost-efficient static deployment</li>
+        </ul>
+        <p>This project demonstrates our capability to develop structured, conversion-oriented corporate websites tailored for business consultancy and company formation services.</p>
+      </section>
+    `,
+    details: `
+      <section>
+        <h2>Project Overview</h2>
+        <p>Liva Business Hub required a trust-driven digital platform for company formation and compliance services in Dubai.</p>
+        <p>The website was developed with static architecture for strong performance and consistent reliability.</p>
+        <h3>Service Communication</h3>
+        <ul>
+          <li>Company formation and trade licensing support</li>
+          <li>Visa and immigration assistance</li>
+          <li>PRO services and government coordination</li>
+          <li>Document attestation and legal support workflows</li>
+        </ul>
+        <h3>Conversion & UX</h3>
+        <p>The interface structure moves visitors from value proposition to consultation and inquiry with clear call-to-action placement and readable service segmentation.</p>
+        <h3>Result</h3>
+        <p>The project delivered a professional consultancy website with clear messaging, strong credibility, and reliable cross-device performance.</p>
+      </section>
+    `,
+  },
+  {
+    name: "Modovate",
+    image: "/images/projects/modovate.jpeg",
+    priority: 72,
+    year: "2024",
+    service: "Web Development",
+    slug: "modovate",
+    externalUrl: "https://modovate.ae/",
+    description:
+      "Premium automotive detailing and customization website built on WordPress to showcase services, regional coverage, and inquiry-driven customer acquisition.",
+    htmlDescription: `
+      <section>
+        <h2>MODOVATE - Car Care and Customization Website</h2>
+        <p><strong>Website URL:</strong> https://modovate.ae/</p>
+        <p><strong>Industry:</strong> Automotive Detailing and Customization</p>
+        <p><strong>Project Type:</strong> WordPress Service-Based Website</p>
+        <h3>Project Overview</h3>
+        <p>Modovate is a premium car care and customization company providing professional detailing, paint protection, and interior upgrades across Ajman, Dubai, Sharjah, Umm Al Quwain, and Ras Al Khaimah.</p>
+        <p>The objective of this project was to build a visually impactful and conversion-focused automotive service website that clearly presents the company's premium offerings while strengthening local brand authority across multiple Emirates.</p>
+        <p>The website was developed using WordPress to allow easy content updates, service management, and long-term scalability.</p>
+        <h3>Website Design and Brand Positioning</h3>
+        <p>The design reflects premium automotive craftsmanship and high-performance service quality.</p>
+        <p>Key design elements include:</p>
+        <ul>
+          <li>Bold automotive-focused hero sections</li>
+          <li>High-quality vehicle imagery</li>
+          <li>Structured service presentation blocks</li>
+          <li>Strong call-to-action buttons</li>
+          <li>Clear service coverage locations</li>
+          <li>Clean and modern UI layout</li>
+        </ul>
+        <p>The layout emphasizes professionalism, expertise, and trust while guiding users toward booking or consultation.</p>
+        <h3>Core Services Presented</h3>
+        <p>The website clearly highlights Modovate's primary service divisions:</p>
+        <ul>
+          <li>Premium car detailing</li>
+          <li>Paint protection solutions</li>
+          <li>Interior upgrades</li>
+          <li>Vehicle customization</li>
+          <li>Professional finishing services</li>
+        </ul>
+        <p>Each service section is structured to communicate quality workmanship and expert-level execution.</p>
+        <p>The website also reinforces regional service coverage across major UAE cities to improve local customer trust.</p>
+        <h3>WordPress Development and CMS Integration</h3>
+        <p>The platform was built using WordPress to provide flexible content management and future expansion capabilities.</p>
+        <p>Backend features include:</p>
+        <ul>
+          <li>Editable service pages</li>
+          <li>Media and gallery management</li>
+          <li>Content updates without coding</li>
+          <li>Contact form management</li>
+          <li>SEO-friendly page structure</li>
+          <li>Expandable service sections</li>
+        </ul>
+        <p>The CMS allows the internal team to update services, add new offerings, and manage content independently.</p>
+        <h3>Performance and Optimization</h3>
+        <p>The website was optimized for:</p>
+        <ul>
+          <li>Fast loading speed</li>
+          <li>Optimized automotive imagery</li>
+          <li>Clean page hierarchy</li>
+          <li>Responsive performance</li>
+          <li>SEO-friendly configuration</li>
+        </ul>
+        <p>The configuration ensures stable performance across devices and browsers.</p>
+        <h3>Responsive Development</h3>
+        <p>The website is fully responsive and optimized for:</p>
+        <ul>
+          <li>Desktop</li>
+          <li>Tablet</li>
+          <li>Mobile</li>
+        </ul>
+        <p>All service sections, image galleries, and call-to-action buttons adapt seamlessly across screen sizes to maintain visual consistency and usability.</p>
+        <p>Mobile responsiveness was prioritized due to high customer traffic from local search and social media platforms.</p>
+        <h3>Key Functional Features</h3>
+        <ul>
+          <li>Premium automotive service presentation</li>
+          <li>WordPress CMS integration</li>
+          <li>Editable backend management</li>
+          <li>Multi-location service coverage</li>
+          <li>Contact and inquiry system</li>
+          <li>Image gallery showcase</li>
+          <li>SEO-optimized structure</li>
+          <li>Fully responsive design</li>
+        </ul>
+        <h3>Result</h3>
+        <p>The final result is a visually engaging, premium, and scalable automotive service website that strengthens Modovate's digital presence across the UAE.</p>
+        <p>The platform delivers:</p>
+        <ul>
+          <li>Strong premium brand positioning</li>
+          <li>Clear service communication</li>
+          <li>Easy backend management</li>
+          <li>Optimized performance across devices</li>
+        </ul>
+        <p>This project demonstrates our capability to build high-impact WordPress service websites tailored for automotive detailing and customization businesses.</p>
+      </section>
+    `,
+    details: `
+      <section>
+        <h2>Project Overview</h2>
+        <p>Modovate needed a high-impact automotive website to present premium detailing and customization services across multiple Emirates.</p>
+        <p>The WordPress implementation enables scalable service management, editable content, and media-heavy presentation without developer dependency.</p>
+        <h3>Core Offerings Presented</h3>
+        <ul>
+          <li>Premium car detailing</li>
+          <li>Paint protection services</li>
+          <li>Interior upgrades and vehicle customization</li>
+          <li>Regional service coverage across UAE locations</li>
+        </ul>
+        <h3>Optimization Focus</h3>
+        <p>The solution prioritizes fast loads, responsive galleries, strong service hierarchy, and SEO-friendly structure for local discovery and lead generation.</p>
+        <h3>Result</h3>
+        <p>The final website strengthens premium brand positioning while supporting efficient backend management and scalable growth.</p>
+      </section>
+    `,
+  },
+  {
+    name: "Collins Equipment Trading",
+    image: "/images/projects/collins.jpeg",
+    priority: 74,
+    year: "2024",
+    service: "Web Development",
+    slug: "collins-equipment-trading",
+    externalUrl: "https://collinscouae.com/",
+    description:
+      "Industrial equipment supply website built with WordPress for category-based product presentation, scalable catalog updates, and inquiry-focused customer flow.",
+    htmlDescription: `
+      <section>
+        <h2>COLLINS EQUIPMENT TRADING - Industrial Equipment Supply Website</h2>
+        <p><strong>Website URL:</strong> https://collinscouae.com/</p>
+        <p><strong>Industry:</strong> Industrial Equipment and Machinery Supply</p>
+        <p><strong>Project Type:</strong> WordPress Corporate Product Website</p>
+        <h3>Project Overview</h3>
+        <p>Collins Equipment Trading is an industrial equipment supplier providing reliable and high-quality branded machinery tailored to industry-specific needs across the UAE.</p>
+        <p>The objective of this project was to develop a structured, product-focused corporate website that clearly presents equipment categories while positioning the company as a trusted industrial supplier.</p>
+        <p>The website was built using WordPress to allow easy product management, content updates, and scalable expansion of equipment categories.</p>
+        <h3>Website Design and Structure</h3>
+        <p>The design emphasizes clarity, industrial strength, and organized product presentation.</p>
+        <p>Key design elements include:</p>
+        <ul>
+          <li>Category-based equipment display layout</li>
+          <li>Clean grid-based product sections</li>
+          <li>High-quality equipment imagery</li>
+          <li>Clear navigation between equipment divisions</li>
+          <li>Professional industrial color scheme</li>
+          <li>Direct inquiry and contact options</li>
+        </ul>
+        <p>The homepage is structured to highlight major equipment categories, allowing visitors to quickly navigate to relevant product types.</p>
+        <h3>Product Categories Presented</h3>
+        <p>The platform showcases major industrial equipment divisions, including:</p>
+        <ul>
+          <li>Generators</li>
+          <li>Forklifts</li>
+          <li>Air Compressors</li>
+          <li>Heavy Equipment</li>
+          <li>Spare Parts</li>
+          <li>Tower Lights</li>
+        </ul>
+        <p>Each category section is structured for clear browsing and inquiry-based interaction.</p>
+        <p>The site is designed as a product showcase platform rather than a direct online purchase system.</p>
+        <h3>WordPress Development and CMS Capabilities</h3>
+        <p>The website was developed using WordPress to provide flexibility and easy backend management.</p>
+        <p>CMS capabilities include:</p>
+        <ul>
+          <li>Add and edit equipment categories</li>
+          <li>Upload product images</li>
+          <li>Update specifications and descriptions</li>
+          <li>Manage content pages</li>
+          <li>Contact form management</li>
+          <li>SEO-friendly page structure</li>
+          <li>Scalable category expansion</li>
+        </ul>
+        <p>The backend allows the business team to update inventory listings and content without developer assistance.</p>
+        <h3>Performance and Optimization</h3>
+        <p>The website was optimized for:</p>
+        <ul>
+          <li>Fast loading speeds</li>
+          <li>Clean page structure</li>
+          <li>Optimized image delivery</li>
+          <li>Responsive layout</li>
+          <li>SEO-friendly configuration</li>
+        </ul>
+        <p>The configuration ensures stable performance across devices and browsers.</p>
+        <h3>Responsive Development</h3>
+        <p>The platform is fully responsive and optimized for:</p>
+        <ul>
+          <li>Desktop</li>
+          <li>Tablet</li>
+          <li>Mobile</li>
+        </ul>
+        <p>All product categories and equipment sections adapt seamlessly across screen sizes, maintaining clarity and accessibility.</p>
+        <p>Special attention was given to mobile navigation due to high industry traffic from on-site and field users.</p>
+        <h3>Key Functional Features</h3>
+        <ul>
+          <li>Structured equipment category layout</li>
+          <li>Product showcase pages</li>
+          <li>WordPress CMS integration</li>
+          <li>Editable backend management</li>
+          <li>Contact and inquiry system</li>
+          <li>SEO-optimized structure</li>
+          <li>Responsive grid-based layout</li>
+          <li>Scalable architecture for future growth</li>
+        </ul>
+        <h3>Result</h3>
+        <p>The final result is a professional, structured, and easy-to-manage industrial equipment website that strengthens Collins Equipment Trading's digital presence.</p>
+        <p>The platform delivers:</p>
+        <ul>
+          <li>Clear product segmentation</li>
+          <li>Professional industrial branding</li>
+          <li>Easy backend content control</li>
+          <li>Responsive and optimized performance</li>
+        </ul>
+        <p>This project demonstrates our ability to build scalable WordPress product showcase websites tailored for industrial and machinery supply businesses.</p>
+      </section>
+    `,
+    details: `
+      <section>
+        <h2>Project Overview</h2>
+        <p>Collins Equipment Trading required a structured industrial website to present machinery categories clearly and support ongoing catalog growth.</p>
+        <p>The WordPress CMS setup enables the team to manage products, imagery, and service pages independently.</p>
+        <h3>Equipment Categories Showcased</h3>
+        <ul>
+          <li>Generators</li>
+          <li>Forklifts</li>
+          <li>Air compressors</li>
+          <li>Heavy equipment and tower lights</li>
+          <li>Spare parts</li>
+        </ul>
+        <h3>Implementation Focus</h3>
+        <p>The website uses grid-based category presentation, responsive behavior, SEO-friendly structure, and direct inquiry pathways instead of direct checkout.</p>
+        <h3>Result</h3>
+        <p>The delivered platform improves industrial brand credibility, keeps backend updates simple, and supports scalable product communication.</p>
+      </section>
     `,
   },
   {

@@ -90,7 +90,7 @@ const { project } = Astro.props;
                 <div
                     class="prose prose-lg max-w-none opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
                     data-animate-on-scroll
-                    set:html={project.details}
+                    set:html={project.htmlDescription ?? project.details}
                 />
             </div>
         </div>
