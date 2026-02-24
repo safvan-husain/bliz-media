@@ -36,32 +36,32 @@ const TEAM_SEGMENTS = {
     start: 0,
     inEnd: 0.04,
     holdEnd: 0.07,
-    outEnd: 0.10,
+    outEnd: 0.1,
     title: "Meet the minds behind the mission",
   },
   globalLeadership: {
-    start: 0.10,
+    start: 0.1,
     inEnd: 0.14,
     holdEnd: 0.17,
-    outEnd: 0.20,
+    outEnd: 0.2,
     title: "Meet Our Global Leadership",
   },
   productionTech: {
-    start: 0.20,
+    start: 0.2,
     inEnd: 0.24,
     holdEnd: 0.27,
-    outEnd: 0.30,
+    outEnd: 0.3,
     title: "Meet Our Department Heads",
   },
   seoPerformance: {
-    start: 0.30,
+    start: 0.3,
     inEnd: 0.34,
     holdEnd: 0.37,
-    outEnd: 0.40,
+    outEnd: 0.4,
     title: "Meet Our Department Heads",
   },
   team: {
-    start: 0.40,
+    start: 0.4,
     inEnd: 0.44,
     outEnd: 1,
     title: "", //keep it empty.
@@ -437,7 +437,7 @@ export default function ScrollTeamEXP() {
             >
               <div className="relative w-full overflow-visible">
                 <div className="pl-[320px] lg:pl-[350px] mb-10">
-                  <h3 className="text-primary font-bold uppercase tracking-[0.3em] text-sm">
+                  <h3 className="ext-5xl font-black leading-[0.95] tracking-tighter md:text-6xl lg:text-7xl text-white">
                     Meet the rest of the team
                   </h3>
                 </div>
@@ -446,10 +446,22 @@ export default function ScrollTeamEXP() {
                   style={{ x: teamX }}
                   className="flex gap-10 lg:gap-14 w-max pr-[30vw]"
                 >
-                  <div className="w-[320px] lg:w-[350px] flex-shrink-0" aria-hidden="true" />
-                  <div className="w-[320px] lg:w-[350px] flex-shrink-0" aria-hidden="true" />
-                  <div className="w-[320px] lg:w-[350px] flex-shrink-0" aria-hidden="true" />
-                  <div className="w-[320px] lg:w-[350px] flex-shrink-0" aria-hidden="true" />
+                  <div
+                    className="w-[320px] lg:w-[350px] flex-shrink-0"
+                    aria-hidden="true"
+                  />
+                  <div
+                    className="w-[320px] lg:w-[350px] flex-shrink-0"
+                    aria-hidden="true"
+                  />
+                  <div
+                    className="w-[320px] lg:w-[350px] flex-shrink-0"
+                    aria-hidden="true"
+                  />
+                  <div
+                    className="w-[320px] lg:w-[350px] flex-shrink-0"
+                    aria-hidden="true"
+                  />
                   {restOfTeam.map((member) => (
                     <TeamCarouselCard key={member.id} member={member} />
                   ))}
@@ -488,7 +500,7 @@ function TeamCarouselCard({ member }: { member: TeamMember }) {
         <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/90 via-black/20 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
       </div>
       <div className="flex flex-col gap-1">
-        <div className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+        <div className="text-xs font-normal tracking-[0.2em] text-primary">
           {member.role}
         </div>
         <h4 className="text-3xl font-black tracking-tight text-white group-hover:text-primary transition-colors duration-300">
@@ -537,7 +549,7 @@ function TeamSpotlightCard({ member }: { member: TeamMember }) {
         <h3 className="text-xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white">
           {member.name}
         </h3>
-        <p className="text-[10px] sm:text-sm lg:text-base font-extrabold uppercase tracking-[0.2em] text-white/50">
+        <p className="text-[10px] sm:text-sm lg:text-base font-normal pt-2 tracking-[0.2em] text-white/50">
           {member.role}
         </p>
       </div>
