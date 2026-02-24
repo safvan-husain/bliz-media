@@ -24,7 +24,8 @@ export type ServiceContentBlock =
         | "BrandingContent"
         | "DigitalMarketingContent"
         | "DesignContent"
-        | "ProductionContent";
+        | "ProductionContent"
+        | "WebDevelopmentCta";
     };
 
 export interface Service {
@@ -123,6 +124,10 @@ export const services: Service[] = [
       {
         type: "component",
         component: "Pricing",
+      },
+      {
+        type: "component",
+        component: "WebDevelopmentCta",
       },
     ],
     plans: [

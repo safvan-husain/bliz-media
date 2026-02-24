@@ -3,170 +3,175 @@ import Layout from "../../layouts/Layout.astro";
 import { projects } from "../../data/projects";
 import Testimonials from "@/components/Testimonials.astro";
 import { services as servicesData } from "../../data/services";
-import { planProjectLayout } from "../../lib/project-layout";
 
 const services = ["All", ...servicesData.map((s) => s.title)];
-const plannedProjects = planProjectLayout(projects);
 ---
 
 <Layout title="Projects | Our Work">
-  <section class="py-20 pt-32 md:py-32">
-    <div class="container mx-auto px-4">
-      <div class="mb-12">
-        <h1
-          class="text-4xl sm:text-6xl lg:text-7xl text-black font-bold tracking-tighter"
-        >
-          Our Projects
-        </h1>
-        <p class="mt-6 text-xl font-medium text-zinc-600">
-          Each project we undertake is a testament to our commitment to quality,
-          creativity, and strategic thinking.
-        </p>
-      </div>
+    <section class="py-20 pt-32 md:py-32">
+        <div class="container mx-auto px-4">
+            <div class="mb-12">
+                <h1
+                    class="text-4xl sm:text-6xl lg:text-7xl text-black font-bold tracking-tighter"
+                >
+                    Our Projects
+                </h1>
+                <p class="mt-6 text-xl font-medium text-zinc-600">
+                    Each project we undertake is a testament to our commitment
+                    to quality, creativity, and strategic thinking.
+                </p>
+            </div>
 
-      <div class="mb-10 flex flex-wrap gap-3">
-        {
-          services.map((service) => (
-            <button
-              type="button"
-              data-service-filter={service}
-              class="inline-flex items-center rounded-full border border-[var(--color-muted-foreground)] bg-transparent px-4 py-2 text-sm font-medium text-[var(--color-foreground)] transition-colors"
-            >
-              {service}
-            </button>
-          ))
-        }
-      </div>
+            <div class="mb-10 flex flex-wrap gap-3">
+                {
+                    services.map((service) => (
+                        <button
+                            type="button"
+                            data-service-filter={service}
+                            class="inline-flex items-center rounded-full border border-[var(--color-muted-foreground)] bg-transparent px-4 py-2 text-sm font-medium text-[var(--color-foreground)] transition-colors"
+                        >
+                            {service}
+                        </button>
+                    ))
+                }
+            </div>
 
-      <div class="grid grid-cols-1 gap-4 md:grid-cols-4 md:auto-rows-[250px] md:grid-flow-row-dense">
-        {
-          plannedProjects.map((project) => (
-            <article
-              data-service-name={project.service}
-              class={`group relative block overflow-hidden rounded-3xl ${project.layoutClass}`}
-            >
-              <img
-                src={project.image}
-                alt={project.name}
-                class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80" />
-              <div class="absolute bottom-0 left-0 w-full p-6 translate-y-2 transition-transform duration-300 group-hover:translate-y-0">
-                <div class="flex mb-1">
-                  <span class="text-sm font-medium text-white/80">
-                    {project.service}
-                  </span>
-                  <span class="text-white/80 mx-2">&#183;</span>
-                  <span class="text-sm font-medium text-white/80">
-                    {project.year}
-                  </span>
-                </div>
-                <h3 class="text-xl font-semibold text-white md:text-2xl">
-                  {project.name}
-                </h3>
-                <div class="mt-4 flex flex-wrap gap-2">
-                  <a
-                    href={`/project/${project.slug}`}
-                    class="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/20"
-                  >
-                    View Details
-                  </a>
-                  {
-                    project.externalUrl && /^https?:\/\//i.test(project.externalUrl) ? (
-                      <a
-                        href={project.externalUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/20"
-                      >
-                        View Website
-                      </a>
-                    ) : null
-                  }
-                </div>
-              </div>
-            </article>
-          ))
-        }
-      </div>
-    </div>
-  </section>
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+                {
+                    projects.map((project) => (
+                        <article
+                            data-service-name={project.service}
+                            class="group relative block h-72 overflow-hidden rounded-3xl"
+                        >
+                            <img
+                                src={project.image}
+                                alt={project.name}
+                                class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80" />
+                            <div class="absolute bottom-0 left-0 w-full p-6 translate-y-2 transition-transform duration-300 group-hover:translate-y-0">
+                                <div class="flex mb-1">
+                                    <span class="text-sm font-medium text-white/80">
+                                        {project.service}
+                                    </span>
+                                    <span class="text-white/80 mx-2">
+                                        &#183;
+                                    </span>
+                                    <span class="text-sm font-medium text-white/80">
+                                        {project.year}
+                                    </span>
+                                </div>
+                                <h3 class="text-xl font-semibold text-white md:text-2xl">
+                                    {project.name}
+                                </h3>
+                                <div class="mt-4 flex flex-wrap gap-2">
+                                    <a
+                                        href={`/project/${project.slug}`}
+                                        class="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/20"
+                                    >
+                                        View Details
+                                    </a>
+                                    {project.externalUrl &&
+                                    /^https?:\/\//i.test(
+                                        project.externalUrl,
+                                    ) ? (
+                                        <a
+                                            href={project.externalUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/20"
+                                        >
+                                            View Website
+                                        </a>
+                                    ) : null}
+                                </div>
+                            </div>
+                        </article>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
 
-  <script>
-    const buttons = Array.from(
-      document.querySelectorAll("[data-service-filter]"),
-    );
-    const cards = Array.from(document.querySelectorAll("[data-service-name]"));
-
-    const activeClasses = [
-      "bg-[var(--color-primary)]",
-      "text-white",
-      "border-[var(--color-primary)]",
-    ];
-
-    const inactiveClasses = [
-      "bg-transparent",
-      "text-[var(--color-foreground)]",
-      "border-[var(--color-muted-foreground)]",
-    ];
-
-    function setActiveButton(activeButton: any) {
-      buttons.forEach((button) => {
-        button.classList.remove(...activeClasses);
-        button.classList.add(...inactiveClasses);
-      });
-
-      if (activeButton) {
-        activeButton.classList.remove(...inactiveClasses);
-        activeButton.classList.add(...activeClasses);
-      }
-    }
-
-    function filterProjects(service: any) {
-      cards.forEach((card) => {
-        const cardService = card.getAttribute("data-service-name");
-        const shouldShow = service === "All" || cardService === service;
-
-        if (shouldShow) {
-          card.classList.remove("hidden");
-        } else {
-          card.classList.add("hidden");
-        }
-      });
-    }
-
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const service = button.getAttribute("data-service-filter");
-        setActiveButton(button);
-        filterProjects(service);
-      });
-    });
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const filterParam = urlParams.get("filter");
-
-    if (buttons.length) {
-      let targetButton = null;
-
-      if (filterParam) {
-        targetButton = buttons.find(
-          (btn) =>
-            btn.getAttribute("data-service-filter")?.toLowerCase() ===
-            filterParam.toLowerCase(),
+    <script>
+        const buttons = Array.from(
+            document.querySelectorAll("[data-service-filter]"),
         );
-      }
+        const cards = Array.from(
+            document.querySelectorAll("[data-service-name]"),
+        );
 
-      if (!targetButton) {
-        targetButton =
-          buttons.find(
-            (btn) => btn.getAttribute("data-service-filter") === "All",
-          ) || buttons[0];
-      }
+        const activeClasses = [
+            "bg-[var(--color-primary)]",
+            "text-white",
+            "border-[var(--color-primary)]",
+        ];
 
-      const service = targetButton.getAttribute("data-service-filter");
-      setActiveButton(targetButton);
-      filterProjects(service);
-    }
-  </script>
+        const inactiveClasses = [
+            "bg-transparent",
+            "text-[var(--color-foreground)]",
+            "border-[var(--color-muted-foreground)]",
+        ];
+
+        function setActiveButton(activeButton: any) {
+            buttons.forEach((button) => {
+                button.classList.remove(...activeClasses);
+                button.classList.add(...inactiveClasses);
+            });
+
+            if (activeButton) {
+                activeButton.classList.remove(...inactiveClasses);
+                activeButton.classList.add(...activeClasses);
+            }
+        }
+
+        function filterProjects(service: any) {
+            cards.forEach((card) => {
+                const cardService = card.getAttribute("data-service-name");
+                const shouldShow = service === "All" || cardService === service;
+
+                if (shouldShow) {
+                    card.classList.remove("hidden");
+                } else {
+                    card.classList.add("hidden");
+                }
+            });
+        }
+
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const service = button.getAttribute("data-service-filter");
+                setActiveButton(button);
+                filterProjects(service);
+            });
+        });
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const filterParam = urlParams.get("filter");
+
+        if (buttons.length) {
+            let targetButton = null;
+
+            if (filterParam) {
+                targetButton = buttons.find(
+                    (btn) =>
+                        btn
+                            .getAttribute("data-service-filter")
+                            ?.toLowerCase() === filterParam.toLowerCase(),
+                );
+            }
+
+            if (!targetButton) {
+                targetButton =
+                    buttons.find(
+                        (btn) =>
+                            btn.getAttribute("data-service-filter") === "All",
+                    ) || buttons[0];
+            }
+
+            const service = targetButton.getAttribute("data-service-filter");
+            setActiveButton(targetButton);
+            filterProjects(service);
+        }
+    </script>
 </Layout>
