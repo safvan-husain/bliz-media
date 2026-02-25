@@ -1,6 +1,7 @@
 ---
 import BrandPhysics from "./BrandPhysics";
 import InfiniteTestimonials from "./InfiniteTestimonials.astro";
+import CurveRevealText from "./CurveRevealText.astro";
 import { brands } from "../data/brands";
 
 export interface Author {
@@ -25,17 +26,18 @@ const { testimonials = [] } = Astro.props as Props;
     <div
         class="mx-auto max-w-[var(--max-width-container)] px-4 mb-12 flex flex-col items-center text-center gap-4"
     >
-        <h2
-            class="text-3xl font-semibold leading-tight sm:text-5xl sm:leading-tight text-black"
-        >
-            What Our Clients Say
-        </h2>
-        <p
-            class="text-md max-w-[600px] font-medium text-[var(--color-muted-foreground)] sm:text-xl"
-        >
-            Real feedback from clients who’ve partnered with us to build
-            impactful digital solutions.
-        </p>
+        <CurveRevealText
+            as="h2"
+            text="What Our Clients Say"
+            className="text-3xl font-semibold leading-tight sm:text-5xl sm:leading-tight text-black"
+        />
+        <CurveRevealText
+            as="p"
+            text="Real feedback from clients who’ve partnered with us to build impactful digital solutions."
+            className="text-md max-w-[600px] font-medium text-[var(--color-muted-foreground)] sm:text-xl"
+            delayStepMs={24}
+            baseDelayMs={100}
+        />
     </div>
 
     <div class="w-full mb-24">
@@ -47,20 +49,21 @@ const { testimonials = [] } = Astro.props as Props;
     >
         <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div>
-                <h2
-                    class="flex flex-col text-4xl font-bold tracking-tight text-black mb-6 md:text-5xl mb-1"
-                >
-                    Trusted by Growing <span class="text-primary pt-2"
-                        >Brands & Businesses</span
-                    >
-                </h2>
-                <p
-                    class="text-xl text-muted-foreground leading-relaxed mb-8 max-w-xl"
-                >
-                    We’ve partnered with startups, agencies, and businesses
-                    across industries to design, build, and scale impactful
-                    digital experiences.
-                </p>
+                <CurveRevealText
+                    as="h2"
+                    segments={[
+                        { text: "Trusted by Growing ", class: "text-black" },
+                        { text: "Brands & Businesses", class: "text-primary" },
+                    ]}
+                    className="flex flex-col text-4xl font-bold tracking-tight mb-6 md:text-5xl"
+                />
+                <CurveRevealText
+                    as="p"
+                    text="We’ve partnered with startups, agencies, and businesses across industries to design, build, and scale impactful digital experiences."
+                    className="text-xl text-muted-foreground leading-relaxed mb-8 max-w-xl"
+                    delayStepMs={24}
+                    baseDelayMs={120}
+                />
                 <div class="flex flex-wrap gap-4">
                     <div
                         class="flex items-center gap-2 px-4 py-2 bg-muted rounded-full text-sm font-medium"

@@ -1,76 +1,93 @@
 ---
+import CurveRevealText from "./CurveRevealText.astro";
 import type { TeamMember } from "../data/team";
 import { founders, leaders } from "../data/team";
 
 const isRegionalManager = (member: TeamMember) =>
-  member.role.toLowerCase().includes("regional manager");
+    member.role.toLowerCase().includes("regional manager");
 
 const isProductionOrTech = (member: TeamMember) => {
-  const role = member.role.toLowerCase();
-  return role.includes("production") || role.includes("tech");
+    const role = member.role.toLowerCase();
+    return role.includes("production") || role.includes("tech");
 };
 
 const isSeoOrPerformanceMarketing = (member: TeamMember) => {
-  const role = member.role.toLowerCase();
-  return role.includes("seo") || role.includes("performance marketing");
+    const role = member.role.toLowerCase();
+    return role.includes("seo") || role.includes("performance marketing");
 };
 
 const regionalManagers = leaders.filter(isRegionalManager);
 const otherLeaders = leaders.filter((member) => !isRegionalManager(member));
 
 const productionAndTech = otherLeaders.filter(isProductionOrTech);
-const seoAndPerformanceMarketing = otherLeaders.filter(isSeoOrPerformanceMarketing);
+const seoAndPerformanceMarketing = otherLeaders.filter(
+    isSeoOrPerformanceMarketing,
+);
 const remainingLeaders = otherLeaders.filter(
-  (member) => !isProductionOrTech(member) && !isSeoOrPerformanceMarketing(member),
+    (member) =>
+        !isProductionOrTech(member) && !isSeoOrPerformanceMarketing(member),
 );
 
 const sections: { title: string; members: TeamMember[] }[] = [
-  { title: "Meet the minds behind the mission", members: founders },
-  ...(regionalManagers.length
-    ? [{ title: "Meet Our Global Leadership", members: regionalManagers }]
-    : []),
-  ...(productionAndTech.length
-    ? [{ title: "Meet Our Production & Tech Leads", members: productionAndTech }]
-    : []),
-  ...(seoAndPerformanceMarketing.length
-    ? [
-        {
-          title: "Meet Our SEO & Performance Marketing Leads",
-          members: seoAndPerformanceMarketing,
-        },
-      ]
-    : []),
-  ...(remainingLeaders.length
-    ? [{ title: "Leadership Team", members: remainingLeaders }]
-    : []),
+    { title: "Meet the minds behind the mission", members: founders },
+    ...(regionalManagers.length
+        ? [{ title: "Meet Our Global Leadership", members: regionalManagers }]
+        : []),
+    ...(productionAndTech.length
+        ? [
+              {
+                  title: "Meet Our Production & Tech Leads",
+                  members: productionAndTech,
+              },
+          ]
+        : []),
+    ...(seoAndPerformanceMarketing.length
+        ? [
+              {
+                  title: "Meet Our SEO & Performance Marketing Leads",
+                  members: seoAndPerformanceMarketing,
+              },
+          ]
+        : []),
+    ...(remainingLeaders.length
+        ? [{ title: "Leadership Team", members: remainingLeaders }]
+        : []),
 ];
 ---
 
 <section class="w-full bg-white py-16">
     <div class="max-w-[var(--max-width-container)] mx-auto px-6">
         <div class="flex flex-col gap-3 mb-10">
-            <span
-                class="text-primary font-bold tracking-[0.2em] text-sm uppercase"
-            >
-                Our People
-            </span>
-            <h2
-                class="text-4xl sm:text-5xl font-black tracking-tight text-secondary leading-[0.95]"
-            >
-                Meet The Team
-            </h2>
-            <p class="text-secondary/60 font-medium max-w-2xl">
-                The people behind the work — strategy, craft, and execution.
-            </p>
+            <CurveRevealText
+                as="span"
+                text="Our People"
+                className="text-primary font-bold tracking-[0.2em] text-sm uppercase"
+                delayStepMs={20}
+            />
+            <CurveRevealText
+                as="h2"
+                text="Meet The Team"
+                className="text-4xl sm:text-5xl font-black tracking-tight text-secondary leading-[0.95]"
+                baseDelayMs={80}
+            />
+            <CurveRevealText
+                as="p"
+                text="The people behind the work — strategy, craft, and execution."
+                className="text-secondary/60 font-medium max-w-2xl"
+                delayStepMs={24}
+                baseDelayMs={140}
+            />
         </div>
 
         <div class="flex flex-col gap-12">
             {
                 sections.map(({ title, members }) => (
                     <div>
-                        <h3 class="text-xl font-black tracking-tight text-secondary mb-5">
-                            {title}
-                        </h3>
+                        <CurveRevealText
+                            as="h3"
+                            text={title}
+                            className="text-xl font-black tracking-tight text-secondary mb-5"
+                        />
                         <div class="grid grid-cols-2 gap-4 sm:gap-6">
                             {members.map((member) => (
                                 <div class="group relative rounded-3xl overflow-hidden border border-border bg-card shadow-sm transition-transform duration-500 hover:-translate-y-0.5">

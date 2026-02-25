@@ -1,4 +1,6 @@
 ---
+import CurveRevealText from "./CurveRevealText.astro";
+
 const testimonials = [
     {
         name: "Dereck Shumba",
@@ -56,21 +58,27 @@ const testimonials = [
             class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8"
         >
             <div class="max-w-2xl">
-                <span
-                    class="text-blue-600 font-bold tracking-widest text-xs uppercase bg-blue-50 px-3 py-1.5 rounded-full"
-                    >Client Success</span
-                >
-                <h2
-                    class="text-5xl md:text-7xl font-black text-gray-900 mt-6 tracking-tight"
-                >
-                    What Clients Say
-                </h2>
+                <CurveRevealText
+                    as="span"
+                    text="Client Success"
+                    className="text-blue-600 font-bold tracking-widest text-xs uppercase bg-blue-50 px-3 py-1.5 rounded-full"
+                    delayStepMs={20}
+                />
+                <CurveRevealText
+                    as="h2"
+                    text="What Clients Say"
+                    className="text-5xl md:text-7xl font-black text-gray-900 mt-6 tracking-tight"
+                    baseDelayMs={80}
+                />
             </div>
             <div class="max-w-xs">
-                <p class="text-gray-500 text-lg leading-relaxed font-medium">
-                    Hear from our clients about their experiences and our
-                    quality services.
-                </p>
+                <CurveRevealText
+                    as="p"
+                    text="Hear from our clients about their experiences and our quality services."
+                    className="text-gray-500 text-lg leading-relaxed font-medium"
+                    delayStepMs={24}
+                    baseDelayMs={180}
+                />
             </div>
         </div>
 

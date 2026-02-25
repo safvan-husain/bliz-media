@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import { projects } from "../../data/projects";
 import Testimonials from "@/components/Testimonials.astro";
+import CurveRevealText from "@/components/CurveRevealText.astro";
 import { services as servicesData } from "../../data/services";
 
 const services: { slug: string; name: string }[] = [
@@ -18,15 +19,18 @@ const serviceSlugByTitle = new Map(
     <section class="py-20 pt-32 md:py-32">
         <div class="container mx-auto px-4">
             <div class="mb-12">
-                <h1
-                    class="text-4xl sm:text-6xl lg:text-7xl text-black font-bold tracking-tighter"
-                >
-                    Our Projects
-                </h1>
-                <p class="mt-6 text-xl font-medium text-zinc-600">
-                    Each project we undertake is a testament to our commitment
-                    to quality, creativity, and strategic thinking.
-                </p>
+                <CurveRevealText
+                    as="h1"
+                    text="Our Projects"
+                    className="text-4xl sm:text-6xl lg:text-7xl text-black font-bold tracking-tighter"
+                />
+                <CurveRevealText
+                    as="p"
+                    text="Each project we undertake is a testament to our commitment to quality, creativity, and strategic thinking."
+                    className="mt-6 text-xl font-medium text-zinc-600"
+                    delayStepMs={24}
+                    baseDelayMs={100}
+                />
             </div>
 
             <div class="mb-10 flex flex-wrap gap-3">

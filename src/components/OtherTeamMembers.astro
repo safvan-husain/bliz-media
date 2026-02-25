@@ -2,6 +2,7 @@
 import { otherTeamMembers } from "../data/team";
 import HorizontalTeamMembers from "./HorizontalTeamMembers";
 import TeamMembersGrid from "./TeamMembersGrid.astro";
+import CurveRevealText from "./CurveRevealText.astro";
 ---
 
 <section id="other-team" class="relative bg-zinc-50">
@@ -18,22 +19,27 @@ import TeamMembersGrid from "./TeamMembersGrid.astro";
             class="flex flex-col md:flex-row justify-between items-center gap-12"
         >
             <div class="max-w-2xl text-center md:text-start">
-                <span
-                    class="text-primary font-bold tracking-[0.2em] text-sm mb-4 block"
-                    >Our People</span
-                >
-                <h2
-                    class="text-4xl md:text-6xl font-black tracking-tight text-secondary leading-[0.85]"
-                >
-                    Meet The Team
-                </h2>
+                <CurveRevealText
+                    as="span"
+                    text="Our People"
+                    className="text-primary font-bold tracking-[0.2em] text-sm mb-4 block"
+                    delayStepMs={20}
+                />
+                <CurveRevealText
+                    as="h2"
+                    text="Meet The Team"
+                    className="text-4xl md:text-6xl font-black tracking-tight text-secondary leading-[0.85]"
+                    baseDelayMs={80}
+                />
             </div>
             <div class="max-w-sm pb-2">
-                <p
-                    class="text-lg text-center md:text-end font-medium text-secondary/60 leading-relaxed"
-                >
-                    The creative minds behind our success stories.
-                </p>
+                <CurveRevealText
+                    as="p"
+                    text="The creative minds behind our success stories."
+                    className="text-lg text-center md:text-end font-medium text-secondary/60 leading-relaxed"
+                    delayStepMs={24}
+                    baseDelayMs={140}
+                />
             </div>
         </div>
     </div>

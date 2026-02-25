@@ -1,19 +1,32 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import CurveRevealText from "../components/CurveRevealText.astro";
 ---
 
 <Layout title="Thank You | Bliz Media">
     <main class="min-h-screen bg-white pt-36 pb-24 px-4">
-        <section class="mx-auto max-w-3xl rounded-2xl bg-muted p-8 md:p-12 text-center shadow-sm">
-            <p class="text-primary font-semibold uppercase tracking-widest text-sm">
-                Message Sent
-            </p>
-            <h1 class="mt-4 text-3xl md:text-5xl font-bold text-secondary">
-                Thank you. We will get back to you soon.
-            </h1>
-            <p class="mt-6 text-muted-foreground text-lg">
-                Your inquiry has been received. Our team will review your details and contact you shortly.
-            </p>
+        <section
+            class="mx-auto max-w-3xl rounded-2xl bg-muted p-8 md:p-12 text-center shadow-sm"
+        >
+            <CurveRevealText
+                as="p"
+                text="Message Sent"
+                className="text-primary font-semibold uppercase tracking-widest text-sm"
+                delayStepMs={20}
+            />
+            <CurveRevealText
+                as="h1"
+                text="Thank you. We will get back to you soon."
+                className="mt-4 text-3xl md:text-5xl font-bold text-secondary"
+                baseDelayMs={80}
+            />
+            <CurveRevealText
+                as="p"
+                text="Your inquiry has been received. Our team will review your details and contact you shortly."
+                className="mt-6 text-muted-foreground text-lg"
+                delayStepMs={24}
+                baseDelayMs={160}
+            />
             <div class="mt-10 flex items-center justify-center gap-4">
                 <a
                     href="/"
