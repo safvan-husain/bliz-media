@@ -8,6 +8,10 @@ const services: { slug: string; name: string }[] = [
     { slug: "all", name: "All" },
     ...servicesData.map((s) => ({ slug: s.slug, name: s.title })),
 ];
+
+const serviceSlugByTitle = new Map(
+    servicesData.map((service) => [service.title, service.slug]),
+);
 ---
 
 <Layout title="Projects | Our Work">
@@ -43,6 +47,12 @@ const services: { slug: string; name: string }[] = [
                 {
                     projects.map((project) => (
                         <article
+                            data-service-slug={
+                                serviceSlugByTitle.get(project.service) ??
+                                project.service
+                                    .toLowerCase()
+                                    .replace(/\s+/g, "-")
+                            }
                             data-service-name={project.service}
                             class="group overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-card)]"
                         >
@@ -124,9 +134,16 @@ const services: { slug: string; name: string }[] = [
         }
 
         function filterProjects(service: any) {
+            const selectedService = String(service || "").toLowerCase();
+
             cards.forEach((card) => {
-                const cardService = card.getAttribute("data-service-name");
-                const shouldShow = service === "All" || cardService === service;
+                const cardServiceSlug = (
+                    card.getAttribute("data-service-slug") || ""
+                ).toLowerCase();
+                const shouldShow =
+                    selectedService === "all" ||
+                    !selectedService ||
+                    cardServiceSlug === selectedService;
 
                 if (shouldShow) {
                     card.classList.remove("hidden");
@@ -163,7 +180,7 @@ const services: { slug: string; name: string }[] = [
                 targetButton =
                     buttons.find(
                         (btn) =>
-                            btn.getAttribute("data-service-filter") === "All",
+                            btn.getAttribute("data-service-filter") === "all",
                     ) || buttons[0];
             }
 
