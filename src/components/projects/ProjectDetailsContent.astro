@@ -1,0 +1,80 @@
+---
+import type { Project } from "../../data/projects";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props as Props;
+const content = project.content;
+const metadataEntries = [
+  { label: "Website", value: content?.metadata?.websiteUrl },
+  { label: "Industry", value: content?.metadata?.industry },
+  { label: "Project Type", value: content?.metadata?.projectType },
+].filter((item) => item.value);
+---
+
+{
+  content ? (
+    <div class="space-y-10">
+      {content.summary && (
+        <section class="rounded-3xl border border-[var(--color-border)] bg-[var(--color-card)] px-6 py-7 md:px-8 md:py-9 shadow-sm">
+          <p class="text-base leading-relaxed text-[var(--color-foreground)] md:text-lg">
+            {content.summary}
+          </p>
+        </section>
+      )}
+
+      {metadataEntries.length > 0 && (
+        <section class="grid gap-4 md:grid-cols-3">
+          {metadataEntries.map((entry) => (
+            <article class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-background)] p-5">
+              <p class="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--color-muted-foreground)]">
+                {entry.label}
+              </p>
+              <p class="mt-2 text-sm leading-relaxed text-[var(--color-foreground)]">
+                {entry.value}
+              </p>
+            </article>
+          ))}
+        </section>
+      )}
+
+      <section class="grid gap-5 md:grid-cols-2">
+        {content.sections.map((section) => (
+          <article class="group relative overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-card)] p-6 md:p-7">
+            <div class="absolute inset-x-0 top-0 h-1 bg-[var(--color-primary)] opacity-80"></div>
+            <h2 class="pr-6 text-xl font-semibold text-[var(--color-foreground)]">
+              {section.title}
+            </h2>
+            {section.paragraphs && section.paragraphs.length > 0 && (
+              <div class="mt-4 space-y-3">
+                {section.paragraphs.map((paragraph) => (
+                  <p class="text-sm leading-relaxed text-[var(--color-muted-foreground)] md:text-base">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            )}
+            {section.bullets && section.bullets.length > 0 && (
+              <ul class="mt-4 space-y-2">
+                {section.bullets.map((bullet) => (
+                  <li class="flex items-start gap-3 text-sm leading-relaxed text-[var(--color-foreground)] md:text-base">
+                    <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-secondary)]"></span>
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </article>
+        ))}
+      </section>
+    </div>
+  ) : (
+    <div class="rounded-3xl border border-[var(--color-border)] bg-[var(--color-card)] p-6">
+      <p class="text-[var(--color-muted-foreground)]">
+        Project content is not available for this entry.
+      </p>
+    </div>
+  )
+}

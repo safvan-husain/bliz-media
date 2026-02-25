@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { projects } from "../../data/projects";
+import ProjectDetailsContent from "../../components/projects/ProjectDetailsContent.astro";
 
 export async function getStaticPaths() {
     return projects.map((project) => ({
@@ -88,10 +89,11 @@ const { project } = Astro.props;
                 </div>
 
                 <div
-                    class="prose prose-lg max-w-none opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
+                    class="opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
                     data-animate-on-scroll
-                    set:html={project.htmlDescription ?? project.details}
-                />
+                >
+                    <ProjectDetailsContent project={project} />
+                </div>
             </div>
         </div>
     </section>

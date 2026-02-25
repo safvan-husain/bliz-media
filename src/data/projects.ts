@@ -9,9 +9,182 @@ export interface Project {
   htmlDescription?: string;
   details: string;
   externalUrl?: string;
+  content?: ProjectContent;
 }
 
-export const projects: Project[] = [
+export type ProjectContentSectionKey =
+  | "overview"
+  | "positioning"
+  | "services"
+  | "technology"
+  | "performance"
+  | "responsive"
+  | "features"
+  | "result"
+  | "custom";
+
+export interface ProjectContentMetadata {
+  websiteUrl?: string;
+  industry?: string;
+  projectType?: string;
+}
+
+export interface ProjectContentSection {
+  key: ProjectContentSectionKey;
+  title: string;
+  paragraphs?: string[];
+  bullets?: string[];
+}
+
+export interface ProjectContent {
+  summary: string;
+  metadata?: ProjectContentMetadata;
+  sections: ProjectContentSection[];
+}
+
+const sanitizeText = (value: string): string =>
+  value
+    .replace(/<[^>]*>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+const extractTagText = (source: string, tagName: string): string[] => {
+  const pattern = new RegExp(
+    `<${tagName}[^>]*>([\\s\\S]*?)</${tagName}>`,
+    "gi",
+  );
+  return Array.from(source.matchAll(pattern))
+    .map((match) => sanitizeText(match[1] ?? ""))
+    .filter(Boolean);
+};
+
+const inferSectionKey = (title: string): ProjectContentSectionKey => {
+  const normalized = title.toLowerCase();
+
+  if (normalized.includes("overview")) return "overview";
+  if (
+    normalized.includes("design") ||
+    normalized.includes("brand") ||
+    normalized.includes("positioning") ||
+    normalized.includes("structure")
+  ) {
+    return "positioning";
+  }
+  if (
+    normalized.includes("service") ||
+    normalized.includes("category") ||
+    normalized.includes("offering") ||
+    normalized.includes("division") ||
+    normalized.includes("focus area")
+  ) {
+    return "services";
+  }
+  if (
+    normalized.includes("tech stack") ||
+    normalized.includes("cms") ||
+    normalized.includes("integration") ||
+    normalized.includes("wordpress") ||
+    normalized.includes("woocommerce") ||
+    normalized.includes("platform")
+  ) {
+    return "technology";
+  }
+  if (
+    normalized.includes("performance") ||
+    normalized.includes("optimization") ||
+    normalized.includes("delivery") ||
+    normalized.includes("ux")
+  ) {
+    return "performance";
+  }
+  if (normalized.includes("responsive")) return "responsive";
+  if (normalized.includes("feature")) return "features";
+  if (normalized.includes("result")) return "result";
+  return "custom";
+};
+
+const extractMetadata = (source: string): ProjectContentMetadata | undefined => {
+  const metadata: ProjectContentMetadata = {};
+  const metadataPattern =
+    /<p[^>]*>\s*<strong>\s*([^<:]+):\s*<\/strong>\s*([\s\S]*?)<\/p>/gi;
+
+  Array.from(source.matchAll(metadataPattern)).forEach((match) => {
+    const label = sanitizeText(match[1] ?? "").toLowerCase();
+    const value = sanitizeText(match[2] ?? "");
+
+    if (!value) return;
+    if (label === "website url") metadata.websiteUrl = value;
+    if (label === "industry") metadata.industry = value;
+    if (label === "project type") metadata.projectType = value;
+  });
+
+  return Object.keys(metadata).length > 0 ? metadata : undefined;
+};
+
+const extractSections = (source: string): ProjectContentSection[] => {
+  const headingPattern = /<h3[^>]*>([\s\S]*?)<\/h3>/gi;
+  const headings = Array.from(source.matchAll(headingPattern));
+
+  if (headings.length === 0) {
+    const fallbackParagraphs = extractTagText(source, "p");
+    const fallbackBullets = extractTagText(source, "li");
+    const title = sanitizeText(
+      source.match(/<h2[^>]*>([\s\S]*?)<\/h2>/i)?.[1] ?? "Project Overview",
+    );
+
+    return [
+      {
+        key: "overview",
+        title,
+        paragraphs: fallbackParagraphs.length > 0 ? fallbackParagraphs : undefined,
+        bullets: fallbackBullets.length > 0 ? fallbackBullets : undefined,
+      },
+    ];
+  }
+
+  return headings
+    .map((heading, index) => {
+      const title = sanitizeText(heading[1] ?? "");
+      const chunkStart = heading.index ?? 0;
+      const nextStart = headings[index + 1]?.index ?? source.length;
+      const chunk = source.slice(chunkStart, nextStart);
+      const paragraphs = extractTagText(chunk, "p").filter(
+        (item) =>
+          !item.startsWith("Website URL:") &&
+          !item.startsWith("Industry:") &&
+          !item.startsWith("Project Type:"),
+      );
+      const bullets = extractTagText(chunk, "li");
+
+      return {
+        key: inferSectionKey(title),
+        title,
+        paragraphs: paragraphs.length > 0 ? paragraphs : undefined,
+        bullets: bullets.length > 0 ? bullets : undefined,
+      };
+    })
+    .filter(
+      (section) =>
+        section.title || (section.paragraphs?.length ?? 0) > 0 || (section.bullets?.length ?? 0) > 0,
+    );
+};
+
+const buildStructuredContent = (project: Project): ProjectContent => {
+  const source = project.htmlDescription ?? project.details;
+  const sections = extractSections(source);
+  const firstParagraph =
+    sections.flatMap((section) => section.paragraphs ?? [])[0] ?? "";
+  const fallbackSummary = `${project.name} project details.`;
+
+  return {
+    summary: (project.description ?? firstParagraph) || fallbackSummary,
+    metadata: extractMetadata(source),
+    sections,
+  };
+};
+
+const rawProjects: Project[] = [
   {
     name: "Trans King Logistic",
     image: "/images/projects/transking.jpeg",
@@ -2640,3 +2813,8 @@ export const projects: Project[] = [
     `,
   },
 ];
+
+export const projects: Project[] = rawProjects.map((project) => ({
+  ...project,
+  content: project.content ?? buildStructuredContent(project),
+}));

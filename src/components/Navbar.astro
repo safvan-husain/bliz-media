@@ -8,6 +8,37 @@ const navLinks = [
     { name: "Projects", href: "/projects" },
 ];
 
+const mobileContactItems = [
+    {
+        label: "Email",
+        value: "info@blizmedia.com",
+        href: "mailto:info@blizmedia.com",
+    },
+    {
+        label: "Phone",
+        value: "+971 568752317",
+        href: "tel:+971568752317",
+    },
+];
+
+const mobileSocialLinks = [
+    {
+        name: "Instagram",
+        href: "https://www.instagram.com/blizmedia/",
+        icon: "instagram",
+    },
+    {
+        name: "LinkedIn",
+        href: "https://www.linkedin.com/company/blizmedia/",
+        icon: "linkedin",
+    },
+    {
+        name: "Facebook",
+        href: "https://www.facebook.com/blizmedia",
+        icon: "facebook",
+    },
+];
+
 const currentPath = Astro.url.pathname;
 ---
 
@@ -189,36 +220,131 @@ const currentPath = Astro.url.pathname;
     <!-- Mobile Menu Overlay -->
     <div
         id="mobile-menu"
-        class="fixed inset-0 bg-white z-[-1] lg:hidden translate-y-[-100%] transition-transform duration-500 pt-32 px-6"
+        class="fixed inset-0 bg-[var(--color-background)] z-[-1] lg:hidden translate-y-[-100%] transition-transform duration-500 pt-28 px-6 pb-8 flex flex-col"
     >
-        <div class="flex flex-col gap-8">
-            {
-                navLinks.map((link) => {
-                    const isActive =
-                        currentPath === link.href ||
-                        (link.href !== "/" &&
-                            currentPath.startsWith(link.href));
-                    return (
-                        <a
-                            href={link.href}
-                            class={`text-4xl font-black tracking-tighter transition-all duration-300 ${
-                                isActive
-                                    ? "text-primary"
-                                    : "text-[#0c1b33]/40 hover:text-[#0c1b33]"
-                            }`}
-                        >
-                            {link.name}
-                        </a>
-                    );
-                })
-            }
-            <div class="mt-8 pt-8 border-t border-zinc-100">
+        <div class="flex flex-col h-full">
+            <div class="flex flex-col">
+                {
+                    navLinks.map((link) => {
+                        const isActive =
+                            currentPath === link.href ||
+                            (link.href !== "/" &&
+                                currentPath.startsWith(link.href));
+                        return (
+                            <a
+                                href={link.href}
+                                class={`text-[2rem] leading-none font-semibold tracking-tight py-5 border-b border-[var(--color-border)] transition-colors duration-300 ${
+                                    isActive
+                                        ? "text-[var(--color-foreground)]"
+                                        : "text-[var(--color-foreground)] hover:text-[var(--color-foreground)]"
+                                }`}
+                            >
+                                {link.name}
+                            </a>
+                        );
+                    })
+                }
+            </div>
+
+            <div class="mt-8">
                 <a
                     href="/contact"
-                    class="inline-block bg-[#000d1d] text-white px-10 py-5 rounded-full text-lg font-black tracking-tight hover:bg-[#00152a] transition-all duration-300"
+                    class="inline-block bg-[var(--color-foreground)] text-[var(--color-background)] px-10 py-4 rounded-full text-lg font-semibold tracking-tight transition-opacity duration-300 hover:opacity-90"
                 >
-                    Get a Free Quote
+                    Let's Talk
                 </a>
+            </div>
+
+            <div class="mt-auto pt-10 border-t border-[var(--color-border)]">
+                <div class="space-y-3">
+                    {
+                        mobileContactItems.map((item) => (
+                            <a
+                                href={item.href}
+                                class="block text-sm font-medium text-[var(--color-muted-foreground)] hover:text-[var(--color-foreground)] transition-colors"
+                            >
+                                <span class="text-[var(--color-foreground)]">
+                                    {item.label}:
+                                </span>{" "}
+                                {item.value}
+                            </a>
+                        ))
+                    }
+                </div>
+
+                <div class="mt-5 flex items-center gap-4">
+                    {
+                        mobileSocialLinks.map((social) => (
+                            <a
+                                href={social.href}
+                                target="_blank"
+                                rel="noreferrer"
+                                aria-label={social.name}
+                                class="w-10 h-10 rounded-full border border-[var(--color-border)] inline-flex items-center justify-center text-[var(--color-foreground)] hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] transition-colors"
+                            >
+                                {social.icon === "instagram" && (
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="1.7"
+                                        class="w-[18px] h-[18px]"
+                                    >
+                                        <rect
+                                            x="3"
+                                            y="3"
+                                            width="18"
+                                            height="18"
+                                            rx="5"
+                                        />
+                                        <circle cx="12" cy="12" r="4.1" />
+                                        <circle cx="17.4" cy="6.6" r="1.1" />
+                                    </svg>
+                                )}
+                                {social.icon === "linkedin" && (
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="1.7"
+                                        class="w-[18px] h-[18px]"
+                                    >
+                                        <path d="M7 10v8M7 6.5v.1" />
+                                        <path d="M12 18v-4.4c0-1.7.9-2.8 2.5-2.8s2.5 1.1 2.5 2.8V18" />
+                                        <rect
+                                            x="3"
+                                            y="3"
+                                            width="18"
+                                            height="18"
+                                            rx="3"
+                                        />
+                                    </svg>
+                                )}
+                                {social.icon === "facebook" && (
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="1.7"
+                                        class="w-[18px] h-[18px]"
+                                    >
+                                        <rect
+                                            x="3"
+                                            y="3"
+                                            width="18"
+                                            height="18"
+                                            rx="3"
+                                        />
+                                        <path d="M13.5 8.2h2V6h-2.3c-2.1 0-3.2 1.2-3.2 3.4v1.6H8.2v2.2H10V18h2.5v-4.8h2.1l.4-2.2h-2.5V9.6c0-.8.3-1.4 1-1.4Z" />
+                                    </svg>
+                                )}
+                            </a>
+                        ))
+                    }
+                </div>
             </div>
         </div>
     </div>
