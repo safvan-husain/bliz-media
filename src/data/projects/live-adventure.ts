@@ -9,14 +9,12 @@ export const liveAdventure: Project = {
 
   serviceSubType: "Full-Stack Web Development",
   slug: "live-adventure-tours-travel-website",
-  externalUrl:
-    "[https://www.liveadventuretours.com/](https://www.liveadventuretours.com/)",
+  externalUrl: "https://www.liveadventuretours.com/",
   content: {
     summary:
       "A scalable, SEO-optimized adventure tourism platform designed to inspire visitors and convert them into inquiries through immersive visuals and structured user flow.",
     metadata: {
-      websiteUrl:
-        "[https://www.liveadventuretours.com/](https://www.liveadventuretours.com/)",
+      websiteUrl: "https://www.liveadventuretours.com/",
       industry: "Travel & Tourism",
       projectType: "Custom Travel Services Website",
     },

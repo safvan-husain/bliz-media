@@ -8,12 +8,12 @@ export const yashabab: Project = {
   service: "web-development",
   serviceSubType: "Static Website Development",
   slug: "yashabab-restaurant-website",
-  externalUrl: "[https://yashabab.ae/](https://yashabab.ae/)",
+  externalUrl: "https://yashabab.ae/",
   content: {
     summary:
       "A modern, fast-loading static restaurant website developed for Yashabab Restaurant to showcase its Arabic cuisine, brand identity, and corporate/event services through a visually immersive and performance-focused design.",
     metadata: {
-      websiteUrl: "[https://yashabab.ae/](https://yashabab.ae/)",
+      websiteUrl: "https://yashabab.ae/",
       industry: "Restaurant & Hospitality",
       projectType: "Static Website Development (HTML, CSS)",
     },

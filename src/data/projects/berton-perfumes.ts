@@ -9,12 +9,12 @@ export const bertonPerfumes: Project = {
 
   serviceSubType: "Web Design & Full-Stack Development",
   slug: "berton-perfumes-fragrance-website",
-  externalUrl: "[https://bertonperfumes.com/](https://bertonperfumes.com/)",
+  externalUrl: "https://bertonperfumes.com/",
   content: {
     summary:
       "Berton Perfumes is a boutique fragrance brand website built with a clean, elegant, and conversion-focused approach. Designed for a growing small-scale perfume business, the platform enables smooth product exploration and WhatsApp-based ordering while being architected for seamless future payment gateway integration.",
     metadata: {
-      websiteUrl: "[https://bertonperfumes.com/](https://bertonperfumes.com/)",
+      websiteUrl: "https://bertonperfumes.com/",
       industry: "Fragrance & Perfume Retail",
       projectType: "Small-Scale eCommerce Website",
     },

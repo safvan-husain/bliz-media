@@ -8,14 +8,12 @@ export const tomrichWatches: Project = {
   service: "web-development",
   serviceSubType: "eCommerce Website Development",
   slug: "tomrich-watches-ecommerce-website",
-  externalUrl:
-    "[https://ecommerce-tomirich.web.app](https://ecommerce-tomirich.web.app)",
+  externalUrl: "https://ecommerce-tomirich.web.app",
   content: {
     summary:
       "TOMRICH is a premium direct-to-consumer watch brand website built with a future-ready full-stack architecture. Designed to reflect craftsmanship and product elegance, the platform currently operates with WhatsApp-based ordering while being structurally prepared for seamless payment gateway and automation integration.",
     metadata: {
-      websiteUrl:
-        "[https://ecommerce-tomirich.web.app](https://ecommerce-tomirich.web.app)",
+      websiteUrl: "https://ecommerce-tomirich.web.app",
       industry: "Watch Manufacturing & Retail",
       projectType: "Small-Scale eCommerce Website",
     },

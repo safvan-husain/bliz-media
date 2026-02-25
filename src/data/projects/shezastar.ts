@@ -9,12 +9,12 @@ export const shezastar: Project = {
 
   serviceSubType: "Full-Stack eCommerce Development",
   slug: "sheza-star-automotive-ecommerce-platform",
-  externalUrl: "[https://shezastar.com/](https://shezastar.com/)",
+  externalUrl: "https://shezastar.com/",
   content: {
     summary:
       "Sheza Star is a full-stack automotive eCommerce platform built to sell premium car accessories and multimedia systems through a scalable, high-performance digital storefront. The platform integrates secure Stripe payments, automated shipping workflows, and a custom admin dashboard, creating a complete end-to-end commerce ecosystem powered by Next.js.",
     metadata: {
-      websiteUrl: "[https://shezastar.com/](https://shezastar.com/)",
+      websiteUrl: "https://shezastar.com/",
       industry: "Automotive Accessories & Car Multimedia",
       projectType: "Full-Stack eCommerce Website Development",
     },

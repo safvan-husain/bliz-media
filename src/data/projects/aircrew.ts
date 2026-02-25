@@ -8,12 +8,12 @@ export const aircrew: Project = {
   service: "web-development",
   serviceSubType: "Static Website Development",
   slug: "aircrew-tours-travels",
-  externalUrl: "[https://weaircrew.com/](https://weaircrew.com/)",
+  externalUrl: "https://weaircrew.com",
   content: {
     summary:
       "A professional and performance-optimized static website developed for an internationally recognized IATA-certified travel agency, focused on credibility, clarity, and efficient inquiry handling.",
     metadata: {
-      websiteUrl: "[https://weaircrew.com/](https://weaircrew.com/)",
+      websiteUrl: "https://weaircrew.com/",
       industry: "Travel & Tourism",
       projectType: "Static Website Development (HTML, CSS)",
     },
