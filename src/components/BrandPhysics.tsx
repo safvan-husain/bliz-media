@@ -323,7 +323,7 @@ export default function BrandPhysics({ brands }: BrandPhysicsProps) {
     runnerRef.current = runner;
     isRunningRef.current = true;
 
-    // Resize handler
+    // Desktop: keep dynamic resize updates. Mobile: rebuild only on orientation change.
     const handleResize = () => {
       if (!sceneRef.current) return;
       const newWidth = sceneRef.current.clientWidth;
@@ -343,10 +343,26 @@ export default function BrandPhysics({ brands }: BrandPhysicsProps) {
       });
     };
 
-    window.addEventListener("resize", handleResize);
+    const handleOrientationChange = () => {
+      if (!hasStartedRef.current) return;
+      if (!isInViewRef.current) {
+        pendingRestartRef.current = true;
+        return;
+      }
+
+      startOrRestart();
+    };
+
+    const isSmallScreen = window.matchMedia("(max-width: 767px)").matches;
+    if (isSmallScreen) {
+      window.addEventListener("orientationchange", handleOrientationChange);
+    } else {
+      window.addEventListener("resize", handleResize);
+    }
 
     cleanupRef.current = () => {
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("orientationchange", handleOrientationChange);
       Matter.Events.off(render, "afterRender", afterRender);
       Matter.Render.stop(render);
       Matter.Runner.stop(runner);
