@@ -216,13 +216,13 @@ export default function BrandPhysics({ brands }: BrandPhysicsProps) {
       const x = Math.random() * (width - 100) + 50;
       const y = Math.random() * (height - 100) + 50;
 
-      const cardWidth = 140;
-      const cardHeight = 84;
+      const cardWidth = 112;
+      const cardHeight = 68;
 
       const { fill } = resolveBrandColors(brand.color);
 
       const body = Bodies.rectangle(x, y, cardWidth, cardHeight, {
-        chamfer: { radius: 20 },
+        chamfer: { radius: 18 },
         restitution: 0.6,
         friction: 0.1,
         render: {

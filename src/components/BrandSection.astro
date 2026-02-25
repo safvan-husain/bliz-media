@@ -52,8 +52,14 @@ const { testimonials = [] } = Astro.props as Props;
                 <CurveRevealText
                     as="h2"
                     segments={[
-                        { text: "Trusted by Growing ", class: "text-black" },
-                        { text: "Brands & Businesses", class: "text-primary" },
+                        {
+                            text: "Trusted by Growing ",
+                            className: "text-black mb-1",
+                        },
+                        {
+                            text: "Brands & Businesses",
+                            className: "text-primary",
+                        },
                     ]}
                     className="flex flex-col text-4xl font-bold tracking-tight mb-6 md:text-5xl"
                 />

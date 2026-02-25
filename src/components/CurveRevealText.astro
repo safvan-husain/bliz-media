@@ -2,6 +2,7 @@
 interface Segment {
     text: string;
     class?: string;
+    className?: string;
 }
 
 interface Props {
@@ -36,16 +37,25 @@ const totalWords = normalizedSegments.reduce((count, segment) => {
     );
 }, 0);
 
-const partMap: {
-    text: string;
+const segmentMap: {
     className: string;
-    index: number;
-    curve: number;
-    isWhitespace: boolean;
+    parts: {
+        text: string;
+        index: number;
+        curve: number;
+        isWhitespace: boolean;
+    }[];
 }[] = [];
 let wordIndex = 0;
 
 for (const segment of normalizedSegments) {
+    const parts: {
+        text: string;
+        index: number;
+        curve: number;
+        isWhitespace: boolean;
+    }[] = [];
+
     for (const part of splitWithWhitespace(segment.text)) {
         if (!part) {
             continue;
@@ -56,9 +66,8 @@ for (const segment of normalizedSegments) {
             !isWhitespace && totalWords > 1 ? wordIndex / (totalWords - 1) : 0;
         const curve = Math.round(12 + progress * progress * 20);
 
-        partMap.push({
+        parts.push({
             text: part,
-            className: segment.class ?? "",
             index: wordIndex,
             curve,
             isWhitespace,
@@ -68,6 +77,11 @@ for (const segment of normalizedSegments) {
             wordIndex += 1;
         }
     }
+
+    segmentMap.push({
+        className: segment.className ?? segment.class ?? "",
+        parts,
+    });
 }
 
 const Tag = as;
@@ -80,19 +94,26 @@ const Tag = as;
     style={`--curve-delay-step: ${delayStepMs}ms; --curve-base-delay: ${baseDelayMs}ms;`}
 >
     {
-        partMap.map((entry) =>
-            entry.isWhitespace ? (
-                <span aria-hidden="true">{entry.text}</span>
-            ) : (
-                <span
-                    class={`curve-reveal-part ${entry.className}`}
-                    aria-hidden="true"
-                    style={`--part-index: ${entry.index}; --part-curve: ${entry.curve}px;`}
-                >
-                    {entry.text}
-                </span>
-            ),
-        )
+        segmentMap.map((segment) => (
+            <span
+                class={`curve-reveal-segment ${segment.className}`}
+                aria-hidden="true"
+            >
+                {segment.parts.map((entry) =>
+                    entry.isWhitespace ? (
+                        <span aria-hidden="true">{entry.text}</span>
+                    ) : (
+                        <span
+                            class="curve-reveal-part"
+                            aria-hidden="true"
+                            style={`--part-index: ${entry.index}; --part-curve: ${entry.curve}px;`}
+                        >
+                            {entry.text}
+                        </span>
+                    ),
+                )}
+            </span>
+        ))
     }
 </Tag>
 

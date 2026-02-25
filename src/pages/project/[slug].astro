@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import { projects } from "../../data/projects";
 import ProjectDetailsContent from "../../components/projects/ProjectDetailsContent.astro";
+import CurveRevealText from "../../components/CurveRevealText.astro";
 
 export async function getStaticPaths() {
     return projects.map((project) => ({
@@ -38,7 +39,12 @@ const { project } = Astro.props;
                         <path d="M19 12H5"></path>
                         <path d="M12 19l-7-7 7-7"></path>
                     </svg>
-                    Back to Projects
+                    <CurveRevealText
+                        as="span"
+                        text="Back to Projects"
+                        className="inline-block"
+                        delayStepMs={18}
+                    />
                 </a>
 
                 <div
