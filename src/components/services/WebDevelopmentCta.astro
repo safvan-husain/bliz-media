@@ -1,0 +1,31 @@
+---
+import { Rocket } from 'lucide-react';
+import CurveRevealText from '../CurveRevealText.astro';
+
+const CTA_CONTENT = {
+  title: "Let's Build Your Next Digital Project",
+  description:
+    "Whether it's a simple business site or a complex web application, we have the expertise to bring your vision to life.",
+  buttonText: 'Start Your Web Project',
+};
+---
+
+<section class="text-center space-y-8 py-12">
+  <div class="space-y-4 max-w-2xl mx-auto">
+    <CurveRevealText
+      as="h3"
+      text={CTA_CONTENT.title}
+      className="text-3xl md:text-4xl font-bold text-secondary"
+      delayStepMs={20}
+    />
+    <p class="text-lg text-zinc-600">{CTA_CONTENT.description}</p>
+  </div>
+
+  <a
+    href="/contact?service=web-development"
+    class="inline-flex items-center justify-center gap-3 bg-primary text-white px-8 py-4 rounded-full font-bold tracking-wide hover:bg-black transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-xl hover:-translate-y-1"
+  >
+    {CTA_CONTENT.buttonText}
+    <Rocket class="w-5 h-5" />
+  </a>
+</section>

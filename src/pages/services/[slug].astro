@@ -11,12 +11,12 @@ import { WebDevelopmentHero } from "../../components/heroes/WebDevelopmentHero";
 import { ProductionHero } from "../../components/heroes/ProductionHero";
 import { BrandingHero } from "../../components/heroes/BrandingHero";
 import { SparklesText } from "../../components/ui/sparkles-text";
-import { WebDevelopmentContent } from "../../components/services/WebDevelopmentContent";
-import { DigitalMarketingContent } from "../../components/services/DigitalMarketingContent";
-import { BrandingContent } from "../../components/services/BrandingContent";
-import { ProductionContent } from "../../components/services/ProductionContent";
-import { DesignContent } from "../../components/services/DesignContent";
-import { WebDevelopmentCta } from "../../components/services/WebDevelopmentCta";
+import WebDevelopmentContent from "../../components/services/WebDevelopmentContent.astro";
+import DigitalMarketingContent from "../../components/services/DigitalMarketingContent.astro";
+import BrandingContent from "../../components/services/BrandingContent.astro";
+import ProductionContent from "../../components/services/ProductionContent.astro";
+import DesignContent from "../../components/services/DesignContent.astro";
+import WebDevelopmentCta from "../../components/services/WebDevelopmentCta.astro";
 import { createServiceWhatsAppLink } from "../../lib/whatsapp";
 
 export async function getStaticPaths() {
@@ -153,10 +153,34 @@ const { service } = Astro.props;
                         service.floatingIconSectionContent
                     ) {
                         return (
-                            <FloatingIcons
-                                client:load
-                                content={service.floatingIconSectionContent}
-                            />
+                            <section class="bg-zinc-50 pt-20">
+                                <div class="max-w-4xl mx-auto px-6 text-center space-y-4">
+                                    <CurveRevealText
+                                        as="h2"
+                                        text={
+                                            service.floatingIconSectionContent
+                                                .title
+                                        }
+                                        className="text-4xl md:text-5xl font-black tracking-tighter text-secondary"
+                                        delayStepMs={24}
+                                    />
+                                    <CurveRevealText
+                                        as="p"
+                                        text={
+                                            service.floatingIconSectionContent
+                                                .subtitle
+                                        }
+                                        className="text-xl text-zinc-600 leading-relaxed"
+                                        delayStepMs={16}
+                                        baseDelayMs={120}
+                                    />
+                                </div>
+                                <FloatingIcons
+                                    client:load
+                                    content={service.floatingIconSectionContent}
+                                    showText={false}
+                                />
+                            </section>
                         );
                     }
                     if (block.component === "Pricing" && service.plans) {
@@ -173,7 +197,7 @@ const { service } = Astro.props;
                         return (
                             <section class="pb-20 bg-white">
                                 <div class="max-w-6xl mx-auto px-6">
-                                    <WebDevelopmentContent client:load />
+                                    <WebDevelopmentContent />
                                 </div>
                             </section>
                         );
@@ -182,7 +206,7 @@ const { service } = Astro.props;
                         return (
                             <section class="pb-20 bg-white">
                                 <div class="max-w-6xl mx-auto px-6">
-                                    <DigitalMarketingContent client:load />
+                                    <DigitalMarketingContent />
                                 </div>
                             </section>
                         );
@@ -191,7 +215,7 @@ const { service } = Astro.props;
                         return (
                             <section class="pb-20 bg-white">
                                 <div class="max-w-6xl mx-auto px-6">
-                                    <BrandingContent client:load />
+                                    <BrandingContent />
                                 </div>
                             </section>
                         );
@@ -200,7 +224,7 @@ const { service } = Astro.props;
                         return (
                             <section class="pb-20 bg-white">
                                 <div class="max-w-6xl mx-auto px-6">
-                                    <ProductionContent client:load />
+                                    <ProductionContent />
                                 </div>
                             </section>
                         );
@@ -209,7 +233,7 @@ const { service } = Astro.props;
                         return (
                             <section class="pb-20 bg-white">
                                 <div class="max-w-6xl mx-auto px-6">
-                                    <DesignContent client:load />
+                                    <DesignContent />
                                 </div>
                             </section>
                         );
@@ -218,7 +242,7 @@ const { service } = Astro.props;
                         return (
                             <section class="pb-20 bg-white">
                                 <div class="max-w-6xl mx-auto px-6">
-                                    <WebDevelopmentCta client:load />
+                                    <WebDevelopmentCta />
                                 </div>
                             </section>
                         );

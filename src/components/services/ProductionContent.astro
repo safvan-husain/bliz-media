@@ -1,0 +1,306 @@
+---
+import {
+  Eye,
+  Image,
+  Layers,
+  TrendingUp,
+  Video,
+  Smartphone,
+  ShoppingBag,
+  Activity,
+  Film,
+  Megaphone,
+  Lightbulb,
+  ClipboardList,
+  Camera,
+  Scissors,
+  Rocket,
+  Building,
+  Store,
+  Share2,
+  Star,
+  Heart,
+  Monitor,
+  Users,
+} from 'lucide-react';
+import CurveRevealText from '../CurveRevealText.astro';
+
+const CONTENT = {
+  intro: {
+    title: 'High-quality visual content designed to engage and inspire',
+    p1: 'We produce visually compelling content that helps brands tell their story, connect with audiences, and stand out across digital platforms. In a visual-first digital world, content is what captures attention and builds connection.',
+    p2: 'At Bliz, we create professional production assets that communicate your brand message clearly, creatively, and consistently. From concept to final delivery, our production process is focused on quality, storytelling, and brand alignment.',
+  },
+  importance: {
+    title: 'Why Creative Production Is Important',
+    subtitle:
+      'High-quality production ensures your brand looks professional everywhere it appears.',
+    items: [
+      { text: 'Grabs attention in crowded digital spaces', icon: Eye },
+      { text: 'Communicates brand values visually', icon: Image },
+      { text: 'Improves engagement across platforms', icon: TrendingUp },
+      { text: 'Strengthens brand consistency', icon: Layers },
+      {
+        text: 'Enhances marketing and advertising performance',
+        icon: Megaphone,
+      },
+    ],
+  },
+  solutions: {
+    title: 'Our Production Solutions',
+    subtitle:
+      'We offer end-to-end creative production solutions for digital brands.',
+    description:
+      'Each piece of content is crafted to align with your brand identity and goals.',
+    items: [
+      { text: 'Brand videos and promotional content', icon: Video },
+      { text: 'Social media video production', icon: Smartphone },
+      { text: 'Product and commercial visuals', icon: ShoppingBag },
+      { text: 'Motion graphics and animations', icon: Activity },
+      { text: 'Reels, ads, and short-form content', icon: Film },
+      { text: 'Visual assets for marketing campaigns', icon: Megaphone },
+    ],
+  },
+  process: {
+    title: 'Our Production Process',
+    subtitle: 'A seamless workflow from initial concept to final cut.',
+    steps: [
+      {
+        number: '01',
+        title: 'Concept & Planning',
+        description:
+          'Defining objectives, messaging, and creative direction.',
+        icon: Lightbulb,
+      },
+      {
+        number: '02',
+        title: 'Pre-Production',
+        description: 'Storyboarding, scripting, and planning visuals.',
+        icon: ClipboardList,
+      },
+      {
+        number: '03',
+        title: 'Production',
+        description: 'Capturing and creating high-quality visual content.',
+        icon: Camera,
+      },
+      {
+        number: '04',
+        title: 'Post-Production',
+        description: 'Editing, color grading, sound, and motion elements.',
+        icon: Scissors,
+      },
+      {
+        number: '05',
+        title: 'Final Delivery',
+        description: 'Optimized formats ready for digital platforms.',
+        icon: Rocket,
+      },
+    ],
+  },
+  targetAudience: {
+    title: 'Who Production Services Are For',
+    description:
+      'If your brand relies on visuals, professional production makes the difference.',
+    items: [
+      { text: 'Brands building a strong visual presence', icon: Building },
+      { text: 'Businesses promoting products or services', icon: Store },
+      { text: 'Marketing campaigns needing creative assets', icon: Megaphone },
+      { text: 'Social media–driven brands', icon: Share2 },
+      { text: 'Companies seeking premium visual content', icon: Star },
+    ],
+  },
+  whyChoose: {
+    title: 'Why Choose Bliz for Production',
+    subtitle: 'We don’t just create content, we create visual experiences.',
+    items: [
+      { text: 'Creative storytelling approach', icon: Heart },
+      { text: 'High-quality visuals and attention to detail', icon: Eye },
+      { text: 'Content optimized for digital platforms', icon: Monitor },
+      { text: 'Brand-aligned creative direction', icon: Star },
+      { text: 'Smooth collaboration from concept to delivery', icon: Users },
+    ],
+  },
+  cta: {
+    title: 'Let’s Create Content That Connects',
+    description:
+      'Whether it’s video, visuals, or motion content, we’re ready to bring your ideas to life.',
+    buttonText: 'Get a Free Production Consultation',
+  },
+};
+---
+
+<div class="space-y-24 py-12">
+  <section class="space-y-6 max-w-6xl">
+    <CurveRevealText
+      as="h3"
+      text={CONTENT.intro.title}
+      className="text-3xl font-bold text-secondary leading-tight"
+      delayStepMs={24}
+    />
+    <div class="space-y-4 text-lg text-zinc-600 leading-relaxed">
+      <p>{CONTENT.intro.p1}</p>
+      <p>{CONTENT.intro.p2}</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="mb-10">
+      <CurveRevealText
+        as="h3"
+        text={CONTENT.importance.title}
+        className="text-2xl font-bold text-secondary mb-2"
+        delayStepMs={20}
+      />
+      <p class="text-zinc-500 font-medium">{CONTENT.importance.subtitle}</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+      {CONTENT.importance.items.map((item, idx) => (
+        <div
+          key={idx}
+          class="flex flex-col justify-center text-center items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-secondary/30 hover:bg-secondary-light transition-all duration-300 shadow-sm h-32"
+        >
+          <item.icon class="w-5 h-5 text-primary flex-shrink-0" />
+          <span class="font-medium text-white/90 text-sm">{item.text}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section>
+    <div class="mb-10">
+      <CurveRevealText
+        as="h3"
+        text={CONTENT.solutions.title}
+        className="text-2xl font-bold text-secondary mb-2"
+        delayStepMs={20}
+      />
+      <p class="text-zinc-500 font-medium">{CONTENT.solutions.subtitle}</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {CONTENT.solutions.items.map((item, idx) => (
+        <div
+          key={idx}
+          class="flex items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-sm h-20"
+        >
+          <item.icon class="w-5 h-5 text-primary flex-shrink-0" />
+          <span class="font-medium text-white/90 text-sm">{item.text}</span>
+        </div>
+      ))}
+    </div>
+    <p class="mt-8 text-zinc-500 italic border-l-4 border-primary/20 pl-4">
+      {CONTENT.solutions.description}
+    </p>
+  </section>
+
+  <section>
+    <div class="mb-12">
+      <CurveRevealText
+        as="h3"
+        text={CONTENT.process.title}
+        className="text-2xl font-bold text-secondary mb-2"
+        delayStepMs={20}
+      />
+      <p class="text-zinc-600 max-w-2xl">{CONTENT.process.subtitle}</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {CONTENT.process.steps.map((step, idx) => (
+        <div
+          key={idx}
+          class="group relative p-8 rounded-3xl border border-zinc-100 bg-white/50 hover:bg-white hover:border-zinc-200 hover:shadow-xl hover:shadow-secondary/5 transition-all duration-300"
+        >
+          <div class="absolute top-6 right-8 text-4xl font-bold text-zinc-100 group-hover:text-primary/10 transition-colors duration-300">
+            {step.number}
+          </div>
+
+          <div class="relative z-10 space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-secondary/5 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300">
+              <step.icon class="w-6 h-6 text-secondary group-hover:text-white transition-colors duration-300" />
+            </div>
+
+            <div class="space-y-2">
+              <h4 class="text-xl font-bold text-secondary group-hover:text-primary transition-colors duration-300">
+                {step.title}
+              </h4>
+              <p class="text-zinc-600 text-sm leading-relaxed">
+                {step.description}
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section>
+    <div class="mb-10">
+      <CurveRevealText
+        as="h3"
+        text={CONTENT.whyChoose.title}
+        className="text-2xl font-bold text-secondary mb-2"
+        delayStepMs={20}
+      />
+      <p class="text-zinc-500 font-medium">{CONTENT.whyChoose.subtitle}</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {CONTENT.whyChoose.items.map((item, idx) => (
+        <div
+          key={idx}
+          class="flex items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-sm h-20"
+        >
+          <item.icon class="w-5 h-5 text-primary flex-shrink-0" />
+          <span class="font-medium text-white/90 text-sm">{item.text}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section>
+    <div class="mb-10">
+      <CurveRevealText
+        as="h3"
+        text={CONTENT.targetAudience.title}
+        className="text-2xl font-bold text-secondary mb-2"
+        delayStepMs={20}
+      />
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+      {CONTENT.targetAudience.items.map((item, idx) => (
+        <div
+          key={idx}
+          class="flex flex-col justify-center text-center items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-secondary/30 hover:bg-secondary-light transition-all duration-300 shadow-sm h-32"
+        >
+          <item.icon class="w-5 h-5 text-primary flex-shrink-0" />
+          <span class="font-medium text-white/90 text-sm">{item.text}</span>
+        </div>
+      ))}
+    </div>
+
+    <p class="mt-8 text-zinc-500 italic border-l-4 border-primary/20 pl-4">
+      {CONTENT.targetAudience.description}
+    </p>
+  </section>
+
+  <section class="text-center space-y-8 py-12">
+    <div class="space-y-4 max-w-2xl mx-auto">
+      <CurveRevealText
+        as="h3"
+        text={CONTENT.cta.title}
+        className="text-3xl md:text-4xl font-bold text-secondary"
+        delayStepMs={20}
+      />
+      <p class="text-lg text-zinc-600">{CONTENT.cta.description}</p>
+    </div>
+
+    <a
+      href="/contact?service=production"
+      class="inline-flex items-center justify-center gap-3 bg-primary text-white px-8 py-4 rounded-full font-bold tracking-wide hover:bg-black transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-xl hover:-translate-y-1"
+    >
+      {CONTENT.cta.buttonText}
+      <Rocket class="w-5 h-5" />
+    </a>
+  </section>
+</div>

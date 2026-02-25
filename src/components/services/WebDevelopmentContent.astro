@@ -1,0 +1,206 @@
+---
+import {
+  Palette,
+  Smartphone,
+  Zap,
+  Globe,
+  ShieldCheck,
+  Settings,
+  Search,
+  Layout,
+  Code2,
+  TestTube,
+  Rocket,
+  Store,
+  Briefcase,
+  TrendingUp,
+  Building,
+} from "lucide-react";
+import CurveRevealText from "../CurveRevealText.astro";
+
+const CONTENT = {
+  intro: {
+    title: "High-performance websites built to scale your business",
+    p1: "A website is more than just an online presence — it’s your most powerful digital asset. At Bliz, we build websites that are visually impressive, technically strong, and strategically designed to convert visitors into customers.",
+    p2: "Whether you need a simple business website or a fully dynamic custom platform, our development approach ensures performance, scalability, and long-term growth.",
+  },
+  deliverables: {
+    title: "What We Deliver",
+    subtitle: "What You Get With Our Website Development",
+    description:
+      "Every project is built with a focus on user experience, business objectives, and technical excellence.",
+    items: [
+      { text: "Clean, modern UI tailored to your brand", icon: Palette },
+      { text: "Mobile-first, fully responsive design", icon: Smartphone },
+      { text: "Fast loading speed and optimized performance", icon: Zap },
+      { text: "SEO-friendly structure from day one", icon: Globe },
+      {
+        text: "Secure, scalable, and future-ready architecture",
+        icon: ShieldCheck,
+      },
+      { text: "Easy content management and flexibility", icon: Settings },
+    ],
+  },
+  approach: {
+    title: "Our Development Approach",
+    subtitle:
+      "We follow a clear, transparent workflow to deliver results — without unnecessary complexity.",
+    steps: [
+      {
+        number: "01",
+        title: "Discovery & Planning",
+        description: "Understanding your business, goals, and target audience.",
+        icon: Search,
+      },
+      {
+        number: "02",
+        title: "UI/UX & Architecture",
+        description:
+          "Designing intuitive layouts and defining the right technical structure.",
+        icon: Layout,
+      },
+      {
+        number: "03",
+        title: "Development & Integration",
+        description:
+          "Building fast, secure, and scalable solutions using modern technologies.",
+        icon: Code2,
+      },
+      {
+        number: "04",
+        title: "Testing & Optimization",
+        description:
+          "Ensuring performance, responsiveness, and cross-browser compatibility.",
+        icon: TestTube,
+      },
+      {
+        number: "05",
+        title: "Launch & Support",
+        description: "Smooth deployment with post-launch support when needed.",
+        icon: Rocket,
+      },
+    ],
+  },
+  targetAudience: {
+    title: "Who We Build Websites For",
+    description:
+      "If your business needs a website that looks professional and performs reliably, you’re in the right place.",
+    items: [
+      { text: "Startups launching their first product", icon: Rocket },
+      { text: "Local businesses looking to grow online", icon: Building },
+      { text: "Service-based companies generating leads", icon: Briefcase },
+      { text: "E-commerce brands scaling sales", icon: Store },
+      { text: "Businesses needing custom web solutions", icon: TrendingUp },
+    ],
+  },
+};
+---
+
+<div class="space-y-24 py-12">
+  <section class="space-y-6 max-w-6xl">
+    <CurveRevealText
+      as="h3"
+      text={CONTENT.intro.title}
+      className="text-3xl font-bold text-secondary leading-tight"
+      delayStepMs={24}
+    />
+    <div class="space-y-4 text-lg text-zinc-600 leading-relaxed">
+      <p>{CONTENT.intro.p1}</p>
+      <p>{CONTENT.intro.p2}</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="mb-10">
+      <CurveRevealText
+        as="h3"
+        text={CONTENT.deliverables.title}
+        className="text-2xl font-bold text-secondary mb-2"
+        delayStepMs={20}
+      />
+      <p class="text-zinc-500 font-medium">{CONTENT.deliverables.subtitle}</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {CONTENT.deliverables.items.map((item, idx) => (
+        <div
+          key={idx}
+          class="flex items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-sm h-20"
+        >
+          <item.icon class="w-5 h-5 text-primary flex-shrink-0" />
+          <span class="font-medium text-white/90 text-sm">{item.text}</span>
+        </div>
+      ))}
+    </div>
+    <p class="mt-8 text-zinc-500 italic border-l-4 border-primary/20 pl-4">
+      {CONTENT.deliverables.description}
+    </p>
+  </section>
+
+  <section>
+    <div class="mb-12">
+      <CurveRevealText
+        as="h3"
+        text={CONTENT.approach.title}
+        className="text-2xl font-bold text-secondary mb-2"
+        delayStepMs={20}
+      />
+      <p class="text-zinc-600 max-w-2xl">{CONTENT.approach.subtitle}</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {CONTENT.approach.steps.map((step, idx) => (
+        <div
+          key={idx}
+          class="group relative p-8 rounded-3xl border border-zinc-100 bg-white/50 hover:bg-white hover:border-zinc-200 hover:shadow-xl hover:shadow-secondary/5 transition-all duration-300"
+        >
+          <div class="absolute top-6 right-8 text-4xl font-bold text-zinc-100 group-hover:text-primary/10 transition-colors duration-300">
+            {step.number}
+          </div>
+
+          <div class="relative z-10 space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-secondary/5 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300">
+              <step.icon class="w-6 h-6 text-secondary group-hover:text-white transition-colors duration-300" />
+            </div>
+
+            <div class="space-y-2">
+              <h4 class="text-xl font-bold text-secondary group-hover:text-primary transition-colors duration-300">
+                {step.title}
+              </h4>
+              <p class="text-zinc-600 text-sm leading-relaxed">
+                {step.description}
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section>
+    <div class="mb-10">
+      <CurveRevealText
+        as="h3"
+        text={CONTENT.targetAudience.title}
+        className="text-2xl font-bold text-secondary mb-2"
+        delayStepMs={20}
+      />
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+      {CONTENT.targetAudience.items.map((item, idx) => (
+        <div
+          key={idx}
+          class="flex flex-col justify-center text-center items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-sm h-32"
+        >
+          <item.icon class="w-5 h-5 text-primary flex-shrink-0" />
+          <span class="font-medium text-white/90 text-sm">{item.text}</span>
+        </div>
+      ))}
+    </div>
+
+    <p class="mt-8 text-zinc-500 italic border-l-4 border-primary/20 pl-4">
+      {CONTENT.targetAudience.description}
+    </p>
+  </section>
+</div>
