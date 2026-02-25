@@ -19,6 +19,10 @@ interface IconDefinition {
 
 const { project } = Astro.props as Props;
 const content = project.content;
+const rawWebsiteUrl = content?.metadata?.websiteUrl?.trim();
+const websiteUrl = rawWebsiteUrl
+    ? (rawWebsiteUrl.match(/\((https?:\/\/[^)\s]+)\)/i)?.[1] ?? rawWebsiteUrl)
+    : undefined;
 
 const metadataEntries: MetadataEntry[] = [];
 
@@ -122,19 +126,37 @@ const sectionIcons: Record<ProjectContentSectionKey, IconDefinition> = {
     content ? (
         <div class="space-y-10">
             <section class="space-y-6">
+                <div class="overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-card)]">
+                    <img
+                        src={project.image}
+                        alt={project.name}
+                        class="h-full w-full object-cover"
+                        loading="eager"
+                        decoding="async"
+                    />
+                </div>
                 <div class="flex flex-wrap items-center gap-3 text-xs sm:text-sm">
-                    <span class="h-px w-10 bg-[var(--color-primary)]" />
-                    <span class="font-semibold uppercase tracking-[0.2em] text-[var(--color-primary)]">
-                        {project.year}
-                    </span>
                     <span class="text-[var(--color-muted-foreground)]">
                         {project.service}
                     </span>
                 </div>
 
-                <h1 class="text-4xl font-bold tracking-tight text-[var(--color-foreground)] md:text-6xl">
-                    {project.name}
-                </h1>
+                <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                    <h1 class="text-4xl font-bold tracking-tight text-[var(--color-foreground)] md:text-6xl">
+                        {project.name}
+                    </h1>
+
+                    {websiteUrl && (
+                        <a
+                            href={websiteUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex shrink-0 items-center justify-center rounded-full bg-[var(--color-foreground)] px-5 py-2 text-sm font-semibold text-[var(--color-background)] transition-colors hover:bg-[var(--color-primary)]"
+                        >
+                            View Website
+                        </a>
+                    )}
+                </div>
 
                 <p class="max-w-4xl text-base leading-relaxed text-[var(--color-muted-foreground)] md:text-lg">
                     {content.summary}

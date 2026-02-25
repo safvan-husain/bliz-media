@@ -54,7 +54,6 @@ import { modovate } from "./projects/modovate";
 import { ruqiyaWellness } from "./projects/ruqiyaWellness";
 import { shezastar } from "./projects/shezastar";
 import { steelcoreUae } from "./projects/steelcoreUae";
-import { tillshield } from "./projects/tillshield";
 import { tomrichWatches } from "./projects/tomrich-watches";
 import { transKingLogistic } from "./projects/transKingLogistic";
 import { transMasterLogistics } from "./projects/transMasterLogistics";
@@ -81,6 +80,5 @@ export const projects: Project[] = [
   shezastar,
   bertonGolden,
   ruqiyaWellness,
-  tillshield,
   steelcoreUae,
 ];
