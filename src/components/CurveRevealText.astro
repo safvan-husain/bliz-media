@@ -18,7 +18,7 @@ const {
     className = "",
     text,
     segments = [],
-    delayStepMs = 24,
+    delayStepMs = 45,
     baseDelayMs = 0,
 } = Astro.props;
 
@@ -54,7 +54,7 @@ for (const segment of normalizedSegments) {
         const isWhitespace = /^\s+$/.test(part);
         const progress =
             !isWhitespace && totalWords > 1 ? wordIndex / (totalWords - 1) : 0;
-        const curve = Math.round(10 + progress * progress * 22);
+        const curve = Math.round(12 + progress * progress * 20);
 
         partMap.push({
             text: part,
