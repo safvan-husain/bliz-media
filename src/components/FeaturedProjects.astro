@@ -1,5 +1,6 @@
 ---
 import { projects } from "../data/projects";
+import CurveRevealText from "./CurveRevealText.astro";
 
 interface Props {
     limit?: number;
@@ -31,11 +32,11 @@ const visibleProjects = hasLimit
 <section class="bg-[var(--color-background)] py-20 md:py-32">
     <div class="container mx-auto px-4">
         <div class="flex flex-wrap items-center justify-between mb-12 gap-6">
-            <h2
-                class="text-3xl font-bold md:text-5xl text-[var(--color-foreground)]"
-            >
-                Featured Projects
-            </h2>
+            <CurveRevealText
+                as="h2"
+                text="Featured Projects"
+                className="text-3xl font-bold md:text-5xl text-[var(--color-foreground)]"
+            />
             <a
                 href="/projects"
                 class="group inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-card)] px-6 py-3 text-sm font-medium text-[var(--color-foreground)] transition-colors hover:bg-[var(--color-primary)] hover:text-white"

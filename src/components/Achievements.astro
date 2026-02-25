@@ -1,79 +1,111 @@
 ---
+import CurveRevealText from "./CurveRevealText.astro";
+
 const header = {
     badge: "Trusted Worldwide",
     title: "Design and web solutions",
-    description: "Collaborating with Visionaries Across Industries for Innovative Solutions."
+    description:
+        "Collaborating with Visionaries Across Industries for Innovative Solutions.",
 };
 
 const achievements = [
     {
         number: "1,000+",
-        description: "We have completed over 1000+ creative projects for brands and companies, each one unique and tailored to the client's needs."
+        description:
+            "We have completed over 1000+ creative projects for brands and companies, each one unique and tailored to the client's needs.",
     },
     {
         number: "300+",
-        description: "Businesses Served: Partnering globally, we deliver tailored branding, web & marketing solutions to meet diverse needs and goals."
+        description:
+            "Businesses Served: Partnering globally, we deliver tailored branding, web & marketing solutions to meet diverse needs and goals.",
     },
     {
         number: "13+",
-        description: "Our team, consisting of 13+ talented individuals with varied backgrounds, is dedicated to elevating your brand and web experience."
+        description:
+            "Our team, consisting of 13+ talented individuals with varied backgrounds, is dedicated to elevating your brand and web experience.",
     },
     {
         number: "6",
-        description: "We are proud to have delivered our branding and web development services across 6 different countries, with a focus on the GCC region."
-    }
+        description:
+            "We are proud to have delivered our branding and web development services across 6 different countries, with a focus on the GCC region.",
+    },
 ];
 ---
 
 <section id="achievements" class="py-24 bg-slate-50 relative overflow-hidden">
     <!-- Background element for premium feel -->
-    <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl -z-10"></div>
-    <div class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl -z-10"></div>
+    <div
+        class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl -z-10"
+    >
+    </div>
+    <div
+        class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl -z-10"
+    >
+    </div>
 
     <div class="mx-auto max-w-[var(--max-width-container)] px-4">
         <div class="mb-16 max-w-2xl">
-            <span class="inline-block px-4 py-1.5 mb-5 text-sm font-semibold tracking-wider text-primary uppercase bg-primary/10 rounded-full">
-                {header.badge}
-            </span>
-            <h2 class="text-4xl md:text-5xl font-bold text-secondary mb-6 leading-tight">
-                {header.title}
-            </h2>
-            <p class="text-xl text-muted-foreground leading-relaxed">
-                {header.description}
-            </p>
+            <CurveRevealText
+                as="span"
+                text={header.badge}
+                className="inline-block px-4 py-1.5 mb-5 text-sm font-semibold tracking-wider text-primary uppercase bg-primary/10 rounded-full"
+                delayStepMs={18}
+            />
+            <CurveRevealText
+                as="h2"
+                text={header.title}
+                className="text-4xl md:text-5xl font-bold text-secondary mb-6 leading-tight"
+                baseDelayMs={80}
+            />
+            <CurveRevealText
+                as="p"
+                text={header.description}
+                className="text-xl text-muted-foreground leading-relaxed"
+                delayStepMs={10}
+                baseDelayMs={180}
+            />
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {achievements.map((item, index) => (
-                <div class="group relative p-8 bg-white hover:bg-black border border-secondary/20 rounded-2xl hover:border-primary/20 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 opacity-0 translate-y-8 [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0" 
-                     data-animate-on-scroll
-                     style={`transition-delay: ${index * 100}ms; transition-duration: 700ms; transition-timing-function: ease-out;`}>
-                    <div class="relative z-10">
-                        <div class="text-4xl md:text-5xl font-bold text-black group-hover:text-white mb-6 flex items-baseline gap-1">
-                            {item.number}
+            {
+                achievements.map((item, index) => (
+                    <div
+                        class="group relative p-8 bg-white hover:bg-black border border-secondary/20 rounded-2xl hover:border-primary/20 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 opacity-0 translate-y-8 [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
+                        data-animate-on-scroll
+                        style={`transition-delay: ${index * 100}ms; transition-duration: 700ms; transition-timing-function: ease-out;`}
+                    >
+                        <div class="relative z-10">
+                            <div class="text-4xl md:text-5xl font-bold text-black group-hover:text-white mb-6 flex items-baseline gap-1">
+                                {item.number}
+                            </div>
+                            <p class="text-muted-foreground group-hover:text-white leading-relaxed">
+                                {item.description}
+                            </p>
                         </div>
-                        <p class="text-muted-foreground group-hover:text-white leading-relaxed">
-                            {item.description}
-                        </p>
                     </div>
-                </div>
-            ))}
+                ))
+            }
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.classList.add('animate-in');
-                        }, index * 100); // Stagger by 100ms
-                    }
-                });
-            }, { threshold: 0.1 });
+        document.addEventListener("DOMContentLoaded", function () {
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry, index) => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                entry.target.classList.add("animate-in");
+                            }, index * 100); // Stagger by 100ms
+                        }
+                    });
+                },
+                { threshold: 0.1 },
+            );
 
-            document.querySelectorAll('[data-animate-on-scroll]').forEach(el => observer.observe(el));
+            document
+                .querySelectorAll("[data-animate-on-scroll]")
+                .forEach((el) => observer.observe(el));
         });
     </script>
 </section>

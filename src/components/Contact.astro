@@ -1,4 +1,6 @@
 ---
+import CurveRevealText from "./CurveRevealText.astro";
+
 const contactInfo = {
     email: "info@blizmedia.com",
     phone: "+971 56 875 2317",
@@ -16,21 +18,32 @@ const contactInfo = {
                 <!-- Left Side: Form -->
                 <div class="order-2 lg:order-1">
                     <div class="mb-10">
-                        <span
-                            class="text-primary font-bold tracking-widest uppercase text-sm mb-4 block"
-                            >Get In Touch</span
-                        >
-                        <h2
-                            class="text-4xl md:text-5xl font-bold text-secondary mb-6 leading-tight"
-                        >
-                            Ready to <span class="text-primary">Elevate</span> Your
-                            Brand?
-                        </h2>
-                        <p class="text-gray-600 text-lg max-w-lg">
-                            We're here to turn your vision into reality. Reach
-                            out and let's start something extraordinary
-                            together.
-                        </p>
+                        <CurveRevealText
+                            as="span"
+                            text="Get In Touch"
+                            className="text-primary font-bold tracking-widest uppercase text-sm mb-4 block"
+                            delayStepMs={18}
+                        />
+                        <CurveRevealText
+                            as="h2"
+                            segments={[
+                                { text: "Ready to ", class: "text-secondary" },
+                                { text: "Elevate", class: "text-primary" },
+                                {
+                                    text: " Your Brand?",
+                                    class: "text-secondary",
+                                },
+                            ]}
+                            className="text-4xl md:text-5xl font-bold mb-6 leading-tight"
+                            baseDelayMs={80}
+                        />
+                        <CurveRevealText
+                            as="p"
+                            text="We're here to turn your vision into reality. Reach out and let's start something extraordinary together."
+                            className="text-gray-600 text-lg max-w-lg"
+                            delayStepMs={10}
+                            baseDelayMs={180}
+                        />
                     </div>
 
                     <form
