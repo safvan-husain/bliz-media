@@ -20,25 +20,25 @@ const projectsByPriority = projects
     })
     .map((entry) => entry.project);
 
-const hasLimit = typeof limit === "number" && Number.isFinite(limit) && limit > 0;
+const hasLimit =
+    typeof limit === "number" && Number.isFinite(limit) && limit > 0;
 
 const visibleProjects = hasLimit
     ? projectsByPriority.slice(0, Math.floor(limit))
     : projectsByPriority;
-
 ---
 
-<section class="py-20 md:py-32 bg-white">
+<section class="bg-[var(--color-background)] py-20 md:py-32">
     <div class="container mx-auto px-4">
         <div class="flex flex-wrap items-center justify-between mb-12 gap-6">
             <h2
-                class="text-3xl font-bold md:text-5xl text-black"
+                class="text-3xl font-bold md:text-5xl text-[var(--color-foreground)]"
             >
                 Featured Projects
             </h2>
             <a
                 href="/projects"
-                class="group inline-flex items-center gap-2 rounded-full border border-black px-6 py-3 text-sm font-medium text-black transition-all hover:bg-black hover:text-white"
+                class="group inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-card)] px-6 py-3 text-sm font-medium text-[var(--color-foreground)] transition-colors hover:bg-[var(--color-primary)] hover:text-white"
             >
                 View All Projects
                 <svg
@@ -61,48 +61,47 @@ const visibleProjects = hasLimit
         <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
             {
                 visibleProjects.map((project) => (
-                    <article
-                        class="group relative block h-72 overflow-hidden rounded-3xl opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
-                        data-animate-on-scroll
-                    >
-                        <img
-                            src={project.image}
-                            alt={project.name}
-                            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                        />
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80" />
-                        <div class="absolute bottom-0 left-0 w-full p-6 translate-y-2 transition-transform duration-300 group-hover:translate-y-0">
-                            <div class="flex mb-1">
-                                <span class="text-sm font-medium text-white/80">
+                    <article class="group overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-card)]">
+                        <div class="h-72 overflow-hidden">
+                            <img
+                                src={project.image}
+                                alt={project.name}
+                                class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-1 flex">
+                                <span class="text-sm font-medium text-[var(--color-muted-foreground)]">
                                     {project.service}
                                 </span>
-                                <span class="text-white/80 mx-2">&#183;</span>
-                                <span class="text-sm font-medium text-white/80">
+                                <span class="mx-2 text-[var(--color-muted-foreground)]">
+                                    &#183;
+                                </span>
+                                <span class="text-sm font-medium text-[var(--color-muted-foreground)]">
                                     {project.year}
                                 </span>
                             </div>
-                            <h3 class="text-xl font-semibold text-white md:text-2xl">
+                            <h3 class="text-xl font-semibold text-[var(--color-foreground)] md:text-2xl">
                                 {project.name}
                             </h3>
                             <div class="mt-4 flex flex-wrap gap-2">
                                 <a
                                     href={`/project/${project.slug}`}
-                                    class="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/20"
+                                    class="inline-flex items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-foreground)] px-4 py-2 text-sm font-medium text-[var(--color-background)] transition-colors hover:bg-[var(--color-primary)]"
                                 >
                                     View Details
                                 </a>
-                                {
-                                    project.externalUrl && /^https?:\/\//i.test(project.externalUrl) ? (
-                                        <a
-                                            href={project.externalUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            class="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/20"
-                                        >
-                                            View Website
-                                        </a>
-                                    ) : null
-                                }
+                                {project.externalUrl &&
+                                /^https?:\/\//i.test(project.externalUrl) ? (
+                                    <a
+                                        href={project.externalUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="inline-flex items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-[var(--color-background)] transition-colors hover:bg-[var(--color-foreground)]"
+                                    >
+                                        View Website
+                                    </a>
+                                ) : null}
                             </div>
                         </div>
                     </article>
@@ -110,20 +109,4 @@ const visibleProjects = hasLimit
             }
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.classList.add('animate-in');
-                        }, index * 100); // Stagger by 100ms
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            document.querySelectorAll('[data-animate-on-scroll]').forEach(el => observer.observe(el));
-        });
-    </script>
 </section>

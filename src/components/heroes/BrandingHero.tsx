@@ -1,41 +1,46 @@
-"use client"
+"use client";
 
-import React from "react"
-import { ArcGalleryHero } from "../ui/arc-gallery-hero-component"
-import { createServiceWhatsAppLink } from "@/lib/whatsapp"
+import React from "react";
+import { ArcGalleryHero } from "../ui/arc-gallery-hero-component";
+import { createServiceWhatsAppLink } from "@/lib/whatsapp";
+import airecrewImage from "@/assets/projects-hero-images/airecrew@3x.jpg";
+import flyeweelImage from "@/assets/projects-hero-images/flyeweel@3x.jpg";
+import flyewellImage from "@/assets/projects-hero-images/flyewell@3x.jpg";
+import hufiffImage from "@/assets/projects-hero-images/Hufiff@3x.jpg";
+import ivalImage from "@/assets/projects-hero-images/ival 1@3x.jpg";
+import luxcorpeeeImage from "@/assets/projects-hero-images/Luxcorpeee@3x.jpg";
+import nexaaImage from "@/assets/projects-hero-images/nexaa@3x.jpg";
 
 interface BrandingHeroProps {
-    title: string
-    description?: string
-    images?: string[]
+  title: string;
+  description?: string;
 }
 
-export function BrandingHero({ title, description, images }: BrandingHeroProps) {
-    const defaultImages = [
-        'https://images.unsplash.com/photo-1755004609214-c252674df1ca?q=80&w=400&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1750218537952-0ae056c7f53a?q=80&w=400&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1755038995605-038a7345658f?q=80&w=400&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1546238232-20216dec9f72?q=80&w=400&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=400&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=400&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1753724223372-9a1df8eb5212?q=80&w=400&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1754079132860-5b37dab49daa?q=80&w=400&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=400&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1754079132962-2f6c62f14d33?q=80&w=400&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1754764987594-2236e7736115?q=80&w=400&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1755048796967-75a82d214846?q=80&w=400&auto=format&fit=crop',
-    ]
+export function BrandingHero({ title, description }: BrandingHeroProps) {
+  const defaultImages = [
+    airecrewImage.src,
+    flyeweelImage.src,
+    flyewellImage.src,
+    hufiffImage.src,
+    ivalImage.src,
+    luxcorpeeeImage.src,
+    nexaaImage.src,
+  ];
 
-    return (
-        <ArcGalleryHero
-            title={title}
-            description={description}
-            images={images && images.length > 0 ? images : defaultImages}
-            ctaText="START YOUR PROJECT"
-            onCtaClick={() => (window.location.href = createServiceWhatsAppLink(title))}
-            secondaryCtaText="SEE OUR WORK"
-            onSecondaryCtaClick={() => (window.location.href = `/projects?filter=${title}`)}
-            theme="light"
-        />
-    )
+  return (
+    <ArcGalleryHero
+      title={title}
+      description={description}
+      images={defaultImages}
+      ctaText="START YOUR PROJECT"
+      onCtaClick={() =>
+        (window.location.href = createServiceWhatsAppLink(title))
+      }
+      secondaryCtaText="SEE OUR WORK"
+      onSecondaryCtaClick={() =>
+        (window.location.href = `/projects?filter=${title}`)
+      }
+      theme="light"
+    />
+  );
 }

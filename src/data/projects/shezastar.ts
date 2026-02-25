@@ -1,9 +1,9 @@
 import { type Project } from "../projects";
 
 export const shezastar: Project = {
-  name: "Sheza Star",
+  name: "Sheza Star - Automotive E-commerce website",
   image: "/images/projects/shezastar.jpeg",
-  priority: 2,
+  priority: 99,
   year: "2025",
   service: "web-development",
 
