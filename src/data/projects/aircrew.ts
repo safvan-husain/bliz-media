@@ -2,7 +2,7 @@ import { type Project } from "../projects";
 
 export const aircrew: Project = {
   name: "Aircrew Tours & Travels",
-  image: "",
+  image: "/images/projects/aircrew.jpeg",
   priority: 2,
   year: "2024",
   service: "Static Website Development",

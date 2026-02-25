@@ -2,7 +2,7 @@ import { type Project } from "../projects";
 
 export const liveAdventure: Project = {
   name: "LIVE ADVENTURE TOURS — Adventure & Travel Experiences Website",
-  image: "",
+  image: "/images/projects/live-adventure.jpeg",
   priority: 8,
   year: "2026",
   service: "Full-Stack Web Development",

@@ -2,7 +2,7 @@ import { type Project } from "../projects";
 
 export const bertonGolden: Project = {
   name: "BERTON GOLDEN — Premium Fragrance Showcase Website",
-  image: "",
+  image: "/images/projects/berton-golden.jpeg",
   priority: 2,
   year: "2024",
   service: "Brand Showcase Website",

@@ -2,7 +2,7 @@ import { type Project } from "../projects";
 
 export const hufiShippingLine: Project = {
   name: "HUFI Shipping Line LLC",
-  image: "",
+  image: "/images/projects/hufi-shipping.jpeg",
   priority: 2,
   year: "2025",
   service: "Corporate Website Development",

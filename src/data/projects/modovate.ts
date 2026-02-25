@@ -2,7 +2,7 @@ import { type Project } from "../projects";
 
 export const modovate: Project = {
   name: "MODOVATE — Car Care & Customization Website",
-  image: "",
+  image: "/images/projects/modovate.jpeg",
   priority: 2,
   year: "2025",
   service: "WordPress Development",
