@@ -5,7 +5,9 @@ export const hufiShippingLine: Project = {
   image: "/images/projects/hufi-shipping.jpeg",
   priority: 2,
   year: "2025",
-  service: "Corporate Website Development",
+  service: "web-development",
+
+  serviceSubType: "Corporate Website Development",
   slug: "hufi-shipping-line-llc",
   externalUrl: "https://www.hufishipping.ae/",
   content: {

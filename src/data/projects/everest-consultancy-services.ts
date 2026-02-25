@@ -5,7 +5,9 @@ export const everestConsultancyServices: Project = {
   image: "/images/projects/everest.jpeg",
   priority: 2,
   year: "2025",
-  service: "Corporate Website Development",
+  service: "web-development",
+
+  serviceSubType: "Corporate Website Development",
   slug: "everest-consultancy-services",
   externalUrl: "https://everestecs.com/",
   content: {

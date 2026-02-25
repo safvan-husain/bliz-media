@@ -28,12 +28,19 @@ export interface ProjectContent {
   sections: ProjectContentSection[];
 }
 
+export type ServicesType =
+  | "production"
+  | "web-development"
+  | "design"
+  | "branding";
+
 export interface Project {
   name: string;
   image: string;
   priority: number;
   year: string;
-  service: string;
+  service: ServicesType;
+  serviceSubType?: string;
   slug: string;
   externalUrl?: string;
   content: ProjectContent;

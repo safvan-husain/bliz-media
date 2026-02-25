@@ -5,7 +5,8 @@ export const transKingLogistic: Project = {
   image: "/images/projects/transking.jpeg",
   priority: 2,
   year: "2025",
-  service: "Enterprise Website Development",
+  service: "web-development",
+  serviceSubType: "Enterprise Website Development",
   slug: "trans-king-logistic",
   externalUrl: "https://transkinglogistic.com/",
   content: {

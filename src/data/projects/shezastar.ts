@@ -5,7 +5,9 @@ export const shezastar: Project = {
   image: "/images/projects/shezastar.jpeg",
   priority: 2,
   year: "2025",
-  service: "Full-Stack eCommerce Development",
+  service: "web-development",
+
+  serviceSubType: "Full-Stack eCommerce Development",
   slug: "sheza-star-automotive-ecommerce-platform",
   externalUrl: "[https://shezastar.com/](https://shezastar.com/)",
   content: {

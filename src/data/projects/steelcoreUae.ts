@@ -5,7 +5,8 @@ export const steelcoreUae: Project = {
   image: "/images/projects/steelcore.jpeg",
   priority: 2,
   year: "2025",
-  service: "Corporate Website Development",
+  service: "web-development",
+  serviceSubType: "Corporate Website Development",
   slug: "steelcore-uae",
   externalUrl: "https://steelcoreuae.com/",
   content: {

@@ -5,7 +5,9 @@ export const bertonPerfumes: Project = {
   image: "/images/projects/berton-perfume.jpeg",
   priority: 2,
   year: "2026",
-  service: "Web Design & Full-Stack Development",
+  service: "web-development",
+
+  serviceSubType: "Web Design & Full-Stack Development",
   slug: "berton-perfumes-fragrance-website",
   externalUrl: "[https://bertonperfumes.com/](https://bertonperfumes.com/)",
   content: {

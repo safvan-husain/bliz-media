@@ -5,7 +5,9 @@ export const liveAdventure: Project = {
   image: "/images/projects/live-adventure.jpeg",
   priority: 8,
   year: "2026",
-  service: "Full-Stack Web Development",
+  service: "web-development",
+
+  serviceSubType: "Full-Stack Web Development",
   slug: "live-adventure-tours-travel-website",
   externalUrl:
     "[https://www.liveadventuretours.com/](https://www.liveadventuretours.com/)",

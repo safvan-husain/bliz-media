@@ -5,7 +5,9 @@ export const modovate: Project = {
   image: "/images/projects/modovate.jpeg",
   priority: 2,
   year: "2025",
-  service: "WordPress Development",
+  service: "web-development",
+
+  serviceSubType: "WordPress Development",
   slug: "modovate-car-care-customization-website",
   externalUrl: "https://modovate.ae/",
   content: {

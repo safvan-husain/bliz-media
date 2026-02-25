@@ -5,7 +5,8 @@ export const alKatheebInteriors: Project = {
   image: "/images/projects/katheeb.jpeg",
   priority: 2,
   year: "2024",
-  service: "Corporate Website Development",
+  service: "web-development",
+  serviceSubType: "Corporate Website Development",
   slug: "al-katheeb-interiors",
   externalUrl: "https://alkatheebinteriors.com/",
   content: {

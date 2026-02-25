@@ -5,7 +5,8 @@ export const transMasterLogistics: Project = {
   image: "/images/projects/transmaster.jpeg",
   priority: 2,
   year: "2025",
-  service: "WordPress Corporate Website",
+  service: "web-development",
+  serviceSubType: "WordPress Corporate Website",
   slug: "trans-master-logistics",
   externalUrl: "https://transmaster.ae/",
   content: {

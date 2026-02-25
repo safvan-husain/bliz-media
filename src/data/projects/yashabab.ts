@@ -5,7 +5,8 @@ export const yashabab: Project = {
   image: "/images/projects/yashbab.jpeg",
   priority: 2,
   year: "2025",
-  service: "Static Website Development",
+  service: "web-development",
+  serviceSubType: "Static Website Development",
   slug: "yashabab-restaurant-website",
   externalUrl: "[https://yashabab.ae/](https://yashabab.ae/)",
   content: {

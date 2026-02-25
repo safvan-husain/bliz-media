@@ -5,7 +5,8 @@ export const aircrew: Project = {
   image: "/images/projects/aircrew.jpeg",
   priority: 2,
   year: "2024",
-  service: "Static Website Development",
+  service: "web-development",
+  serviceSubType: "Static Website Development",
   slug: "aircrew-tours-travels",
   externalUrl: "[https://weaircrew.com/](https://weaircrew.com/)",
   content: {

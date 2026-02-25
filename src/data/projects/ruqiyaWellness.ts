@@ -5,7 +5,9 @@ export const ruqiyaWellness: Project = {
   image: "/images/projects/rukiya.jpeg",
   priority: 2,
   year: "2025",
-  service: "WordPress Website Development",
+  service: "web-development",
+
+  serviceSubType: "WordPress Website Development",
   slug: "ruqiya-wellness",
   externalUrl: "https://ruqiyawellness.com/",
   content: {

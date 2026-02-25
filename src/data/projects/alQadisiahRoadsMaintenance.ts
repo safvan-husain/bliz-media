@@ -5,7 +5,8 @@ export const alQadisiahRoadsMaintenance: Project = {
   image: "/images/projects/qadisiah.jpeg",
   priority: 2,
   year: "2024",
-  service: "WordPress Corporate Website Development",
+  service: "web-development",
+  serviceSubType: "WordPress Corporate Website Development",
   slug: "al-qadisiah-roads-maintenance",
   externalUrl: "https://alqrc.com/",
   content: {

@@ -5,7 +5,9 @@ export const bertonGolden: Project = {
   image: "/images/projects/berton-golden.jpeg",
   priority: 2,
   year: "2024",
-  service: "Brand Showcase Website",
+  service: "web-development",
+
+  serviceSubType: "Brand Showcase Website",
   slug: "berton-golden-premium-fragrance-showcase",
   externalUrl: "https://bertongolden.com/",
   content: {

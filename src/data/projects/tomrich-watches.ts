@@ -5,7 +5,8 @@ export const tomrichWatches: Project = {
   image: "/images/projects/tomrich-watches.jpeg",
   priority: 2,
   year: "2026",
-  service: "eCommerce Website Development",
+  service: "web-development",
+  serviceSubType: "eCommerce Website Development",
   slug: "tomrich-watches-ecommerce-website",
   externalUrl:
     "[https://ecommerce-tomirich.web.app](https://ecommerce-tomirich.web.app)",

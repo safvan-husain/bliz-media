@@ -5,7 +5,9 @@ export const xenseFragrance: Project = {
   image: "/images/projects/xense.jpeg",
   priority: 2,
   year: "2025",
-  service: "WordPress WooCommerce Development",
+  service: "web-development",
+
+  serviceSubType: "WordPress WooCommerce Development",
   slug: "xense-fragrance-perfume-ecommerce-website",
   externalUrl: "https://xensefragrance.com/",
   content: {

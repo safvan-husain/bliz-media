@@ -5,7 +5,9 @@ export const livaBusinessHub: Project = {
   image: "/images/projects/liva.jpeg",
   priority: 2,
   year: "2024",
-  service: "Corporate Website Development",
+  service: "web-development",
+
+  serviceSubType: "Corporate Website Development",
   slug: "liva-business-hub",
   externalUrl: "https://livabusiness.com/",
   content: {

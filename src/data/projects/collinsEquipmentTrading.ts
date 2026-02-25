@@ -5,7 +5,9 @@ export const collinsEquipmentTrading: Project = {
   image: "/images/projects/collins.jpeg",
   priority: 2,
   year: "2024",
-  service: "WordPress Development",
+  service: "web-development",
+
+  serviceSubType: "WordPress Development",
   slug: "collins-equipment-trading",
   externalUrl: "https://collinscouae.com/",
   content: {
