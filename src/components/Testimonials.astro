@@ -88,8 +88,7 @@ const testimonials = [
             <!-- Carousel Container -->
             <div
                 id="testimonial-track"
-                class="flex gap-8 overflow-x-auto pb-12 pt-4 px-4 snap-x snap-mandatory scrollbar-hide no-scrollbar scroll-smooth"
-                style="scrollbar-width: none; -ms-overflow-style: none;"
+                class="flex gap-8 overflow-x-auto pb-12 pt-4 px-4 snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
             >
                 {
                     testimonials.map((t) => (
@@ -239,12 +238,6 @@ const testimonials = [
         </div>
     </div>
 </section>
-
-<style>
-    .no-scrollbar::-webkit-scrollbar {
-        display: none;
-    }
-</style>
 
 <script>
     const track = document.getElementById("testimonial-track") as HTMLElement;
