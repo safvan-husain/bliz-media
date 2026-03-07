@@ -205,7 +205,7 @@ const sectionIcons: Record<ProjectContentSectionKey, IconDefinition> = {
                 )}
             </section>
 
-            {content.sections.map((section, index) => {
+            {content.sections.map((section) => {
                 const icon = sectionIcons[section.key] ?? sectionIcons.custom;
                 const hasBullets = Boolean(section.bullets?.length);
 

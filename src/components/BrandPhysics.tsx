@@ -64,7 +64,7 @@ export default function BrandPhysics({ brands }: BrandPhysicsProps) {
       probe.remove();
 
       return {
-        fill: normalized,
+        fill: computedBackground || normalized,
       };
     }
 

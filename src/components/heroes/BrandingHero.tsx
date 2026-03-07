@@ -14,9 +14,10 @@ import nexaaImage from "@/assets/projects-hero-images/nexaa@3x.jpg";
 interface BrandingHeroProps {
   title: string;
   description?: string;
+  images?: string[];
 }
 
-export function BrandingHero({ title, description }: BrandingHeroProps) {
+export function BrandingHero({ title, description, images }: BrandingHeroProps) {
   const defaultImages = [
     airecrewImage.src,
     flyeweelImage.src,
@@ -27,11 +28,13 @@ export function BrandingHero({ title, description }: BrandingHeroProps) {
     nexaaImage.src,
   ];
 
+  const galleryImages = images && images.length > 0 ? images : defaultImages;
+
   return (
     <ArcGalleryHero
       title={title}
       description={description}
-      images={defaultImages}
+      images={galleryImages}
       ctaText="START YOUR PROJECT"
       onCtaClick={() =>
         (window.location.href = createServiceWhatsAppLink(title))

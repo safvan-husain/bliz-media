@@ -12,8 +12,7 @@ const CTA_CONTENT = {
 
 <section class="text-center space-y-8 py-12">
   <div class="space-y-4 max-w-2xl mx-auto">
-    <CurveRevealText
-      as="h3"
+    <CurveRevealText as="h3"
       text={CTA_CONTENT.title}
       className="text-3xl md:text-4xl font-bold text-secondary"
       delayStepMs={20}
@@ -21,11 +20,10 @@ const CTA_CONTENT = {
     <p class="text-lg text-zinc-600">{CTA_CONTENT.description}</p>
   </div>
 
-  <a
-    href="/contact?service=web-development"
+  <a href="/contact?service=web-development"
     class="inline-flex items-center justify-center gap-3 bg-primary text-white px-8 py-4 rounded-full font-bold tracking-wide hover:bg-black transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-xl hover:-translate-y-1"
   >
     {CTA_CONTENT.buttonText}
-    <Rocket class="w-5 h-5" />
+    <Rocket className="w-5 h-5" />
   </a>
 </section>

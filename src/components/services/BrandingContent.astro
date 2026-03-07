@@ -102,8 +102,7 @@ const CONTENT = {
 <div class="space-y-24 py-12">
   <section>
     <div class="mb-10">
-      <CurveRevealText
-        as="h3"
+      <CurveRevealText as="h3"
         text={CONTENT.deliverables.title}
         className="text-2xl font-bold text-secondary mb-2"
         delayStepMs={20}
@@ -112,12 +111,10 @@ const CONTENT = {
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {CONTENT.deliverables.items.map((item, idx) => (
-        <div
-          key={idx}
-          class="flex items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-sm h-20"
+      {CONTENT.deliverables.items.map((item) => (
+        <div class="flex items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-white/5 hover:bg-secondary-light transition-all duration-300 shadow-sm h-20"
         >
-          <item.icon class="w-5 h-5 text-primary flex-shrink-0" />
+          <item.icon className="w-5 h-5 text-primary flex-shrink-0" />
           <span class="font-medium text-white/90 text-sm">{item.text}</span>
         </div>
       ))}
@@ -129,8 +126,7 @@ const CONTENT = {
 
   <section>
     <div class="mb-12">
-      <CurveRevealText
-        as="h3"
+      <CurveRevealText as="h3"
         text={CONTENT.approach.title}
         className="text-2xl font-bold text-secondary mb-2"
         delayStepMs={20}
@@ -139,10 +135,8 @@ const CONTENT = {
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {CONTENT.approach.steps.map((step, idx) => (
-        <div
-          key={idx}
-          class="group relative p-8 rounded-3xl border border-zinc-100 bg-white/50 hover:bg-white hover:border-zinc-200 hover:shadow-xl hover:shadow-secondary/5 transition-all duration-300"
+      {CONTENT.approach.steps.map((step) => (
+        <div class="group relative p-8 rounded-3xl border border-zinc-100 bg-white/50 hover:bg-white hover:border-zinc-200 hover:shadow-xl hover:shadow-secondary/5 transition-all duration-300"
         >
           <div class="absolute top-6 right-8 text-4xl font-bold text-zinc-100 group-hover:text-primary/10 transition-colors duration-300">
             {step.number}
@@ -150,7 +144,7 @@ const CONTENT = {
 
           <div class="relative z-10 space-y-4">
             <div class="w-12 h-12 rounded-2xl bg-secondary/5 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300">
-              <step.icon class="w-6 h-6 text-secondary group-hover:text-white transition-colors duration-300" />
+              <step.icon className="w-6 h-6 text-secondary group-hover:text-white transition-colors duration-300" />
             </div>
 
             <div class="space-y-2">
@@ -169,8 +163,7 @@ const CONTENT = {
 
   <section>
     <div class="mb-10">
-      <CurveRevealText
-        as="h3"
+      <CurveRevealText as="h3"
         text={CONTENT.targetAudience.title}
         className="text-2xl font-bold text-secondary mb-2"
         delayStepMs={20}
@@ -178,12 +171,10 @@ const CONTENT = {
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-      {CONTENT.targetAudience.items.map((item, idx) => (
-        <div
-          key={idx}
-          class="flex flex-col justify-center text-center items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-secondary/30 hover:bg-secondary-light transition-all duration-300 shadow-sm h-32"
+      {CONTENT.targetAudience.items.map((item) => (
+        <div class="flex flex-col justify-center text-center items-center gap-4 bg-secondary/95 p-4 rounded-2xl border border-secondary/30 hover:bg-secondary-light transition-all duration-300 shadow-sm h-32"
         >
-          <item.icon class="w-5 h-5 text-primary flex-shrink-0" />
+          <item.icon className="w-5 h-5 text-primary flex-shrink-0" />
           <span class="font-medium text-white/90 text-sm">{item.text}</span>
         </div>
       ))}
@@ -196,8 +187,7 @@ const CONTENT = {
 
   <section class="text-center space-y-8 py-12">
     <div class="space-y-4 max-w-2xl mx-auto">
-      <CurveRevealText
-        as="h3"
+      <CurveRevealText as="h3"
         text={CONTENT.cta.title}
         className="text-3xl md:text-4xl font-bold text-secondary"
         delayStepMs={20}
@@ -205,12 +195,11 @@ const CONTENT = {
       <p class="text-lg text-zinc-600">{CONTENT.cta.description}</p>
     </div>
 
-    <a
-      href="/contact?service=branding"
+    <a href="/contact?service=branding"
       class="inline-flex items-center justify-center gap-3 bg-primary text-white px-8 py-4 rounded-full font-bold tracking-wide hover:bg-black transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-xl hover:-translate-y-1"
     >
       {CONTENT.cta.buttonText}
-      <Rocket class="w-5 h-5" />
+      <Rocket className="w-5 h-5" />
     </a>
   </section>
 </div>
