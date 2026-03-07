@@ -62,7 +62,11 @@
     --color-team-blue: #a8c6fa;
     --color-team-olive: #4e533b;
 
+    --breakpoint-xs: 378px;
+    --breakpoint-xl2: 1200px;
+
     @keyframes float {
+
         0%,
         100% {
             transform: translateY(0);
@@ -109,10 +113,7 @@
     transition-property: transform, opacity, filter;
     transition-duration: 700ms;
     transition-timing-function: ease-out;
-    transition-delay: calc(
-        var(--curve-base-delay, 0ms) +
-            (var(--part-index) * var(--curve-delay-step, 30ms))
-    );
+    transition-delay: calc(var(--curve-base-delay, 0ms) + (var(--part-index) * var(--curve-delay-step, 30ms)));
     will-change: transform, opacity, filter;
 }
 

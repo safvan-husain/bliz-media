@@ -333,8 +333,8 @@ export default function ScrollTeamEXP() {
         </div>
 
         <div className="relative mx-auto px-6 h-full w-full flex flex-col md:flex-row md:items-center lg:gap-20">
-          <div className="z-30 absolute left-6 md:left-20 bottom-[20%] sm:bottom-40 max-w-2xl pointer-events-none">
-            <p className="text-5xl font-black leading-[0.95] max-w-[30vw] tracking-tighter md:text-6xl lg:text-7xl text-white">
+          <div className="z-30 absolute left-6 md:left-20 bottom-20 xl2:bottom-40 max-w-2xl pointer-events-none">
+            <p className="text-5xl font-black leading-[0.95] max-w-[30vw] tracking-tighter md:text-6xl xl2:text-7xl text-white">
               {currentTitle}
             </p>
           </div>
@@ -436,8 +436,8 @@ export default function ScrollTeamEXP() {
               className="hidden md:flex absolute inset-0 w-full h-full flex-col justify-center items-start z-[60]"
             >
               <div className="relative w-full overflow-visible">
-                <div className="pl-[320px] lg:pl-[350px] mb-10">
-                  <h3 className="ext-5xl font-black leading-[0.95] tracking-tighter md:text-6xl lg:text-7xl text-white">
+                <div className="flex items-center justify-center w-full gap-10 mb-10 text-center">
+                  <h3 className="text-5xl font-black leading-[0.95] tracking-tighter md:text-6xl lg:text-7xl text-white">
                     Meet the rest of the team
                   </h3>
                 </div>
@@ -535,7 +535,7 @@ function TeamGridCard({ member }: { member: TeamMember }) {
 
 function TeamSpotlightCard({ member }: { member: TeamMember }) {
   return (
-    <div className="flex flex-col items-center text-center group w-[150px]  w-[378px]:w-[180px]  sm:w-[280px] lg:w-[340px]">
+    <div className="flex flex-col items-center text-center group w-[300px] xl2:w-[360px]">
       <div className="relative aspect-[1/2] sm:aspect-[1/1.5] w-full overflow-hidden bg-gray-200 rounded-b-[150px] border-[6px] border-white/30 shadow-2xl transition-all duration-500 hover:scale-105 hover:border-white">
         <img
           src={member.image}
