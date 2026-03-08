@@ -4,6 +4,7 @@ export const everestConsultancyServices: Project = {
   name: "Everest Consultancy Services",
   image: "/images/projects/everest.jpeg",
   priority: 95,
+  indexOrder: 6,
   year: "2025",
   service: "web-development",
 

@@ -4,6 +4,7 @@ export const hufiWorld: Project = {
   name: "HUFI WORLD — Marine & Moving Services Website",
   image: "/images/projects/hufi.jpeg",
   priority: 2,
+  indexOrder: 15,
   year: "2024",
   service: "web-development",
 

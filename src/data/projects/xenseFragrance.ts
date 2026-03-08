@@ -4,6 +4,7 @@ export const xenseFragrance: Project = {
   name: "Xense Fragrance",
   image: "/images/projects/xense.jpeg",
   priority: 2,
+  indexOrder: 9,
   year: "2025",
   service: "web-development",
 

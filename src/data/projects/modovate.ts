@@ -4,6 +4,7 @@ export const modovate: Project = {
   name: "MODOVATE — Car Care & Customization Website",
   image: "/images/projects/modovate.jpeg",
   priority: 2,
+  indexOrder: 7,
   year: "2025",
   service: "web-development",
 

@@ -4,6 +4,7 @@ export const shezastar: Project = {
   name: "Sheza Star - Automotive E-commerce website",
   image: "/images/projects/shezastar.jpeg",
   priority: 99,
+  indexOrder: 1,
   year: "2025",
   service: "web-development",
 

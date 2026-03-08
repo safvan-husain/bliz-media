@@ -4,6 +4,7 @@ export const tomrichWatches: Project = {
   name: "TOMRICH WATCHES",
   image: "/images/projects/tomrich-watches.jpeg",
   priority: 2,
+  indexOrder: 4,
   year: "2026",
   service: "web-development",
   serviceSubType: "eCommerce Website Development",

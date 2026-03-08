@@ -4,6 +4,7 @@ export const alQadisiahRoadsMaintenance: Project = {
   name: "Al Qadisiah Roads Maintenance",
   image: "/images/projects/qadisiah.jpeg",
   priority: 97,
+  indexOrder: 11,
   year: "2024",
   service: "web-development",
   serviceSubType: "WordPress Corporate Website Development",

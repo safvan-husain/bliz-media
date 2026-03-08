@@ -4,6 +4,7 @@ export const ruqiyaWellness: Project = {
   name: "Ruqiya Wellness",
   image: "/images/projects/rukiya.jpeg",
   priority: 2,
+  indexOrder: 20,
   year: "2025",
   service: "web-development",
 

@@ -4,6 +4,7 @@ export const transMasterLogistics: Project = {
   name: "Trans Master Logistics",
   image: "/images/projects/transmaster.jpeg",
   priority: 2,
+  indexOrder: 18,
   year: "2025",
   service: "web-development",
   serviceSubType: "WordPress Corporate Website",

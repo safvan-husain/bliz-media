@@ -4,6 +4,7 @@ export const transKingLogistic: Project = {
   name: "Trans King Logistic",
   image: "/images/projects/transking.jpeg",
   priority: 2,
+  indexOrder: 17,
   year: "2025",
   service: "web-development",
   serviceSubType: "Enterprise Website Development",

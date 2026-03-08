@@ -4,6 +4,7 @@ export const liveAdventure: Project = {
   name: "LIVE ADVENTURE TOURS — Adventure & Travel Experiences Website",
   image: "/images/projects/live-adventure.jpeg",
   priority: 100,
+  indexOrder: 2,
   year: "2026",
   service: "web-development",
 

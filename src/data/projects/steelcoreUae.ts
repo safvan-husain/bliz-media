@@ -4,6 +4,7 @@ export const steelcoreUae: Project = {
   name: "Steelcore UAE",
   image: "/images/projects/steelcore.jpeg",
   priority: 2,
+  indexOrder: 14,
   year: "2025",
   service: "web-development",
   serviceSubType: "Corporate Website Development",

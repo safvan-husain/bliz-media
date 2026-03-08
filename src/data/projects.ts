@@ -38,6 +38,7 @@ export interface Project {
   name: string;
   image: string;
   priority: number;
+  indexOrder: number;
   year: string;
   service: ServicesType;
   serviceSubType?: string;

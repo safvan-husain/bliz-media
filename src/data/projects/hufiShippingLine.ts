@@ -4,6 +4,7 @@ export const hufiShippingLine: Project = {
   name: "HUFI Shipping Line LLC",
   image: "/images/projects/hufi-shipping.jpeg",
   priority: 2,
+  indexOrder: 16,
   year: "2025",
   service: "web-development",
 

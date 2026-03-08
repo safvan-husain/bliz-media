@@ -4,6 +4,7 @@ export const livaBusinessHub: Project = {
   name: "Liva Business Hub",
   image: "/images/projects/liva.jpeg",
   priority: 2,
+  indexOrder: 8,
   year: "2024",
   service: "web-development",
 

@@ -4,6 +4,7 @@ export const bertonPerfumes: Project = {
   name: "BERTON PERFUMES — Fragrance Brand Website",
   image: "/images/projects/berton-perfume.jpeg",
   priority: 98,
+  indexOrder: 3,
   year: "2026",
   service: "web-development",
 

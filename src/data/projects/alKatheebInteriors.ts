@@ -4,6 +4,7 @@ export const alKatheebInteriors: Project = {
   name: "Al Katheeb Interiors",
   image: "/images/projects/katheeb.jpeg",
   priority: 2,
+  indexOrder: 10,
   year: "2024",
   service: "web-development",
   serviceSubType: "Corporate Website Development",

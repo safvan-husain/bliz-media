@@ -13,6 +13,10 @@ const services: { slug: string; name: string }[] = [
 const serviceSlugByTitle = new Map(
     servicesData.map((service) => [service.title, service.slug]),
 );
+
+const sortedProjects = [...projects].sort(
+    (a, b) => (a.indexOrder ?? 999) - (b.indexOrder ?? 999),
+);
 ---
 
 <Layout title="Projects | Our Work">
@@ -49,7 +53,7 @@ const serviceSlugByTitle = new Map(
 
             <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
                 {
-                    projects.map((project) => (
+                    sortedProjects.map((project) => (
                         <article
                             data-service-slug={
                                 serviceSlugByTitle.get(project.service) ??

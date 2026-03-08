@@ -4,6 +4,7 @@ export const aircrew: Project = {
   name: "Aircrew Tours & Travels",
   image: "/images/projects/aircrew.jpeg",
   priority: 94,
+  indexOrder: 5,
   year: "2024",
   service: "web-development",
   serviceSubType: "Static Website Development",

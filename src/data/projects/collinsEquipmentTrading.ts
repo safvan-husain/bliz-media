@@ -4,6 +4,7 @@ export const collinsEquipmentTrading: Project = {
   name: "Collins Equipment Trading",
   image: "/images/projects/collins.jpeg",
   priority: 2,
+  indexOrder: 19,
   year: "2024",
   service: "web-development",
 

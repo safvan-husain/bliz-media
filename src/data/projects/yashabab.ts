@@ -4,6 +4,7 @@ export const yashabab: Project = {
   name: "YASHABAB RESTAURANT — Restaurant Website",
   image: "/images/projects/yashbab.jpeg",
   priority: 2,
+  indexOrder: 12,
   year: "2025",
   service: "web-development",
   serviceSubType: "Static Website Development",
