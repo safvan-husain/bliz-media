@@ -87,6 +87,6 @@ export const projects: Project[] = [
   bertonPerfumes,
   shezastar,
   bertonGolden,
-  ruqiyaWellness,
+  // ruqiyaWellness,
   steelcoreUae,
 ];
