@@ -1,13 +1,29 @@
 ---
 interface Props {
     title: string;
+    description?: string;
+    image?: string;
+    canonicalURL?: URL | string;
+    type?: string;
 }
 
-const { title } = Astro.props;
+const {
+    title,
+    description = "Bliz Media is a creative digital agency blending branding, marketing, and development to help businesses stand out and succeed online.",
+    image = "/outer-logo.jpeg",
+    canonicalURL = new URL(
+        Astro.url.pathname,
+        Astro.site || "https://blizmedia.com",
+    ),
+    type = "website",
+} = Astro.props;
+
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import FloatingSocials from "../components/FloatingSocials.astro";
 import "../styles/global.css";
+
+const siteName = "Bliz Media";
 ---
 
 <!doctype html>
@@ -15,15 +31,87 @@ import "../styles/global.css";
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
+
+        <!-- Global Metadata -->
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+        <meta name="generator" content={Astro.generator} />
+
+        <!-- Primary Meta Tags -->
+        <title>{title}</title>
+        <meta name="title" content={title} />
+        <meta name="description" content={description} />
+        <link rel="canonical" href={canonicalURL} />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content={type} />
+        <meta property="og:url" content={Astro.url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={new URL(image, Astro.url)} />
+        <meta property="og:site_name" content={siteName} />
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={Astro.url} />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:description" content={description} />
+        <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+        <!-- Structured Data -->
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                name: "Bliz Media",
+                url: "https://blizmedia.com",
+                logo: "https://blizmedia.com/outer-logo.jpeg",
+                sameAs: [
+                    "https://www.facebook.com/Bliz.agencies/",
+                    "https://www.instagram.com/bliz_media/",
+                    "https://www.linkedin.com/company/bliz-media/",
+                ],
+            })}
+        />
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                name: "Bliz Media",
+                url: "https://blizmedia.com",
+                potentialAction: {
+                    "@type": "SearchAction",
+                    target: "https://blizmedia.com/search?q={search_term_string}",
+                    "query-input": "required name=search_term_string",
+                },
+            })}
+        />
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
             href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap"
             rel="stylesheet"
         />
-        <meta name="generator" content={Astro.generator} />
-        <title>{title}</title>
     </head>
     <body
         class="bg-white text-gray-900 selection:bg-black selection:text-white font-['Inter',_sans-serif]"

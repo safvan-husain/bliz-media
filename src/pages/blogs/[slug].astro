@@ -12,7 +12,12 @@ export async function getStaticPaths() {
 const { blog } = Astro.props;
 ---
 
-<Layout title={`${blog.title} | Blog Details`}>
+<Layout
+  title={`${blog.title} | Bliz Media`}
+  description={blog.excerpt}
+  image={blog.image}
+  type="article"
+>
   <section class="py-20 md:py-32">
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
@@ -40,7 +45,10 @@ const { blog } = Astro.props;
           Back to Blogs
         </a>
 
-        <div class="rounded-3xl overflow-hidden mb-12 shadow-xl opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0" data-animate-on-scroll>
+        <div
+          class="rounded-3xl overflow-hidden mb-12 shadow-xl opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
+          data-animate-on-scroll
+        >
           <img
             src={blog.image}
             alt={blog.title}
@@ -48,35 +56,49 @@ const { blog } = Astro.props;
           />
         </div>
 
-        <div class="flex flex-col gap-6 mb-12 opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0" data-animate-on-scroll>
-            <div>
-                <div class="flex items-center gap-4 mb-4 text-sm">
-                    <span class="bg-gray-100 px-3 py-1 rounded-full font-medium">{blog.category}</span>
-                    <span class="text-gray-500">{blog.date}</span>
-                    <span class="text-gray-500">By {blog.author}</span>
-                </div>
-                <h1 class="text-3xl md:text-5xl font-bold mb-4">{blog.title}</h1>
+        <div
+          class="flex flex-col gap-6 mb-12 opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
+          data-animate-on-scroll
+        >
+          <div>
+            <div class="flex items-center gap-4 mb-4 text-sm">
+              <span class="bg-gray-100 px-3 py-1 rounded-full font-medium"
+                >{blog.category}</span
+              >
+              <span class="text-gray-500">{blog.date}</span>
+              <span class="text-gray-500">By {blog.author}</span>
             </div>
+            <h1 class="text-3xl md:text-5xl font-bold mb-4">{blog.title}</h1>
+          </div>
         </div>
 
-        <div class="prose prose-lg max-w-none opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0" data-animate-on-scroll set:html={blog.content} />
+        <div
+          class="prose prose-lg max-w-none opacity-0 translate-y-8 transition-all duration-700 ease-out [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
+          data-animate-on-scroll
+          set:html={blog.content}
+        />
       </div>
     </div>
   </section>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              entry.target.classList.add('animate-in');
-            }, index * 100); // Stagger by 100ms
-          }
-        });
-      }, { threshold: 0.1 });
+    document.addEventListener("DOMContentLoaded", function () {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                entry.target.classList.add("animate-in");
+              }, index * 100); // Stagger by 100ms
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
 
-      document.querySelectorAll('[data-animate-on-scroll]').forEach(el => observer.observe(el));
+      document
+        .querySelectorAll("[data-animate-on-scroll]")
+        .forEach((el) => observer.observe(el));
     });
   </script>
 </Layout>

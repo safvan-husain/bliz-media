@@ -29,7 +29,11 @@ export async function getStaticPaths() {
 const { service } = Astro.props;
 ---
 
-<Layout title={`${service.title} | Bliz Media`}>
+<Layout
+    title={`${service.title} | Bliz Media`}
+    description={service.excerpt}
+    type="article"
+>
     {
         service.slug === "digital-marketing" ? (
             <DigitalMarketingHero

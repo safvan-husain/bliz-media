@@ -14,7 +14,13 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 ---
 
-<Layout title={`${project.name} | Project Details`}>
+<Layout
+    title={`${project.name} | Bliz Media`}
+    description={project.content.summary ||
+        `Check out ${project.name}, a project by Bliz Media.`}
+    image={project.image}
+    type="article"
+>
     <section class="py-20 pt-32 md:py-32">
         <div class="container mx-auto px-4">
             <div class="">
